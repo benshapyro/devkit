@@ -1,0 +1,40 @@
+# Products Configuration
+# Client: Probo
+# Fill in the sections below with Probo's products/services
+
+products:
+  - name: "[TODO: Primary Product Name]"
+    type: "primary"
+    tagline: "[TODO: One-line tagline]"
+    description: >
+      [TODO: 2-3 sentence product description]
+
+    key_benefits:
+      - "[TODO: Benefit 1 - be specific with numbers if possible]"
+      - "[TODO: Benefit 2]"
+      - "[TODO: Benefit 3]"
+
+    features:
+      - name: "[TODO: Feature 1 Name]"
+        description: "[TODO: What it does]"
+        benefit: "[TODO: Why it matters to the user]"
+
+      - name: "[TODO: Feature 2 Name]"
+        description: "[TODO: What it does]"
+        benefit: "[TODO: Why it matters]"
+
+      # Add more features as needed
+
+    differentiators:
+      - "[TODO: What makes this different from competitors]"
+      - "[TODO: Unique value proposition]"
+
+    use_cases:
+      - "[TODO: Use case 1]"
+      - "[TODO: Use case 2]"
+      - "[TODO: Use case 3]"
+
+  # Add more products/services as needed:
+  # - name: "[Secondary Product]"
+  #   type: "add-on"
+  #   ...

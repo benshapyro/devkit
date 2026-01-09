@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Business Review</title>
+  
+  <!--
+  ============================================
+  CADRE AI - MONTHLY BUSINESS REVIEW TEMPLATE
+  ============================================
+  
+  Slide-style presentation for monthly client reviews.
+  Structure based on cadre-comms monthly-client-reviews.md
+  
+  USAGE:
+  1. Update the DATA object below with your actual content
+  2. The template will render all slides automatically
+  3. Navigate with arrow buttons or keyboard (← →)
+  4. Print to PDF for static export (Cmd+P)
+  
+  SLIDES:
+  1. Title
+  2. Executive Summary
+  3. Progress
+  4. Wins & Highlights
+  5. Next Month
+  6. Looking Ahead
+  7. Challenges & Mitigations
+  8. Metrics (optional - set showMetrics: false to hide)
+  9. Action Items
+  -->
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-text-primary: #0C0407;
+      --color-text-body: #6E7191;
+      --color-text-muted: #A1A1A1;
+      --color-bg-page: #FAF9F6;
+      --color-bg-cream: #F2EFE4;
+      --color-bg-white: #FFFFFF;
+      --color-bg-dark: #242424;
+      --color-accent: #DB4545;
+      --color-secondary: #08749B;
+      --color-border: rgba(0, 0, 0, 0.10);
+      --color-success: #16a34a;
+      --color-warning: #ca8a04;
+      --color-danger: #dc2626;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--color-bg-page);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+    }
+    
+    /* Slide Container */
+    .slide-deck {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .slide-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .slide.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Navigation */
+    .slide-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg-white);
+    }
+    
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      background: transparent;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-btn:hover:not(:disabled) {
+      background: rgba(12, 4, 7, 0.05);
+    }
+    
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .slide-counter {
+      font-size: 14px;
+      color: var(--color-text-body);
+    }
+    
+    /* Typography */
+    .slide-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      margin-bottom: 12px;
+    }
+    
+    .slide-title {
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    
+    .slide-subtitle {
+      font-size: 20px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    /* Title Slide */
+    .title-slide {
+      text-align: center;
+      padding: 48px 0;
+    }
+    
+    .title-slide .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-text-body);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .client-name {
+      font-size: 60px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    
+    .title-slide .review-type {
+      font-size: 24px;
+      color: var(--color-text-body);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .period {
+      font-size: 18px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Content Slides */
+    .content-slide {
+      padding: 24px 0;
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    
+    .card-grid {
+      display: grid;
+      gap: 24px;
+    }
+    
+    .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    
+    /* Status Indicator */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 100px;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .status-on-track {
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--color-success);
+    }
+    .status-on-track .status-dot { background: var(--color-success); }
+    
+    .status-at-risk {
+      background: rgba(202, 138, 4, 0.1);
+      color: var(--color-warning);
+    }
+    .status-at-risk .status-dot { background: var(--color-warning); }
+    
+    .status-behind {
+      background: rgba(220, 38, 38, 0.1);
+      color: var(--color-danger);
+    }
+    .status-behind .status-dot { background: var(--color-danger); }
+    
+    /* Metric Card */
+    .metric-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    
+    .metric-value {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: var(--color-text-body);
+    }
+    
+    .metric-change {
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    
+    .metric-change.positive { color: var(--color-success); }
+    .metric-change.negative { color: var(--color-danger); }
+    
+    /* List Items */
+    .item-list {
+      list-style: none;
+    }
+    
+    .item-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .item-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .item-list li:first-child {
+      padding-top: 0;
+    }
+    
+    /* Bullet list */
+    .bullet-list {
+      list-style: none;
+    }
+    
+    .bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text-body);
+    }
+    
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+    
+    /* Challenge/Risk Table */
+    .challenge-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .challenge-table th,
+    .challenge-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .challenge-table th {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      background: var(--color-bg-page);
+    }
+    
+    .challenge-table td {
+      font-size: 15px;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    
+    .challenge-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .severity {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .severity-high { background: var(--color-danger); }
+    .severity-medium { background: var(--color-warning); }
+    .severity-low { background: var(--color-success); }
+    
+    /* Action Items */
+    .action-group {
+      margin-bottom: 32px;
+    }
+    
+    .action-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .action-group-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--color-bg-dark);
+    }
+    
+    .action-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .action-item:last-child {
+      border-bottom: none;
+    }
+    
+    .action-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--color-border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .action-text {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    /* Executive Summary Bullets */
+    .exec-summary-list {
+      list-style: none;
+    }
+    
+    .exec-summary-list li {
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .exec-summary-list li:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Two Column Layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+      }
+      
+      .slide-nav {
+        display: none;
+      }
+      
+      .slide-deck {
+        display: block;
+      }
+      
+      .slide-viewport {
+        padding: 0;
+        display: block;
+      }
+      
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        padding: 48px;
+        min-height: 100vh;
+      }
+      
+      .slide:last-child {
+        page-break-after: auto;
+      }
+      
+      .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+      
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      @page {
+        size: letter landscape;
+        margin: 0.5in;
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide-viewport {
+        padding: 24px;
+      }
+      
+      .slide-title {
+        font-size: 36px;
+      }
+      
+      .title-slide .client-name {
+        font-size: 42px;
+      }
+      
+      .card-grid-2,
+      .card-grid-3,
+      .card-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-deck" id="slideDeck">
+    <div class="slide-viewport">
+      <!-- Slides will be rendered here by JavaScript -->
+    </div>
+    
+    <nav class="slide-nav no-print">
+      <button class="nav-btn" id="prevBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 19l-7-7 7-7"/>
+        </svg>
+        Previous
+      </button>
+      <span class="slide-counter" id="slideCounter">1 / 9</span>
+      <button class="nav-btn" id="nextBtn">
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    // ============================================
+    // DATA - UPDATE THIS WITH YOUR CONTENT
+    // ============================================
+    const DATA = {
+      // Basic Info
+      clientName: "Acme Corporation",
+      period: "November 2024",
+      preparedBy: "Cadre AI",
+      
+      // Overall Status: "on-track" | "at-risk" | "behind"
+      overallStatus: "on-track",
+      
+      // Executive Summary (3-5 key points)
+      executiveSummary: [
+        "Overall progress: On track for December go-live",
+        "Completed reconciliation engine build and deployed to staging",
+        "Successfully processed 3 months of historical data with 99.2% accuracy",
+        "One risk: NetSuite API access delayed by 2 weeks—mitigation in place",
+        "Next month focus: UAT completion, training, production deployment"
+      ],
+      
+      // Progress - What was accomplished
+      progress: [
+        "Reconciliation engine deployed to staging environment",
+        "Processed 3 months of historical transaction data",
+        "Exception flagging system operational—caught 47 discrepancies in test data",
+        "Completed 4 discovery workshops with finance team (18 stakeholders)",
+        "Delivered technical architecture documentation"
+      ],
+      
+      // Wins & Highlights
+      wins: [
+        "Exception detection rate: 94% (target was 85%)",
+        "Processing time: 3 minutes for full month reconciliation (was 40+ hours manual)",
+        "Finance team engagement: 100% attendance at training sessions",
+        "Early win: Found $23K in duplicate payments during testing"
+      ],
+      
+      // Next Month Plans
+      nextMonth: [
+        "Complete user acceptance testing (Dec 2-6)",
+        "Conduct 2 makeup training sessions for team members who missed",
+        "Production deployment (target: Dec 15)",
+        "Go-live support and monitoring (Dec 16-20)",
+        "Create runbook and handoff documentation"
+      ],
+      
+      // Looking Ahead (2-3 months out)
+      lookingAhead: [
+        "January: Optimization phase based on production learnings",
+        "February: Phase 2 scoping—AP automation opportunity identified",
+        "Q1: Potential expansion to other business units"
+      ],
+      
+      // Challenges & Mitigations
+      challenges: [
+        {
+          severity: "medium", // "high" | "medium" | "low"
+          challenge: "NetSuite API access delayed by 2 weeks",
+          impact: "Could push production deployment to Dec 20",
+          mitigation: "Starting with LED retrofit workflow instead; API work queued for Dec 15 start"
+        },
+        {
+          severity: "low",
+          challenge: "60% attendance at optional advanced training",
+          impact: "Some power users may need additional support post-launch",
+          mitigation: "Running 2 makeup sessions; creating self-paced video modules"
+        }
+      ],
+      
+      // Metrics (set showMetrics: false if no data available)
+      showMetrics: true,
+      metrics: [
+        { value: "127", label: "Hours Delivered", change: "+12%" },
+        { value: "68%", label: "Budget Used", change: null },
+        { value: "4/5", label: "Milestones Complete", change: null },
+        { value: "94%", label: "Test Accuracy", change: "+9%" }
+      ],
+      
+      // Action Items
+      actionItemsFromClient: [
+        "Provide production NetSuite API credentials (need by Dec 10)",
+        "Confirm go-live date with IT team",
+        "Sign off on UAT test results"
+      ],
+      actionItemsFromCadre: [
+        "Complete UAT test plan and execute (Dec 2-6)",
+        "Deliver training materials v2 with updates from feedback",
+        "Schedule go-live support coverage",
+        "Send weekly status email on Friday"
+      ]
+    };
+    
+    // ============================================
+    // SLIDE TEMPLATES
+    // ============================================
+    
+    function renderTitleSlide(data) {
+      return `
+        <div class="slide title-slide" data-slide="0">
+          <div class="logo">CADRE AI</div>
+          <h1 class="client-name">${data.clientName}</h1>
+          <p class="review-type">Monthly Business Review</p>
+          <p class="period">${data.period}</p>
+        </div>
+      `;
+    }
+    
+    function renderExecSummarySlide(data) {
+      const statusClass = {
+        'on-track': 'status-on-track',
+        'at-risk': 'status-at-risk',
+        'behind': 'status-behind'
+      }[data.overallStatus];
+      
+      const statusText = {
+        'on-track': 'On Track',
+        'at-risk': 'At Risk',
+        'behind': 'Behind Schedule'
+      }[data.overallStatus];
+      
+      return `
+        <div class="slide content-slide" data-slide="1">
+          <div class="slide-label">Overview</div>
+          <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 32px;">
+            <h1 class="slide-title" style="margin-bottom: 0;">Executive Summary</h1>
+            <span class="status ${statusClass}">
+              <span class="status-dot"></span>
+              ${statusText}
+            </span>
+          </div>
+          <ul class="exec-summary-list">
+            ${data.executiveSummary.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+    
+    function renderProgressSlide(data) {
+      return `
+        <div class="slide content-slide" data-slide="2">
+          <div class="slide-label">Accomplishments</div>
+          <h1 class="slide-title">Progress This Month</h1>
+          <div class="card">
+            <ul class="item-list">
+              ${data.progress.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderWinsSlide(data) {
+      return `
+        <div class="slide content-slide" data-slide="3">
+          <div class="slide-label">Celebrate</div>
+          <h1 class="slide-title">Wins & Highlights</h1>
+          <div class="card">
+            <ul class="bullet-list">
+              ${data.wins.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderNextMonthSlide(data) {
+      return `
+        <div class="slide content-slide" data-slide="4">
+          <div class="slide-label">Planning</div>
+          <h1 class="slide-title">Next Month</h1>
+          <div class="card">
+            <ul class="item-list">
+              ${data.nextMonth.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderLookingAheadSlide(data) {
+      return `
+        <div class="slide content-slide" data-slide="5">
+          <div class="slide-label">Future</div>
+          <h1 class="slide-title">Looking Ahead</h1>
+          <div class="card">
+            <ul class="bullet-list">
+              ${data.lookingAhead.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderChallengesSlide(data) {
+      if (data.challenges.length === 0) {
+        return `
+          <div class="slide content-slide" data-slide="6">
+            <div class="slide-label">Risks</div>
+            <h1 class="slide-title">Challenges & Mitigations</h1>
+            <div class="card" style="text-align: center; padding: 48px;">
+              <p style="font-size: 18px; color: var(--color-text-body);">
+                ✓ No significant blockers this month
+              </p>
+            </div>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="slide content-slide" data-slide="6">
+          <div class="slide-label">Risks</div>
+          <h1 class="slide-title">Challenges & Mitigations</h1>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <table class="challenge-table">
+              <thead>
+                <tr>
+                  <th style="width: 30%;">Challenge</th>
+                  <th style="width: 25%;">Impact</th>
+                  <th style="width: 45%;">Mitigation</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.challenges.map(c => `
+                  <tr>
+                    <td><span class="severity severity-${c.severity}"></span>${c.challenge}</td>
+                    <td>${c.impact}</td>
+                    <td>${c.mitigation}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderMetricsSlide(data) {
+      if (!data.showMetrics) return '';
+      
+      const gridClass = data.metrics.length <= 3 ? 'card-grid-3' : 'card-grid-4';
+      
+      return `
+        <div class="slide content-slide" data-slide="7">
+          <div class="slide-label">Data</div>
+          <h1 class="slide-title">By the Numbers</h1>
+          <div class="card-grid ${gridClass}">
+            ${data.metrics.map(m => `
+              <div class="card metric-card">
+                <div class="metric-value">${m.value}</div>
+                <div class="metric-label">${m.label}</div>
+                ${m.change ? `<div class="metric-change ${m.change.startsWith('+') ? 'positive' : 'negative'}">${m.change}</div>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderActionItemsSlide(data) {
+      return `
+        <div class="slide content-slide" data-slide="${data.showMetrics ? 8 : 7}">
+          <div class="slide-label">Next Steps</div>
+          <h1 class="slide-title">Action Items</h1>
+          <div class="two-col">
+            <div class="action-group">
+              <div class="action-group-title">From ${data.clientName}</div>
+              ${data.actionItemsFromClient.map(item => `
+                <div class="action-item">
+                  <div class="action-checkbox"></div>
+                  <div class="action-text">${item}</div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="action-group">
+              <div class="action-group-title">From Cadre</div>
+              ${data.actionItemsFromCadre.map(item => `
+                <div class="action-item">
+                  <div class="action-checkbox"></div>
+                  <div class="action-text">${item}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // ============================================
+    // RENDER & NAVIGATION
+    // ============================================
+    
+    function renderAllSlides(data) {
+      const viewport = document.querySelector('.slide-viewport');
+      
+      let slides = [
+        renderTitleSlide(data),
+        renderExecSummarySlide(data),
+        renderProgressSlide(data),
+        renderWinsSlide(data),
+        renderNextMonthSlide(data),
+        renderLookingAheadSlide(data),
+        renderChallengesSlide(data)
+      ];
+      
+      if (data.showMetrics) {
+        slides.push(renderMetricsSlide(data));
+      }
+      
+      slides.push(renderActionItemsSlide(data));
+      
+      viewport.innerHTML = slides.join('');
+      
+      return slides.length;
+    }
+    
+    function initNavigation(totalSlides) {
+      let currentSlide = 0;
+      
+      const slides = document.querySelectorAll('.slide');
+      const counter = document.getElementById('slideCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        counter.textContent = `${index + 1} / ${totalSlides}`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalSlides - 1;
+        currentSlide = index;
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) showSlide(currentSlide - 1);
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) showSlide(currentSlide - 1);
+        if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+      });
+      
+      showSlide(0);
+    }
+    
+    // Initialize
+    const totalSlides = renderAllSlides(DATA);
+    initNavigation(totalSlides);
+  </script>
+</body>
+</html>

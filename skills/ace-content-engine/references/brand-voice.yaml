@@ -1,0 +1,49 @@
+# Brand Voice Configuration
+# Client: Probo
+# Fill in the sections below with Probo's brand information
+
+client:
+  name: "Probo"
+  industry: "[TODO: Industry]"
+  website: "[TODO: URL]"
+
+brand_voice:
+  summary: >
+    [TODO: 2-3 sentence summary of Probo's brand voice]
+
+  guidelines:
+    - rule: "[TODO: Rule 1 - e.g., Use active voice]"
+      example_good: "[TODO: Good example]"
+      example_bad: "[TODO: Bad example]"
+      rationale: "[TODO: Why this matters]"
+
+    - rule: "[TODO: Rule 2]"
+      example_good: "[TODO: Good example]"
+      example_bad: "[TODO: Bad example]"
+      rationale: "[TODO: Why this matters]"
+
+    # Add more rules as needed (5-10 recommended)
+
+  tone:
+    formality: "[TODO: casual / professional / formal]"
+    personality: "[TODO: authoritative / friendly / helpful / educational]"
+    energy: "[TODO: calm / confident / enthusiastic]"
+    humor: "[TODO: none / occasional / frequent]"
+
+  vocabulary:
+    preferred:
+      - "[TODO: word 1]"
+      - "[TODO: word 2]"
+      - "[TODO: word 3]"
+      # Add more preferred words
+    avoid:
+      - "[TODO: word 1]"
+      - "[TODO: word 2]"
+      - "[TODO: word 3]"
+      # Add words to avoid
+
+  content_patterns:
+    opening:
+      - "[TODO: How to start articles]"
+    closing:
+      - "[TODO: How to end articles]"

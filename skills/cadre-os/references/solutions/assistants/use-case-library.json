@@ -1,0 +1,1408 @@
+{
+  "metadata": {
+    "total": 50,
+    "by_function": {
+      "Sales": {
+        "count": 10,
+        "simple": 2,
+        "medium": 3,
+        "complex": 5
+      },
+      "Marketing": {
+        "count": 13,
+        "simple": 3,
+        "medium": 8,
+        "complex": 2
+      },
+      "Finance/Operations": {
+        "count": 5,
+        "simple": 1,
+        "medium": 1,
+        "complex": 3
+      },
+      "HR": {
+        "count": 5,
+        "simple": 1,
+        "medium": 3,
+        "complex": 1
+      },
+      "Customer Success": {
+        "count": 6,
+        "simple": 1,
+        "medium": 3,
+        "complex": 2
+      },
+      "General Productivity": {
+        "count": 11,
+        "simple": 3,
+        "medium": 7,
+        "complex": 1
+      }
+    },
+    "by_complexity": {
+      "Simple": 11,
+      "Medium": 25,
+      "Complex": 14
+    },
+    "functions": [
+      "Sales",
+      "Marketing",
+      "Finance/Operations",
+      "HR",
+      "Customer Success",
+      "General Productivity"
+    ]
+  },
+  "use_cases": [
+    {
+      "id": 1,
+      "name": "Sales Email Draft Assistant",
+      "function": "Sales",
+      "description": "Generates personalized outreach emails based on prospect information meeting notes and company value proposition",
+      "business_value": "Time savings: 15-20 min per email \u2192 2-3 min; Users save 5-8 hours/week; Increases email volume by 3x; Improves response rates with personalization",
+      "target_users": "Account Executives, SDRs, Customer Success Managers",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Company messaging doc, Product positioning, Example emails",
+      "integrations": {
+        "pull": "None required (Optional: CRM integration)",
+        "push": "None required"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User opens assistant; 2. Provides prospect name company pain point meeting notes; 3. AI generates 3 email variations; 4. User selects and customizes; 5. Sends via email client",
+      "success_metrics": "Emails sent per rep per week, Response rate improvement, Time saved per email"
+    },
+    {
+      "id": 2,
+      "name": "Proposal Generation Assistant",
+      "function": "Sales",
+      "description": "Creates customized sales proposals and presentations based on client requirements and past successful proposals",
+      "business_value": "Reduces proposal creation time by 60-70%; Increases proposal consistency and quality; Improves win rates by 15-20%; Enables sales team to handle 2x more opportunities",
+      "target_users": "Sales Executives, Proposal Writers, Sales Operations",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Proposal templates, Case studies, Product/service descriptions, Pricing structures",
+      "integrations": {
+        "pull": "CRM for client data, Past proposals repository",
+        "push": "None required"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides client info and requirements; 2. AI generates proposal outline; 3. User reviews and provides feedback; 4. AI creates full proposal with case studies; 5. User finalizes and sends",
+      "success_metrics": "Proposal creation time, Win rate, Number of proposals sent, Client satisfaction scores"
+    },
+    {
+      "id": 3,
+      "name": "Call Preparation Assistant",
+      "function": "Sales",
+      "description": "Analyzes prospect/client information and creates talking points discussion guides and objection handling scripts for upcoming sales calls",
+      "business_value": "Reduces prep time from 30 min to 5 min per call; Increases call effectiveness by 25%; Improves confidence and meeting outcomes; Standardizes sales approach",
+      "target_users": "Account Executives, SDRs, Sales Managers",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Sales methodology docs, Product info, Common objections list",
+      "integrations": {
+        "pull": "CRM for account history, LinkedIn for prospect research",
+        "push": "None required"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User enters call details and attendees; 2. AI analyzes prospect background; 3. Generates talking points and questions; 4. Suggests objection responses; 5. User reviews before call",
+      "success_metrics": "Call conversion rate, Average deal size, Sales cycle length, Rep confidence scores"
+    },
+    {
+      "id": 4,
+      "name": "Sales Battlecard Generator",
+      "function": "Sales",
+      "description": "Creates competitive battlecards with positioning messaging and objection handling for competing against specific vendors",
+      "business_value": "Reduces battlecard creation from 2 weeks to 2 days; Improves win rate against key competitors by 20%; Ensures consistent competitive messaging; Updates easily as market changes",
+      "target_users": "Sales Enablement, Product Marketing, Sales Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-10 step prompt)",
+      "knowledge_base": "Competitor research docs, Product comparisons, Win/loss analysis",
+      "integrations": {
+        "pull": "Competitive intelligence tools, Sales conversations",
+        "push": "None required"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User specifies competitor; 2. AI analyzes available intel; 3. Generates positioning and messaging; 4. Creates objection responses; 5. User reviews and publishes",
+      "success_metrics": "Win rate vs competitors, Time to create/update, Sales team usage rate, Deal influence"
+    },
+    {
+      "id": 5,
+      "name": "Deal Risk Assessment",
+      "function": "Sales",
+      "description": "Analyzes deal characteristics and history to identify risks and recommend actions to move deals forward",
+      "business_value": "Reduces deal slippage by 25%; Improves forecast accuracy by 30%; Enables earlier intervention on at-risk deals; Provides data-driven coaching opportunities",
+      "target_users": "Sales Managers, Revenue Operations, AEs",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Historical deal data, Win/loss factors, Sales stage criteria",
+      "integrations": {
+        "pull": "CRM for deal data, Email/call analysis",
+        "push": "CRM for flagging at-risk deals"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User selects deal to analyze; 2. AI reviews deal characteristics; 3. Identifies risk factors and red flags; 4. Recommends specific actions; 5. User implements and tracks",
+      "success_metrics": "Forecast accuracy, Deal close rate, Time to close, Revenue retention"
+    },
+    {
+      "id": 6,
+      "name": "LinkedIn Content Generator",
+      "function": "Marketing",
+      "description": "Creates engaging LinkedIn posts for company pages and employee advocacy based on company news product updates and thought leadership topics",
+      "business_value": "Increases posting frequency by 4x; Improves engagement rates by 40%; Maintains consistent brand voice; Enables all employees to be brand advocates",
+      "target_users": "Marketing Managers, Social Media Managers, Executives, Sales Teams",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Brand voice guidelines, Past high-performing posts, Company messaging",
+      "integrations": {
+        "pull": "Company news/blog posts, Product updates",
+        "push": "Social media scheduling tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides topic or news; 2. AI generates 3 post variations; 3. User selects and edits; 4. Schedules or publishes; 5. Tracks engagement",
+      "success_metrics": "Post engagement rate, Follower growth, Reach/impressions, Lead generation from social"
+    },
+    {
+      "id": 7,
+      "name": "Blog Content Assistant",
+      "function": "Marketing",
+      "description": "Generates blog post outlines first drafts and SEO optimization suggestions based on target keywords and topics",
+      "business_value": "Reduces blog creation time from 8 hours to 2 hours; Increases content output by 3x; Improves SEO rankings; Maintains consistent quality and voice",
+      "target_users": "Content Marketers, Content Writers, Marketing Managers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Complex (8-10 step prompt)",
+      "knowledge_base": "SEO keyword research, Brand voice guide, Competitor content examples, Topic clusters",
+      "integrations": {
+        "pull": "SEO tools for keywords, Competitor analysis",
+        "push": "CMS for publishing"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides topic and keywords; 2. AI creates detailed outline; 3. Generates first draft; 4. User edits and adds expertise; 5. AI suggests SEO improvements",
+      "success_metrics": "Publishing frequency, Organic traffic, Keyword rankings, Time to publish"
+    },
+    {
+      "id": 8,
+      "name": "Campaign Concept Generator",
+      "function": "Marketing",
+      "description": "Develops creative campaign concepts themes and messaging for product launches events or seasonal campaigns",
+      "business_value": "Reduces ideation time from 2 weeks to 2 days; Generates 10x more concepts to choose from; Improves campaign creativity and differentiation; Accelerates campaign planning",
+      "target_users": "Marketing Directors, Brand Managers, Creative Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Brand guidelines, Past campaign performance, Target audience personas, Market research",
+      "integrations": {
+        "pull": "Market research data, Competitor campaigns",
+        "push": "None required"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides campaign goals and audience; 2. AI generates 5 concepts with themes; 3. Team selects top concepts; 4. AI expands chosen concept; 5. Creates implementation plan",
+      "success_metrics": "Campaign performance, Concept approval rate, Time to launch, Creative differentiation scores"
+    },
+    {
+      "id": 9,
+      "name": "Ad Copy Generator",
+      "function": "Marketing",
+      "description": "Creates multiple variations of ad copy for Google Ads LinkedIn Facebook and other platforms with A/B testing suggestions",
+      "business_value": "Creates 20 variations in 10 minutes vs 2 hours manually; Improves CTR by 25%; Enables continuous testing; Maintains brand consistency",
+      "target_users": "Performance Marketers, PPC Managers, Digital Marketers",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Brand messaging, Product benefits, Past high-performing ads, Character limits per platform",
+      "integrations": {
+        "pull": "Historical ad performance data",
+        "push": "Ad platforms for deployment"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides campaign goal and product; 2. AI generates 10+ variations per platform; 3. User selects top performers; 4. Deploys to ad platforms; 5. Tracks performance",
+      "success_metrics": "CTR improvement, Conversion rate, Cost per conversion, A/B test velocity"
+    },
+    {
+      "id": 10,
+      "name": "Email Campaign Builder",
+      "function": "Marketing",
+      "description": "Generates email sequences for nurture campaigns product launches webinars and customer onboarding with personalization",
+      "business_value": "Reduces campaign creation from 2 days to 4 hours; Increases email engagement by 35%; Improves campaign consistency; Enables more sophisticated segmentation",
+      "target_users": "Email Marketers, Marketing Operations, Growth Marketers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Email templates, Segmentation strategy, Past campaign performance, Brand voice",
+      "integrations": {
+        "pull": "CRM for customer data, Marketing automation platform",
+        "push": "Email service provider"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User defines campaign goal and audience; 2. AI creates email sequence; 3. Generates subject lines and CTAs; 4. User reviews and adjusts timing; 5. Deploys campaign",
+      "success_metrics": "Open rate, Click rate, Conversion rate, Unsubscribe rate, Revenue attributed"
+    },
+    {
+      "id": 11,
+      "name": "Landing Page Copy Writer",
+      "function": "Marketing",
+      "description": "Creates conversion-optimized landing page copy including headlines value props social proof and CTAs",
+      "business_value": "Reduces landing page creation from 1 week to 1 day; Improves conversion rates by 20%; Enables rapid testing; Maintains persuasive copywriting best practices",
+      "target_users": "Growth Marketers, Conversion Optimizers, Product Marketers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Conversion copywriting frameworks, Product messaging, Customer testimonials, A/B test results",
+      "integrations": {
+        "pull": "Analytics for performance data",
+        "push": "Website/landing page builder"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides offer and target audience; 2. AI creates headline variations; 3. Generates value prop and benefits; 4. Adds social proof and CTAs; 5. User builds page",
+      "success_metrics": "Conversion rate, Bounce rate, Time on page, Form completions, Revenue per visitor"
+    },
+    {
+      "id": 12,
+      "name": "Press Release Writer",
+      "function": "Marketing",
+      "description": "Drafts press releases for product launches funding announcements partnerships and company news following AP style",
+      "business_value": "Reduces writing time from 4 hours to 30 minutes; Ensures proper format and style; Maintains professional tone; Enables faster news distribution",
+      "target_users": "PR Managers, Communications Directors, Marketing Leaders",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Company boilerplate, Executive bios, Past press releases, AP style guide",
+      "integrations": {
+        "pull": "Company news and data",
+        "push": "PR distribution platforms"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides news details; 2. AI drafts press release; 3. Includes quotes and boilerplate; 4. User reviews and approves; 5. Distributes to media",
+      "success_metrics": "Media pickup rate, Journalist responses, Time to publish, Brand mention volume"
+    },
+    {
+      "id": 13,
+      "name": "Video Script Writer",
+      "function": "Marketing",
+      "description": "Creates scripts for explainer videos product demos customer testimonials and social media video content",
+      "business_value": "Reduces scripting time by 70%; Increases video production by 3x; Maintains consistent messaging; Improves video engagement",
+      "target_users": "Video Producers, Content Marketers, Social Media Managers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Brand voice guidelines, Product info, Past video transcripts, Hook formulas",
+      "integrations": {
+        "pull": "Video performance analytics",
+        "push": "Video editing tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides video goal and length; 2. AI creates script with hooks; 3. Includes B-roll suggestions; 4. User refines for personality; 5. Records video",
+      "success_metrics": "Video completion rate, Engagement, Shares, Lead generation, Production volume"
+    },
+    {
+      "id": 14,
+      "name": "Invoice Processing Assistant",
+      "function": "Finance/Operations",
+      "description": "Extracts data from invoices categorizes expenses routes for approval and flags anomalies or duplicate payments",
+      "business_value": "Reduces invoice processing time by 80%; Catches duplicate payments saving 2-3% of AP spend; Improves cash flow management; Eliminates data entry errors",
+      "target_users": "Accounts Payable, Finance Operations, Controllers",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Chart of accounts, Approval workflows, Vendor master list, Historical spending patterns",
+      "integrations": {
+        "pull": "Invoice PDFs/images, ERP/accounting system",
+        "push": "Accounting system for coding and approval"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Upload invoice or forward email; 2. AI extracts all data fields; 3. Categorizes and codes expense; 4. Routes for approval; 5. Flags issues for review",
+      "success_metrics": "Processing time per invoice, Error rate, Duplicate catches, Days payable outstanding"
+    },
+    {
+      "id": 15,
+      "name": "Financial Report Generator",
+      "function": "Finance/Operations",
+      "description": "Creates monthly/quarterly financial reports with analysis commentary and visualizations from raw accounting data",
+      "business_value": "Reduces report creation from 2 days to 2 hours; Provides consistent analysis framework; Improves stakeholder communication; Enables faster decision making",
+      "target_users": "CFOs, Financial Analysts, Controllers, Finance Directors",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (12+ step prompt)",
+      "knowledge_base": "Report templates, KPI definitions, Historical financials, Industry benchmarks",
+      "integrations": {
+        "pull": "Accounting system, Budget vs actual data",
+        "push": "PowerPoint/Excel, BI tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Connect to financial data source; 2. AI analyzes variances and trends; 3. Generates narrative explanations; 4. Creates visualizations; 5. User reviews and distributes",
+      "success_metrics": "Report turnaround time, Stakeholder satisfaction, Decision velocity, Time saved"
+    },
+    {
+      "id": 16,
+      "name": "Budget Variance Analysis",
+      "function": "Finance/Operations",
+      "description": "Analyzes budget vs actual performance identifies variances provides explanations and recommends corrective actions",
+      "business_value": "Reduces monthly analysis from 1 week to 1 day; Catches budget overruns 2 weeks earlier; Improves forecast accuracy by 20%; Provides actionable insights",
+      "target_users": "Finance Analysts, Budget Managers, Department Heads, CFOs",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Budget data, Historical variances, Departmental context, Variance thresholds",
+      "integrations": {
+        "pull": "Accounting system, Budget tool, Project management data",
+        "push": "Reporting dashboards"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User uploads actual vs budget; 2. AI identifies significant variances; 3. Provides likely explanations; 4. Recommends corrective actions; 5. Generates executive summary",
+      "success_metrics": "Forecast accuracy, Time to complete analysis, Corrective actions taken, Budget compliance"
+    },
+    {
+      "id": 17,
+      "name": "Expense Report Assistant",
+      "function": "Finance/Operations",
+      "description": "Helps employees categorize expenses write business justifications and flag policy violations before submission",
+      "business_value": "Reduces employee time spent on expenses by 60%; Decreases policy violation rate by 70%; Speeds up approval process; Improves compliance documentation",
+      "target_users": "All Employees, Finance Team, Expense Approvers",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Expense policy, Category definitions, Receipt requirements, Approval limits",
+      "integrations": {
+        "pull": "Expense management system, Calendar for trip context",
+        "push": "Expense management system"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Employee uploads receipts; 2. AI categorizes and suggests justifications; 3. Flags policy issues; 4. Employee reviews and submits; 5. Routes for approval",
+      "success_metrics": "Policy violation rate, Time per report, Approval cycle time, Employee satisfaction"
+    },
+    {
+      "id": 18,
+      "name": "Contract Review Assistant",
+      "function": "Finance/Operations",
+      "description": "Reviews contracts and agreements to identify key terms risks non-standard clauses and redline suggestions",
+      "business_value": "Reduces initial contract review time by 50%; Catches risky clauses 90%+ of the time; Standardizes review process; Enables legal team to focus on high-value work",
+      "target_users": "Legal Team, Procurement, Finance, Sales Operations",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 20,
+        "max": 30
+      },
+      "instructions_complexity": "Complex (15+ step prompt)",
+      "knowledge_base": "Standard contract templates, Playbook for negotiations, Risk criteria, Legal precedents",
+      "integrations": {
+        "pull": "Contract management system, Document repository",
+        "push": "Contract management system for tracking"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Upload contract document; 2. AI identifies key terms and dates; 3. Flags risks and non-standard clauses; 4. Suggests redlines; 5. Legal reviews and negotiates",
+      "success_metrics": "Review time per contract, Risk identification rate, Contract cycle time, Legal hours saved"
+    },
+    {
+      "id": 19,
+      "name": "Onboarding Document Generator",
+      "function": "HR",
+      "description": "Creates personalized onboarding documentation including welcome packets role-specific guides and first-week schedules",
+      "business_value": "Reduces onboarding prep from 4 hours to 30 minutes; Improves new hire satisfaction by 25%; Ensures consistency across hires; Scales onboarding capacity",
+      "target_users": "HR Generalists, Recruiters, People Operations, Hiring Managers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Onboarding templates, Company info, Department-specific resources, Benefits info",
+      "integrations": {
+        "pull": "HRIS for employee data, Role descriptions",
+        "push": "Document management system"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User enters new hire details; 2. AI generates personalized welcome packet; 3. Creates role-specific first-week schedule; 4. Includes all necessary forms; 5. HR reviews and sends",
+      "success_metrics": "New hire satisfaction, Time to productivity, Onboarding completion rate, HR time saved"
+    },
+    {
+      "id": 20,
+      "name": "Job Description Writer",
+      "function": "HR",
+      "description": "Generates compelling inclusive job descriptions with clear requirements responsibilities and benefits based on role needs",
+      "business_value": "Reduces JD creation from 2 hours to 15 minutes; Improves job post performance by 30%; Ensures inclusive language; Maintains consistent formatting",
+      "target_users": "Recruiters, Hiring Managers, Talent Acquisition, HR Business Partners",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Job description templates, Company benefits, Compensation ranges, Inclusive language guide",
+      "integrations": {
+        "pull": "Job family definitions",
+        "push": "ATS for posting"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides role title and requirements; 2. AI generates complete JD; 3. Includes DEI-friendly language; 4. Adds compelling company pitch; 5. User reviews and posts",
+      "success_metrics": "Application volume, Application quality, Time to fill, Diversity of candidates"
+    },
+    {
+      "id": 21,
+      "name": "Interview Question Generator",
+      "function": "HR",
+      "description": "Creates structured behavioral and technical interview questions with evaluation rubrics based on job requirements",
+      "business_value": "Creates complete interview guide in 20 minutes vs 2 hours; Improves interview consistency; Reduces bias in evaluation; Better predicts job performance",
+      "target_users": "Recruiters, Hiring Managers, Interview Panels",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Competency models, Question libraries, Scoring rubrics, Job requirements",
+      "integrations": {
+        "pull": "Job descriptions, Competency frameworks",
+        "push": "ATS for tracking"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User selects role and competencies; 2. AI generates targeted questions; 3. Creates scoring rubric; 4. Suggests follow-up questions; 5. Interviewer uses guide",
+      "success_metrics": "Quality of hire, Interview consistency scores, Time to hire, Candidate experience"
+    },
+    {
+      "id": 22,
+      "name": "Performance Review Assistant",
+      "function": "HR",
+      "description": "Helps managers write constructive performance reviews with specific examples development suggestions and goal setting",
+      "business_value": "Reduces review writing time by 60%; Improves review quality and specificity; Ensures consistent evaluation standards; Better documents performance",
+      "target_users": "Managers, HR Business Partners, Executives",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Complex (8-10 step prompt)",
+      "knowledge_base": "Performance review templates, Competency frameworks, Rating scales, Development resources",
+      "integrations": {
+        "pull": "HRIS for employee data, Goals/OKRs, 360 feedback",
+        "push": "Performance management system"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Manager inputs employee and self-review; 2. AI drafts review with examples; 3. Suggests development actions; 4. Creates goal recommendations; 5. Manager personalizes and submits",
+      "success_metrics": "Manager time saved, Review completion rate, Employee satisfaction, Development plan quality"
+    },
+    {
+      "id": 23,
+      "name": "Policy Documentation Writer",
+      "function": "HR",
+      "description": "Creates and updates employee handbook policies procedures and guidelines with legally compliant language",
+      "business_value": "Reduces policy creation from 1 week to 1 day; Ensures legal compliance; Maintains consistent tone; Simplifies complex regulations for employees",
+      "target_users": "HR Directors, Compliance Officers, Legal Team, People Operations",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Existing policies, Legal requirements, Industry standards, Company values",
+      "integrations": {
+        "pull": "Legal compliance databases",
+        "push": "Policy management system"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User specifies policy need; 2. AI drafts policy with legal language; 3. Includes compliance references; 4. Makes version for employees; 5. Legal reviews and approves",
+      "success_metrics": "Policy creation time, Compliance incidents, Employee understanding scores, Legal review cycles"
+    },
+    {
+      "id": 24,
+      "name": "Customer Health Score Analysis",
+      "function": "Customer Success",
+      "description": "Analyzes usage patterns engagement metrics and support tickets to calculate customer health scores and churn risk",
+      "business_value": "Identifies at-risk customers 60 days earlier; Reduces churn by 15-20%; Enables proactive outreach; Improves resource allocation",
+      "target_users": "Customer Success Managers, Account Managers, Support Teams",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Health score model, Usage thresholds, Engagement benchmarks, Churn indicators",
+      "integrations": {
+        "pull": "Product usage data, Support tickets, CRM engagement data",
+        "push": "CRM for flagging accounts"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI analyzes all customer signals; 2. Calculates health scores; 3. Identifies churn risk factors; 4. Recommends intervention actions; 5. CSM reviews and reaches out",
+      "success_metrics": "Churn rate, Early warning accuracy, Customer lifetime value, Retention rate"
+    },
+    {
+      "id": 25,
+      "name": "Renewal Preparation Assistant",
+      "function": "Customer Success",
+      "description": "Generates renewal talking points ROI summaries success stories and upsell opportunities for upcoming renewals",
+      "business_value": "Increases renewal rate by 10-15%; Improves expansion revenue by 25%; Reduces prep time from 2 hours to 20 minutes; Creates data-driven renewal cases",
+      "target_users": "Customer Success Managers, Account Managers, Renewal Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (8-10 step prompt)",
+      "knowledge_base": "ROI calculation templates, Success metrics, Product roadmap, Expansion opportunities",
+      "integrations": {
+        "pull": "Product usage data, CRM data, Support history",
+        "push": "CRM for opportunity tracking"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User selects upcoming renewal; 2. AI calculates ROI achieved; 3. Generates success summary; 4. Identifies upsell opportunities; 5. CSM prepares for conversation",
+      "success_metrics": "Renewal rate, Expansion revenue, Net revenue retention, Average contract value"
+    },
+    {
+      "id": 26,
+      "name": "Support Ticket Response Templates",
+      "function": "Customer Success",
+      "description": "Creates personalized responses to common support tickets with troubleshooting steps resources and empathetic messaging",
+      "business_value": "Reduces first response time by 40%; Improves CSAT by 15%; Increases agent capacity by 2x; Maintains consistent helpful tone",
+      "target_users": "Support Agents, Technical Support, Success Teams",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Knowledge base articles, Common issues, Troubleshooting guides, Response templates",
+      "integrations": {
+        "pull": "Support ticket system, Customer account info",
+        "push": "Support system for responses"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Agent reviews new ticket; 2. AI suggests response based on issue; 3. Includes troubleshooting steps; 4. Agent personalizes and sends; 5. Tracks resolution",
+      "success_metrics": "First response time, CSAT scores, Ticket resolution time, Agent efficiency"
+    },
+    {
+      "id": 27,
+      "name": "Customer Onboarding Playbook",
+      "function": "Customer Success",
+      "description": "Creates personalized 30-60-90 day onboarding plans with milestones training resources and success criteria for new customers",
+      "business_value": "Improves time to value by 30%; Increases product adoption by 40%; Reduces onboarding time from 90 to 60 days; Standardizes onboarding process",
+      "target_users": "Customer Success Managers, Implementation Specialists, Onboarding Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Onboarding best practices, Training materials, Success milestones, Product documentation",
+      "integrations": {
+        "pull": "Customer data from CRM, Product usage goals",
+        "push": "Project management tool"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User enters customer details and goals; 2. AI creates customized onboarding plan; 3. Sets milestones and check-ins; 4. Includes training resources; 5. CSM executes and tracks",
+      "success_metrics": "Time to value, Adoption rate, Customer satisfaction, Onboarding completion rate"
+    },
+    {
+      "id": 28,
+      "name": "Customer Success Plan Writer",
+      "function": "Customer Success",
+      "description": "Develops quarterly success plans with goals initiatives metrics and executive summaries for strategic accounts",
+      "business_value": "Reduces plan creation from 4 hours to 30 minutes; Improves plan quality and consistency; Increases executive engagement; Better aligns on success criteria",
+      "target_users": "Strategic Account Managers, Customer Success Leaders",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Success plan templates, Goal frameworks, Industry benchmarks, Account context",
+      "integrations": {
+        "pull": "CRM account data, Product usage metrics, Previous plans",
+        "push": "CRM and presentation tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides account context; 2. AI drafts quarterly objectives; 3. Suggests initiatives and metrics; 4. Creates executive summary; 5. CSM reviews with customer",
+      "success_metrics": "Plan completion rate, Goal achievement rate, Executive engagement, Account retention"
+    },
+    {
+      "id": 29,
+      "name": "Upsell Opportunity Identifier",
+      "function": "Customer Success",
+      "description": "Analyzes product usage patterns feature adoption and customer goals to identify and prioritize expansion opportunities",
+      "business_value": "Increases expansion revenue by 30%; Improves upsell conversion by 20%; Reduces opportunity identification time by 80%; Creates data-driven expansion cases",
+      "target_users": "Customer Success Managers, Account Managers",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Pricing and packaging info, Feature maps, Usage benchmarks, Expansion triggers",
+      "integrations": {
+        "pull": "Product usage analytics, CRM data, Customer goals",
+        "push": "CRM for opportunity creation"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI analyzes customer usage patterns; 2. Identifies unused/underused features; 3. Maps to expansion products; 4. Scores opportunity likelihood; 5. CSM qualifies and pitches",
+      "success_metrics": "Expansion revenue, Upsell conversion rate, Average expansion deal size, Net revenue retention"
+    },
+    {
+      "id": 30,
+      "name": "Meeting Notes Summarizer",
+      "function": "General Productivity",
+      "description": "Automatically summarizes meeting recordings or notes into action items decisions and key discussion points",
+      "business_value": "Saves 30 minutes per meeting in documentation; Improves follow-up accountability; Ensures nothing falls through cracks; Creates searchable meeting archive",
+      "target_users": "All Employees, Managers, Project Managers",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-6 step prompt)",
+      "knowledge_base": "Meeting note template, Action item format",
+      "integrations": {
+        "pull": "Meeting recordings or transcript",
+        "push": "Project management or note-taking tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. Upload meeting recording or notes; 2. AI generates summary; 3. Extracts action items with owners; 4. Lists key decisions; 5. User reviews and shares",
+      "success_metrics": "Action item completion rate, Meeting follow-up time, Team alignment scores"
+    },
+    {
+      "id": 31,
+      "name": "Email Inbox Manager",
+      "function": "General Productivity",
+      "description": "Sorts and prioritizes emails drafts responses to routine messages and flags urgent items requiring personal attention",
+      "business_value": "Reduces email processing time by 50%; Achieves inbox zero 3x faster; Improves response time to urgent messages; Reduces email stress and overwhelm",
+      "target_users": "All Employees, Executives, Anyone with high email volume",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Email response templates, Priority criteria, Signature",
+      "integrations": {
+        "pull": "Email client, Calendar for context",
+        "push": "Email client"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI triages incoming emails; 2. Drafts responses to routine items; 3. Flags urgent/important emails; 4. Suggests quick actions; 5. User reviews and sends",
+      "success_metrics": "Time in email per day, Response time, Inbox size, Email stress reduction"
+    },
+    {
+      "id": 32,
+      "name": "Research Briefing Generator",
+      "function": "General Productivity",
+      "description": "Conducts research on topics companies competitors or industries and creates comprehensive briefings with sources",
+      "business_value": "Reduces research time from 3 hours to 30 minutes; Improves research comprehensiveness; Provides properly cited sources; Creates professional deliverables",
+      "target_users": "Analysts, Strategists, Consultants, Executives, Researchers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Research brief template, Citation format",
+      "integrations": {
+        "pull": "Web search or knowledge bases",
+        "push": "Document creation tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User specifies research topic; 2. AI conducts research; 3. Synthesizes findings; 4. Creates formatted brief with sources; 5. User reviews and uses",
+      "success_metrics": "Research time saved, Brief quality scores, Source credibility, Usage of insights"
+    },
+    {
+      "id": 33,
+      "name": "Document Formatting Assistant",
+      "function": "General Productivity",
+      "description": "Converts rough notes or drafts into professionally formatted documents with proper structure headings and styling",
+      "business_value": "Saves 20-30 minutes per document; Ensures consistent professional formatting; Reduces formatting errors; Improves document readability",
+      "target_users": "All Employees, Consultants, Analysts",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Simple (3-5 step prompt)",
+      "knowledge_base": "Document templates, Style guide",
+      "integrations": {
+        "pull": "Raw document or notes",
+        "push": "Document creation tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User uploads rough notes; 2. AI structures with headings; 3. Applies formatting; 4. Suggests improvements; 5. User reviews and finalizes",
+      "success_metrics": "Time saved per document, Document consistency scores, Formatting error rate"
+    },
+    {
+      "id": 34,
+      "name": "Calendar Scheduling Assistant",
+      "function": "General Productivity",
+      "description": "Finds optimal meeting times suggests agenda items and drafts meeting invitations based on participant availability and context",
+      "business_value": "Reduces scheduling coordination time by 70%; Decreases scheduling conflicts; Improves meeting preparedness; Respects time zone differences",
+      "target_users": "Schedulers, Assistants, Managers, All Employees",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Meeting preferences, Time zones, Standard agenda formats",
+      "integrations": {
+        "pull": "Calendar systems, Email",
+        "push": "Calendar for booking"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User specifies meeting purpose and attendees; 2. AI finds optimal times; 3. Suggests agenda based on context; 4. Drafts invitation; 5. User sends invite",
+      "success_metrics": "Scheduling time saved, Meeting conflicts, Schedule efficiency, Attendee satisfaction"
+    },
+    {
+      "id": 35,
+      "name": "Travel Itinerary Planner",
+      "function": "General Productivity",
+      "description": "Creates detailed travel itineraries with flights hotels meetings dining and logistics based on trip purpose and preferences",
+      "business_value": "Reduces travel planning from 2 hours to 15 minutes; Optimizes schedules and logistics; Ensures nothing is overlooked; Improves travel experience",
+      "target_users": "Business Travelers, Executives, Sales Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Travel preferences, Expense policies, Preferred vendors",
+      "integrations": {
+        "pull": "Corporate travel systems, Calendar",
+        "push": "Travel booking systems"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides trip details; 2. AI creates itinerary with options; 3. Optimizes for efficiency; 4. Includes all logistics; 5. User books and confirms",
+      "success_metrics": "Travel planning time, Trip efficiency, Traveler satisfaction, Policy compliance"
+    },
+    {
+      "id": 36,
+      "name": "Presentation Outline Creator",
+      "function": "General Productivity",
+      "description": "Generates presentation outlines with recommended slides talking points and visual suggestions based on presentation goal and audience",
+      "business_value": "Reduces outline creation from 2 hours to 15 minutes; Improves presentation structure; Ensures key messages included; Accelerates deck creation",
+      "target_users": "All Employees, Sales Teams, Executives, Consultants",
+      "complexity": "Simple",
+      "hours_estimate": {
+        "min": 5,
+        "max": 8
+      },
+      "instructions_complexity": "Medium (5-7 step prompt)",
+      "knowledge_base": "Presentation templates, Company messaging, Visual style guide",
+      "integrations": {
+        "pull": "None required",
+        "push": "Presentation tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides presentation goal and audience; 2. AI creates detailed outline; 3. Suggests slide types; 4. Includes talking points; 5. User builds deck",
+      "success_metrics": "Presentation creation time, Presentation quality scores, Message clarity, Audience engagement"
+    },
+    {
+      "id": 37,
+      "name": "Project Status Report Generator",
+      "function": "General Productivity",
+      "description": "Creates project status reports with progress updates risks issues and next steps from project management data",
+      "business_value": "Reduces report creation from 2 hours to 20 minutes; Improves reporting consistency; Ensures all stakeholders informed; Enables focus on execution vs reporting",
+      "target_users": "Project Managers, Program Managers, Team Leads",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Report templates, Status definitions, Project phases",
+      "integrations": {
+        "pull": "Project management systems, Task tracking",
+        "push": "Reporting dashboards"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI pulls project data; 2. Analyzes progress and blockers; 3. Generates narrative report; 4. Includes next steps; 5. PM reviews and distributes",
+      "success_metrics": "Report creation time, Stakeholder satisfaction, Project visibility, Time on execution"
+    },
+    {
+      "id": 38,
+      "name": "Knowledge Base Article Writer",
+      "function": "General Productivity",
+      "description": "Creates help center articles FAQs and how-to guides from product documentation support tickets and user questions",
+      "business_value": "Increases knowledge base content by 4x; Reduces article creation time by 70%; Improves article quality and findability; Deflects 20% more support tickets",
+      "target_users": "Support Teams, Product Teams, Technical Writers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Article templates, Style guide, Product documentation, Support ticket history",
+      "integrations": {
+        "pull": "Knowledge base, Support system, Product docs",
+        "push": "Knowledge management system"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User identifies topic from tickets; 2. AI drafts article; 3. Structures with headers and examples; 4. Optimizes for search; 5. User reviews and publishes",
+      "success_metrics": "Knowledge base growth, Self-service rate, Article views, Ticket deflection rate"
+    },
+    {
+      "id": 39,
+      "name": "Data Analysis Assistant",
+      "function": "General Productivity",
+      "description": "Analyzes datasets identifies trends creates visualizations and provides insights without requiring advanced data skills",
+      "business_value": "Makes data analysis accessible to non-analysts; Reduces analysis time by 60%; Improves data-driven decisions; Creates presentation-ready charts",
+      "target_users": "Managers, Analysts, Operations Teams, Anyone with data",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Analysis frameworks, KPI definitions, Chart style preferences",
+      "integrations": {
+        "pull": "Spreadsheets, Databases, Analytics tools",
+        "push": "Presentation or reporting tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User uploads dataset; 2. Specifies analysis questions; 3. AI performs analysis; 4. Creates visualizations; 5. Provides written insights",
+      "success_metrics": "Time to insights, Analysis frequency, Quality of decisions, Tool adoption"
+    },
+    {
+      "id": 40,
+      "name": "Training Material Creator",
+      "function": "General Productivity",
+      "description": "Develops training presentations modules quizzes and job aids from existing documentation or subject matter expert input",
+      "business_value": "Reduces training development from 2 weeks to 3 days; Improves training consistency; Enables rapid course updates; Scales training capacity",
+      "target_users": "Trainers, HR Learning & Development, Subject Matter Experts",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (8-10 step prompt)",
+      "knowledge_base": "Training templates, Learning objectives, Assessment formats, Company style",
+      "integrations": {
+        "pull": "Source documentation or transcripts",
+        "push": "Learning management systems"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides content and objectives; 2. AI creates training outline; 3. Develops slides and exercises; 4. Generates assessments; 5. Trainer reviews and delivers",
+      "success_metrics": "Training development time, Learner satisfaction, Knowledge retention, Training volume"
+    },
+    {
+      "id": 41,
+      "name": "Social Media Response Manager",
+      "function": "Marketing",
+      "description": "Monitors brand mentions across social platforms and drafts appropriate responses to comments questions and complaints",
+      "business_value": "Reduces response time from hours to minutes; Improves brand sentiment by 20%; Ensures consistent voice; Enables 24/7 social presence",
+      "target_users": "Social Media Managers, Community Managers, Marketing Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Brand voice guide, Response guidelines, Escalation criteria, FAQ content",
+      "integrations": {
+        "pull": "Social listening tools",
+        "push": "Social media platforms"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI monitors social mentions; 2. Categorizes and prioritizes; 3. Drafts appropriate responses; 4. Flags escalations; 5. Manager reviews and posts",
+      "success_metrics": "Response time, Brand sentiment, Engagement rate, Escalation rate"
+    },
+    {
+      "id": 42,
+      "name": "Competitor Intelligence Summary",
+      "function": "Sales",
+      "description": "Aggregates competitive intel from various sources and creates digestible summaries of competitor moves strengths and weaknesses",
+      "business_value": "Keeps sales team current on competition; Reduces research time from 2 hours to 15 minutes weekly; Improves competitive positioning; Enables faster response to threats",
+      "target_users": "Sales Teams, Product Marketing, Strategy Teams",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Competitive landscape, Tracking sources, Analysis framework",
+      "integrations": {
+        "pull": "News feeds and competitor websites",
+        "push": "CRM or knowledge base"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI monitors competitor sources; 2. Identifies significant changes; 3. Summarizes implications; 4. Suggests positioning responses; 5. Team reviews and acts",
+      "success_metrics": "Competitive win rate, Time to respond to threats, Sales team readiness, Market share"
+    },
+    {
+      "id": 43,
+      "name": "Customer Testimonial Writer",
+      "function": "Marketing",
+      "description": "Transforms customer interview notes or feedback into compelling case studies testimonials and success stories",
+      "business_value": "Reduces case study creation from 2 weeks to 3 days; Increases testimonial volume by 5x; Improves story quality; Maintains authentic customer voice",
+      "target_users": "Customer Marketing, Content Marketing, Sales Enablement",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (6-8 step prompt)",
+      "knowledge_base": "Case study templates, Storytelling frameworks, Customer profiles, Metrics to highlight",
+      "integrations": {
+        "pull": "Customer interviews and data",
+        "push": "Website and sales materials"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides customer interview notes; 2. AI identifies compelling story angle; 3. Structures case study with results; 4. Writes testimonial quotes; 5. User reviews with customer",
+      "success_metrics": "Case study production, Sales usage rate, Pipeline influenced, Prospect engagement"
+    },
+    {
+      "id": 44,
+      "name": "RFP Response Assistant",
+      "function": "Sales",
+      "description": "Helps teams respond to RFPs and questionnaires by finding relevant answers from past responses and company documentation",
+      "business_value": "Reduces RFP response time by 50%; Improves response quality; Increases win rate by 15%; Enables team to handle 2x more RFPs",
+      "target_users": "Sales Engineers, RFP Teams, Solutions Architects",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 20,
+        "max": 30
+      },
+      "instructions_complexity": "Complex (12+ step prompt)",
+      "knowledge_base": "RFP response library, Product documentation, Case studies, Technical specs",
+      "integrations": {
+        "pull": "Past RFPs, Knowledge base, Product systems",
+        "push": "RFP management tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User uploads RFP questions; 2. AI finds relevant answers; 3. Drafts responses with context; 4. Flags gaps and new questions; 5. Team reviews and submits",
+      "success_metrics": "RFP response time, Win rate, Number of RFPs handled, Response quality scores"
+    },
+    {
+      "id": 45,
+      "name": "Customer Segmentation Analyzer",
+      "function": "Marketing",
+      "description": "Analyzes customer data to identify segments create personas and recommend targeted messaging and campaigns for each group",
+      "business_value": "Improves campaign performance by 40%; Increases conversion by 25%; Enables better resource allocation; Creates data-driven personas",
+      "target_users": "Marketing Ops, Demand Gen, Product Marketing",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Segmentation frameworks, Customer data fields, Campaign history",
+      "integrations": {
+        "pull": "CRM database, Product usage data, Transaction history",
+        "push": "Marketing automation CRM"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides customer dataset; 2. AI identifies meaningful segments; 3. Creates detailed personas; 4. Suggests campaigns per segment; 5. Marketer executes strategy",
+      "success_metrics": "Campaign ROI, Conversion rate by segment, Customer lifetime value, Targeting accuracy"
+    },
+    {
+      "id": 46,
+      "name": "Sales Coaching Assistant",
+      "function": "Sales",
+      "description": "Reviews sales calls emails and demos to provide coaching feedback identify improvement opportunities and reinforce best practices",
+      "business_value": "Improves rep performance by 25%; Scales coaching capacity 10x; Provides objective feedback; Accelerates ramp time for new hires",
+      "target_users": "Sales Managers, Sales Enablement, Revenue Operations",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 20,
+        "max": 30
+      },
+      "instructions_complexity": "Complex (12+ step prompt)",
+      "knowledge_base": "Sales methodology, Coaching frameworks, Call scoring rubrics, Best practices",
+      "integrations": {
+        "pull": "Call recordings, Email threads, CRM activity",
+        "push": "CRM for coaching notes"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. AI analyzes sales interactions; 2. Scores against methodology; 3. Identifies coaching opportunities; 4. Generates feedback; 5. Manager reviews with rep",
+      "success_metrics": "Quota attainment, Ramp time, Skill improvement, Coaching quality scores"
+    },
+    {
+      "id": 47,
+      "name": "Product Launch Plan Generator",
+      "function": "Marketing",
+      "description": "Creates comprehensive product launch plans with timelines activities messaging and success metrics based on product details and goals",
+      "business_value": "Reduces planning time from 2 weeks to 2 days; Ensures nothing overlooked; Improves launch coordination; Increases launch success rate",
+      "target_users": "Product Marketing, Product Management, Marketing Teams",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Launch templates, GTM frameworks, Channel strategies, Success metrics",
+      "integrations": {
+        "pull": "Product roadmap and market research",
+        "push": "Project management tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides product and goals; 2. AI creates phased launch plan; 3. Defines activities per phase; 4. Sets success metrics; 5. Team executes plan",
+      "success_metrics": "Launch adoption rate, Revenue in first 90 days, Market awareness, Plan completion"
+    },
+    {
+      "id": 48,
+      "name": "Competitive Win/Loss Analysis",
+      "function": "Sales",
+      "description": "Analyzes win/loss interview notes to identify patterns trends and actionable insights for improving win rates against competitors",
+      "business_value": "Identifies root causes of wins/losses; Improves future win rates by 15%; Provides data-driven product feedback; Optimizes sales approach",
+      "target_users": "Sales Operations, Product Marketing, Sales Leadership",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 15,
+        "max": 20
+      },
+      "instructions_complexity": "Complex (10+ step prompt)",
+      "knowledge_base": "Win/loss frameworks, Interview transcripts, Competitor data, Product roadmap",
+      "integrations": {
+        "pull": "CRM for deals, Interview notes, Competitive intel",
+        "push": "Analytics dashboards"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides win/loss interviews; 2. AI identifies patterns and themes; 3. Analyzes by competitor and segment; 4. Generates recommendations; 5. Team implements changes",
+      "success_metrics": "Win rate trend, Competitive positioning, Product feedback quality, Action item completion"
+    },
+    {
+      "id": 49,
+      "name": "Sales Territory Planning",
+      "function": "Sales",
+      "description": "Analyzes market data customer distribution and rep performance to recommend optimal territory assignments and quota allocation",
+      "business_value": "Improves territory balance by 30%; Increases quota attainment by 15%; Reduces territory planning time from 2 weeks to 2 days; Better aligns resources with opportunity",
+      "target_users": "Sales Operations, Sales Leadership, Revenue Operations",
+      "complexity": "Complex",
+      "hours_estimate": {
+        "min": 20,
+        "max": 30
+      },
+      "instructions_complexity": "Complex (12+ step prompt)",
+      "knowledge_base": "Territory definitions, Historical performance data, Market potential data, Account assignments",
+      "integrations": {
+        "pull": "CRM for account/opportunity data, Market research data, Rep performance data",
+        "push": "CRM for territory assignments"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides territory constraints and goals; 2. AI analyzes account distribution; 3. Recommends territory assignments; 4. Projects quota by territory; 5. User reviews and implements",
+      "success_metrics": "Quota attainment by territory, Territory balance score, Planning time saved, Rep satisfaction"
+    },
+    {
+      "id": 50,
+      "name": "Customer Journey Map Creator",
+      "function": "Marketing",
+      "description": "Creates visual customer journey maps with touchpoints pain points and opportunities based on customer research and data",
+      "business_value": "Reduces journey mapping from 1 week to 1 day; Improves cross-functional alignment; Identifies 3-5 optimization opportunities; Enables customer-centric planning",
+      "target_users": "Marketing Strategy, CX Teams, Product Marketing, UX Researchers",
+      "complexity": "Medium",
+      "hours_estimate": {
+        "min": 10,
+        "max": 15
+      },
+      "instructions_complexity": "Medium (7-9 step prompt)",
+      "knowledge_base": "Customer research data, Touchpoint inventory, Persona definitions, Current state journey",
+      "integrations": {
+        "pull": "CRM for customer data, Analytics for behavior data, Survey results",
+        "push": "Presentation or design tools"
+      },
+      "platform_compatibility": {
+        "chatgpt": true,
+        "claude": true,
+        "copilot": true,
+        "gemini": true
+      },
+      "sample_workflow": "1. User provides persona and research; 2. AI maps current journey; 3. Identifies pain points and gaps; 4. Suggests improvements; 5. Creates visual journey map",
+      "success_metrics": "Journey completion rate, Pain point resolution, Customer satisfaction, Time to create map"
+    }
+  ]
+}

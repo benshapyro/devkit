@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Kick-off</title>
+  
+  <!--
+  ============================================
+  CADRE AI - CLIENT KICK-OFF TEMPLATE
+  ============================================
+  
+  Slide-style presentation for engagement launch meetings.
+  Sets expectations, introduces team, establishes ways of working.
+  
+  USAGE:
+  1. Update the DATA object below with your actual content
+  2. Navigate with arrow buttons or keyboard (← →)
+  3. Print to PDF for static export (Cmd+P)
+  
+  SLIDES:
+  1. Title
+  2. Agenda
+  3. About Cadre
+  4. Your Team (Cadre side)
+  5. Understanding You (Client context)
+  6. Engagement Overview
+  7. Timeline & Milestones
+  8. Ways of Working
+  9. What Success Looks Like
+  10. Questions & Next Steps
+  -->
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-text-primary: #0C0407;
+      --color-text-body: #6E7191;
+      --color-text-muted: #A1A1A1;
+      --color-bg-page: #FAF9F6;
+      --color-bg-cream: #F2EFE4;
+      --color-bg-white: #FFFFFF;
+      --color-bg-dark: #242424;
+      --color-accent: #DB4545;
+      --color-secondary: #08749B;
+      --color-info: #08749B;
+      --color-border: rgba(0, 0, 0, 0.10);
+      --color-success: #16a34a;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--color-bg-page);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+    }
+    
+    /* Slide Container */
+    .slide-deck {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .slide-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1100px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .slide.active { display: block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Navigation */
+    .slide-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg-white);
+    }
+    
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      background: transparent;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-btn:hover:not(:disabled) { background: rgba(12, 4, 7, 0.05); }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    
+    .slide-counter {
+      font-size: 14px;
+      color: var(--color-text-body);
+    }
+    
+    /* Typography */
+    .slide-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      margin-bottom: 12px;
+    }
+    
+    .slide-title {
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    
+    .slide-subtitle {
+      font-size: 20px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    /* Title Slide */
+    .title-slide {
+      text-align: center;
+      padding: 48px 0;
+    }
+    
+    .title-slide .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-text-body);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .engagement-title {
+      font-size: 24px;
+      color: var(--color-text-body);
+      margin-bottom: 16px;
+    }
+    
+    .title-slide .client-name {
+      font-size: 60px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    
+    .title-slide .partner-text {
+      font-size: 32px;
+      color: var(--color-text-muted);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .date {
+      font-size: 18px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    
+    .card-dark {
+      background: var(--color-bg-dark);
+      border: none;
+      color: var(--color-bg-white);
+    }
+    
+    /* Agenda */
+    .agenda-list {
+      list-style: none;
+      counter-reset: agenda;
+    }
+    
+    .agenda-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+      counter-increment: agenda;
+    }
+    
+    .agenda-item:last-child {
+      border-bottom: none;
+    }
+    
+    .agenda-number {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg-page);
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      flex-shrink: 0;
+    }
+    
+    .agenda-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .agenda-duration {
+      margin-left: auto;
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .team-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--color-bg-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin: 0 auto 16px;
+    }
+    
+    .team-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .team-role {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    .team-bio {
+      font-size: 14px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    
+    .stat-value {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 13px;
+      color: var(--color-text-body);
+    }
+    
+    /* Two Column */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    
+    /* Bullet List */
+    .bullet-list {
+      list-style: none;
+    }
+    
+    .bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text-body);
+    }
+    
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+    
+    .bullet-list.light li {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .bullet-list.light li::before {
+      background: rgba(255,255,255,0.5);
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--color-border);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+    
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--color-bg-white);
+      border: 3px solid var(--color-accent);
+    }
+    
+    .timeline-item.completed .timeline-dot {
+      background: var(--color-accent);
+    }
+    
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+    
+    .timeline-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .timeline-description {
+      font-size: 14px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    /* Ways of Working */
+    .wow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .wow-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+    }
+    
+    .wow-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--color-bg-page);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    
+    .wow-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .wow-content p {
+      font-size: 14px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    /* Success Metrics */
+    .success-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .success-card {
+      padding: 28px 24px;
+      text-align: center;
+    }
+    
+    .success-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    
+    .success-metric {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      margin-bottom: 8px;
+    }
+    
+    .success-target {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+    
+    /* Context Card */
+    .context-card {
+      padding: 32px;
+    }
+    
+    .context-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .context-value {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    
+    .context-value:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Scope Card */
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    
+    .scope-card {
+      padding: 28px;
+    }
+    
+    .scope-card.included {
+      background: var(--color-bg-dark);
+      color: white;
+    }
+    
+    .scope-card.excluded {
+      background: var(--color-bg-page);
+    }
+    
+    .scope-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    
+    .scope-card.included .scope-title {
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .scope-card.excluded .scope-title {
+      color: var(--color-text-body);
+    }
+    
+    .scope-list {
+      list-style: none;
+    }
+    
+    .scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    
+    .scope-card.included .scope-list li {
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .scope-card.excluded .scope-list li {
+      color: var(--color-text-body);
+    }
+    
+    .scope-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .scope-card.included .scope-icon {
+      color: var(--color-success);
+    }
+    
+    .scope-card.excluded .scope-icon {
+      color: var(--color-text-muted);
+    }
+    
+    /* CTA Slide */
+    .cta-slide {
+      text-align: center;
+    }
+    
+    .cta-slide .slide-title {
+      margin-bottom: 32px;
+    }
+    
+    .next-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    
+    .next-step-card {
+      padding: 28px;
+      text-align: left;
+    }
+    
+    .next-step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .next-step-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .next-step-owner {
+      font-size: 14px;
+      color: var(--color-text-body);
+    }
+    
+    .questions-prompt {
+      font-size: 24px;
+      color: var(--color-text-body);
+    }
+    
+    /* Print Styles */
+    @media print {
+      body { background: white; }
+      .slide-nav { display: none; }
+      .slide-deck { display: block; }
+      .slide-viewport { padding: 0; display: block; }
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        padding: 48px;
+        min-height: 100vh;
+      }
+      .slide:last-child { page-break-after: auto; }
+      .card { box-shadow: none; border: 1px solid #ddd; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: letter landscape; margin: 0.5in; }
+    }
+    
+    @media (max-width: 900px) {
+      .slide-viewport { padding: 24px; }
+      .slide-title { font-size: 36px; }
+      .team-grid, .stats-grid, .wow-grid, .success-grid, .scope-grid, .next-steps-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-deck" id="slideDeck">
+    <div class="slide-viewport"></div>
+    <nav class="slide-nav">
+      <button class="nav-btn" id="prevBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>
+        Previous
+      </button>
+      <span class="slide-counter" id="slideCounter">1 / 10</span>
+      <button class="nav-btn" id="nextBtn">
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    // ============================================
+    // DATA - UPDATE THIS WITH YOUR CONTENT
+    // ============================================
+    const DATA = {
+      // Basic Info
+      clientName: "Acme Corporation",
+      engagementName: "AI Discovery",
+      date: "December 17, 2024",
+      
+      // Agenda
+      agenda: [
+        { item: "Introductions", duration: "5 min" },
+        { item: "About Cadre", duration: "5 min" },
+        { item: "Understanding your context", duration: "10 min" },
+        { item: "Engagement overview", duration: "10 min" },
+        { item: "Timeline & milestones", duration: "5 min" },
+        { item: "Ways of working", duration: "10 min" },
+        { item: "Questions & next steps", duration: "15 min" }
+      ],
+      
+      // About Cadre
+      cadreStats: [
+        { value: "30", label: "Team members" },
+        { value: "50+", label: "Engagements" },
+        { value: "<50", label: "OpenAI Partners globally" },
+        { value: "90", label: "Days to production avg" }
+      ],
+      
+      cadreDescription: "We're an AI strategy and implementation firm focused exclusively on mid-market companies. We help you find the highest-impact AI opportunities, then build them.",
+      
+      // Cadre Team
+      cadreTeam: [
+        {
+          name: "Ben Thompson",
+          role: "Engagement Lead",
+          initials: "BT",
+          bio: "Leads strategy and client relationships. Background in operations and AI implementation."
+        },
+        {
+          name: "Kate Chen",
+          role: "AI Engineer",
+          initials: "KC",
+          bio: "Technical lead for implementations. Specializes in process automation and integrations."
+        },
+        {
+          name: "Mike Rodriguez",
+          role: "AI Strategist",
+          initials: "MR",
+          bio: "Discovery and analysis. Identifies opportunities and sizes business impact."
+        }
+      ],
+      
+      // Client Context
+      clientContext: {
+        industry: "Manufacturing & Distribution",
+        revenue: "$180M annual revenue",
+        employees: "400 employees across 3 locations",
+        challenge: "Finance team spending 40+ hours monthly on manual reconciliation, with errors caught late in month-end close."
+      },
+      
+      // Engagement Overview
+      engagement: {
+        type: "AI Discovery",
+        duration: "6 weeks",
+        objective: "Identify and prioritize the highest-impact AI opportunities across finance operations, with detailed business cases for the top 3-5 use cases.",
+        included: [
+          "Stakeholder interviews (12-15 sessions)",
+          "Process documentation and analysis",
+          "Opportunity identification and sizing",
+          "Prioritized roadmap with ROI projections",
+          "Executive presentation of findings"
+        ],
+        excluded: [
+          "Implementation or development work",
+          "Software licensing or procurement",
+          "Change management execution",
+          "Ongoing support post-delivery"
+        ]
+      },
+      
+      // Timeline
+      timeline: [
+        {
+          date: "Week 1-2",
+          title: "Discovery Kickoff",
+          description: "Stakeholder interviews, document collection, process shadowing",
+          completed: false
+        },
+        {
+          date: "Week 3-4",
+          title: "Analysis & Synthesis",
+          description: "Map current state, identify pain points, size opportunities",
+          completed: false
+        },
+        {
+          date: "Week 5",
+          title: "Solution Design",
+          description: "Develop recommendations, build business cases, prioritize",
+          completed: false
+        },
+        {
+          date: "Week 6",
+          title: "Delivery",
+          description: "Executive presentation, roadmap handoff, next steps",
+          completed: false
+        }
+      ],
+      
+      // Ways of Working
+      waysOfWorking: [
+        {
+          icon: "📅",
+          title: "Weekly Check-ins",
+          description: "30-minute sync every Thursday at 2pm PT. We'll share progress and surface any blockers."
+        },
+        {
+          icon: "📧",
+          title: "Email Updates",
+          description: "Written update every Friday with what we accomplished, what's next, and anything we need from you."
+        },
+        {
+          icon: "💬",
+          title: "Slack Channel",
+          description: "Shared channel for quick questions and async communication. We aim to respond within 4 hours."
+        },
+        {
+          icon: "📁",
+          title: "Shared Drive",
+          description: "All deliverables and working documents in a shared Google Drive folder you'll have access to."
+        }
+      ],
+      
+      // Success Metrics
+      successMetrics: [
+        {
+          icon: "🎯",
+          metric: "Opportunities Identified",
+          target: "8-12 use cases"
+        },
+        {
+          icon: "💰",
+          metric: "ROI Projected",
+          target: "For top 5 opportunities"
+        },
+        {
+          icon: "📋",
+          metric: "Roadmap Delivered",
+          target: "Prioritized 12-month plan"
+        }
+      ],
+      
+      // Next Steps
+      nextSteps: [
+        {
+          title: "Schedule interviews",
+          owner: "Cadre + Client"
+        },
+        {
+          title: "Share access to systems/docs",
+          owner: "Client"
+        },
+        {
+          title: "Send stakeholder list",
+          owner: "Client"
+        }
+      ]
+    };
+    
+    // ============================================
+    // SLIDE TEMPLATES
+    // ============================================
+    
+    function renderTitleSlide() {
+      return `
+        <div class="slide title-slide">
+          <div class="logo">CADRE AI</div>
+          <p class="engagement-title">${DATA.engagementName}</p>
+          <h1 class="client-name">${DATA.clientName}</h1>
+          <p class="partner-text">× Cadre AI</p>
+          <p class="date">${DATA.date}</p>
+        </div>
+      `;
+    }
+    
+    function renderAgendaSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Overview</div>
+          <h1 class="slide-title">Today's Agenda</h1>
+          <div class="card">
+            <ul class="agenda-list">
+              ${DATA.agenda.map((item, i) => `
+                <li class="agenda-item">
+                  <span class="agenda-number">${i + 1}</span>
+                  <span class="agenda-text">${item.item}</span>
+                  <span class="agenda-duration">${item.duration}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderAboutCadreSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Who We Are</div>
+          <h1 class="slide-title">About Cadre AI</h1>
+          
+          <div class="stats-grid">
+            ${DATA.cadreStats.map(s => `
+              <div class="card stat-card">
+                <div class="stat-value">${s.value}</div>
+                <div class="stat-label">${s.label}</div>
+              </div>
+            `).join('')}
+          </div>
+          
+          <div class="card">
+            <p style="font-size: 18px; line-height: 1.7; color: var(--color-text-body);">
+              ${DATA.cadreDescription}
+            </p>
+            <p style="font-size: 16px; margin-top: 16px; color: var(--color-text-primary); font-weight: 500;">
+              Official OpenAI Service Partner
+            </p>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderTeamSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Your Team</div>
+          <h1 class="slide-title">Who You'll Be Working With</h1>
+          
+          <div class="team-grid">
+            ${DATA.cadreTeam.map(m => `
+              <div class="card team-card">
+                <div class="team-avatar">${m.initials}</div>
+                <div class="team-name">${m.name}</div>
+                <div class="team-role">${m.role}</div>
+                <div class="team-bio">${m.bio}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderClientContextSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Your Context</div>
+          <h1 class="slide-title">What We Understand</h1>
+          <p class="slide-subtitle" style="margin-bottom: 32px;">Let us know if any of this needs updating.</p>
+          
+          <div class="two-col">
+            <div class="card context-card">
+              <div class="context-label">Industry</div>
+              <div class="context-value">${DATA.clientContext.industry}</div>
+              
+              <div class="context-label">Scale</div>
+              <div class="context-value">${DATA.clientContext.revenue}<br>${DATA.clientContext.employees}</div>
+            </div>
+            
+            <div class="card context-card card-dark">
+              <div class="context-label" style="color: rgba(255,255,255,0.5);">The Challenge</div>
+              <div class="context-value" style="color: white; font-size: 20px; line-height: 1.6;">
+                ${DATA.clientContext.challenge}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderEngagementOverviewSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Engagement</div>
+          <h1 class="slide-title">${DATA.engagement.type}</h1>
+          <p class="slide-subtitle" style="margin-bottom: 32px;">${DATA.engagement.objective}</p>
+          
+          <div class="scope-grid">
+            <div class="card scope-card included">
+              <div class="scope-title">What's Included</div>
+              <ul class="scope-list">
+                ${DATA.engagement.included.map(item => `
+                  <li>
+                    <span class="scope-icon">✓</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            
+            <div class="card scope-card excluded">
+              <div class="scope-title">What's Not Included</div>
+              <ul class="scope-list">
+                ${DATA.engagement.excluded.map(item => `
+                  <li>
+                    <span class="scope-icon">—</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderTimelineSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Timeline</div>
+          <h1 class="slide-title">${DATA.engagement.duration} Engagement</h1>
+          
+          <div class="card" style="padding: 32px 32px 32px 48px;">
+            <div class="timeline">
+              ${DATA.timeline.map(t => `
+                <div class="timeline-item ${t.completed ? 'completed' : ''}">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-date">${t.date}</div>
+                  <div class="timeline-title">${t.title}</div>
+                  <div class="timeline-description">${t.description}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderWaysOfWorkingSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Collaboration</div>
+          <h1 class="slide-title">Ways of Working</h1>
+          
+          <div class="wow-grid">
+            ${DATA.waysOfWorking.map(w => `
+              <div class="card wow-card">
+                <div class="wow-icon">${w.icon}</div>
+                <div class="wow-content">
+                  <h4>${w.title}</h4>
+                  <p>${w.description}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderSuccessSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Outcomes</div>
+          <h1 class="slide-title">What Success Looks Like</h1>
+          
+          <div class="success-grid">
+            ${DATA.successMetrics.map(s => `
+              <div class="card success-card">
+                <div class="success-icon">${s.icon}</div>
+                <div class="success-metric">${s.metric}</div>
+                <div class="success-target">${s.target}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderNextStepsSlide() {
+      return `
+        <div class="slide cta-slide">
+          <div class="slide-label">Wrap Up</div>
+          <h1 class="slide-title">Questions?</h1>
+          
+          <div class="next-steps-grid">
+            ${DATA.nextSteps.map((s, i) => `
+              <div class="card next-step-card">
+                <div class="next-step-number">${i + 1}</div>
+                <div class="next-step-title">${s.title}</div>
+                <div class="next-step-owner">${s.owner}</div>
+              </div>
+            `).join('')}
+          </div>
+          
+          <p class="questions-prompt">What questions do you have for us?</p>
+        </div>
+      `;
+    }
+    
+    // ============================================
+    // RENDER & NAVIGATION
+    // ============================================
+    
+    function renderAllSlides() {
+      const viewport = document.querySelector('.slide-viewport');
+      const slides = [
+        renderTitleSlide(),
+        renderAgendaSlide(),
+        renderAboutCadreSlide(),
+        renderTeamSlide(),
+        renderClientContextSlide(),
+        renderEngagementOverviewSlide(),
+        renderTimelineSlide(),
+        renderWaysOfWorkingSlide(),
+        renderSuccessSlide(),
+        renderNextStepsSlide()
+      ];
+      viewport.innerHTML = slides.join('');
+      return slides.length;
+    }
+    
+    function initNavigation(totalSlides) {
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const counter = document.getElementById('slideCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      function showSlide(index) {
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+        counter.textContent = `${index + 1} / ${totalSlides}`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalSlides - 1;
+        currentSlide = index;
+      }
+      
+      prevBtn.addEventListener('click', () => { if (currentSlide > 0) showSlide(currentSlide - 1); });
+      nextBtn.addEventListener('click', () => { if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) showSlide(currentSlide - 1);
+        if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+      });
+      
+      showSlide(0);
+    }
+    
+    const totalSlides = renderAllSlides();
+    initNavigation(totalSlides);
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-01-04",
+  "hourly_rate": 150,
+  "complexity_tiers": {
+    "simple": {
+      "label": "Simple",
+      "max_hours": 8
+    },
+    "medium": {
+      "label": "Medium",
+      "min_hours": 8,
+      "max_hours": 20
+    },
+    "complex": {
+      "label": "Complex",
+      "min_hours": 20
+    }
+  },
+  "build_time": {
+    "instructions": {
+      "simple": 3,
+      "medium": 6,
+      "complex": 10
+    },
+    "knowledge_base": {
+      "per_existing_file": 1,
+      "per_new_file": 2
+    },
+    "integrations": {
+      "simple": 4,
+      "medium": 8,
+      "complex": 15
+    },
+    "gpt_action": 3
+  },
+  "value_tiers": {
+    "high": {
+      "label": "High Impact",
+      "min_hours_saved_monthly": 40
+    },
+    "medium": {
+      "label": "Medium Impact",
+      "min_hours_saved_monthly": 15,
+      "max_hours_saved_monthly": 40
+    },
+    "low": {
+      "label": "Low Impact",
+      "max_hours_saved_monthly": 15
+    }
+  },
+  "classification": {
+    "quick_win": {
+      "min_score": 7.0,
+      "max_effort_hours": 8,
+      "max_risk": 4
+    },
+    "strategic_bet": {
+      "min_impact": 8,
+      "min_score": 6.5
+    },
+    "foundation_builder": {
+      "min_reuse": 7,
+      "min_score": 6.0
+    },
+    "defer": {
+      "max_score": 5.0
+    }
+  },
+  "scoring_weights": {
+    "impact": 0.35,
+    "effort": 0.25,
+    "risk": 0.15,
+    "reuse": 0.15,
+    "strategic": 0.1
+  }
+}

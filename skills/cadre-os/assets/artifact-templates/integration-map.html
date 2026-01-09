@@ -1,0 +1,460 @@
+<!--
+INTEGRATION MAP TEMPLATE (HTML Version)
+Cadre AI branded artifact - Uses official Cadre brand colors
+Static version for Client Portal (no React/JSX interactivity)
+
+To customize: Replace CLIENT_NAME, DATE, and tool data in the SVG.
+See data-to-artifact.md for population instructions.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Map - Acme Corp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       CADRE BRAND COLORS
+       ============================================ */
+    :root {
+      --black: #0C0407;
+      --red: #DB4545;
+      --blue: #08749B;
+      --blue-dark: #034377;
+      --body: #6E7191;
+      --muted: #A1A1A1;
+      --warm-white: #FAF9F6;
+      --cream: #F2EFE4;
+      --white: #FFFFFF;
+      --border: rgba(0, 0, 0, 0.10);
+      
+      /* Category colors */
+      --crm-bg: #fef3c7;
+      --crm-border: #f59e0b;
+      --crm-text: #92400e;
+      --comm-bg: #dbeafe;
+      --comm-border: #3b82f6;
+      --comm-text: #1e40af;
+      --finance-bg: #d1fae5;
+      --finance-border: #10b981;
+      --finance-text: #065f46;
+      --project-bg: #fce7f3;
+      --project-border: #ec4899;
+      --project-text: #9d174d;
+      --analytics-bg: #ccfbf1;
+      --analytics-border: #14b8a6;
+      --analytics-text: #0f766e;
+      --other-bg: #f1f5f9;
+      --other-border: #94a3b8;
+      --other-text: #475569;
+      
+      /* Connection colors */
+      --conn-native: #22c55e;
+      --conn-api: #08749B;
+      --conn-ipaas: #a855f7;
+      --conn-manual: #f59e0b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--warm-white);
+      color: var(--black);
+      line-height: 1.5;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    
+    /* Header */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 24px 32px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .header-meta {
+      text-align: right;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    .header-meta .client-name {
+      color: var(--red);
+      font-weight: 600;
+    }
+    
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Map Container */
+    .map-container {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .map-svg {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Tool Nodes */
+    .tool-node {
+      cursor: default;
+    }
+    
+    .tool-node:hover .node-circle {
+      filter: brightness(0.95);
+    }
+    
+    .node-circle {
+      transition: filter 0.2s;
+    }
+    
+    .node-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    
+    /* Connections */
+    .connection {
+      fill: none;
+      stroke-width: 2;
+      opacity: 0.6;
+    }
+    
+    .connection:hover {
+      opacity: 1;
+      stroke-width: 3;
+    }
+    
+    .connection.native { stroke: var(--conn-native); }
+    .connection.api { stroke: var(--conn-api); }
+    .connection.ipaas { stroke: var(--conn-ipaas); stroke-dasharray: 5,5; }
+    .connection.manual { stroke: var(--conn-manual); stroke-dasharray: 2,2; }
+    
+    /* Arrow markers */
+    .arrow-native { fill: var(--conn-native); }
+    .arrow-api { fill: var(--conn-api); }
+    .arrow-ipaas { fill: var(--conn-ipaas); }
+    .arrow-manual { fill: var(--conn-manual); }
+    
+    /* Legend */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    
+    .legend-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .legend-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .legend-items {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--body);
+    }
+    
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+    
+    .legend-line {
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    
+    /* Category colors for legend */
+    .legend-dot.crm { background: var(--crm-bg); border-color: var(--crm-border); }
+    .legend-dot.communication { background: var(--comm-bg); border-color: var(--comm-border); }
+    .legend-dot.finance { background: var(--finance-bg); border-color: var(--finance-border); }
+    .legend-dot.project { background: var(--project-bg); border-color: var(--project-border); }
+    .legend-dot.analytics { background: var(--analytics-bg); border-color: var(--analytics-border); }
+    .legend-dot.other { background: var(--other-bg); border-color: var(--other-border); }
+    
+    .legend-line.native { background: var(--conn-native); }
+    .legend-line.api { background: var(--conn-api); }
+    .legend-line.ipaas { background: linear-gradient(90deg, var(--conn-ipaas) 50%, transparent 50%); background-size: 6px 100%; }
+    .legend-line.manual { background: linear-gradient(90deg, var(--conn-manual) 30%, transparent 30%); background-size: 4px 100%; }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer a {
+      color: var(--red);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Integration Map</h1>
+      <div class="header-meta">
+        <div class="client-name">Acme Corp</div>
+        <div>December 30, 2024</div>
+      </div>
+    </div>
+    
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value">9</div>
+        <div class="stat-label">Total Tools</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Connections</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Native</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">1</div>
+        <div class="stat-label">Manual</div>
+      </div>
+    </div>
+    
+    <!-- Map -->
+    <div class="map-container">
+      <svg class="map-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- Arrow markers -->
+        <defs>
+          <marker id="arrow-native" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="arrow-native"/>
+          </marker>
+          <marker id="arrow-api" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="arrow-api"/>
+          </marker>
+          <marker id="arrow-ipaas" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="arrow-ipaas"/>
+          </marker>
+          <marker id="arrow-manual" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="arrow-manual"/>
+          </marker>
+        </defs>
+        
+        <!-- 
+        ============================================
+        CONNECTIONS (lines between tools)
+        Positions calculated for 9 tools in circular layout:
+        Center: 400, 300 | Radius: 200
+        
+        Tool positions (index, angle, x, y):
+        0. Salesforce:  400, 100  (top)
+        1. Slack:       569, 154
+        2. QuickBooks:  618, 300
+        3. Jira:        569, 446
+        4. GitHub:      400, 500  (bottom)
+        5. Web Forms:   231, 446
+        6. LinkedIn:    182, 300
+        7. Stripe:      231, 154
+        8. Excel:       400, 500  (adjusted to avoid overlap)
+        ============================================
+        -->
+        
+        <!-- Salesforce → Slack (native) -->
+        <line class="connection native" x1="400" y1="100" x2="569" y2="154" marker-end="url(#arrow-native)"/>
+        
+        <!-- Salesforce → QuickBooks (native) -->
+        <line class="connection native" x1="400" y1="100" x2="618" y2="300" marker-end="url(#arrow-native)"/>
+        
+        <!-- Slack (no outgoing) -->
+        
+        <!-- QuickBooks → Excel (manual) -->
+        <line class="connection manual" x1="618" y1="300" x2="569" y2="446" marker-end="url(#arrow-manual)"/>
+        
+        <!-- Jira → Slack (native) -->
+        <line class="connection native" x1="400" y1="500" x2="569" y2="154" marker-end="url(#arrow-native)"/>
+        
+        <!-- GitHub → Jira (api) -->
+        <line class="connection api" x1="231" y1="446" x2="400" y2="500" marker-end="url(#arrow-api)"/>
+        
+        <!-- GitHub → Slack (api) -->
+        <line class="connection api" x1="231" y1="446" x2="569" y2="154" marker-end="url(#arrow-api)"/>
+        
+        <!-- Web Forms → Salesforce (api) -->
+        <line class="connection api" x1="182" y1="300" x2="400" y2="100" marker-end="url(#arrow-api)"/>
+        
+        <!-- LinkedIn → Salesforce (ipaas) -->
+        <line class="connection ipaas" x1="231" y1="154" x2="400" y2="100" marker-end="url(#arrow-ipaas)"/>
+        
+        <!-- Stripe → QuickBooks (native) -->
+        <line class="connection native" x1="569" y1="446" x2="618" y2="300" marker-end="url(#arrow-native)"/>
+        
+        <!-- 
+        ============================================
+        TOOL NODES
+        ============================================
+        -->
+        
+        <!-- Salesforce (CRM) -->
+        <g class="tool-node" transform="translate(400, 100)">
+          <circle class="node-circle" r="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#92400e">Salesforce</text>
+        </g>
+        
+        <!-- Slack (Communication) -->
+        <g class="tool-node" transform="translate(569, 154)">
+          <circle class="node-circle" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#1e40af">Slack</text>
+        </g>
+        
+        <!-- QuickBooks (Finance) -->
+        <g class="tool-node" transform="translate(618, 300)">
+          <circle class="node-circle" r="40" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#065f46">QuickBooks</text>
+        </g>
+        
+        <!-- Jira (Project) -->
+        <g class="tool-node" transform="translate(400, 500)">
+          <circle class="node-circle" r="40" fill="#fce7f3" stroke="#ec4899" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#9d174d">Jira</text>
+        </g>
+        
+        <!-- GitHub (Other) -->
+        <g class="tool-node" transform="translate(231, 446)">
+          <circle class="node-circle" r="40" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#475569">GitHub</text>
+        </g>
+        
+        <!-- Web Forms (Other) -->
+        <g class="tool-node" transform="translate(182, 300)">
+          <circle class="node-circle" r="40" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#475569">Web Forms</text>
+        </g>
+        
+        <!-- LinkedIn (CRM) -->
+        <g class="tool-node" transform="translate(231, 154)">
+          <circle class="node-circle" r="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#92400e">LinkedIn</text>
+        </g>
+        
+        <!-- Stripe (Finance) -->
+        <g class="tool-node" transform="translate(569, 446)">
+          <circle class="node-circle" r="40" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#065f46">Stripe</text>
+        </g>
+        
+        <!-- Excel (Analytics) -->
+        <g class="tool-node" transform="translate(680, 446)">
+          <circle class="node-circle" r="40" fill="#ccfbf1" stroke="#14b8a6" stroke-width="3"/>
+          <text class="node-label" y="4" fill="#0f766e">Excel</text>
+        </g>
+      </svg>
+    </div>
+    
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-section">
+        <span class="legend-title">Categories</span>
+        <div class="legend-items">
+          <div class="legend-item"><span class="legend-dot crm"></span> CRM</div>
+          <div class="legend-item"><span class="legend-dot communication"></span> Communication</div>
+          <div class="legend-item"><span class="legend-dot finance"></span> Finance</div>
+          <div class="legend-item"><span class="legend-dot project"></span> Project</div>
+          <div class="legend-item"><span class="legend-dot analytics"></span> Analytics</div>
+          <div class="legend-item"><span class="legend-dot other"></span> Other</div>
+        </div>
+      </div>
+      <div class="legend-section">
+        <span class="legend-title">Connection Type</span>
+        <div class="legend-items">
+          <div class="legend-item"><span class="legend-line native"></span> Native</div>
+          <div class="legend-item"><span class="legend-line api"></span> API</div>
+          <div class="legend-item"><span class="legend-line ipaas"></span> iPaaS</div>
+          <div class="legend-item"><span class="legend-line manual"></span> Manual</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      Prepared by <a href="https://cadre.ai">Cadre AI</a>
+    </div>
+  </div>
+</body>
+</html>

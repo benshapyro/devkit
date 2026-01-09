@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{CLIENT_NAME}} - AI Solution Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background-color: #FAF9F6;
+            color: #0C0407;
+            padding: 32px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0C0407;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #6E7191;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(12, 4, 7, 0.08);
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0C0407;
+            margin-bottom: 4px;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-value .accent {
+            color: #DB4545;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6E7191;
+            font-weight: 500;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #E5E2D8;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #6E7191;
+            transition: all 0.2s ease;
+            position: relative;
+            bottom: -2px;
+        }
+
+        .tab:hover {
+            color: #DB4545;
+        }
+
+        .tab.active {
+            color: #0C0407;
+            border-bottom-color: #DB4545;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Search and Filters */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 48px;
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.13);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #0C0407;
+            transition: border-color 200ms ease;
+        }
+
+        .search-input::placeholder {
+            color: #A1A1A1;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.13);
+            background: white;
+            border-radius: 52px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0C0407;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #DB4545;
+            color: #DB4545;
+        }
+
+        .filter-btn.active {
+            background-color: #0C0407;
+            color: white;
+            border-color: #0C0407;
+        }
+
+        /* Solution Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Solution Card */
+        .solution-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(12, 4, 7, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .solution-card:hover {
+            box-shadow: 0 8px 16px rgba(12, 4, 7, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0C0407;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .card-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Status Badges */
+        .status-not-selected {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+
+        .status-backlog {
+            background-color: #E3F2FD;
+            color: #034377;
+        }
+
+        .status-in-progress {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+
+        .status-testing {
+            background-color: #F3E5F5;
+            color: #6A1B9A;
+        }
+
+        .status-live {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        /* Impact Badges */
+        .impact-high {
+            background-color: #FCE4EC;
+            color: #C2185B;
+        }
+
+        .impact-medium {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+
+        .impact-low {
+            background-color: #E3F2FD;
+            color: #034377;
+        }
+
+        /* Category Badges */
+        .category-badge {
+            background-color: #F2EFE4;
+            color: #0C0407;
+        }
+
+        /* Priority Score */
+        .priority-score {
+            font-size: 11px;
+            color: #A1A1A1;
+            font-weight: 600;
+        }
+
+        .card-purpose {
+            font-size: 15px;
+            color: #6E7191;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 52px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #0C0407;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0C0407;
+            border: 1px solid rgba(0, 0, 0, 0.13);
+        }
+
+        .btn-secondary:hover {
+            border-color: #0C0407;
+        }
+
+        .btn-accent {
+            background-color: #DB4545;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #c43d3d;
+            transform: translateY(-2px);
+        }
+
+        .btn-copy-success {
+            background-color: #2E7D32 !important;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 4, 7, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(12, 4, 7, 0.3);
+        }
+
+        .modal-header {
+            padding: 32px 32px 24px;
+            border-bottom: 1px solid #E5E2D8;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #6E7191;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #F2EFE4;
+            color: #0C0407;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0C0407;
+            margin-bottom: 12px;
+            padding-right: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .modal-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-section {
+            margin-bottom: 28px;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0C0407;
+            margin-bottom: 12px;
+        }
+
+        .modal-section-content {
+            font-size: 15px;
+            color: #6E7191;
+            line-height: 1.7;
+        }
+
+        .modal-section-content p {
+            margin-bottom: 12px;
+        }
+
+        .modal-section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .prompt-box {
+            background: #F2EFE4;
+            border: 1px solid #E5E2D8;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            color: #0C0407;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .sample-prompts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sample-prompt {
+            background: #FAF9F6;
+            border-left: 4px solid #034377;
+            padding: 16px 20px;
+            border-radius: 4px;
+            color: #0C0407;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .modal-footer {
+            padding: 24px 32px;
+            border-top: 1px solid #E5E2D8;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            position: sticky;
+            bottom: 0;
+            background: white;
+            border-radius: 0 0 16px 16px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6E7191;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0C0407;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-text {
+            font-size: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .modal-content {
+                margin: 20px;
+            }
+
+            .modal-header,
+            .modal-body,
+            .modal-footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>{{CLIENT_NAME}} AI Solution Catalog</h1>
+            <p>Your portfolio of AI assistants and automation solutions built by Cadre AI</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value"><span class="accent" id="totalSolutions">0</span></div>
+                <div class="stat-label">Total Solutions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value"><span class="accent" id="liveSolutions">0</span></div>
+                <div class="stat-label">Live & Ready</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value"><span class="accent" id="inProgressSolutions">0</span></div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value"><span class="accent" id="backlogSolutions">0</span></div>
+                <div class="stat-label">Backlog</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="assistants">AI Assistants</button>
+            <button class="tab" data-tab="prompts">Prompts</button>
+        </div>
+
+        <!-- Assistants Tab -->
+        <div id="assistants" class="tab-content active">
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="assistantSearch" placeholder="Search assistants...">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all" data-type="status">All</button>
+                    <button class="filter-btn" data-filter="live" data-type="status">Live</button>
+                    <button class="filter-btn" data-filter="testing" data-type="status">Testing</button>
+                    <button class="filter-btn" data-filter="in-progress" data-type="status">In Progress</button>
+                    <button class="filter-btn" data-filter="backlog" data-type="status">Backlog</button>
+                </div>
+                <div class="filter-group" id="assistantCategoryFilters">
+                    <!-- Category filters will be generated dynamically -->
+                </div>
+            </div>
+            <div class="solutions-grid" id="assistantsGrid">
+                <!-- Assistant cards will be generated here -->
+            </div>
+        </div>
+
+        <!-- Prompts Tab -->
+        <div id="prompts" class="tab-content">
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="promptSearch" placeholder="Search prompts...">
+                </div>
+                <div class="filter-group" id="promptCategoryFilters">
+                    <!-- Category filters will be generated dynamically -->
+                </div>
+            </div>
+            <div class="solutions-grid" id="promptsGrid">
+                <!-- Prompt cards will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Assistant Detail Modal -->
+    <div id="assistantModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="assistantModalClose">&times;</button>
+                <h2 class="modal-title" id="assistantModalTitle"></h2>
+                <div class="modal-badges" id="assistantModalBadges"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title">Description</div>
+                    <div class="modal-section-content" id="assistantModalDescription"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">Problem This Solves</div>
+                    <div class="modal-section-content" id="assistantModalProblem"></div>
+                </div>
+                <div class="modal-section" id="assistantModalSamplesSection">
+                    <div class="modal-section-title">Sample Prompts to Try</div>
+                    <div class="sample-prompts" id="assistantModalSamples"></div>
+                </div>
+                <div class="modal-section" id="assistantModalKnowledgeSection">
+                    <div class="modal-section-title">Knowledge Base</div>
+                    <div class="modal-section-content" id="assistantModalKnowledge"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="assistantModalCloseBtn">Close</button>
+                <a class="btn btn-accent" id="assistantModalLaunchBtn" href="#" target="_blank">Launch Assistant</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prompt Detail Modal -->
+    <div id="promptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="promptModalClose">&times;</button>
+                <h2 class="modal-title" id="promptModalTitle"></h2>
+                <div class="modal-badges" id="promptModalBadges"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title">Prompt</div>
+                    <div class="prompt-box" id="promptModalText"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">When to Use This</div>
+                    <div class="modal-section-content" id="promptModalUsage"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="promptModalCloseBtn">Close</button>
+                <button class="btn btn-accent" id="promptModalCopyBtn">Copy Prompt</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA STRUCTURE - Edit this section to populate your catalog
+        const DATA = {
+            clientName: "{{CLIENT_NAME}}", // Replace with actual client name
+            
+            assistants: [
+                // Example assistant - duplicate this structure for each assistant
+                {
+                    name: "Invoice Reconciliation Assistant",
+                    purpose: "Automatically matches invoices against POs and flags exceptions in real-time",
+                    category: "Finance Operations",
+                    status: "live", // not-selected, backlog, in-progress, testing, live
+                    impact: "high", // high, medium, low
+                    description: "This assistant streamlines the invoice reconciliation process by automatically matching invoices to purchase orders, identifying discrepancies, and routing exceptions to the right team members. It reduces manual review time and improves accuracy in accounts payable workflows.",
+                    problem: "Finance teams spend 40+ hours per month manually matching invoices to POs, missing exceptions, and chasing down approvals. This creates bottlenecks in month-end close and increases payment delays.",
+                    link: "https://chatgpt.com/g/g-example123", // Direct link to the assistant
+                    samplePrompts: [
+                        "Show me all invoices from last week that don't match POs",
+                        "What are the top 5 vendors with the most exceptions this month?",
+                        "Create a summary report of reconciliation status for today's executive meeting"
+                    ],
+                    knowledgeBase: "AP policies, vendor master data, PO templates, approval matrices, historical invoice samples"
+                }
+                // Add more assistants here...
+            ],
+            
+            prompts: [
+                // Example prompt - duplicate this structure for each prompt
+                {
+                    name: "Daily Standup Email Generator",
+                    purpose: "Creates consistent, concise standup updates from bullet points",
+                    category: "Team Communication",
+                    priority: 85, // 0-100 numeric score
+                    promptText: `You are a professional communication assistant. Transform my bullet point notes into a clear, concise standup email.
+
+Format:
+- Yesterday: [what was accomplished]
+- Today: [planned work]
+- Blockers: [any issues, or "None"]
+
+Keep it brief (3-5 sentences max) and professional but warm. Use first person.
+
+My notes:
+[USER PASTES THEIR NOTES HERE]`,
+                    usage: "Use this whenever you need to send a standup update. Just paste your bullet point notes where indicated and send the formatted result to your team."
+                }
+                // Add more prompts here...
+            ]
+        };
+
+        // Helper function to get status class
+        function getStatusClass(status) {
+            const statusMap = {
+                'not-selected': 'status-not-selected',
+                'backlog': 'status-backlog',
+                'in-progress': 'status-in-progress',
+                'testing': 'status-testing',
+                'live': 'status-live'
+            };
+            return statusMap[status] || 'status-not-selected';
+        }
+
+        // Helper function to get status label
+        function getStatusLabel(status) {
+            const labelMap = {
+                'not-selected': 'Not Selected',
+                'backlog': 'Backlog',
+                'in-progress': 'In Progress',
+                'testing': 'Testing',
+                'live': 'Live'
+            };
+            return labelMap[status] || 'Unknown';
+        }
+
+        // Helper function to get impact class
+        function getImpactClass(impact) {
+            const impactMap = {
+                'high': 'impact-high',
+                'medium': 'impact-medium',
+                'low': 'impact-low'
+            };
+            return impactMap[impact] || 'impact-medium';
+        }
+
+        // Helper function to get impact label
+        function getImpactLabel(impact) {
+            const labelMap = {
+                'high': 'High Impact',
+                'medium': 'Medium Impact',
+                'low': 'Low Impact'
+            };
+            return labelMap[impact] || 'Medium Impact';
+        }
+
+        // Update stats
+        function updateStats() {
+            const total = DATA.assistants.length;
+            const live = DATA.assistants.filter(a => a.status === 'live').length;
+            const inProgress = DATA.assistants.filter(a => a.status === 'in-progress').length;
+            const backlog = DATA.assistants.filter(a => a.status === 'backlog').length;
+
+            document.getElementById('totalSolutions').textContent = total + DATA.prompts.length;
+            document.getElementById('liveSolutions').textContent = live;
+            document.getElementById('inProgressSolutions').textContent = inProgress;
+            document.getElementById('backlogSolutions').textContent = backlog;
+        }
+
+        // Render assistant cards
+        function renderAssistants(filterStatus = 'all', filterCategory = 'all', searchTerm = '') {
+            const grid = document.getElementById('assistantsGrid');
+            let filtered = DATA.assistants;
+
+            // Apply filters
+            if (filterStatus !== 'all') {
+                filtered = filtered.filter(a => a.status === filterStatus);
+            }
+            if (filterCategory !== 'all') {
+                filtered = filtered.filter(a => a.category === filterCategory);
+            }
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(a => 
+                    a.name.toLowerCase().includes(term) || 
+                    a.purpose.toLowerCase().includes(term) ||
+                    a.category.toLowerCase().includes(term)
+                );
+            }
+
+            // Render cards
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-title">No assistants found</div>
+                        <div class="empty-state-text">Try adjusting your filters or search term</div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(assistant => `
+                <div class="solution-card" data-id="${assistant.name}">
+                    <div class="card-header">
+                        <div class="card-title">${assistant.name}</div>
+                        <div class="card-badges">
+                            <span class="badge ${getStatusClass(assistant.status)}">${getStatusLabel(assistant.status)}</span>
+                            <span class="badge ${getImpactClass(assistant.impact)}">${getImpactLabel(assistant.impact)}</span>
+                        </div>
+                    </div>
+                    <div class="card-purpose">${assistant.purpose}</div>
+                    <div style="margin-bottom: 16px;">
+                        <span class="badge category-badge">${assistant.category}</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-learn-more" data-type="assistant" data-name="${assistant.name}">
+                            Learn More
+                        </button>
+                        <a class="btn btn-primary" href="${assistant.link}" target="_blank">
+                            Launch →
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render prompt cards
+        function renderPrompts(filterCategory = 'all', searchTerm = '') {
+            const grid = document.getElementById('promptsGrid');
+            let filtered = DATA.prompts;
+
+            // Apply filters
+            if (filterCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === filterCategory);
+            }
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(term) || 
+                    p.purpose.toLowerCase().includes(term) ||
+                    p.category.toLowerCase().includes(term)
+                );
+            }
+
+            // Render cards
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-title">No prompts found</div>
+                        <div class="empty-state-text">Try adjusting your filters or search term</div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(prompt => `
+                <div class="solution-card" data-id="${prompt.name}">
+                    <div class="card-header">
+                        <div class="card-title">${prompt.name}</div>
+                        <div class="card-badges">
+                            <span class="priority-score">Priority: ${prompt.priority}</span>
+                        </div>
+                    </div>
+                    <div class="card-purpose">${prompt.purpose}</div>
+                    <div style="margin-bottom: 16px;">
+                        <span class="badge category-badge">${prompt.category}</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-learn-more" data-type="prompt" data-name="${prompt.name}">
+                            Learn More
+                        </button>
+                        <button class="btn btn-primary btn-copy-prompt" data-name="${prompt.name}">
+                            Copy Prompt
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate category filters
+        function generateCategoryFilters() {
+            const assistantCategories = [...new Set(DATA.assistants.map(a => a.category))];
+            const promptCategories = [...new Set(DATA.prompts.map(p => p.category))];
+
+            const assistantFiltersHTML = `
+                <button class="filter-btn active" data-filter="all" data-type="category">All Categories</button>
+                ${assistantCategories.map(cat => `
+                    <button class="filter-btn" data-filter="${cat}" data-type="category">${cat}</button>
+                `).join('')}
+            `;
+
+            const promptFiltersHTML = `
+                <button class="filter-btn active" data-filter="all" data-type="category">All Categories</button>
+                ${promptCategories.map(cat => `
+                    <button class="filter-btn" data-filter="${cat}" data-type="category">${cat}</button>
+                `).join('')}
+            `;
+
+            document.getElementById('assistantCategoryFilters').innerHTML = assistantFiltersHTML;
+            document.getElementById('promptCategoryFilters').innerHTML = promptFiltersHTML;
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                
+                // Update tab buttons
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Filter handling for assistants
+        let currentStatusFilter = 'all';
+        let currentCategoryFilter = 'all';
+        let currentSearchTerm = '';
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#assistants .filter-btn')) {
+                const btn = e.target.closest('.filter-btn');
+                const filter = btn.dataset.filter;
+                const type = btn.dataset.type;
+                
+                // Update active state
+                const parentGroup = btn.parentElement;
+                parentGroup.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update filter
+                if (type === 'status') {
+                    currentStatusFilter = filter;
+                } else if (type === 'category') {
+                    currentCategoryFilter = filter;
+                }
+                
+                renderAssistants(currentStatusFilter, currentCategoryFilter, currentSearchTerm);
+            }
+        });
+
+        // Filter handling for prompts
+        let currentPromptCategoryFilter = 'all';
+        let currentPromptSearchTerm = '';
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#prompts .filter-btn')) {
+                const btn = e.target.closest('.filter-btn');
+                const filter = btn.dataset.filter;
+                
+                // Update active state
+                const parentGroup = btn.parentElement;
+                parentGroup.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                currentPromptCategoryFilter = filter;
+                renderPrompts(currentPromptCategoryFilter, currentPromptSearchTerm);
+            }
+        });
+
+        // Search handling
+        document.getElementById('assistantSearch').addEventListener('input', (e) => {
+            currentSearchTerm = e.target.value;
+            renderAssistants(currentStatusFilter, currentCategoryFilter, currentSearchTerm);
+        });
+
+        document.getElementById('promptSearch').addEventListener('input', (e) => {
+            currentPromptSearchTerm = e.target.value;
+            renderPrompts(currentPromptCategoryFilter, currentPromptSearchTerm);
+        });
+
+        // Modal handling - Assistant
+        const assistantModal = document.getElementById('assistantModal');
+        document.getElementById('assistantModalClose').addEventListener('click', () => {
+            assistantModal.classList.remove('active');
+        });
+        document.getElementById('assistantModalCloseBtn').addEventListener('click', () => {
+            assistantModal.classList.remove('active');
+        });
+        assistantModal.addEventListener('click', (e) => {
+            if (e.target === assistantModal) {
+                assistantModal.classList.remove('active');
+            }
+        });
+
+        // Modal handling - Prompt
+        const promptModal = document.getElementById('promptModal');
+        document.getElementById('promptModalClose').addEventListener('click', () => {
+            promptModal.classList.remove('active');
+        });
+        document.getElementById('promptModalCloseBtn').addEventListener('click', () => {
+            promptModal.classList.remove('active');
+        });
+        promptModal.addEventListener('click', (e) => {
+            if (e.target === promptModal) {
+                promptModal.classList.remove('active');
+            }
+        });
+
+        // Learn more buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-learn-more')) {
+                const type = e.target.dataset.type;
+                const name = e.target.dataset.name;
+                
+                if (type === 'assistant') {
+                    openAssistantModal(name);
+                } else if (type === 'prompt') {
+                    openPromptModal(name);
+                }
+            }
+        });
+
+        // Card click handlers - open modal when clicking card (but not buttons)
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.solution-card');
+            if (!card) return;
+            
+            // Don't trigger if clicking on a button or link
+            if (e.target.closest('.btn') || e.target.closest('a')) return;
+            
+            const name = card.dataset.id;
+            
+            // Determine if it's an assistant or prompt based on which grid it's in
+            const isAssistant = card.closest('#assistantsGrid');
+            const isPrompt = card.closest('#promptsGrid');
+            
+            if (isAssistant) {
+                openAssistantModal(name);
+            } else if (isPrompt) {
+                openPromptModal(name);
+            }
+        });
+
+        // Function to open assistant modal
+        function openAssistantModal(name) {
+            const assistant = DATA.assistants.find(a => a.name === name);
+            if (!assistant) return;
+            
+            document.getElementById('assistantModalTitle').textContent = assistant.name;
+            document.getElementById('assistantModalBadges').innerHTML = `
+                <span class="badge ${getStatusClass(assistant.status)}">${getStatusLabel(assistant.status)}</span>
+                <span class="badge ${getImpactClass(assistant.impact)}">${getImpactLabel(assistant.impact)}</span>
+                <span class="badge category-badge">${assistant.category}</span>
+            `;
+            document.getElementById('assistantModalDescription').textContent = assistant.description;
+            document.getElementById('assistantModalProblem').textContent = assistant.problem;
+            
+            if (assistant.samplePrompts && assistant.samplePrompts.length > 0) {
+                document.getElementById('assistantModalSamplesSection').style.display = 'block';
+                document.getElementById('assistantModalSamples').innerHTML = assistant.samplePrompts.map(p => `
+                    <div class="sample-prompt">"${p}"</div>
+                `).join('');
+            } else {
+                document.getElementById('assistantModalSamplesSection').style.display = 'none';
+            }
+            
+            if (assistant.knowledgeBase) {
+                document.getElementById('assistantModalKnowledgeSection').style.display = 'block';
+                document.getElementById('assistantModalKnowledge').textContent = assistant.knowledgeBase;
+            } else {
+                document.getElementById('assistantModalKnowledgeSection').style.display = 'none';
+            }
+            
+            document.getElementById('assistantModalLaunchBtn').href = assistant.link;
+            assistantModal.classList.add('active');
+        }
+
+        // Function to open prompt modal
+        function openPromptModal(name) {
+            const prompt = DATA.prompts.find(p => p.name === name);
+            if (!prompt) return;
+            
+            document.getElementById('promptModalTitle').textContent = prompt.name;
+            document.getElementById('promptModalBadges').innerHTML = `
+                <span class="badge category-badge">${prompt.category}</span>
+                <span class="priority-score">Priority: ${prompt.priority}</span>
+            `;
+            document.getElementById('promptModalText').textContent = prompt.promptText;
+            document.getElementById('promptModalUsage').textContent = prompt.usage;
+            promptModal.classList.add('active');
+        }
+
+        // Copy prompt functionality
+        document.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('btn-copy-prompt')) {
+                const name = e.target.dataset.name;
+                const prompt = DATA.prompts.find(p => p.name === name);
+                
+                if (prompt) {
+                    try {
+                        await navigator.clipboard.writeText(prompt.promptText);
+                        const originalText = e.target.textContent;
+                        e.target.textContent = '✓ Copied!';
+                        e.target.classList.add('btn-copy-success');
+                        setTimeout(() => {
+                            e.target.textContent = originalText;
+                            e.target.classList.remove('btn-copy-success');
+                        }, 2000);
+                    } catch (err) {
+                        alert('Failed to copy to clipboard');
+                    }
+                }
+            }
+        });
+
+        // Copy from modal
+        document.getElementById('promptModalCopyBtn').addEventListener('click', async () => {
+            const text = document.getElementById('promptModalText').textContent;
+            try {
+                await navigator.clipboard.writeText(text);
+                const btn = document.getElementById('promptModalCopyBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('btn-copy-success');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('btn-copy-success');
+                }, 2000);
+            } catch (err) {
+                alert('Failed to copy to clipboard');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update client name in title
+            if (DATA.clientName) {
+                document.querySelector('.header h1').textContent = `${DATA.clientName} AI Solution Catalog`;
+            }
+            
+            updateStats();
+            generateCategoryFilters();
+            renderAssistants();
+            renderPrompts();
+        });
+    </script>
+</body>
+</html>

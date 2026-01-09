@@ -1,0 +1,92 @@
+# Sample Brand Voice Configuration
+# Used for testing prompts against realistic client config
+# Client: TechFlow Solutions (fictional B2B SaaS company)
+
+client:
+  name: "TechFlow Solutions"
+  industry: "B2B SaaS"
+  website: "https://techflow.example.com"
+
+brand_voice:
+  summary: >
+    Professional but approachable. Data-driven and specific.
+    Avoids buzzwords and corporate jargon. Empowers readers
+    with actionable insights rather than vague promises.
+
+  guidelines:
+    - rule: "Use active voice"
+      example_good: "Our platform reduces costs by 40%"
+      example_bad: "Costs are reduced by 40% by our platform"
+      rationale: "Active voice is more direct and engaging"
+
+    - rule: "Lead with benefits, not features"
+      example_good: "Save 10 hours per week on manual tasks"
+      example_bad: "Automated task scheduling functionality"
+      rationale: "Readers care about outcomes, not capabilities"
+
+    - rule: "Use specific numbers over vague claims"
+      example_good: "87% of customers report improved efficiency within 30 days"
+      example_bad: "Most customers see great results quickly"
+      rationale: "Specificity builds credibility"
+
+    - rule: "Explain concepts, don't assume knowledge"
+      example_good: "Workflow automation—using software to handle repetitive tasks—can transform how your team operates"
+      example_bad: "Workflow automation transforms operations"
+      rationale: "Not everyone knows what workflow automation means"
+
+    - rule: "Use 'you' and 'your' to address the reader directly"
+      example_good: "You can reduce your team's manual workload"
+      example_bad: "Teams can reduce their manual workload"
+      rationale: "Direct address is more engaging"
+
+    - rule: "Back up claims with evidence"
+      example_good: "According to McKinsey, 45% of work activities could be automated"
+      example_bad: "A lot of work could be automated"
+      rationale: "Citations build trust"
+
+  tone:
+    formality: "professional"
+    personality: "helpful"
+    energy: "confident but not aggressive"
+    humor: "occasional, subtle"
+
+  vocabulary:
+    preferred:
+      - "streamline"
+      - "empower"
+      - "efficiency"
+      - "insight"
+      - "transform"
+      - "optimize"
+      - "enable"
+      - "accelerate"
+    avoid:
+      - "synergy"
+      - "leverage"
+      - "disrupt"
+      - "game-changer"
+      - "revolutionary"
+      - "cutting-edge"
+      - "best-in-class"
+      - "world-class"
+      - "paradigm"
+      - "holistic"
+
+  sentence_patterns:
+    preferred:
+      - short_sentences: "Vary length. Some short. Some longer for flow."
+      - clear_structure: "One idea per sentence when possible"
+    avoid:
+      - run_on_sentences: true
+      - excessive_jargon: true
+      - passive_voice: "unless necessary for emphasis"
+
+  content_patterns:
+    opening:
+      - "Start with a relatable problem or question"
+      - "Use a surprising statistic when relevant"
+      - "Avoid 'In today's fast-paced world...'"
+    closing:
+      - "End with a clear call to action"
+      - "Summarize key takeaways"
+      - "Avoid abrupt endings"

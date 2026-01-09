@@ -1,0 +1,36 @@
+# Audience Configuration
+# Client: Probo
+# Fill in the sections below with Probo's target audience
+
+audience:
+  primary:
+    title: "[TODO: Primary job title - e.g., Operations Manager]"
+    also_known_as:
+      - "[TODO: Alternative title 1]"
+      - "[TODO: Alternative title 2]"
+    industry: "[TODO: Target industry or 'cross-industry']"
+    company_size: "[TODO: e.g., 50-500 employees]"
+
+    pain_points:
+      - "[TODO: Pain point 1 - what keeps them up at night?]"
+      - "[TODO: Pain point 2]"
+      - "[TODO: Pain point 3]"
+
+    goals:
+      - "[TODO: Goal 1 - what are they trying to achieve?]"
+      - "[TODO: Goal 2]"
+      - "[TODO: Goal 3]"
+
+    content_preferences:
+      format: "[TODO: blog / video / podcast / guides]"
+      length: "[TODO: short / medium / long]"
+      tone: "[TODO: casual / professional]"
+
+    triggers:
+      - "[TODO: What makes them search for solutions?]"
+      - "[TODO: What signals they're ready to buy?]"
+
+  # Add secondary audience if applicable:
+  # secondary:
+  #   title: "[TODO: Secondary job title]"
+  #   ...

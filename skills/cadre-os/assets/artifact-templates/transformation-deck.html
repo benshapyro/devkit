@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transformation Deck</title>
+  
+  <!--
+  ============================================
+  CADRE AI - TRANSFORMATION DECK TEMPLATE
+  ============================================
+  
+  Combined Current State → Future State presentation.
+  Shows dramatic before/after comparison for discovery deliverables.
+  
+  USAGE:
+  1. Update the DATA object below with your actual content
+  2. Navigate with arrow buttons or keyboard (← →)
+  3. Print to PDF for static export (Cmd+P)
+  
+  SLIDES:
+  1. Title
+  2. Current State Overview
+  3. Current State Pain Points
+  4. The Transformation (comparison)
+  5. Future State Solution
+  6. Expected Outcomes
+  7. Implementation Roadmap
+  8. Investment & ROI
+  -->
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-text-primary: #0C0407;
+      --color-text-body: #6E7191;
+      --color-text-muted: #A1A1A1;
+      --color-bg-page: #FAF9F6;
+      --color-bg-cream: #F2EFE4;
+      --color-bg-white: #FFFFFF;
+      --color-bg-dark: #242424;
+      --color-accent: #DB4545;
+      --color-secondary: #08749B;
+      --color-info: #08749B;
+      --color-border: rgba(0, 0, 0, 0.10);
+      --color-success: #16a34a;
+      --color-warning: #ca8a04;
+      --color-danger: #dc2626;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--color-bg-page);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+    }
+    
+    /* Slide Container */
+    .slide-deck {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .slide-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1100px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .slide.active { display: block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Navigation */
+    .slide-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg-white);
+    }
+    
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      background: transparent;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-btn:hover:not(:disabled) { background: rgba(12, 4, 7, 0.05); }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    
+    .slide-counter {
+      font-size: 14px;
+      color: var(--color-text-body);
+    }
+    
+    /* Typography */
+    .slide-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-body);
+      margin-bottom: 12px;
+    }
+    
+    .slide-title {
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    
+    .slide-subtitle {
+      font-size: 20px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    /* Title Slide */
+    .title-slide {
+      text-align: center;
+      padding: 48px 0;
+    }
+    
+    .title-slide .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-text-body);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .process-name {
+      font-size: 60px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    
+    .title-slide .deck-type {
+      font-size: 24px;
+      color: var(--color-text-body);
+      margin-bottom: 48px;
+    }
+    
+    .title-slide .client-name {
+      font-size: 18px;
+      color: var(--color-text-muted);
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    
+    .card-dark {
+      background: var(--color-bg-dark);
+      border: none;
+      color: var(--color-bg-white);
+    }
+    
+    /* Comparison Layout */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    
+    .comparison-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--color-accent);
+    }
+    
+    .comparison-card {
+      padding: 32px;
+    }
+    
+    .comparison-card.current {
+      background: var(--color-bg-cream);
+      border: 1px solid var(--color-border);
+    }
+    
+    .comparison-card.future {
+      background: var(--color-bg-dark);
+      color: var(--color-bg-white);
+    }
+    
+    .comparison-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    
+    .comparison-card.current .comparison-label { color: var(--color-text-body); }
+    .comparison-card.future .comparison-label { color: rgba(255,255,255,0.5); }
+    
+    .comparison-title {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .metric-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    
+    .metric-current {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .metric-arrow {
+      font-size: 20px;
+      color: var(--color-accent);
+      margin: 8px 0;
+    }
+    
+    .metric-future {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: var(--color-text-body);
+      margin-top: 8px;
+    }
+    
+    /* Pain Points */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .pain-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+    }
+    
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(219, 69, 69, 0.1);
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    
+    .pain-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .pain-content p {
+      font-size: 14px;
+      color: var(--color-text-body);
+      line-height: 1.5;
+    }
+    
+    /* Solution Features */
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: var(--color-bg-page);
+      border-radius: 12px;
+    }
+    
+    .feature-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--color-success);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .feature-text {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    /* Roadmap */
+    .roadmap {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .roadmap-phase {
+      flex: 1;
+      position: relative;
+    }
+    
+    .roadmap-phase::after {
+      content: "→";
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--color-text-muted);
+    }
+    
+    .roadmap-phase:last-child::after {
+      display: none;
+    }
+    
+    .phase-card {
+      height: 100%;
+      padding: 24px;
+    }
+    
+    .phase-number {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .phase-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .phase-duration {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    
+    .phase-items {
+      list-style: none;
+    }
+    
+    .phase-items li {
+      font-size: 14px;
+      color: var(--color-text-body);
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    
+    .phase-items li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+    
+    /* Investment Card */
+    .investment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    
+    .investment-card {
+      padding: 32px;
+    }
+    
+    .investment-label {
+      font-size: 14px;
+      color: var(--color-text-body);
+      margin-bottom: 8px;
+    }
+    
+    .investment-value {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    
+    .investment-note {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      margin-top: 8px;
+    }
+    
+    .roi-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .roi-item:last-child {
+      border-bottom: none;
+    }
+    
+    .roi-label {
+      color: var(--color-text-body);
+    }
+    
+    .roi-value {
+      font-weight: 600;
+    }
+    
+    .roi-value.highlight {
+      color: var(--color-success);
+    }
+    
+    /* Process Flow */
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 24px;
+      background: var(--color-bg-page);
+      border-radius: 12px;
+    }
+    
+    .process-step {
+      padding: 8px 16px;
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    
+    .process-arrow {
+      color: var(--color-text-muted);
+    }
+    
+    /* Two Column */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    
+    /* Bullet List */
+    .bullet-list {
+      list-style: none;
+    }
+    
+    .bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+    
+    .bullet-list.light li::before {
+      background: rgba(255,255,255,0.5);
+    }
+    
+    /* Print Styles */
+    @media print {
+      body { background: white; }
+      .slide-nav { display: none; }
+      .slide-deck { display: block; }
+      .slide-viewport { padding: 0; display: block; }
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        padding: 48px;
+        min-height: 100vh;
+      }
+      .slide:last-child { page-break-after: auto; }
+      .card { box-shadow: none; border: 1px solid #ddd; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: letter landscape; margin: 0.5in; }
+    }
+    
+    @media (max-width: 900px) {
+      .slide-viewport { padding: 24px; }
+      .slide-title { font-size: 36px; }
+      .comparison { grid-template-columns: 1fr; }
+      .comparison-arrow { transform: rotate(90deg); padding: 16px 0; }
+      .metrics-grid, .pain-grid, .feature-list, .two-col, .investment-grid { grid-template-columns: 1fr; }
+      .roadmap { flex-direction: column; }
+      .roadmap-phase::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-deck" id="slideDeck">
+    <div class="slide-viewport"></div>
+    <nav class="slide-nav">
+      <button class="nav-btn" id="prevBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>
+        Previous
+      </button>
+      <span class="slide-counter" id="slideCounter">1 / 8</span>
+      <button class="nav-btn" id="nextBtn">
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    // ============================================
+    // DATA - UPDATE THIS WITH YOUR CONTENT
+    // ============================================
+    const DATA = {
+      // Basic Info
+      processName: "Invoice Reconciliation",
+      clientName: "Acme Corporation",
+      date: "December 2024",
+      
+      // Current State
+      currentState: {
+        headline: "Manual, Error-Prone, Time-Consuming",
+        description: "Finance team spends 40+ hours monthly on manual reconciliation with frequent errors caught late in the cycle.",
+        processSteps: [
+          "Export from ERP",
+          "Manual spreadsheet matching",
+          "Exception investigation",
+          "Manager review",
+          "Corrections",
+          "Final posting"
+        ],
+        metrics: [
+          { label: "Days to close", value: "12" },
+          { label: "Hours/month", value: "40+" },
+          { label: "Error rate", value: "12%" }
+        ]
+      },
+      
+      // Pain Points
+      painPoints: [
+        {
+          title: "Time-Consuming Manual Work",
+          description: "Team spends 40+ hours monthly on repetitive matching tasks that could be automated."
+        },
+        {
+          title: "Late Error Detection",
+          description: "Discrepancies discovered at month-end, causing rushed corrections and delayed close."
+        },
+        {
+          title: "Limited Visibility",
+          description: "No real-time status on reconciliation progress until final review."
+        },
+        {
+          title: "Key Person Dependency",
+          description: "Process knowledge concentrated in 1-2 people, creating risk and bottlenecks."
+        }
+      ],
+      
+      // Future State
+      futureState: {
+        headline: "Automated, Accurate, Real-Time",
+        description: "AI-powered reconciliation matches invoices against POs in real-time, flags exceptions instantly, and integrates with your existing systems.",
+        features: [
+          "Automated 3-way matching (PO, receipt, invoice)",
+          "Real-time exception flagging and routing",
+          "Integration with NetSuite ERP",
+          "Self-learning from manual corrections",
+          "Audit trail and compliance reporting",
+          "Dashboard with live reconciliation status"
+        ],
+        metrics: [
+          { current: "12 days", future: "5 days", label: "Days to close" },
+          { current: "40+ hrs", future: "8 hrs", label: "Hours/month" },
+          { current: "12%", future: "3%", label: "Error rate" }
+        ]
+      },
+      
+      // Roadmap
+      roadmap: [
+        {
+          phase: "Phase 1",
+          title: "Foundation",
+          duration: "Weeks 1-4",
+          items: [
+            "Data integration setup",
+            "Matching rules configuration",
+            "Historical data migration",
+            "Initial testing"
+          ]
+        },
+        {
+          phase: "Phase 2",
+          title: "Build & Test",
+          duration: "Weeks 5-8",
+          items: [
+            "Exception workflow setup",
+            "Dashboard development",
+            "User acceptance testing",
+            "Training preparation"
+          ]
+        },
+        {
+          phase: "Phase 3",
+          title: "Deploy & Optimize",
+          duration: "Weeks 9-12",
+          items: [
+            "Production deployment",
+            "Team training",
+            "Parallel running",
+            "Optimization & handoff"
+          ]
+        }
+      ],
+      
+      // Investment
+      investment: {
+        totalCost: "$180,000",
+        timeline: "12 weeks",
+        breakdown: [
+          { label: "Discovery & Design", value: "$30,000" },
+          { label: "Development & Integration", value: "$120,000" },
+          { label: "Training & Support", value: "$30,000" }
+        ],
+        roi: {
+          annualSavings: "$180,000",
+          paybackPeriod: "12 months",
+          threeYearROI: "200%"
+        }
+      }
+    };
+    
+    // ============================================
+    // SLIDE TEMPLATES
+    // ============================================
+    
+    function renderTitleSlide() {
+      return `
+        <div class="slide title-slide">
+          <div class="logo">CADRE AI</div>
+          <h1 class="process-name">${DATA.processName}</h1>
+          <p class="deck-type">Transformation Roadmap</p>
+          <p class="client-name">${DATA.clientName} • ${DATA.date}</p>
+        </div>
+      `;
+    }
+    
+    function renderCurrentOverviewSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Current State</div>
+          <h1 class="slide-title">${DATA.currentState.headline}</h1>
+          <p class="slide-subtitle" style="margin-bottom: 32px;">${DATA.currentState.description}</p>
+          
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-body); margin-bottom: 16px;">Current Process Flow</h3>
+            <div class="process-flow">
+              ${DATA.currentState.processSteps.map((step, i) => `
+                <span class="process-step">${step}</span>
+                ${i < DATA.currentState.processSteps.length - 1 ? '<span class="process-arrow">→</span>' : ''}
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="metrics-grid">
+            ${DATA.currentState.metrics.map(m => `
+              <div class="card metric-card">
+                <div class="metric-future" style="color: var(--color-accent);">${m.value}</div>
+                <div class="metric-label">${m.label}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderPainPointsSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Challenges</div>
+          <h1 class="slide-title">Pain Points</h1>
+          <div class="pain-grid">
+            ${DATA.painPoints.map(p => `
+              <div class="card pain-card">
+                <div class="pain-icon">!</div>
+                <div class="pain-content">
+                  <h4>${p.title}</h4>
+                  <p>${p.description}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderComparisonSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">The Transformation</div>
+          <h1 class="slide-title" style="margin-bottom: 32px;">Before → After</h1>
+          
+          <div class="comparison">
+            <div class="card comparison-card current">
+              <div class="comparison-label">Today</div>
+              <div class="comparison-title">${DATA.currentState.headline}</div>
+              <ul class="bullet-list">
+                ${DATA.currentState.metrics.map(m => `
+                  <li><strong>${m.value}</strong> ${m.label.toLowerCase()}</li>
+                `).join('')}
+              </ul>
+            </div>
+            
+            <div class="comparison-arrow">→</div>
+            
+            <div class="card comparison-card future">
+              <div class="comparison-label">Future</div>
+              <div class="comparison-title">${DATA.futureState.headline}</div>
+              <ul class="bullet-list light">
+                ${DATA.futureState.metrics.map(m => `
+                  <li><strong>${m.future}</strong> ${m.label.toLowerCase()}</li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderFutureSolutionSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Future State</div>
+          <h1 class="slide-title">The Solution</h1>
+          <p class="slide-subtitle" style="margin-bottom: 32px;">${DATA.futureState.description}</p>
+          
+          <div class="feature-list">
+            ${DATA.futureState.features.map(f => `
+              <div class="feature-item">
+                <div class="feature-check">✓</div>
+                <div class="feature-text">${f}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderOutcomesSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Results</div>
+          <h1 class="slide-title">Expected Outcomes</h1>
+          
+          <div class="metrics-grid">
+            ${DATA.futureState.metrics.map(m => `
+              <div class="card metric-card">
+                <div class="metric-current">${m.current}</div>
+                <div class="metric-arrow">↓</div>
+                <div class="metric-future">${m.future}</div>
+                <div class="metric-label">${m.label}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderRoadmapSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Timeline</div>
+          <h1 class="slide-title">Implementation Roadmap</h1>
+          
+          <div class="roadmap">
+            ${DATA.roadmap.map(p => `
+              <div class="roadmap-phase">
+                <div class="card phase-card">
+                  <div class="phase-number">${p.phase}</div>
+                  <div class="phase-title">${p.title}</div>
+                  <div class="phase-duration">${p.duration}</div>
+                  <ul class="phase-items">
+                    ${p.items.map(item => `<li>${item}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderInvestmentSlide() {
+      return `
+        <div class="slide">
+          <div class="slide-label">Investment</div>
+          <h1 class="slide-title">Investment & ROI</h1>
+          
+          <div class="investment-grid">
+            <div class="card investment-card" style="background: var(--color-bg-dark); color: white;">
+              <div class="investment-label" style="color: rgba(255,255,255,0.6);">Total Investment</div>
+              <div class="investment-value">${DATA.investment.totalCost}</div>
+              <div class="investment-note" style="color: rgba(255,255,255,0.5);">${DATA.investment.timeline} implementation</div>
+            </div>
+            
+            <div class="card investment-card">
+              <div class="investment-label">Return on Investment</div>
+              <div class="roi-item">
+                <span class="roi-label">Annual Savings</span>
+                <span class="roi-value highlight">${DATA.investment.roi.annualSavings}</span>
+              </div>
+              <div class="roi-item">
+                <span class="roi-label">Payback Period</span>
+                <span class="roi-value">${DATA.investment.roi.paybackPeriod}</span>
+              </div>
+              <div class="roi-item">
+                <span class="roi-label">3-Year ROI</span>
+                <span class="roi-value highlight">${DATA.investment.roi.threeYearROI}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // ============================================
+    // RENDER & NAVIGATION
+    // ============================================
+    
+    function renderAllSlides() {
+      const viewport = document.querySelector('.slide-viewport');
+      const slides = [
+        renderTitleSlide(),
+        renderCurrentOverviewSlide(),
+        renderPainPointsSlide(),
+        renderComparisonSlide(),
+        renderFutureSolutionSlide(),
+        renderOutcomesSlide(),
+        renderRoadmapSlide(),
+        renderInvestmentSlide()
+      ];
+      viewport.innerHTML = slides.join('');
+      return slides.length;
+    }
+    
+    function initNavigation(totalSlides) {
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const counter = document.getElementById('slideCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      function showSlide(index) {
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+        counter.textContent = `${index + 1} / ${totalSlides}`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalSlides - 1;
+        currentSlide = index;
+      }
+      
+      prevBtn.addEventListener('click', () => { if (currentSlide > 0) showSlide(currentSlide - 1); });
+      nextBtn.addEventListener('click', () => { if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) showSlide(currentSlide - 1);
+        if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+      });
+      
+      showSlide(0);
+    }
+    
+    const totalSlides = renderAllSlides();
+    initNavigation(totalSlides);
+  </script>
+</body>
+</html>

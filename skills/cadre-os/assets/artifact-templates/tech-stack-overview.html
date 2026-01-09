@@ -1,0 +1,1183 @@
+<!--
+TECH STACK OVERVIEW v3
+Cadre AI branded artifact
+
+Shows only defensible data:
+- Connectivity Potential (API Coverage, Connection Paths, Isolated Tools)
+- Spend by Department (bar chart)
+- Cost per User outliers (highest/lowest)
+- Tool inventory with factual data only
+- Integrations shown as "possible" not "connected"
+- No inferred health status, categories, or recommendations
+
+Data sources:
+- Tool, Department, Owner, Users, Cost = Client provides
+- Vendor = Client or Claude
+- API, Possible Integrations = Claude researches
+
+To customize: Replace client data and stats.
+See data-to-artifact.md for population instructions.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acme Corp - Tech Stack Overview</title>
+  <style>
+    :root {
+      --cadre-black: #0C0407;
+      --cadre-red: #DB4545;
+      --cadre-blue: #08749B;
+      --cadre-blue-dark: #034377;
+      --cadre-body: #6E7191;
+      --cadre-muted: #A1A1A1;
+      --cadre-warm-white: #FAF9F6;
+      --cadre-cream: #F2EFE4;
+      --cadre-white: #FFFFFF;
+      --cadre-border: rgba(0, 0, 0, 0.10);
+      --status-green: #22c55e;
+      --status-yellow: #f59e0b;
+      --status-red: #ef4444;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cadre-warm-white);
+      color: var(--cadre-black);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    
+    /* Header */
+    .header {
+      background: var(--cadre-black);
+      color: var(--cadre-white);
+      padding: 24px 32px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-left h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+    .header-left .subtitle { color: var(--cadre-red); font-size: 14px; font-weight: 500; }
+    
+    .header-right { text-align: right; }
+    .cadre-logo { font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .cadre-logo span { color: var(--cadre-red); }
+    .header-date { font-size: 12px; color: var(--cadre-muted); }
+    
+    /* Connectivity Hero */
+    .connectivity-hero {
+      background: linear-gradient(135deg, var(--cadre-blue-dark) 0%, var(--cadre-blue) 100%);
+      color: var(--cadre-white);
+      padding: 32px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .score-container { text-align: center; }
+    .score-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 8px; }
+    .score {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .score-sub { font-size: 14px; opacity: 0.8; margin-top: 8px; }
+    
+    .breakdown h3 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+    .factors { display: flex; flex-direction: column; gap: 12px; }
+    .factor { display: flex; align-items: center; gap: 12px; }
+    .factor-label { width: 140px; font-size: 13px; opacity: 0.9; }
+    .factor-bar { flex: 1; height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .factor-fill { height: 100%; background: var(--cadre-white); border-radius: 4px; }
+    .factor-value { width: 50px; text-align: right; font-size: 13px; font-weight: 600; }
+    .summary { margin-top: 16px; font-size: 13px; opacity: 0.9; line-height: 1.5; }
+    
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .stat-card {
+      background: var(--cadre-white);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid var(--cadre-border);
+    }
+    
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--cadre-black); }
+    .stat-value.green { color: var(--status-green); }
+    .stat-value.yellow { color: var(--status-yellow); }
+    .stat-value.red { color: var(--status-red); }
+    .stat-label { font-size: 11px; color: var(--cadre-body); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    
+    /* Spend Chart */
+    .spend-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .spend-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .spend-bar-label {
+      width: 120px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cadre-black);
+    }
+    
+    .spend-bar-track {
+      flex: 1;
+      height: 24px;
+      background: var(--cadre-warm-white);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    
+    .spend-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+    }
+    
+    .spend-bar-amount {
+      width: 80px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cadre-black);
+    }
+    
+    .chart-note {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--cadre-muted);
+      font-style: italic;
+    }
+    
+    /* Outliers */
+    .outliers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    
+    .outlier-card {
+      background: var(--cadre-warm-white);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    
+    .outlier-card.high {
+      border-left: 4px solid var(--status-red);
+    }
+    
+    .outlier-card.low {
+      border-left: 4px solid var(--status-green);
+    }
+    
+    .outlier-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--cadre-body);
+      margin-bottom: 12px;
+    }
+    
+    .outlier-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .outlier-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--cadre-border);
+    }
+    
+    .outlier-item:last-child {
+      border-bottom: none;
+    }
+    
+    .outlier-tool {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cadre-black);
+    }
+    
+    .outlier-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cadre-black);
+    }
+    
+    .outlier-unit {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--cadre-muted);
+    }
+    
+    /* Section */
+    .section {
+      background: var(--cadre-white);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cadre-border);
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cadre-red);
+    }
+    
+    .section-title { font-size: 16px; font-weight: 700; color: var(--cadre-black); }
+    
+    .toggle-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      border: 1px solid var(--cadre-border);
+      background: var(--cadre-warm-white);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .toggle-btn:hover { background: var(--cadre-cream); }
+    
+    /* Tools Table */
+    .tools-table { width: 100%; border-collapse: collapse; }
+    
+    .tools-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--cadre-warm-white);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--cadre-body);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    
+    .tools-table th:hover { background: var(--cadre-cream); }
+    .tools-table th .sort-icon { margin-left: 4px; opacity: 0.5; }
+    .tools-table th.sorted .sort-icon { opacity: 1; }
+    
+    .tools-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--cadre-border);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    
+    .tools-table tr:hover { background: var(--cadre-warm-white); }
+    
+    .tool-name { font-weight: 600; color: var(--cadre-black); }
+    .tool-vendor { font-size: 11px; color: var(--cadre-muted); }
+    
+    /* API Status */
+    .api-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .api-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    
+    .api-dot.yes { background: var(--status-green); }
+    .api-dot.no { background: var(--status-red); }
+    .api-dot.unknown { background: var(--status-yellow); }
+    
+    .api-label.yes { color: var(--status-green); }
+    .api-label.no { color: var(--status-red); }
+    .api-label.unknown { color: var(--status-yellow); }
+    
+    /* Integration Count */
+    .integration-count {
+      font-size: 12px;
+      color: var(--cadre-body);
+    }
+    
+    .integration-count strong {
+      color: var(--cadre-black);
+    }
+    
+    /* Department Badge */
+    .dept-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-right: 4px;
+    }
+    
+    .dept-badge.sales { background: #fef3c7; color: #92400e; }
+    .dept-badge.marketing { background: #fce7f3; color: #9d174d; }
+    .dept-badge.finance { background: #d1fae5; color: #065f46; }
+    .dept-badge.engineering { background: #dbeafe; color: #1e40af; }
+    .dept-badge.operations { background: #e0e7ff; color: #3730a3; }
+    .dept-badge.all { background: var(--cadre-black); color: var(--cadre-white); }
+    
+    /* Cost */
+    .cost { font-weight: 600; }
+    .cost.unknown { color: var(--cadre-muted); font-weight: 400; font-style: italic; }
+    
+    /* Expandable Details */
+    .detail-row {
+      display: none;
+      background: var(--cadre-warm-white);
+    }
+    
+    .detail-row.visible { display: table-row; }
+    
+    .detail-content {
+      padding: 16px 12px;
+      font-size: 12px;
+      color: var(--cadre-body);
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .detail-item label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--cadre-muted);
+      margin-bottom: 4px;
+    }
+    
+    .detail-item span {
+      font-size: 13px;
+      color: var(--cadre-black);
+    }
+    
+    /* Expand button */
+    .expand-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--cadre-muted);
+      transition: transform 0.2s;
+    }
+    
+    .expand-btn:hover { color: var(--cadre-black); }
+    .expand-btn.expanded { transform: rotate(180deg); }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 16px;
+      color: var(--cadre-muted);
+      font-size: 12px;
+    }
+    
+    .footer a { color: var(--cadre-red); text-decoration: none; }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .connectivity-hero { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .detail-grid { grid-template-columns: repeat(2, 1fr); }
+      .outliers-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>Acme Corp</h1>
+        <div class="subtitle">Technology Stack Overview</div>
+      </div>
+      <div class="header-right">
+        <div class="cadre-logo">CADRE<span>AI</span></div>
+        <div class="header-date">December 30, 2024</div>
+      </div>
+    </header>
+    
+    <!-- Connectivity Potential Hero -->
+    <section class="connectivity-hero">
+      <div class="score-container">
+        <div class="score-label">Connectivity Potential</div>
+        <div class="score">83%</div>
+        <div class="score-sub">of tools have API access</div>
+      </div>
+      <div class="breakdown">
+        <h3>What This Means</h3>
+        <div class="factors">
+          <div class="factor">
+            <span class="factor-label">API Coverage</span>
+            <div class="factor-bar"><div class="factor-fill" style="width: 83%"></div></div>
+            <span class="factor-value">10/12</span>
+          </div>
+          <div class="factor">
+            <span class="factor-label">Connection Paths</span>
+            <div class="factor-bar"><div class="factor-fill" style="width: 92%"></div></div>
+            <span class="factor-value">11/12</span>
+          </div>
+          <div class="factor">
+            <span class="factor-label">Isolated Tools</span>
+            <div class="factor-bar"><div class="factor-fill" style="width: 8%"></div></div>
+            <span class="factor-value">1</span>
+          </div>
+        </div>
+        <p class="summary">10 of 12 tools have APIs. 11 have at least one possible integration path. 1 tool (Legacy CRM) is isolated — no API, no documented integrations.</p>
+      </div>
+    </section>
+    
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Total Tools</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$294K</div>
+        <div class="stat-label">Annual Spend</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green">10</div>
+        <div class="stat-label">Have API</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value yellow">1</div>
+        <div class="stat-label">Unknown</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Departments</div>
+      </div>
+    </div>
+    
+    <!-- Spend by Department -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Annual Spend by Department</div>
+      </div>
+      <div class="spend-chart">
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Sales</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 45%; background: linear-gradient(90deg, #fbbf24, #f59e0b);"></div>
+          </div>
+          <div class="spend-bar-amount">$132,000</div>
+        </div>
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Company-Wide</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 26%; background: linear-gradient(90deg, #6b7280, #4b5563);"></div>
+          </div>
+          <div class="spend-bar-amount">$75,000</div>
+        </div>
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Marketing</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 16%; background: linear-gradient(90deg, #f472b6, #ec4899);"></div>
+          </div>
+          <div class="spend-bar-amount">$48,000</div>
+        </div>
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Engineering</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 10%; background: linear-gradient(90deg, #60a5fa, #3b82f6);"></div>
+          </div>
+          <div class="spend-bar-amount">$30,000</div>
+        </div>
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Operations</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 5%; background: linear-gradient(90deg, #a78bfa, #8b5cf6);"></div>
+          </div>
+          <div class="spend-bar-amount">$15,000</div>
+        </div>
+        <div class="spend-bar-row">
+          <div class="spend-bar-label">Finance</div>
+          <div class="spend-bar-track">
+            <div class="spend-bar-fill" style="width: 4%; background: linear-gradient(90deg, #34d399, #10b981);"></div>
+          </div>
+          <div class="spend-bar-amount">$12,000</div>
+        </div>
+      </div>
+      <p class="chart-note">Note: Tools used by multiple departments are counted toward each. Some tools have unknown costs.</p>
+    </section>
+    
+    <!-- Cost per User Outliers -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Cost per User — Outliers</div>
+      </div>
+      <div class="outliers-grid">
+        <div class="outlier-card high">
+          <div class="outlier-label">Highest Cost per User</div>
+          <div class="outlier-list">
+            <div class="outlier-item">
+              <span class="outlier-tool">Salesforce</span>
+              <span class="outlier-value">$2,667<span class="outlier-unit">/user/year</span></span>
+            </div>
+            <div class="outlier-item">
+              <span class="outlier-tool">HubSpot</span>
+              <span class="outlier-value">$1,920<span class="outlier-unit">/user/year</span></span>
+            </div>
+            <div class="outlier-item">
+              <span class="outlier-tool">Stripe</span>
+              <span class="outlier-value">$1,680<span class="outlier-unit">/user/year</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="outlier-card low">
+          <div class="outlier-label">Lowest Cost per User</div>
+          <div class="outlier-list">
+            <div class="outlier-item">
+              <span class="outlier-tool">Slack</span>
+              <span class="outlier-value">$160<span class="outlier-unit">/user/year</span></span>
+            </div>
+            <div class="outlier-item">
+              <span class="outlier-tool">Google Workspace</span>
+              <span class="outlier-value">$180<span class="outlier-unit">/user/year</span></span>
+            </div>
+            <div class="outlier-item">
+              <span class="outlier-tool">Asana</span>
+              <span class="outlier-value">$250<span class="outlier-unit">/user/year</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="chart-note">Cost per user = Annual cost ÷ Number of users. Tools with unknown cost or users not shown.</p>
+    </section>
+    
+    <!-- Tool Inventory -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Tool Inventory</div>
+        <button class="toggle-btn" id="toggleDetails">Show Details</button>
+      </div>
+      <table class="tools-table" id="toolsTable">
+        <thead>
+          <tr>
+            <th data-sort="name">Tool <span class="sort-icon">↕</span></th>
+            <th data-sort="department">Department</th>
+            <th data-sort="api">API <span class="sort-icon">↕</span></th>
+            <th>Possible Integrations</th>
+            <th data-sort="cost">Annual Cost <span class="sort-icon">↕</span></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Salesforce -->
+          <tr data-cost="120000" data-name="Salesforce" data-api="yes">
+            <td>
+              <div class="tool-name">Salesforce</div>
+              <div class="tool-vendor">Salesforce Inc.</div>
+            </td>
+            <td><span class="dept-badge sales">Sales</span><span class="dept-badge marketing">Marketing</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>5</strong> possible</span></td>
+            <td class="cost">$120,000</td>
+            <td><button class="expand-btn" data-target="detail-salesforce">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-salesforce">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>John Smith (VP Sales)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>45</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$2,667/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Slack, HubSpot, QuickBooks, LinkedIn, Stripe</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Slack -->
+          <tr data-cost="24000" data-name="Slack" data-api="yes">
+            <td>
+              <div class="tool-name">Slack</div>
+              <div class="tool-vendor">Salesforce Inc.</div>
+            </td>
+            <td><span class="dept-badge all">Company-Wide</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>8</strong> possible</span></td>
+            <td class="cost">$24,000</td>
+            <td><button class="expand-btn" data-target="detail-slack">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-slack">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>IT Team</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>150</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$160/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Salesforce, Jira, GitHub, Google Workspace, Asana, HubSpot, Zoom, Notion</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- HubSpot -->
+          <tr data-cost="48000" data-name="HubSpot" data-api="yes">
+            <td>
+              <div class="tool-name">HubSpot</div>
+              <div class="tool-vendor">HubSpot Inc.</div>
+            </td>
+            <td><span class="dept-badge marketing">Marketing</span><span class="dept-badge sales">Sales</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>3</strong> possible</span></td>
+            <td class="cost">$48,000</td>
+            <td><button class="expand-btn" data-target="detail-hubspot">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-hubspot">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Emily Chen (Marketing Director)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>25</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$1,920/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Salesforce, Slack, Google Workspace</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- QuickBooks -->
+          <tr data-cost="3600" data-name="QuickBooks" data-api="yes">
+            <td>
+              <div class="tool-name">QuickBooks</div>
+              <div class="tool-vendor">Intuit</div>
+            </td>
+            <td><span class="dept-badge finance">Finance</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>3</strong> possible</span></td>
+            <td class="cost">$3,600</td>
+            <td><button class="expand-btn" data-target="detail-quickbooks">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-quickbooks">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Sarah Johnson (CFO)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>8</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$450/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Salesforce, Stripe, Excel</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Jira -->
+          <tr data-cost="12000" data-name="Jira" data-api="yes">
+            <td>
+              <div class="tool-name">Jira</div>
+              <div class="tool-vendor">Atlassian</div>
+            </td>
+            <td><span class="dept-badge engineering">Engineering</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>3</strong> possible</span></td>
+            <td class="cost">$12,000</td>
+            <td><button class="expand-btn" data-target="detail-jira">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-jira">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Mike Wilson (Engineering Manager)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>35</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$343/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>GitHub, Slack, Confluence</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- GitHub -->
+          <tr data-cost="18000" data-name="GitHub" data-api="yes">
+            <td>
+              <div class="tool-name">GitHub</div>
+              <div class="tool-vendor">Microsoft</div>
+            </td>
+            <td><span class="dept-badge engineering">Engineering</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>3</strong> possible</span></td>
+            <td class="cost">$18,000</td>
+            <td><button class="expand-btn" data-target="detail-github">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-github">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Mike Wilson (Engineering Manager)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>30</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$600/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Jira, Slack, Datadog</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Google Workspace -->
+          <tr data-cost="27000" data-name="Google Workspace" data-api="yes">
+            <td>
+              <div class="tool-name">Google Workspace</div>
+              <div class="tool-vendor">Google</div>
+            </td>
+            <td><span class="dept-badge all">Company-Wide</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>6</strong> possible</span></td>
+            <td class="cost">$27,000</td>
+            <td><button class="expand-btn" data-target="detail-gws">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-gws">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>IT Team</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>150</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$180/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Slack, HubSpot, Salesforce, Asana, Zoom, Notion</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Asana -->
+          <tr data-cost="15000" data-name="Asana" data-api="yes">
+            <td>
+              <div class="tool-name">Asana</div>
+              <div class="tool-vendor">Asana Inc.</div>
+            </td>
+            <td><span class="dept-badge operations">Operations</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>4</strong> possible</span></td>
+            <td class="cost">$15,000</td>
+            <td><button class="expand-btn" data-target="detail-asana">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-asana">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Lisa Park (Operations Lead)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>60</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$250/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Slack, Google Workspace, Zoom, Notion</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Stripe -->
+          <tr data-cost="8400" data-name="Stripe" data-api="yes">
+            <td>
+              <div class="tool-name">Stripe</div>
+              <div class="tool-vendor">Stripe Inc.</div>
+            </td>
+            <td><span class="dept-badge finance">Finance</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot yes"></span>
+                <span class="api-label yes">Yes</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>2</strong> possible</span></td>
+            <td class="cost">$8,400</td>
+            <td><button class="expand-btn" data-target="detail-stripe">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-stripe">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>Sarah Johnson (CFO)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>5</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$1,680/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>QuickBooks, Salesforce</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Legacy CRM -->
+          <tr data-cost="12000" data-name="Legacy CRM" data-api="no">
+            <td>
+              <div class="tool-name">Legacy CRM</div>
+              <div class="tool-vendor">Custom Build</div>
+            </td>
+            <td><span class="dept-badge sales">Sales</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot no"></span>
+                <span class="api-label no">No</span>
+              </div>
+            </td>
+            <td><span class="integration-count"><strong>0</strong> possible (isolated)</span></td>
+            <td class="cost">$12,000</td>
+            <td><button class="expand-btn" data-target="detail-legacy">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-legacy">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>John Smith (VP Sales)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>10</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>$1,200/year</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>None documented</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Internal Wiki -->
+          <tr data-cost="0" data-name="Internal Wiki" data-api="unknown">
+            <td>
+              <div class="tool-name">Internal Wiki</div>
+              <div class="tool-vendor">Unknown</div>
+            </td>
+            <td><span class="dept-badge all">Company-Wide</span></td>
+            <td>
+              <div class="api-status">
+                <span class="api-dot unknown"></span>
+                <span class="api-label unknown">Unknown</span>
+              </div>
+            </td>
+            <td><span class="integration-count">Unknown</span></td>
+            <td class="cost unknown">Unknown</td>
+            <td><button class="expand-btn" data-target="detail-wiki">▼</button></td>
+          </tr>
+          <tr class="detail-row" id="detail-wiki">
+            <td colspan="6">
+              <div class="detail-content">
+                <div class="detail-grid">
+                  <div class="detail-item">
+                    <label>Owner</label>
+                    <span>IT Team</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Users</label>
+                    <span>~100 (estimated)</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Cost per User</label>
+                    <span>Unknown</span>
+                  </div>
+                  <div class="detail-item">
+                    <label>Possible Integrations</label>
+                    <span>Unknown — needs research</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      Prepared by <a href="https://cadre.ai">Cadre AI</a> · December 30, 2024
+    </footer>
+  </div>
+  
+  <script>
+    // Expand/collapse details
+    document.querySelectorAll('.expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.target;
+        const detailRow = document.getElementById(targetId);
+        
+        if (detailRow) {
+          detailRow.classList.toggle('visible');
+          btn.classList.toggle('expanded');
+        }
+      });
+    });
+    
+    // Toggle all details
+    document.getElementById('toggleDetails').addEventListener('click', function() {
+      const detailRows = document.querySelectorAll('.detail-row');
+      const buttons = document.querySelectorAll('.expand-btn');
+      const allVisible = Array.from(detailRows).every(row => row.classList.contains('visible'));
+      
+      detailRows.forEach(row => {
+        if (allVisible) {
+          row.classList.remove('visible');
+        } else {
+          row.classList.add('visible');
+        }
+      });
+      
+      buttons.forEach(btn => {
+        if (allVisible) {
+          btn.classList.remove('expanded');
+        } else {
+          btn.classList.add('expanded');
+        }
+      });
+      
+      this.textContent = allVisible ? 'Show Details' : 'Hide Details';
+    });
+    
+    // Sort functionality
+    document.querySelectorAll('#toolsTable th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const sortKey = th.dataset.sort;
+        const tbody = document.querySelector('#toolsTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr:not(.detail-row)'));
+        
+        const currentDir = th.dataset.dir || 'asc';
+        const newDir = currentDir === 'asc' ? 'desc' : 'asc';
+        
+        document.querySelectorAll('#toolsTable th').forEach(h => {
+          h.classList.remove('sorted');
+          h.dataset.dir = '';
+        });
+        
+        th.classList.add('sorted');
+        th.dataset.dir = newDir;
+        
+        rows.sort((a, b) => {
+          let aVal, bVal;
+          
+          switch(sortKey) {
+            case 'name':
+              aVal = a.dataset.name.toLowerCase();
+              bVal = b.dataset.name.toLowerCase();
+              break;
+            case 'cost':
+              aVal = parseInt(a.dataset.cost) || 0;
+              bVal = parseInt(b.dataset.cost) || 0;
+              break;
+            case 'api':
+              const apiOrder = { yes: 0, unknown: 1, no: 2 };
+              aVal = apiOrder[a.dataset.api];
+              bVal = apiOrder[b.dataset.api];
+              break;
+            default:
+              aVal = a.dataset[sortKey] || '';
+              bVal = b.dataset[sortKey] || '';
+          }
+          
+          if (newDir === 'asc') {
+            return aVal > bVal ? 1 : -1;
+          } else {
+            return aVal < bVal ? 1 : -1;
+          }
+        });
+        
+        rows.forEach(row => {
+          const detailId = row.querySelector('.expand-btn')?.dataset.target;
+          const detailRow = document.getElementById(detailId);
+          tbody.appendChild(row);
+          if (detailRow) tbody.appendChild(detailRow);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
