@@ -1,188 +1,146 @@
 ---
 tool: claude-code
 description: Remove AI-generated code slop from current branch
+allowed-tools: Bash(git:*), Read, Edit, Grep, Glob
+argument-hint: [--dry-run]
 ---
 
 # Slop Command
 
-Check the diff against main and remove all AI-generated slop introduced in this branch.
+Clean AI-generated code artifacts from your branch to match existing code style.
+
+**Workflow:** [implement] → `/slop` → `/review` → `/validate` → `/ship`
+
+## Flags
+
+- `--dry-run` - Show what would be changed without making edits
 
 ## What is "Slop"?
 
-AI-generated code often has tells that make it look unnatural:
+AI code tells that make it look unnatural:
 
 ### 1. Over-Commenting
 ```typescript
-// BAD: AI slop
+// BAD
 // Get the user from the database
 const user = await db.getUser(id); // Fetch user by ID
 
-// GOOD: Self-documenting, no comment needed
+// GOOD - self-documenting
 const user = await db.getUser(id);
 ```
 
 ### 2. Defensive Overkill
 ```typescript
-// BAD: Unnecessary defensive checks
+// BAD - redundant when TypeScript enforces types
 function processUser(user: User) {
-  if (!user) {
-    throw new Error('User is required');
-  }
-  if (!user.id) {
-    throw new Error('User must have an id');
-  }
-  // ... when caller already validates
+  if (!user) throw new Error('User is required');
+  if (!user.id) throw new Error('User must have an id');
 }
 
-// GOOD: Trust internal callers
+// GOOD - trust internal callers, validate at boundaries
 function processUser(user: User) {
-  // Just do the work - caller handles validation
+  // TypeScript guarantees user exists and has id
 }
 ```
 
 ### 3. Type Escapes
 ```typescript
-// BAD: Casting to escape type issues
+// BAD
 const data = response as any;
-const items = (result as unknown as Item[]);
 
-// GOOD: Fix the actual type
+// GOOD - fix the actual type
 const data: ResponseType = response;
 ```
 
-### 4. Inconsistent Style
-- Different naming conventions than the file uses
-- Different error handling patterns
-- Different import styles
-- Added JSDoc when file doesn't use it (or vice versa)
-
-### 5. Unnecessary Try/Catch
+### 4. Unnecessary Try/Catch
 ```typescript
-// BAD: Wrapping things that don't throw
+// BAD - wrapping non-throwing code
 try {
-  const x = a + b;
-  return x;
+  return a + b;
 } catch (error) {
   console.error('Failed to add numbers', error);
   throw error;
 }
 
-// GOOD: Just do it
+// GOOD
 return a + b;
 ```
 
-### 6. Verbose Logging
+### 5. Verbose Logging
 ```typescript
-// BAD: Logging everything
+// BAD
 console.log('Starting process...');
-console.log('User ID:', userId);
 console.log('Processing...');
 console.log('Done!');
 
-// GOOD: Log meaningful events only (or nothing for simple ops)
+// GOOD - log meaningful events only
 ```
+
+### 6. Style Inconsistency
+- JSDoc when file doesn't use it
+- Different naming conventions
+- Different import organization
 
 ## Workflow
 
-### 1. Get the Diff
+### 1. Detect Default Branch
 
 ```bash
-git diff main...HEAD
+git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "main"
 ```
 
-Identify all files changed in this branch.
+### 2. Get Changed Files
 
-### 2. For Each Changed File
+```bash
+git diff [default-branch]...HEAD --name-only
+```
 
-1. Read the FULL file (not just the diff) to understand existing patterns
-2. Compare new code against existing style:
-   - Comment density
-   - Error handling approach
-   - Naming conventions
-   - Type annotation style
-   - Import organization
+### 3. For Each Changed File
 
-### 3. Identify Slop
+1. **Read the FULL file** to understand existing patterns
+2. Compare new code against existing style
+3. Identify slop patterns
 
-Look for code that:
-- Has MORE comments than surrounding code
-- Has MORE defensive checks than similar code paths
-- Uses `any` or type assertions
-- Has different formatting/style than the file
-- Adds try/catch around non-throwing code
-- Adds logging that doesn't match file patterns
-
-### 4. Fix It
+### 4. Fix (or Report in --dry-run)
 
 Remove or adjust:
-- Delete unnecessary comments
-- Remove redundant validation (if callers are trusted)
-- Fix types properly instead of casting
-- Match existing code style
-- Remove pointless try/catch
-- Remove excessive logging
-
-**Use Edit tool to make changes.**
+- Unnecessary comments (keep business logic explanations)
+- Redundant validation (keep boundary validation)
+- Type escapes (fix properly)
+- Pointless try/catch (keep intentional error handling)
+- Excessive logging (match existing patterns)
 
 ### 5. Report
 
-End with a **1-3 sentence summary only**:
-
+**Standard mode:** Brief summary of changes made
 ```
-Removed 4 unnecessary comments, 2 redundant null checks, and fixed
-1 `any` cast in UserService.ts. Deleted try/catch wrapper in
-processPayment() since the caller handles errors.
+Cleaned 3 files:
+- UserService.ts: Removed 4 comments, 2 redundant null checks
+- PaymentController.ts: Fixed 1 `any` cast
+- utils.ts: Removed try/catch wrapper (caller handles errors)
+```
+
+**Dry-run mode:** List what would change without editing
+```
+Would change 3 files:
+- UserService.ts:23 - Remove comment "// Get user"
+- UserService.ts:45 - Remove null check (TypeScript enforces)
+...
 ```
 
 ## What NOT to Remove
 
-- Comments that explain non-obvious business logic
+- Comments explaining non-obvious business logic
 - Validation at system boundaries (user input, external APIs)
-- Error handling that matches the file's existing patterns
+- Error handling that matches existing patterns
 - Logging that matches existing patterns
 - Type assertions that are genuinely necessary
 
-## Example
+## Conservative Approach
 
-**Before (AI slop):**
-```typescript
-/**
- * Fetches user data from the database
- * @param userId - The ID of the user to fetch
- * @returns The user object or null if not found
- */
-async function getUser(userId: string): Promise<User | null> {
-  // Validate the user ID
-  if (!userId) {
-    throw new Error('userId is required');
-  }
+When unsure, leave it. Better to keep something questionable than remove something important.
 
-  try {
-    // Fetch the user from database
-    const user = await db.users.findOne({ id: userId });
-
-    // Return the user
-    return user as any as User;
-  } catch (error) {
-    // Log the error
-    console.error('Failed to fetch user:', error);
-    throw error;
-  }
-}
+After running, verify changes make sense:
+```bash
+git diff
 ```
-
-**After (cleaned):**
-```typescript
-async function getUser(userId: string): Promise<User | null> {
-  return db.users.findOne({ id: userId });
-}
-```
-
-**Report:** "Removed JSDoc (file doesn't use it), deleted redundant userId validation (TypeScript enforces it), removed try/catch (caller handles errors), fixed `any` cast by using proper return type."
-
-## Notes
-
-- Run AFTER implementation, before /review
-- Focuses on style consistency, not functionality
-- Be conservative - when unsure, leave it
-- Check git diff after to verify changes make sense

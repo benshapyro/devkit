@@ -6,92 +6,93 @@ allowed-tools: Read, Grep, Glob, Bash(git:*), Task
 
 # Review Command
 
-**Purpose:** Qualitative code review - checks code quality, style, security, and best practices.
+Qualitative code review for quality, style, security, and best practices.
 
-**Distinct from /validate:** This command does human-like code review. Use `/validate` for automated checks (types, lint, tests, build).
-
-**Workflow:** `/review` → `/validate` → `/ship`
+**Workflow:** `/slop` (optional) → `/review` → `/validate` → `/ship`
 
 ## Process
 
 ### 1. Gather Changes
 
-Get the current diff to review:
-
 !`git diff --name-only`
 !`git diff --staged --name-only`
 
-If there are changes, get the full diff:
+If no changes found, inform the user and stop.
 
+Get the full diff for review:
 !`git diff`
 !`git diff --staged`
 
-If no changes found, inform the user and stop.
-
 ### 2. Perform Review
 
-Use the code-reviewer agent for comprehensive review. The agent has `skills: code-formatter, error-handler` which auto-load.
+**Option A: Use code-reviewer agent (if available)**
 
 ```
 Task(
   subagent_type="code-reviewer",
-  prompt="Review the following code changes for quality, security, and best practices.
+  prompt="Review these code changes for quality, security, and best practices.
 
-Files changed:
-[list files from step 1]
+Files changed: [list from step 1]
 
 Review focus:
 - Code quality and maintainability (DRY, KISS, YAGNI)
-- Security vulnerabilities (comprehensive OWASP checklist)
-- Style consistency (via code-formatter skill)
-- Error handling patterns (via error-handler skill)
+- Security vulnerabilities (OWASP checklist)
+- Style consistency with existing code
+- Error handling patterns
 - Test coverage for new/changed code
 
-Provide a structured review with:
+Provide:
 - Overall assessment (APPROVE / REQUEST CHANGES)
 - Positive findings
-- Required changes (with file:line references)
-- Suggestions for improvement
-- Security concerns (if any)"
+- Required changes (file:line references)
+- Suggestions
+- Security concerns"
 )
 ```
 
+**Option B: Direct review (if agent unavailable or for quick reviews)**
+
+Review the changes directly, checking:
+
+1. **Code Quality**
+   - Is the code readable and self-documenting?
+   - Are there any obvious bugs or logic errors?
+   - Does it follow existing patterns in the codebase?
+
+2. **Security**
+   - Input validation on user data?
+   - SQL injection, XSS, or other OWASP risks?
+   - Secrets or credentials exposed?
+
+3. **Style**
+   - Matches existing code conventions?
+   - Consistent naming, formatting?
+
+4. **Testing**
+   - Are new code paths tested?
+   - Edge cases covered?
+
 ### 3. Present Results
 
-Present the agent's review to the user with clear next steps.
+```
+## Code Review Summary
+
+**Assessment:** APPROVE / REQUEST CHANGES
+
+### Positive Findings
+- [What's good about these changes]
+
+### Required Changes
+- `file.ts:42` - [Issue and fix]
+
+### Suggestions
+- `file.ts:67` - [Optional improvement]
+
+### Security
+- [Any concerns or "None identified"]
+```
 
 ## Next Steps
 
-After review is complete:
-
-- **If APPROVED**: Run `/validate` to verify automated checks, then `/ship` to commit
-- **If NEEDS CHANGES**: Fix the identified issues and re-run `/review`
-
-## Example Flow
-
-```
-User: /review
-
-Claude:
-1. Gathers git diff (3 files changed)
-2. Spawns code-reviewer agent with diff context
-3. Agent reviews using its skills and security checklist
-4. Presents structured review:
-
-## Code Review Summary
-
-**Overall Assessment**: APPROVE
-
-### Positive Findings
-- Clean separation of concerns in new utility functions
-- Good error handling with descriptive messages
-
-### Suggestions
-- `src/utils/parser.ts:45` - Consider extracting the regex to a named constant
-
-### Security Concerns
-- None identified
-
----
-Ready for `/validate` → `/ship`
-```
+- **APPROVED:** Run `/validate` then `/ship`
+- **CHANGES REQUESTED:** Fix issues and re-run `/review`

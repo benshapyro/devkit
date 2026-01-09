@@ -1,12 +1,17 @@
 ---
 tool: claude-code
 description: Deep research on a topic with parallel sub-agents
-argument-hint: [topic or question]
+allowed-tools: Task, Read, Grep, Glob, WebSearch, WebFetch
+argument-hint: [--auto] [topic or question]
 ---
 
 # Research Command
 
-Orchestrate comprehensive research using multiple parallel sub-agents.
+Comprehensive research using parallel sub-agents.
+
+## Flags
+
+- `--auto` - Skip approval, execute research plan immediately
 
 ## Validation
 
@@ -16,88 +21,57 @@ If no topic provided, ask for one.
 
 ### 1. Analyze Request
 
-Before proposing a research plan:
-- Understand the user's question/topic
-- Consider the project context (CLAUDE.md, tech stack, existing patterns)
-- Review conversation history for relevant context
-- Identify knowledge gaps that need filling
+- Understand the question/topic
+- Consider project context (CLAUDE.md, tech stack)
+- Identify knowledge gaps
 
 ### 2. Propose Research Plan
 
-Suggest a tailored research plan. Dynamically determine which research agents are needed:
+Determine which research dimensions are needed:
 
-**Possible Research Dimensions:**
+| Dimension | When |
+|-----------|------|
+| Codebase - Patterns | Feature touches existing code |
+| Codebase - Architecture | Architectural decision needed |
+| Documentation - Framework | Using framework features |
+| Documentation - Libraries | Using external libraries |
+| Community - Best Practices | Common patterns needed |
 
-| Dimension | When to Include |
-|-----------|-----------------|
-| **Codebase - Existing Patterns** | Feature touches existing code |
-| **Codebase - Architecture** | Architectural decision needed |
-| **Codebase - Frontend** | UI/UX or frontend changes |
-| **Codebase - Backend** | API/database/server changes |
-| **Codebase - Infrastructure** | DevOps, deployment, CI/CD |
-| **Documentation - Framework** | Using framework features |
-| **Documentation - Libraries** | Using external libraries |
-| **Documentation - APIs** | Integrating external services |
-| **Community - Best Practices** | Common patterns and anti-patterns |
-| **Community - Recent Changes** | Library updates, deprecations |
-
-**Output Format:**
+**Output:**
 ```
 ## Research Plan: [topic]
 
-Based on your question and this project's context, I recommend:
+### Proposed Agents (N)
 
-### Proposed Research Agents (N)
-
-1. **[Category] [Specific Focus]**
-   - What: [What this agent will investigate]
-   - Why: [Why this is relevant to your question]
-
-2. **[Category] [Specific Focus]**
-   - What: [description]
+1. **[Category]: [Focus]**
+   - What: [investigation]
    - Why: [relevance]
 
-[...more as needed...]
-
-### Questions Before Proceeding
-
-- [Any clarifying question if the request is ambiguous]
+2. ...
 
 ---
-Proceed with this plan? (yes / adjust / add more / cancel)
+Proceed? (yes / adjust / cancel)
 ```
 
-### 3. Await Approval
+### 3. Await Approval (unless --auto)
 
-Wait for user to:
-- **Approve** ("yes", "proceed", "looks good")
-- **Adjust** ("skip the community one", "also check X")
-- **Add** ("also research Y")
-- **Cancel** ("nevermind")
+- **Approve**: "yes", "proceed"
+- **Adjust**: "skip X", "also check Y"
+- **Cancel**: "nevermind"
 
 ### 4. Execute Research
 
-Once approved, spawn agents using the Task tool:
+Spawn agents in parallel:
 
-```
-For EACH approved research dimension:
-  - Use Task tool with appropriate subagent_type
-  - Prompt should specify exactly what to find
-  - Request structured findings in return
-```
-
-**Subagent mapping:**
-- Codebase searches → `subagent_type: "Explore"`
+**Agent mapping:**
+- Codebase → `subagent_type: "Explore"`
 - Documentation → `subagent_type: "documentation-researcher"`
-- Community/best practices → `subagent_type: "documentation-researcher"` with web search
+- Community → `subagent_type: "documentation-researcher"` with web search
 
-**IMPORTANT:** Spawn all agents in a SINGLE message with multiple Task tool calls for parallel execution.
+**IMPORTANT:** Use SINGLE message with multiple Task calls for parallel execution.
 
 ### 5. Synthesize Findings
 
-After all agents return:
-
-**Output Format:**
 ```
 ## Research Findings: [topic]
 
@@ -106,65 +80,35 @@ After all agents return:
 
 ### Key Discoveries
 
-#### From Codebase
-- [Finding 1 with file:line references]
-- [Finding 2]
+**Codebase:**
+- [Finding with file:line reference]
 
-#### From Documentation
-- [Finding 1 with source links]
-- [Finding 2]
+**Documentation:**
+- [Finding with source link]
 
-#### From Community
-- [Best practice or pattern]
-- [Common pitfall to avoid]
+**Community:**
+- [Best practice or pitfall]
 
 ### Recommendations
-1. [Actionable recommendation]
-2. [Another recommendation]
+1. [Action]
+2. [Action]
 
 ### Next Steps
-- [ ] [Suggested action]
-- [ ] [Another action]
+- [ ] [Task]
 
 ---
-Save these findings? (`/progress` to create knowledge document)
+Save findings? Use `/progress` to create knowledge doc.
 ```
 
-## Example
+## Guidelines
 
-**User:** `/research "how should we implement caching"`
+- 3-5 agents typical, 7+ is too broad
+- Each agent should have clear, specific mission
+- Synthesize findings - don't dump raw results
 
-**Claude Response:**
+## Quick Research (--auto)
+
+For simple topics, `--auto` skips approval:
 ```
-## Research Plan: Implementing Caching
-
-Based on your Next.js + PostgreSQL project, I recommend:
-
-### Proposed Research Agents (4)
-
-1. **Codebase - Existing Patterns**
-   - What: Search for any existing caching (Redis, in-memory, HTTP cache headers)
-   - Why: Avoid duplicating or conflicting with existing caching
-
-2. **Codebase - Data Access Layer**
-   - What: Understand current database queries and ORM patterns
-   - Why: Identify cache invalidation points
-
-3. **Documentation - Next.js Caching**
-   - What: Next.js 14 caching strategies (ISR, Route Handlers, fetch cache)
-   - Why: Use framework-native caching before adding external solutions
-
-4. **Community - Best Practices**
-   - What: Redis vs in-memory vs CDN caching patterns for your stack
-   - Why: Learn from others' mistakes and successes
-
----
-Proceed with this plan?
+/research --auto "how does auth work in this codebase"
 ```
-
-## Notes
-
-- Prefer fewer, more focused agents over many broad ones
-- 3-5 agents is typical; more than 7 is probably too broad
-- Each agent should have a clear, specific mission
-- Always synthesize findings - don't just dump raw results

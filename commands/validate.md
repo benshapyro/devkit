@@ -2,128 +2,140 @@
 tool: claude-code
 description: Validate implementation before shipping
 allowed-tools: Bash, Read, Glob
+argument-hint: [--only=types,lint,tests,build]
 ---
 
 # Validate Command
 
-**Purpose:** Quantitative validation - runs automated checks (types, lint, tests, build).
+Run automated checks: types, lint, tests, build.
 
-**Distinct from /review:** This command runs automated tooling. Use `/review` first for qualitative code review (style, security, best practices).
+**Workflow:** `/slop` (optional) → `/review` → `/validate` → `/ship`
 
-**Workflow:** `/review` → `/validate` → `/ship`
+## Flags
 
-Run all validations before shipping code. Automatically detects the project's tech stack and runs only relevant checks.
+- `--only=X,Y` - Run only specific checks (types, lint, tests, build)
 
 ## 1. Detect Tech Stack
 
-First, check which config files exist to determine the project type:
+Check for config files to determine project type:
 
-- `package.json` → Node.js/TypeScript project
-- `tsconfig.json` → TypeScript
-- `pyproject.toml` or `requirements.txt` → Python
-- `Cargo.toml` → Rust
-- `go.mod` → Go
+| File | Stack |
+|------|-------|
+| `package.json` | Node.js |
+| `tsconfig.json` | TypeScript |
+| `pyproject.toml` / `requirements.txt` | Python |
+| `Cargo.toml` | Rust |
+| `go.mod` | Go |
 
-Use Glob to check for these files before running language-specific checks.
+Use Glob to detect before running checks.
 
-## 2. Run Relevant Checks
+## 2. Run Checks
 
-### TypeScript/Node.js (if package.json exists)
+For each detected stack, run applicable checks. Track pass/fail status for each.
 
-**Type checking:**
-!`npx tsc --noEmit 2>&1 || true`
+### TypeScript/Node.js
 
-**Linting (if lint script exists):**
-!`npm run lint 2>&1 || true`
+**Types** (if tsconfig.json exists):
+```bash
+npx tsc --noEmit
+```
 
-**Tests:**
-!`npm test 2>&1 || true`
+**Lint** (if lint script exists in package.json):
+```bash
+npm run lint
+```
 
-**Build:**
-!`npm run build 2>&1 || true`
+**Tests**:
+```bash
+npm test
+```
 
-### Python (only if pyproject.toml or requirements.txt exists)
+**Build** (if build script exists):
+```bash
+npm run build
+```
 
-**Linting:**
-!`ruff check . 2>&1 || true`
+### Python
 
-**Type checking:**
-!`mypy . 2>&1 || true`
+**Lint**:
+```bash
+ruff check . || flake8 .
+```
 
-**Tests:**
-!`pytest -q 2>&1 || true`
+**Types** (if configured):
+```bash
+mypy . || pyright .
+```
 
-### Rust (only if Cargo.toml exists)
+**Tests**:
+```bash
+pytest -q
+```
 
-**Check:**
-!`cargo check 2>&1 || true`
+### Rust
 
-**Clippy:**
-!`cargo clippy -- -D warnings 2>&1 || true`
+**Check**:
+```bash
+cargo check
+```
 
-**Tests:**
-!`cargo test 2>&1 || true`
+**Clippy**:
+```bash
+cargo clippy -- -D warnings
+```
 
-### Go (only if go.mod exists)
+**Tests**:
+```bash
+cargo test
+```
 
-**Build:**
-!`go build ./... 2>&1 || true`
+### Go
 
-**Vet:**
-!`go vet ./... 2>&1 || true`
+**Build**:
+```bash
+go build ./...
+```
 
-**Tests:**
-!`go test ./... 2>&1 || true`
+**Vet**:
+```bash
+go vet ./...
+```
 
-## 3. SelfCheck Protocol
+**Tests**:
+```bash
+go test ./...
+```
 
-Answer these questions with evidence:
+## 3. Handle Results
 
-**Q1: Are tests passing?**
-- Show actual test output
-- Report pass/fail counts
+For each check:
+- **Passed**: Mark as ✅
+- **Failed**: Mark as ❌, capture error output
+- **Skipped**: Mark as ⏭️ (not applicable or --only filtered)
 
-**Q2: Are all requirements met?**
-- Map requirements to implementation
-- Confirm nothing missed
-
-**Q3: No unverified assumptions?**
-- External APIs verified
-- Libraries documented
-
-**Q4: Is there evidence?**
-- Include validation output
-- Show build success
+**Important:** Don't swallow errors. If a check fails, report it clearly.
 
 ## Report Format
 
 ```
 ## Validation Report
 
-### Tech Stack Detected
-[List detected languages/frameworks]
+**Stack:** [detected languages/frameworks]
 
-### Type Checking
-[✅ Passed / ❌ Failed / ⏭️ Skipped (not applicable)]
-[Details if failed]
-
-### Linting
-[✅ Passed / ❌ Failed / ⏭️ Skipped (not applicable)]
-[Details if failed]
-
-### Tests
-[✅ X passed, Y failed / ❌ Failed to run / ⏭️ Skipped]
-[Failure details if any]
-
-### Build
-[✅ Passed / ❌ Failed / ⏭️ Skipped (not applicable)]
-[Details if failed]
+| Check | Status | Details |
+|-------|--------|---------|
+| Types | ✅ / ❌ / ⏭️ | [error summary if failed] |
+| Lint | ✅ / ❌ / ⏭️ | [error summary if failed] |
+| Tests | ✅ (N passed) / ❌ (N failed) / ⏭️ | [failure details] |
+| Build | ✅ / ❌ / ⏭️ | [error summary if failed] |
 
 ### Summary
-[READY TO SHIP / NEEDS FIXES]
+**READY TO SHIP** / **NEEDS FIXES**
+
+[If needs fixes, list what to fix]
 ```
 
 ## Next Steps
 
-- If all pass: `/ship` to commit
-- If issues found: Fix and re-run `/validate`
+- **All passed:** `/ship` to commit
+- **Failures:** Fix issues and re-run `/validate`

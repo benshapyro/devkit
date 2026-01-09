@@ -1,121 +1,107 @@
 ---
 tool: claude-code
 description: Learn about Claude Code, the devkit, commands, skills, and workflows
+allowed-tools: Read, Glob, Task
 argument-hint: [question or topic]
 ---
 
 # Learn Command
 
-Interactive help and teaching for Claude Code and the devkit.
-
-**Before answering:** Read `.claude/skills/devkit-knowledge/SKILL.md` for devkit architecture.
+Interactive help for Claude Code and the devkit.
 
 ## Question Routing
 
-Route the user's question to the appropriate source:
-
-| Question Type | Action |
-|---------------|--------|
+| Question | Action |
+|----------|--------|
 | Claude Code features | Use `claude-code-guide` subagent |
-| Devkit structure | Reference devkit-knowledge skill |
-| Specific command | Read `.claude/commands/{command}.md` |
-| Specific skill | Read `.claude/skills/{skill}/SKILL.md` |
-| Workflows | Reference devkit-knowledge skill |
-| Hooks | Read `.claude/hooks/` + devkit-knowledge |
-| Troubleshooting | Combine sources as needed |
+| Devkit structure | Read devkit files directly |
+| Specific command | Read `commands/{command}.md` |
+| Specific skill | Read `skills/{skill}/SKILL.md` |
+| Hooks | Read `hooks/` + settings.json |
 
 ## Response Style
 
-- **Concise first** - Give the direct answer
-- **Then explain** - Add context if helpful
-- **Show examples** - Concrete usage examples
-- **Link to sources** - Point to files they can read
+1. **Direct answer first**
+2. Then context if helpful
+3. Show concrete examples
+4. Link to source files
 
 ## Example Interactions
 
 ### "How do hooks work?"
-1. Read devkit-knowledge skill for overview
-2. Explain PreToolUse vs PostToolUse
-3. Show example hook structure
-4. Mention debug mode (`CLAUDE_HOOK_DEBUG=1`)
+1. Explain hooks are in `~/.claude/settings.json` (or `.claude/settings.json`)
+2. Cover event types: PreToolUse, PostToolUse, Stop, etc.
+3. Show example structure
+4. Mention `CLAUDE_HOOK_DEBUG=1` for debugging
 
 ### "What's the difference between /plan and /greenfield?"
-1. `/greenfield` = new project from scratch, creates SPEC/DESIGN/PLAN docs
-2. `/plan` = specific feature in existing project
-3. Use greenfield first, then plan for each feature
+- `/greenfield` = new project from scratch → creates SPEC/DESIGN/PLAN docs
+- `/plan` = feature in existing project → creates implementation plan
+- Use greenfield first, then plan for each feature
 
-### "Show me all available commands"
-1. List commands from devkit-knowledge
-2. Brief description of each
-3. Show the standard workflow
+### "Show available commands"
+Read `commands/` directory and list with descriptions.
 
-### "How do I add a custom skill?"
-1. Create `.claude/skills/my-skill/SKILL.md`
-2. Add to `skill-rules.json` with triggers
-3. Reference from commands with explicit path
-4. Show example structure
-
-### "What can Claude Code do?"
-1. Use `claude-code-guide` subagent for accurate info
-2. Summarize key capabilities
-3. Point to official documentation
+### "What's the workflow for shipping code?"
+```
+/plan [feature]
+  ↓
+[implement]
+  ↓
+/slop (optional - clean AI artifacts)
+  ↓
+/review (code review)
+  ↓
+/validate (automated checks)
+  ↓
+/ship (commit)
+```
 
 ## Dynamic Discovery
 
-For questions about current setup, actually read the files:
+For questions about current setup, read actual files:
 
 ```
 "What commands are available?"
-→ Read files in .claude/commands/ and list them
+→ ls commands/*.md
 
 "What skills do I have?"
-→ Read directories in .claude/skills/ and summarize
+→ ls skills/*/SKILL.md
 
 "Show me the hooks"
-→ Read .claude/hooks/ structure and explain each
+→ Read ~/.claude/settings.json hooks section
 ```
 
 ## Teaching Mode
 
-If user says "teach me about X" or "explain X":
-1. Start with the big picture
-2. Break down into components
-3. Give practical examples
+If "teach me about X" or "explain X":
+1. Big picture first
+2. Break into components
+3. Practical examples
 4. Suggest hands-on exercises
-
-Example exercise suggestions:
-- "Try running `/plan --tdd add a hello endpoint` to see TDD mode"
-- "Run `/research [topic]` to see parallel sub-agents in action"
-- "Check `.claude/hooks/security/` to see how blocking works"
 
 ## No Question Provided
 
-If user just runs `/learn` without a question:
-
 ```
-Welcome to the Cadre DevKit!
-
 I can help you learn about:
-- **Commands** - /greenfield, /plan, /review, /validate, /ship, etc.
-- **Skills** - api-design, react-patterns, testing, and more
-- **Hooks** - Security guards and automation
-- **Agents** - Specialized helpers for debugging, reviewing, etc.
-- **Workflows** - How everything fits together
 
-What would you like to learn about?
+- **Commands** - /greenfield, /plan, /review, /validate, /ship
+- **Skills** - Domain knowledge that auto-loads
+- **Hooks** - Event-driven automation
+- **Agents** - Specialized sub-agents
+- **Workflow** - How everything fits together
+
+What would you like to know?
 
 Quick starts:
 - "How do I start a new project?"
 - "What's the workflow for shipping code?"
-- "How do hooks protect me?"
-- "What skills are available?"
+- "How do hooks work?"
 ```
 
 ## Claude Code Questions
 
-For questions specifically about Claude Code (not the devkit):
-
-Use Task tool with `claude-code-guide` subagent:
+For Claude Code (not devkit) questions:
 ```
 Task(
   subagent_type="claude-code-guide",
@@ -123,13 +109,6 @@ Task(
 )
 ```
 
-This ensures accurate, up-to-date information from official docs.
+## Devkit Questions
 
-## Devkit-Specific Questions
-
-For devkit questions, combine:
-1. devkit-knowledge skill (architecture overview)
-2. Actual file reads (current state)
-3. Examples from the skill files
-
-Always ground answers in the actual files when possible.
+Read actual files when possible to give accurate, current answers.

@@ -1,33 +1,48 @@
 ---
 tool: claude-code
 description: Commit and ship validated changes
-allowed-tools: Bash(git:*)
-argument-hint: [optional commit message]
+allowed-tools: Bash(git:*), Read, Glob
+argument-hint: [--force] [optional commit message]
 ---
 
 # Ship Command
 
 Commit validated changes with proper formatting.
 
+## Flags
+
+- `--force` - Skip validation check (use when you know what you're doing)
+
 ## Pre-Ship Checks
 
-**Verify validation passed:**
-- Has `/validate` been run?
-- Were there any failures?
+### 1. Branch Safety
 
-**Check git status:**
-!`git status`
+!`git branch --show-current`
+
+**If on main/master:** Warn user and require explicit confirmation to continue.
+
+### 2. Validation Status (unless --force)
+
+Check if `/validate` was run recently by looking for validation artifacts or asking user.
+
+If unclear, suggest: "Run `/validate` first, or use `/ship --force` to skip."
+
+### 3. Git Status
+
+!`git status --short`
+
+If no changes, inform user and stop.
 
 ## Gather Information
 
 **Staged changes:**
 !`git diff --staged --stat`
 
+**Unstaged changes:**
+!`git diff --stat`
+
 **Recent commits for style:**
 !`git log --oneline -5`
-
-**Current branch:**
-!`git branch --show-current`
 
 ## Generate Commit
 
@@ -35,7 +50,7 @@ Commit validated changes with proper formatting.
 
 Based on the diff, determine:
 - **Type**: feat, fix, docs, style, refactor, test, chore
-- **Scope**: Component or module affected
+- **Scope**: Component or module affected (optional)
 - **Subject**: What the commit does (imperative mood)
 
 ### Commit Format
@@ -46,22 +61,24 @@ type(scope): subject
 Body explaining why this change was made.
 - Detail 1
 - Detail 2
-
-🤖 Generated with Claude Code
-
-Co-Authored-By: Claude <noreply@anthropic.com>
 ```
+
+**Note:** Follow the project's existing commit style. Check recent commits for conventions (Co-authored-by, emoji, etc.).
 
 ### If Argument Provided
 
-Use $1 as the commit message subject.
+Use `$1` as the commit message subject (unless it's `--force`).
 
 ## Execute Commit
 
-**Stage all changes (if not already staged):**
-Ask user before staging untracked files.
+### Stage Changes
 
-**Create commit:**
+If there are unstaged changes:
+- Show what will be staged
+- Ask user before staging untracked files
+
+### Create Commit
+
 ```bash
 git commit -m "$(cat <<'EOF'
 [generated message]
@@ -69,15 +86,14 @@ EOF
 )"
 ```
 
-**Verify success:**
+### Verify Success
+
 !`git log -1 --oneline`
 
 ## Report
 
 ```
 ## Ship Complete
-
-✅ Commit created successfully
 
 **Commit:** [hash]
 **Message:** [subject]
@@ -86,12 +102,12 @@ EOF
 ### Next Steps
 - Push to remote: `git push`
 - Create PR: `gh pr create`
-- Continue developing
 ```
 
 ## Safety Rules
 
 - Never force push
-- Never push to main/master without approval
+- Never push to main/master without explicit approval
 - Always verify commit authorship before amend
-- Report any pre-commit hook failures
+- Report any pre-commit hook failures clearly
+- If commit fails, explain why and suggest fixes
