@@ -37,6 +37,8 @@ Questions are tagged with multiple attributes. Use any combination to find the r
 5. **Skip questions** already answered in Catalog
 6. **Add inline follow-ups** for key questions
 
+> **Advanced techniques:** See [follow-up-patterns.md](follow-up-patterns.md) for energy-based follow-ups, 5 Whys, mirroring, and other deepening techniques.
+
 ### Question Scaling
 
 | Duration | Total | Landscape | Problems | Process | Specifics |

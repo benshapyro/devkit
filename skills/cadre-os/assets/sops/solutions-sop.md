@@ -136,7 +136,7 @@ Before sharing Solution Catalog with client:
 The catalog is a static HTML snapshot. To update:
 
 1. Make changes to source data (opportunities, status, prompts)
-2. Run `/assistants portal [client]` again
+2. Run `/solutions catalog [client]` again
 3. Replace old artifact with new one
 
 **Future state:** Status can be stored in Discovery Catalog Solutions table.
@@ -145,7 +145,7 @@ The catalog is a static HTML snapshot. To update:
 
 ### Reading from Catalog
 
-The `/assistants discover` command queries:
+The `/solutions discover` command queries:
 - **5_Challenges:** High-priority challenges suggest assistant opportunities
 - **6_Solutions:** Existing solution ideas that may be assistant candidates
 - **4_Technology:** Current tools that inform integration requirements
@@ -165,14 +165,14 @@ If yes, creates Solution records with:
 
 ### Scenario 1: New Engagement, No Discovery Yet
 
-1. Use `/assistants library` to browse patterns
+1. Use `/solutions assistants library` to browse patterns
 2. Show client the library to spark ideas
 3. Run discovery after initial sessions
 
 ### Scenario 2: Discovery Complete, Ready to Scope Assistants
 
-1. Run `/assistants discover [client]`
-2. Run `/assistants prioritize [client]`
+1. Run `/solutions discover [client]`
+2. Run `/solutions assistants prioritize [client]`
 3. Validate top candidates
 4. Generate portal for client review
 5. Generate specs for approved builds
@@ -180,8 +180,8 @@ If yes, creates Solution records with:
 ### Scenario 3: Client Knows What They Want
 
 1. Skip discover/prioritize
-2. Run `/assistants estimate [use case]` for each
-3. Run `/assistants spec [use case] full` for approved ones
+2. Run `/solutions assistants estimate [use case]` for each
+3. Run `/solutions assistants spec [use case] full` for approved ones
 4. Generate portal showing just those assistants
 
 ### Scenario 4: Quick Portal for Sales/Proposal

@@ -216,8 +216,7 @@ Pre-built HTML/JSX templates for common artifacts. See [assets/README.md](assets
 | [executive-summary.md](references/deliverables/executive-summary.md) | One-pager for leadership |
 | [report.md](references/deliverables/report.md) | Detailed findings document |
 | [roadmap.md](references/deliverables/roadmap.md) | Implementation plan |
-| [solution-brief-guide.md](references/deliverables/solution-brief-guide.md) | Workshop protocol for briefs |
-| [solution-brief-template.md](references/deliverables/solution-brief-template.md) | Modular brief template (7 modules) |
+| [solution-brief.md](references/deliverables/solution-brief.md) | Workshop protocol + modular templates |
 
 ### Communications
 

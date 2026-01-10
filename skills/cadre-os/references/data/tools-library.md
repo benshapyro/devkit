@@ -129,39 +129,7 @@ filter = "{Research Confidence} = 'High'"
 
 The Integrations field is uncategorized text (comma or line-separated tool names).
 
-**Inference logic for direction:**
-
-```python
-# Tool categories and their typical data flow direction
-UPSTREAM_CATEGORIES = [
-    'CRM', 'Forms', 'Sales', 'Marketing',  # Data sources
-]
-
-DOWNSTREAM_CATEGORIES = [
-    'Communication', 'Reporting', 'Analytics',  # Data consumers
-    'Accounting', 'Finance',
-]
-
-BIDIRECTIONAL_CATEGORIES = [
-    'Automation', 'Project Management', 'Collaboration',
-    'Storage', 'Data Management',
-]
-
-def infer_direction(tool_name, tool_category):
-    """
-    Given a tool name from the Integrations field,
-    infer if it's upstream, downstream, or both.
-    """
-    # Look up category of the integration tool
-    integration_category = lookup_category(tool_name)
-    
-    if integration_category in UPSTREAM_CATEGORIES:
-        return 'upstream'
-    elif integration_category in DOWNSTREAM_CATEGORIES:
-        return 'downstream'
-    else:
-        return 'both'  # List in both columns, user validates
-```
+**Inference logic for direction:** See [tech-stack-research.md](tech-stack-research.md#step-4-infer-integration-directions) for the complete direction inference algorithm including DIRECTION_MAP and KNOWN_DIRECTIONS lookups.
 
 **Example:**
 - Tool: Slack

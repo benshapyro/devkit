@@ -1,11 +1,12 @@
-# Solution Brief Guide
+# Solution Brief
 
-Instructions for Claude on how to workshop solution briefs with users. This guide teaches the workshop protocol, question framework, and tool integration patterns.
+Complete reference for workshopping solution briefs with users. Combines workshop protocol, question framework, and module templates.
 
 ---
 
 ## Contents
 
+**Part 1: Workshop Protocol**
 1. [Overview](#overview)
 2. [Session Opening Protocol](#session-opening-protocol)
 3. [Module Workshop Protocol](#module-workshop-protocol)
@@ -13,6 +14,11 @@ Instructions for Claude on how to workshop solution briefs with users. This guid
 5. [Tool Search Protocol](#tool-search-protocol)
 6. [Document Management](#document-management)
 7. [Module-Specific Guidance](#module-specific-guidance)
+8. [Quality Checklist](#quality-checklist)
+
+**Part 2: Module Templates**
+9. [Document Header Template](#document-header-template)
+10. [Module 0-6 Templates](#module-0-discovery--validation-template)
 
 ---
 
@@ -525,3 +531,388 @@ Before marking the brief complete, verify:
 - [ ] Change management is planned
 - [ ] Go/No-Go criteria are defined
 - [ ] All sources are cited
+
+---
+
+# Part 2: Module Templates
+
+Copy-paste ready templates for building solution brief documents.
+
+---
+
+## Document Header Template
+
+```markdown
+# [Solution Name] — Solution Brief
+
+| Field | Value |
+|-------|-------|
+| **Client** | [Client Name] |
+| **Created** | [Date] |
+| **Last Updated** | [Date] |
+| **Strategist** | [Name] |
+| **Engineer** | [Name] |
+| **Gap IDs** | [G001, G002] (if from Discovery Catalog) |
+
+## Module Status
+
+| Module | Status | Owner | Notes |
+|--------|--------|-------|-------|
+| 0. Discovery & Validation | ⬜ Not Started | Strategist | |
+| 1. Problem & Context | ⬜ Not Started | Strategist | |
+| 2. Solution Concept | ⬜ Not Started | Strategist | |
+| 3. Constraints & Data | ⬜ Not Started | Strategist | |
+| 4. Technical Approach | ⬜ Not Started | Engineer | |
+| 5. Estimates & ROI | ⬜ Not Started | Engineer | |
+| 6. Risks & Adoption | ⬜ Not Started | Collaborative | |
+
+**Status Key:** ⬜ Not Started | 🔄 In Progress | ✅ Complete
+
+---
+```
+
+---
+
+## Module 0: Discovery & Validation Template
+
+**Milestone:** Feasibility confirmed, proceed/no-go decision made.
+
+```markdown
+## Module 0: Discovery & Validation
+
+### Problem Hypothesis
+
+[1-2 sentences describing the suspected problem and who experiences it]
+
+### Validation Questions
+
+Questions that must be answered to validate this opportunity:
+
+- [ ] [Question 1] — [Who can answer]
+- [ ] [Question 2] — [Who can answer]
+- [ ] [Question 3] — [Who can answer]
+
+### Feasibility Assessment
+
+| Factor | Assessment | Notes |
+|--------|------------|-------|
+| Technical feasibility | 🟢 / 🟡 / 🔴 | [Details] |
+| Data availability | 🟢 / 🟡 / 🔴 | [Details] |
+| Organizational readiness | 🟢 / 🟡 / 🔴 | [Details] |
+| Budget/timeline fit | 🟢 / 🟡 / 🔴 | [Details] |
+
+### Architecture Options (if applicable)
+
+**Option A: [Name]**
+- Approach: [Description]
+- Pros: [Benefits]
+- Cons: [Drawbacks]
+- Estimated effort: [Range]
+
+**Option B: [Name]**
+- Approach: [Description]
+- Pros: [Benefits]
+- Cons: [Drawbacks]
+- Estimated effort: [Range]
+
+### Red Flags
+
+[Any fundamental blockers identified]
+
+### Recommendation
+
+☐ **Proceed** — Move to full brief development
+☐ **Pivot** — Adjust approach: [describe pivot]
+☐ **Kill** — Do not pursue: [rationale]
+
+**Rationale:** [Why this recommendation]
+
+---
+```
+
+---
+
+## Module 1: Problem & Context Template
+
+**Milestone:** Quick pitch ready.
+
+```markdown
+## Module 1: Problem & Context
+
+### Problem Statement
+
+> [Role/Team] spends [X hours] per [timeframe] doing [activity] because [root cause]. This causes [impact] and costs approximately [$X per year].
+
+### Who Experiences This Problem
+
+| Person/Role | Department | How They're Affected |
+|-------------|------------|---------------------|
+| [Name, Role] | [Department] | [Impact on their work] |
+
+### Quantified Impact
+
+| Cost Category | Calculation | Annual Cost |
+|---------------|-------------|-------------|
+| Labor cost | [X] hours × $[Y]/hr × [Z] frequency | $[amount] |
+| **Total Annual Impact** | | **$[total]** |
+
+### Current Workaround
+
+[Describe current state — steps, tools, pain points]
+
+### Why Now?
+
+[Explain urgency drivers]
+
+### Success Criteria
+
+| Metric | Current State | Target State |
+|--------|---------------|--------------|
+| [e.g., Processing time] | [e.g., 15 hours/month] | [e.g., <2 hours/month] |
+
+---
+```
+
+---
+
+## Module 2: Solution Concept Template
+
+**Milestone:** Stakeholder alignment ready.
+
+```markdown
+## Module 2: Solution Concept
+
+### Solution Direction
+
+☐ **Wide Open** — Seeking engineer input on how to solve this
+☐ **Direction Set** — General approach defined, details TBD
+☐ **Fully Specified** — Detailed solution concept below
+
+### Solution Overview
+
+[Write solution overview in plain language]
+
+### Capability Requirements
+
+- [Capability 1]
+- [Capability 2]
+- [Capability 3]
+
+### User Experience Vision
+
+| Before | After |
+|--------|-------|
+| [Current experience] | [Future experience] |
+
+### Scope Definition
+
+**In Scope:**
+- [What's included]
+
+**Out of Scope:**
+- [What's NOT included]
+
+### What We're NOT Building
+
+❌ [Explicit exclusion 1]
+❌ [Explicit exclusion 2]
+
+---
+```
+
+---
+
+## Module 3: Constraints & Data Template
+
+**Milestone:** Technical feasibility validated.
+
+```markdown
+## Module 3: Constraints & Data
+
+### Budget & Timeline
+
+| Constraint | Value | Notes |
+|------------|-------|-------|
+| **Budget Range** | $[X] - $[Y] | |
+| **Timeline** | [Hard deadline or preferred timing] | |
+
+### Technology Constraints
+
+**Must Integrate With:**
+- [System 1]
+- [System 2]
+
+**Off-Limits:**
+- [Any prohibited tools]
+
+### Organizational Constraints
+
+| Constraint | Details |
+|------------|---------|
+| **Approval Required** | [Who must sign off] |
+| **Compliance/Security** | [SOC2, HIPAA, etc.] |
+
+### Data Reality Check
+
+| Data Needed | Source | Quality (1-5) | Cleanup Needed? |
+|-------------|--------|---------------|-----------------|
+| [Data type 1] | [System] | [1-5] | [Yes/No] |
+
+**Quality Scale:** 5=Excellent, 4=Good, 3=Moderate, 2=Poor, 1=Unusable
+
+**⚠️ If any Data Quality < 3:** Budget data cleanup into scope.
+
+---
+```
+
+---
+
+## Module 4: Technical Approach Template
+
+**Owner:** Engineer
+**Milestone:** Engineering handoff ready.
+
+```markdown
+## Module 4: Technical Approach
+
+### Architecture Overview
+
+[Describe architecture or include diagram]
+
+### Technology Stack
+
+| Category | Choice | Notes |
+|----------|--------|-------|
+| **Existing Systems** | [Systems client has] | |
+| **New Systems** | [New tools to add] | |
+| **Integration Method** | [APIs, webhooks, etc.] | |
+
+### Component Breakdown
+
+**Component 1: [Name]**
+[What it does, key technical considerations]
+
+### Human-in-the-Loop Evolution
+
+| Phase | Autonomy Level | Criteria to Advance |
+|-------|----------------|---------------------|
+| **Phase 1** | Assisted — human reviews everything | [Default] |
+| **Phase 2** | [e.g., Spot-check 20%] | [e.g., 95% accuracy] |
+| **Phase 3** | [e.g., Auto-approve if >90% confidence] | [e.g., 99% accuracy] |
+
+### Technical Assumptions
+
+- [Technical assumption]
+- [Data assumption]
+
+---
+```
+
+---
+
+## Module 5: Estimates & ROI Template
+
+**Owner:** Engineer
+**Milestone:** Investment decision ready.
+
+```markdown
+## Module 5: Estimates & ROI
+
+### Complexity Assessment
+
+| Factor | Score (1-5) | Rationale |
+|--------|-------------|-----------|
+| **Overall Complexity** | [1-5] | [Why] |
+
+### Effort Estimate
+
+| Phase | Hours | Duration |
+|-------|-------|----------|
+| Discovery & Requirements | [X] | [X weeks] |
+| Build & Configure | [X] | [X weeks] |
+| Testing & QA | [X] | [X weeks] |
+| **TOTAL** | **[X] hours** | **[X] weeks** |
+
+### Estimate Range
+
+| Optimistic | Expected | Pessimistic |
+|------------|----------|-------------|
+| [X] hours | [Y] hours | [Z] hours |
+
+### Investment & ROI
+
+| Metric | Value |
+|--------|-------|
+| **Implementation Cost** | $[X] |
+| **Annual Benefit** | $[X] |
+| **Payback Period** | [X] months |
+
+### Dependencies
+
+- [ ] [Dependency 1]
+- [ ] [Dependency 2]
+
+---
+```
+
+---
+
+## Module 6: Risks & Adoption Template
+
+**Owner:** Collaborative
+**Milestone:** Implementation ready.
+
+```markdown
+## Module 6: Risks & Adoption
+
+### Risk Register
+
+| Risk | Likelihood | Impact | Mitigation | Owner |
+|------|------------|--------|------------|-------|
+| [Risk] | H/M/L | H/M/L | [How to handle] | [Name] |
+
+### Key Assumptions
+
+- [Assumption 1]
+- [Assumption 2]
+
+### Open Questions
+
+| Question | Owner | Due | Status |
+|----------|-------|-----|--------|
+| [Question] | [Name] | [Date] | ⬜ Open |
+
+### Change Management Plan
+
+| Element | Plan |
+|---------|------|
+| **Training Required** | [Hours, format, audience] |
+| **Success Owner** | [Name and role] |
+
+### Go/No-Go Criteria
+
+**Ship if:**
+- ✅ [Criterion 1]
+- ✅ [Criterion 2]
+
+**Don't ship if:**
+- 🚫 [Blocker 1]
+
+---
+```
+
+---
+
+## Format Upgrades
+
+**Primary format:** Markdown (.md)
+
+**When to upgrade:**
+
+| Format | Use When |
+|--------|----------|
+| **DOCX** | Formal client deliverable, email attachment |
+| **HTML** | Presenting in meeting, embedding in portal |
+| **PDF** | Final locked version, exec distribution |
+
+**Brand application:** When creating DOCX/HTML/PDF, load `brand/brand.md` and `brand/brand-ui.md` for styling.

@@ -4,6 +4,27 @@ Pre-delivery quality checks for prep and debrief outputs.
 
 ---
 
+## Pre-flight Check
+
+Run before any synthesis, deliverable, or analysis task. This check ensures data is ready and accessible.
+
+| # | Check | If Failed |
+|---|-------|-----------|
+| 1 | **Client exists** — Record found in 0_Clients table | Stop, create client record first |
+| 2 | **Data is current** — Last session within 30 days OR user confirms data is current | Warn user, ask if data is still valid |
+| 3 | **Schema loaded** — Read discovery-catalog.md before any writes | Stop, load schema before proceeding |
+| 4 | **Permissions confirmed** — External tools asked once per session | Ask permission before accessing Gmail, Drive, Slack, web |
+
+**When to run:**
+- Before `/prep`, `/debrief`, `/gaps`, `/patterns`, `/priorities`
+- Before `/deck`, `/report`, `/roadmap`, `/brief`
+- Before `/solutions discover`, `/solutions catalog`
+- Before any operation that reads from or writes to the Discovery Catalog
+
+**If any check fails:** Inform user and ask how to proceed. Do not continue silently.
+
+---
+
 ## Prep Quality Checklist
 
 ### Quick Prep (2-5 min)
