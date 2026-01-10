@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.1.0] - 2025-01-10
+
+### What Changed
+
+- **Removed deprecated template** - Deleted `mbr-template-legacy.pptx`
+- **Eliminated code duplication** - Inference logic now single source in `tech-stack-research.md`
+- **Defined Pre-flight Check** - Added to `checklists.md` (was referenced but undefined)
+- **Merged solution-brief files** - `solution-brief-guide.md` + `solution-brief-template.md` → `solution-brief.md`
+- **Standardized SOP commands** - Fixed 7 inconsistent commands in `solutions-sop.md`
+- **Added cross-references** - `question-library.md` → `follow-up-patterns.md`
+
+### Technical Changes
+
+| Action | File | Details |
+|--------|------|---------|
+| DELETE | `assets/templates/mbr-template-legacy.pptx` | Deprecated |
+| EDIT | `references/data/tools-library.md` | Removed 30 lines, added cross-ref |
+| EDIT | `references/discovery/checklists.md` | Added Pre-flight Check definition |
+| MERGE | `references/deliverables/solution-brief.md` | Combined guide + template |
+| EDIT | `assets/sops/solutions-sop.md` | Fixed 7 command names |
+| EDIT | `references/discovery/question-library.md` | Added cross-ref |
+| EDIT | `SKILL.md` | Updated solution-brief reference |
+
+**Net result:** -166 lines (425 added, 591 removed)
+
+---
+
 ## [2.0.0] - 2025-01-09
 
 ### What Changed for Users
