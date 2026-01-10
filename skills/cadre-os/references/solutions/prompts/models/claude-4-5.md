@@ -1,5 +1,7 @@
 # Claude 4.5 Optimization Guide
 
+> **Last verified:** 2025-01-09. Model capabilities may have changed.
+
 Claude 4.5 is a specification-driven model that rewards extreme precision over assumed intent. It follows instructions literally—powerful when prompted correctly, unforgiving when vague.
 
 ## Table of Contents

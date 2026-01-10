@@ -1,5 +1,7 @@
 # Gemini 3.0 Pro Optimization Guide
 
+> **Last verified:** 2025-01-09. Model capabilities may have changed.
+
 Gemini 3 Pro achieves breakthrough reasoning (first model to exceed 1500 Elo on LMArena) while requiring simpler, more direct prompts than predecessors. Directness over persuasion, structure over verbosity, temperature at 1.0 always.
 
 ## Table of Contents

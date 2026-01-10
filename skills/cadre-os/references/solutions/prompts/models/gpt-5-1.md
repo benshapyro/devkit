@@ -1,5 +1,7 @@
 # GPT-5.1 Optimization Guide
 
+> **Last verified:** 2025-01-09. Model capabilities may have changed.
+
 GPT-5.1 features adaptive reasoning that dynamically adjusts thinking time—2-10x faster on simple tasks while maintaining deep reasoning for complex problems. Cost-efficient ($1.25/M input tokens) with excellent instruction following.
 
 ## Table of Contents
