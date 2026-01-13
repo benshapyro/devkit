@@ -9,22 +9,38 @@ Process discovery session notes and transcripts into structured insights and Cat
 1. [Mode Selection](#mode-selection)
 2. [Quick Mode](#quick-mode)
 3. [Full Mode](#full-mode)
-4. [Entity Extraction Reference](#entity-extraction-reference)
-5. [Insight Markers](#insight-markers)
-6. [Quote Selection](#quote-selection)
-7. [Error Recovery](#error-recovery)
-8. [Handoff](#handoff)
+4. [Lite Mode](#lite-mode)
+5. [Entity Extraction Reference](#entity-extraction-reference)
+6. [Insight Markers](#insight-markers)
+7. [Quote Selection](#quote-selection)
+8. [Error Recovery](#error-recovery)
+9. [Handoff](#handoff)
 
 ---
 
 ## Mode Selection
 
-| Mode | Duration | Use When | Catalog Writes |
-|------|----------|----------|----------------|
-| **Quick** | 3-5 min | Session < 10 min, < 2000 words, or "just the summary" | No |
-| **Full** | 10-15 min | Standard discovery sessions, full transcripts, >20 min sessions | Yes |
+| Mode | Duration | Use When | Writes To |
+|------|----------|----------|-----------|
+| **Quick** | 3-5 min | Session < 10 min, < 2000 words, or "just the summary" | Display only |
+| **Full** | 10-15 min | Standard discovery sessions, full transcripts, >20 min | Airtable Catalog |
+| **Lite** | 5-10 min | Early engagement, no Airtable access, client handoff | Excel file |
 
-**Default to Full for transcripts.** Use Quick for brief check-ins or when user requests summary only.
+**Default to Full for transcripts.** Use Quick for brief check-ins. Use Lite when Airtable isn't available or for portable deliverables.
+
+### Mode Detection
+
+**Auto-detect Lite Mode when:**
+- User uploads Excel file matching template structure
+- User references "lite", "excel", or "template"
+- User says "quick capture" or "don't use Airtable"
+
+**Auto-detect Full Mode when:**
+- Client exists in Airtable Catalog
+- No Excel file present
+- User says "save to Catalog" or "full debrief"
+
+**Explicit override:** User can always say "use lite mode" or "use full mode"
 
 ---
 
@@ -446,6 +462,188 @@ After Brain Update (or if declined):
 - Key insights (with ⚡🔄💡 markers if applicable)
 - Follow-up items
 - Next session date if known
+
+---
+
+## Lite Mode
+
+Lightweight Excel-based discovery capture for early-stage engagements, rapid assessments, or client handoffs.
+
+> **Schema:** See [lite-schema.md](../data/lite-schema.md) for Excel field definitions and Airtable mapping.
+>
+> **Full SOP:** See `assets/sops/discovery-catalog-sop.md` for complete step-by-step instructions.
+
+### When to Use Lite Mode
+
+| Scenario | Use Lite Mode |
+|----------|---------------|
+| First 1-2 discovery sessions | ✓ Quick capture, migrate later |
+| Rapid assessment / workshop | ✓ Same-day deliverable |
+| Client wants raw data | ✓ Handoff artifact |
+| Full engagement (3+ sessions) | ✗ Use Full Mode (Airtable) |
+| Need scoring (Priority/DVF) | ✗ Use Full Mode (Airtable) |
+| Cross-client pattern analysis | ✗ Use Full Mode (Airtable) |
+
+---
+
+### Lite Mode Workflows
+
+#### Provide Blank Template
+
+**Triggers:** "give me the discovery template", "I need the excel catalog", "start a new lite capture"
+
+**Action:**
+1. Copy template from `assets/discovery-catalog-lite-template.xlsx`
+2. Present to user
+3. Offer: "Want me to populate this from a transcript, web research, or information you provide?"
+
+---
+
+#### Populate from Transcript
+
+**Triggers:** User provides transcript + Excel template, "fill in the template", "debrief [client] lite mode"
+
+**Process:**
+1. Extract entities using standard extraction (see [Entity Extraction Reference](#entity-extraction-reference))
+2. Map to Lite schema (see [lite-schema.md](../data/lite-schema.md))
+3. Write to Excel using openpyxl
+4. Present updated file with summary
+
+**Field Mapping:**
+
+| Extracted Entity | Lite Location |
+|------------------|---------------|
+| Department/Team mentioned | Departments sheet |
+| Challenges | Issues sheet |
+| Solutions/Opportunities | Solutions sheet |
+| Quotes | Issues → Pain Point Quote |
+| Root causes | Issues → Pain Point Cause |
+| Supporting data | Issues → Finding 1, 2, 3... |
+| Technology mentioned | Solutions → Tech columns |
+
+---
+
+#### Populate from Research
+
+**Triggers:** "research [company] and fill in the template", "populate from what we know"
+
+**Process:**
+1. Search connected sources (Drive, Slack, web) for client info
+2. Extract issues and solutions from findings
+3. Map to Lite schema
+4. Write to Excel
+5. Present with confidence notes
+
+---
+
+#### Migrate to Full Catalog
+
+**Triggers:** "migrate this to Airtable", "convert to full catalog", "promote to catalog"
+
+**Process:**
+1. Read Excel file
+2. Map fields to Airtable schema (see [lite-schema.md](../data/lite-schema.md) mapping table)
+3. Create records in dependency order: Client → Session → People → Challenges → Solutions
+4. Report created record counts
+5. Offer to archive Excel
+
+**Notes:**
+- Impact Category → Challenge Type
+- Pain Point Cause → Root Cause field
+- Findings → Notes field (concatenated)
+- No scoring in Lite → Set scores to 0, flag for manual review
+
+---
+
+### Lite Mode Output
+
+When presenting filled Excel:
+
+```markdown
+Here's your populated Discovery Catalog Lite:
+
+**Summary:**
+- Departments: 3 (Sales, Marketing, Product)
+- Issues: 12 identified
+- Solutions: 8 proposed
+
+**Confidence notes:**
+- High confidence: Issues from direct transcript quotes
+- Medium: Solutions inferred from problem descriptions
+- Low: Tech stack (needs validation)
+
+[Download: discovery-catalog-acme-2024-12.xlsx]
+
+Want me to migrate this to the full Airtable Catalog?
+```
+
+---
+
+### Lite Mode Operational Details
+
+**File Location & Naming:**
+
+```
+Cadre Team Drive /
+└── Clients /
+    └── [Client Name] /
+        ├── Discovery Catalog.xlsx        ← The catalog
+        ├── Transcripts /
+        │   └── [YYYY-MM-DD] [Type] - [Attendees].txt
+        └── Discovery /
+            └── Debriefs /
+                └── [YYYY-MM-DD] Debrief - [Attendees].md
+```
+
+**When to Create:** SOW is signed OR first discovery call is scheduled (whichever comes first). Have the empty catalog ready before meetings.
+
+**Claude Project Setup:**
+1. Create a Claude Project for the client
+2. Upload `Discovery Catalog.xlsx` to Project Knowledge
+3. After each update, re-upload the latest version
+
+---
+
+### Lite Mode Post-Call Workflow
+
+1. **Download Transcript** — Get from Fireflies, save to `Transcripts/`
+2. **Create Claude Chat** — Name: `[YYYY-MM-DD] Debrief - [Attendee(s)]`
+3. **Run Debrief** — Upload transcript, type: `/debrief [Client Name] lite`
+4. **Review & Revise** — Human reviews, fixes errors, iterates until accurate
+5. **Save Debrief Summary** — Download artifact as `.md`, save to `Debriefs/`
+6. **Update Catalog** — Add entries to Excel, re-upload to Claude Project
+7. **Peer Review** — If client-facing, get quick teammate review (2-5 min)
+
+---
+
+### Lite Mode Validation
+
+Run these checks before writing to Excel:
+
+1. Check departments exist for all issues/solutions
+2. Check solution references in issues match Solutions sheet
+3. Check required fields (name, description)
+4. Check impact category values match valid options
+
+**Valid Impact Categories:**
+`New Revenue` | `Time Efficiency` | `Revenue Loss` | `Customer Experience` | `Competitive Position` | `Brand Awareness` | `Lead Quality` | `Brand Consistency` | `Product Quality` | `Strategic Decisions` | `Cost Reduction` | `Risk Mitigation` | `Employee Experience` | `Compliance`
+
+**If errors exist:** Stop and ask user to clarify
+**If only warnings:** Proceed but note warnings in output
+
+---
+
+### Generate Artifacts from Lite Data
+
+After populating the Lite template, offer to generate branded artifacts.
+
+**Triggers:** "create findings summary", "visualize the findings", "generate artifact"
+
+| Artifact | What It Shows |
+|----------|---------------|
+| Findings Summary | Issues + solutions side by side, quick wins, next steps |
+
+See [data-to-artifact.md](../synthesis/data-to-artifact.md) for detailed generation steps.
 
 ---
 

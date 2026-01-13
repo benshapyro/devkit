@@ -8,9 +8,9 @@ Maps natural language triggers and slash commands to the appropriate reference f
 |---------|----------------------|
 | `/prep` or "prep me for" | `discovery/prep.md` + `methodology/archetypes.md` |
 | `/debrief` or "debrief", transcript pasted | `discovery/debrief.md` + `data/discovery-catalog.md` (offers comms at end) |
-| `/debrief lite` or "lite mode", Excel file | `discovery/lite-mode.md` + `data/lite-schema.md` |
-| `/lite` or "lite template", "excel template" | `discovery/lite-mode.md` + `data/lite-schema.md` |
-| `/lite populate` or "fill in template" | `discovery/lite-mode.md` + `data/lite-schema.md` |
+| `/debrief lite` or "lite mode", Excel file | `discovery/debrief.md` (Lite Mode section) + `data/lite-schema.md` |
+| `/lite` or "lite template", "excel template" | `discovery/debrief.md` (Lite Mode section) + `data/lite-schema.md` |
+| `/lite populate` or "fill in template" | `discovery/debrief.md` (Lite Mode section) + `data/lite-schema.md` |
 | `/context` or "what do we know about" | `data/discovery-catalog.md` (query Airtable + Drive) |
 | `/gaps` or "coverage", "what's missing" | `synthesis/gaps.md` + `methodology/playbook.md` |
 | `/patterns` or "patterns", "themes" | `synthesis/patterns.md` + `data/discovery-catalog.md` |
@@ -51,7 +51,7 @@ Maps natural language triggers and slash commands to the appropriate reference f
 | `/summary` or "executive summary", "one-pager" | `deliverables/executive-summary.md` + `brand/brand.md` |
 | `/report` or "findings report" | `deliverables/report.md` + `brand/brand.md` + read `docx` skill |
 | `/roadmap` or "implementation plan" | `deliverables/roadmap.md` + `brand/brand.md` |
-| `/brief` or "solution brief", "product brief" | `deliverables/solution-brief-guide.md` + `deliverables/solution-brief-template.md` + `brand/brand.md` + `brand/brand-ui.md` |
+| `/brief` or "solution brief", "product brief" | `deliverables/solution-brief.md` + `brand/brand.md` + `brand/brand-ui.md` |
 
 ## Communications
 
@@ -74,18 +74,19 @@ Maps natural language triggers and slash commands to the appropriate reference f
 
 | Trigger | Load These References |
 |---------|----------------------|
-| `/solutions discover` or "find opportunities", "what should we build" | `solutions/assistants/workflow.md` + `solutions/assistants/opportunity-categories.md` + `solutions/prompts/patterns/` |
-| `/solutions catalog` or "solution catalog", "client catalog" | `solutions/assistants/workflow.md` + `brand/brand-ui.md` |
-| `/solutions brief` or "brief for [use case]" | `deliverables/solution-brief-guide.md` + `deliverables/solution-brief-template.md` + `solutions/assistants/workflow.md` + `brand/brand.md` + `brand/brand-ui.md` |
-| `/solutions assistants library` or "browse use cases", "show assistant patterns" | `solutions/assistants/workflow.md` + `solutions/assistants/use-case-library.json` |
-| `/solutions assistants prioritize` or "prioritize assistants", "rank opportunities" | `solutions/assistants/workflow.md` + `solutions/assistants/prioritization-framework.md` + `solutions/assistants/scoring-criteria.md` |
-| `/solutions assistants validate` or "check feasibility" | `solutions/assistants/workflow.md` + `solutions/assistants/prioritization-framework.md` |
-| `/solutions assistants estimate` or "estimate build time", "calculate cost" | `solutions/assistants/workflow.md` + `solutions/assistants/scoping-config.json` |
-| `/solutions assistants spec` or "write spec", "create spec" | `solutions/assistants/workflow.md` + `solutions/assistants/spec-template.md` or `solutions/assistants/full-spec-template.md` |
-| `/solutions prompts patterns` or "prompt patterns", "prompt examples" | `solutions/prompts/patterns/[category].md` |
-| `/solutions prompts audit` or "review prompt", "improve prompt" | `solutions/prompts/audit/checklist.md` |
+| `/solutions discover` or "find opportunities", "what should we build" | `solutions/assistants-workflow.md` + `solutions/assistants-categories.md` |
+| `/solutions catalog` or "solution catalog", "client catalog" | `solutions/assistants-workflow.md` + `brand/brand-ui.md` |
+| `/solutions brief` or "brief for [use case]" | `deliverables/solution-brief.md` + `solutions/assistants-workflow.md` + `brand/brand.md` + `brand/brand-ui.md` |
+| `/solutions assistants library` or "browse use cases", "show assistant patterns" | `solutions/assistants-workflow.md` + `solutions/assistants-library.json` |
+| `/solutions assistants prioritize` or "prioritize assistants", "rank opportunities" | `solutions/assistants-workflow.md` + `solutions/assistants-prioritization.md` |
+| `/solutions assistants validate` or "check feasibility" | `solutions/assistants-workflow.md` + `solutions/assistants-prioritization.md` |
+| `/solutions assistants estimate` or "estimate build time", "calculate cost" | `solutions/assistants-workflow.md` + `solutions/assistants-scoping.json` |
+| `/solutions assistants spec` or "write spec", "create spec" | `solutions/assistants-workflow.md` + `solutions/assistants-spec-light.md` or `solutions/assistants-spec-full.md` |
+| `/solutions prompts patterns` or "prompt patterns", "prompt examples" | `solutions/prompts-[category].md` |
+| `/solutions prompts audit` or "review prompt", "improve prompt" | `solutions/prompts-audit.md` |
 | `/solutions prompts template` or "system prompt template" | `assets/templates/prompts/[type].md` |
-| `/solutions prompts optimize` or "optimize for Claude", "optimize for GPT" | `solutions/prompts/models/[model].md` |
+| `/solutions prompts optimize` or "optimize for Claude", "optimize for GPT" | `solutions/prompts-models.md` |
+| `/solutions prompts agentic` or "agent patterns", "multi-agent" | `solutions/prompts-agentic.md` |
 
 ## SOPs
 

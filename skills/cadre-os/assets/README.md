@@ -9,7 +9,6 @@ assets/
 ├── artifact-kit/          # Reusable UI components
 ├── artifact-templates/    # Complete artifact layouts
 ├── templates/             # Document and spreadsheet templates
-│   └── prompts/          # System prompt templates
 └── sops/                  # Standard Operating Procedures
 ```
 
@@ -57,7 +56,6 @@ Document and spreadsheet templates.
 | File | Format | Description |
 |------|--------|-------------|
 | `mbr-template-01-07-25.pptx` | PPTX | Current Monthly Business Review template |
-| `mbr-template-legacy.pptx` | PPTX | **Deprecated** - old MBR format |
 | `scoping-template.docx` | DOCX | Solution scoping document |
 | `prioritization-matrix.docx` | DOCX | Opportunity prioritization worksheet |
 
@@ -69,19 +67,6 @@ Document and spreadsheet templates.
 | `tech-stack-survey-template.xlsx` | XLSX | Blank tech stack survey grid |
 | `scoping-spreadsheet.xlsx` | XLSX | Detailed scoping calculations |
 | `use-case-library.xlsx` | XLSX | Master use case reference |
-
-### Prompt Templates
-
-Production-ready system prompts in `templates/prompts/`:
-
-| File | Description |
-|------|-------------|
-| `customer-support.md` | Customer service assistant prompt |
-| `executive-briefing.md` | Executive summary generator prompt |
-| `document-analysis.md` | Document review and extraction prompt |
-| `code-review.md` | Code review assistant prompt |
-
----
 
 ## SOPs (Standard Operating Procedures)
 
@@ -103,18 +88,6 @@ User-facing process documentation. Present these when users ask "how do I...?" o
 ## Placeholder Conventions
 
 Different asset types use different placeholder patterns:
-
-### Prompt Templates (`templates/prompts/`)
-
-Use `[VAR]` notation with explanation tables at the end:
-
-```markdown
-You are a support agent for [COMPANY_NAME]...
-
-| Placeholder | Example |
-|-------------|---------|
-| `[COMPANY_NAME]` | Acme Corp |
-```
 
 ### Artifact Templates (`artifact-templates/`)
 
@@ -167,14 +140,6 @@ When updating binary templates:
 3. Test with sample data
 4. Update schema documentation if structure changes
 
-### Prompt Templates
-1. Keep under 2000 tokens
-2. Use `{{VAR}}` for replaceable values
-3. Include model-specific notes if needed
-4. Test with target model before deploying
-
----
-
 ## Troubleshooting
 
 | Issue | Solution |
@@ -182,5 +147,4 @@ When updating binary templates:
 | CSS variables not rendering | Ensure `<style>` block includes Cadre CSS variable definitions |
 | JSX not compiling | Check for React/JSX syntax compatibility with Claude artifacts |
 | XLSX formulas broken | Verify cell references after structural changes |
-| Placeholder not replaced | Confirm exact `{{VAR}}` notation including braces |
 | Legacy template used | Check SKILL.md references point to current version |

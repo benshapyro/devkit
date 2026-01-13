@@ -174,13 +174,11 @@ Pre-built HTML/JSX templates for common artifacts. See [assets/README.md](assets
 
 | File | Purpose |
 |------|---------|
-| [prep.md](references/discovery/prep.md) | Session prep (quick or deep mode) |
-| [debrief.md](references/discovery/debrief.md) | Session debrief (quick or full mode) |
-| [lite-mode.md](references/discovery/lite-mode.md) | Lite mode workflow + population |
+| [prep.md](references/discovery/prep.md) | Session prep (quick/deep mode, external research protocols) |
+| [debrief.md](references/discovery/debrief.md) | Session debrief (quick/full/lite mode) |
 | [question-library.md](references/discovery/question-library.md) | Question selection |
 | [follow-up-patterns.md](references/discovery/follow-up-patterns.md) | Conditional follow-ups |
-| [research-protocols.md](references/discovery/research-protocols.md) | External research |
-| [insight-extraction.md](references/discovery/insight-extraction.md) | Entity extraction |
+| [insight-markers.md](references/discovery/insight-markers.md) | Insight markers (⚡🔄⚠️💡) |
 | [checklists.md](references/discovery/checklists.md) | Quality checks |
 | [special-scenarios.md](references/discovery/special-scenarios.md) | Edge cases |
 | [brain-update-generator.md](references/discovery/brain-update-generator.md) | Brain update docs |
@@ -238,31 +236,26 @@ Pre-built HTML/JSX templates for common artifacts. See [assets/README.md](assets
 
 | File | Purpose |
 |------|---------|
-| [workflow.md](references/solutions/assistants/workflow.md) | Any solutions command |
-| [use-case-library.json](references/solutions/assistants/use-case-library.json) | Discover, library browse |
-| [scoping-config.json](references/solutions/assistants/scoping-config.json) | Estimate calculations |
-| [prioritization-framework.md](references/solutions/assistants/prioritization-framework.md) | Prioritize, validate |
-| [opportunity-categories.md](references/solutions/assistants/opportunity-categories.md) | Discover |
-| [scoring-criteria.md](references/solutions/assistants/scoring-criteria.md) | Prioritize |
-| [spec-template.md](references/solutions/assistants/spec-template.md) | Light specs |
-| [full-spec-template.md](references/solutions/assistants/full-spec-template.md) | Full specs |
+| [assistants-workflow.md](references/solutions/assistants-workflow.md) | Any solutions command |
+| [assistants-library.json](references/solutions/assistants-library.json) | Discover, library browse |
+| [assistants-scoping.json](references/solutions/assistants-scoping.json) | Estimate calculations |
+| [assistants-prioritization.md](references/solutions/assistants-prioritization.md) | Prioritize, validate, scoring |
+| [assistants-categories.md](references/solutions/assistants-categories.md) | Discover |
+| [assistants-spec-light.md](references/solutions/assistants-spec-light.md) | Light specs |
+| [assistants-spec-full.md](references/solutions/assistants-spec-full.md) | Full specs |
 
 ### Solutions - Prompts
 
 | File | Purpose |
 |------|---------|
-| [content-creation.md](references/solutions/prompts/patterns/content-creation.md) | Content prompts |
-| [analysis-research.md](references/solutions/prompts/patterns/analysis-research.md) | Analysis prompts |
-| [code-generation.md](references/solutions/prompts/patterns/code-generation.md) | Code prompts |
-| [problem-solving.md](references/solutions/prompts/patterns/problem-solving.md) | Decision/planning prompts |
-| [education.md](references/solutions/prompts/patterns/education.md) | Teaching/tutoring prompts |
-| [checklist.md](references/solutions/prompts/audit/checklist.md) | Prompt audit/review |
-| [claude-4-5.md](references/solutions/prompts/models/claude-4-5.md) | Claude optimization |
-| [gpt-5-1.md](references/solutions/prompts/models/gpt-5-1.md) | GPT optimization |
-| [gemini-3-pro.md](references/solutions/prompts/models/gemini-3-pro.md) | Gemini optimization |
-| [react-workflows.md](references/solutions/prompts/agentic/react-workflows.md) | Agent patterns |
-| [tool-definitions.md](references/solutions/prompts/agentic/tool-definitions.md) | Tool use patterns |
-| [multi-agent.md](references/solutions/prompts/agentic/multi-agent.md) | Multi-agent orchestration |
+| [prompts-content.md](references/solutions/prompts-content.md) | Content prompts |
+| [prompts-analysis.md](references/solutions/prompts-analysis.md) | Analysis prompts |
+| [prompts-code.md](references/solutions/prompts-code.md) | Code prompts |
+| [prompts-problem-solving.md](references/solutions/prompts-problem-solving.md) | Decision/planning prompts |
+| [prompts-education.md](references/solutions/prompts-education.md) | Teaching/tutoring prompts |
+| [prompts-audit.md](references/solutions/prompts-audit.md) | Prompt audit/review |
+| [prompts-models.md](references/solutions/prompts-models.md) | Claude, Gemini, GPT optimization |
+| [prompts-agentic.md](references/solutions/prompts-agentic.md) | ReAct, multi-agent, tool patterns |
 
 ### Navigation
 
