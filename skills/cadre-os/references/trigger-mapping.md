@@ -39,8 +39,8 @@ Maps natural language triggers and slash commands to the appropriate reference f
 |---------|----------------------|
 | `/artifact overview` | `synthesis/data-to-artifact.md` + `data/tech-stack.md` |
 | `/artifact map` | `synthesis/data-to-artifact.md` + `data/tech-stack.md` |
-| `/artifact findings` | `synthesis/data-to-artifact.md` + `discovery/lite-mode.md` |
-| "findings summary", "visualize findings" | `synthesis/data-to-artifact.md` + `discovery/lite-mode.md` |
+| `/artifact findings` | `synthesis/data-to-artifact.md` + `discovery/debrief.md` (Lite Mode section) |
+| "findings summary", "visualize findings" | `synthesis/data-to-artifact.md` + `discovery/debrief.md` (Lite Mode section) |
 | "generate artifact", "create artifact" | `synthesis/data-to-artifact.md` |
 
 ## Deliverables
