@@ -1,21 +1,38 @@
-# Discovery Catalog Schema Reference
+# Data Schema Reference
 
-The Discovery Catalog is the structured data store for all client discovery findings. This document is the **single source of truth** for the Airtable schema, field definitions, valid values, and record templates.
+This document is the **single source of truth** for all Cadre data stores: the full Discovery Catalog (Airtable), the lightweight Catalog Lite (Excel), and Client Brain documents (Google Docs).
 
-**Last Updated:** 2024-11-29
+## Table of Contents
+
+- [Discovery Catalog (Airtable)](#discovery-catalog-airtable)
+  - [Quick Reference](#quick-reference)
+  - [Required Fields by Table](#required-fields-by-table)
+  - [Common Errors](#common-errors)
+  - [Base Information](#base-information)
+  - [Table Schemas](#table-schemas)
+  - [Change History Format](#change-history-format)
+  - [Record Templates](#record-templates)
+  - [Query Patterns](#query-patterns)
+  - [Building ID Reference Maps](#building-id-reference-maps)
+- [Discovery Catalog Lite (Excel)](#discovery-catalog-lite-excel)
+  - [File Structure](#file-structure)
+  - [Sheet Schemas](#sheet-schemas)
+  - [Mapping: Lite → Full Catalog](#mapping-lite--full-catalog)
+  - [Writing to Excel](#writing-to-excel)
+  - [Validation Rules](#validation-rules)
+- [Client Brain (Google Docs)](#client-brain-google-docs)
+  - [Brain Document Structure](#brain-document-structure)
+  - [Finding Brains](#finding-brains)
+  - [Querying Brains](#querying-brains)
+  - [Suggesting Updates](#suggesting-updates)
 
 ---
 
-## Contents
+# Discovery Catalog (Airtable)
 
-1. [Quick Reference](#quick-reference)
-2. [Required Fields by Table](#required-fields-by-table)
-3. [Common Errors](#common-errors)
-4. [Base Information](#base-information)
-5. [Table Schemas](#table-schemas)
-6. [Record Templates](#record-templates)
-7. [Query Patterns](#query-patterns)
-8. [Workflow: Building ID Reference Maps](#workflow-building-id-reference-maps)
+The Discovery Catalog is the structured data store for all client discovery findings.
+
+**Last Updated:** 2024-11-29
 
 ---
 
@@ -135,6 +152,7 @@ Master client list. All discovery data links back here.
 | 5_Challenges | multipleRecordLinks | | → 5_Challenges (reverse) |
 | 6_Solutions | multipleRecordLinks | | → 6_Solutions (reverse) |
 | 7_Quotes | multipleRecordLinks | | → 7_Quotes (reverse) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Company Size Options:**
 - `< 50 employees`
@@ -168,8 +186,6 @@ Master client list. All discovery data links back here.
 - `4 - Scaling`
 - `5 - Optimizing`
 
-| Change History | multilineText | | Append-only log of changes (see format below) |
-
 ---
 
 ### 1_Discovery_Log
@@ -198,7 +214,7 @@ Session records for all discovery activities.
 | Challenges Discovered | multipleRecordLinks | | → 5_Challenges |
 | Solutions Proposed | multipleRecordLinks | | → 6_Solutions |
 | Quotes Captured | multipleRecordLinks | | → 7_Quotes |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Session Type Options:**
 - `Kickoff`
@@ -252,7 +268,7 @@ Stakeholder profiles from discovery.
 | Related Processes | multipleRecordLinks | | → 3_Process |
 | Related Technologies | multipleRecordLinks | | → 4_Technology |
 | Related Challenges | multipleRecordLinks | | → 5_Challenges |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Stakeholder Type Options:**
 - `Champion`
@@ -317,7 +333,7 @@ Workflow and process documentation.
 | Related Technologies | multipleRecordLinks | | → 4_Technology |
 | Related Challenges | multipleRecordLinks | | → 5_Challenges |
 | Proposed Solutions | multipleRecordLinks | | → 6_Solutions |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Context Type Options:**
 - `Formal`
@@ -378,7 +394,7 @@ Technology stack inventory.
 | 3_Process | multipleRecordLinks | | → 3_Process |
 | Related Challenges | multipleRecordLinks | | → 5_Challenges |
 | Proposed Solutions | multipleRecordLinks | | → 6_Solutions |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Status Options:**
 - `Active`
@@ -446,7 +462,7 @@ Problems, gaps, and pain points discovered.
 | 3_Process | multipleRecordLinks | | → 3_Process |
 | 4_Technology | multipleRecordLinks | | → 4_Technology |
 | Proposed Solutions | multipleRecordLinks | | → 6_Solutions |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Problem Type Options:**
 - `Root Cause`
@@ -526,7 +542,7 @@ Proposed solutions and opportunities.
 | 3_Process | multipleRecordLinks | | → 3_Process |
 | 4_Technology | multipleRecordLinks | | → 4_Technology |
 | 5_Challenges | multipleRecordLinks | | → 5_Challenges |
-| Change History | multilineText | | Append-only log of changes (see format below) |
+| Change History | multilineText | | Append-only log of changes |
 
 **Solution Type Options:**
 - `Process Redesign`
@@ -711,8 +727,6 @@ Copy-paste-ready JSON for creating records via Airtable MCP.
 ```
 
 **Session Type must be one of:** `Kickoff`, `Interview`, `Workshop`, `Document Review`, `Observation`, `Follow-up`, `Presentation`, `System Demo`, `Validation`
-
-**Mapping:** "Process Deep Dive" → use `Observation`
 
 ### Person Record
 
@@ -916,7 +930,7 @@ search_records(
 
 ---
 
-## Workflow: Building ID Reference Maps
+## Building ID Reference Maps
 
 Before creating or updating records during a debrief, build a lookup map of all existing record IDs for the client. This enables:
 - UPDATE vs CREATE decisions
@@ -1044,3 +1058,498 @@ Usually a type mismatch.
 Select value not in allowed options list. Double-check exact string.
 - ❌ `"Integration Quality": "Limited"`
 - ✓ `"Integration Quality": "Low"`
+
+---
+
+# Discovery Catalog Lite (Excel)
+
+Excel-based schema for lightweight discovery capture. Use when Airtable access is unavailable or for rapid capture during workshops.
+
+> **Related:** For full schema with all fields and options, see [Discovery Catalog (Airtable)](#discovery-catalog-airtable) above.
+
+---
+
+## File Structure
+
+```
+discovery-catalog-lite.xlsx
+├── Instructions (read-only guidance)
+├── Departments (organizational units)
+├── Issues (problems/challenges identified)
+└── Solutions (proposed fixes/opportunities)
+```
+
+---
+
+## Sheet Schemas
+
+### Departments
+
+| Column | Type | Required | Description |
+|--------|------|----------|-------------|
+| Department Name | Text | ✓ | Exact name (case-sensitive, used for linking) |
+| Estimated Hours Saved | Number | | Total weekly hours expected from all solutions |
+
+**Notes:**
+- Add departments before referencing them in Issues/Solutions
+- Names must match exactly across all sheets
+
+---
+
+### Issues
+
+| Column | Type | Required | Description |
+|--------|------|----------|-------------|
+| Department | Text | ✓ | Must match Departments sheet exactly |
+| Issue Name | Text | ✓ | Short, descriptive title |
+| Description | Text | ✓ | Detailed explanation of the problem |
+| Impact Category | Select | | See valid values below |
+| Solution Name | Text | | Must match Solutions sheet (leave blank if none) |
+| Pain Point Quote | Text | | Direct stakeholder quote with attribution |
+| Pain Point Cause | Text | | Root cause of the issue |
+| Diagram URL | URL | | Link to process diagram if available |
+| Finding 1 | Text | | Supporting data point |
+| Finding 2 | Text | | Supporting data point |
+| Finding 3 | Text | | Supporting data point |
+| Finding N... | Text | | Add more columns as needed |
+
+**Impact Category valid values:**
+- New Revenue
+- Time Efficiency
+- Revenue Loss
+- Customer Experience
+- Competitive Position
+- Brand Awareness
+- Lead Quality
+- Brand Consistency
+- Product Quality
+- Strategic Decisions
+- Cost Reduction
+- Risk Mitigation
+- Employee Experience
+- Compliance
+
+---
+
+### Solutions
+
+| Column | Type | Required | Description |
+|--------|------|----------|-------------|
+| Department | Text | ✓ | Which department this serves |
+| Solution Name | Text | ✓ | Human-readable name (referenced by Issues) |
+| Description | Text | ✓ | Full explanation of what it does |
+| Impact | Text | | Quantified benefit (e.g., "15-20 hrs/week saved") |
+| Impact Note | Text | | Additional context |
+| Diagram URL | URL | | Link to solution diagram |
+
+**Technology columns (repeat pattern as needed):**
+| Column | Type | Description |
+|--------|------|-------------|
+| Tech N Name | Text | Tool/platform name |
+| Tech N Status | Select | "Current" or "New" |
+| Tech N Cost | Text | Monthly cost (e.g., "$500/mo", "~$30/user/mo", "-") |
+
+**Data requirement columns:**
+| Column | Type | Valid Values |
+|--------|------|--------------|
+| Data Access | Select | Yes, No, Partial |
+| Data Access Notes | Text | What data, where located |
+| Data Cleanliness | Select | High, Med, Low |
+| Data Cleanliness Notes | Text | Cleanup/prep needed |
+| Data Complexity | Select | High, Med, Low |
+| Data Complexity Notes | Text | Technical considerations |
+
+---
+
+## Mapping: Lite → Full Catalog
+
+### Issues → Challenges
+
+| Lite Field | Airtable Field | Transform |
+|------------|----------------|-----------|
+| Department | (lookup) | Match to Client's departments |
+| Issue Name | Challenge Name | Direct |
+| Description | Explanation | Direct |
+| Impact Category | Challenge Type | Map (see below) |
+| Pain Point Quote | → 7_Quotes table | Create linked record |
+| Pain Point Cause | Root Cause | Direct |
+| Finding 1-N | Notes | Concatenate with bullets |
+| — | Impact | Default: 3 (flag for review) |
+| — | Urgency | Default: 3 (flag for review) |
+| — | Readiness | Default: 3 (flag for review) |
+| — | Priority Score | Default: 27 (3×3×3) |
+
+**Impact Category → Challenge Type mapping:**
+| Lite Impact Category | Airtable Challenge Type |
+|---------------------|------------------------|
+| New Revenue | Revenue Impact |
+| Revenue Loss | Revenue Impact |
+| Time Efficiency | Operational Efficiency |
+| Cost Reduction | Operational Efficiency |
+| Customer Experience | Customer Impact |
+| Employee Experience | People & Culture |
+| Competitive Position | Strategic |
+| Brand Awareness | Strategic |
+| Brand Consistency | Strategic |
+| Product Quality | Quality & Risk |
+| Risk Mitigation | Quality & Risk |
+| Compliance | Quality & Risk |
+| Lead Quality | Revenue Impact |
+| Strategic Decisions | Strategic |
+
+---
+
+### Solutions → Solutions
+
+| Lite Field | Airtable Field | Transform |
+|------------|----------------|-----------|
+| Department | Department | Match to Client |
+| Solution Name | Solution Name | Direct |
+| Description | Description | Direct |
+| Impact | Expected Impact | Direct |
+| Impact Note | Notes | Append |
+| Tech N Name | → 4_Technology table | Create/link records |
+| Tech N Status | Status | "Current" → Existing, "New" → Proposed |
+| Tech N Cost | Cost Estimate | Direct |
+| Data Access | Data Readiness | Yes→5, Partial→3, No→1 |
+| Data Cleanliness | Data Quality | High→5, Med→3, Low→1 |
+| Data Complexity | Complexity | High→1, Med→3, Low→5 (inverted) |
+| — | Desirability | Default: 3 |
+| — | Viability | Default: 3 |
+| — | Feasibility | Default: 3 |
+| — | DVF Score | Default: 27 |
+
+---
+
+### Departments → (No direct mapping)
+
+Departments in Lite are informal groupings. In Full Catalog:
+- Check if department exists as a Process area
+- Or map to People records by department
+- Estimated Hours Saved → aggregate to Solution impacts
+
+---
+
+## Writing to Excel
+
+### Add Issue row:
+```python
+from openpyxl import load_workbook
+
+wb = load_workbook('discovery-catalog.xlsx')
+issues = wb['Issues']
+
+# Find next empty row
+next_row = issues.max_row + 1
+
+# Write fields
+issues.cell(row=next_row, column=1, value='Sales')  # Department
+issues.cell(row=next_row, column=2, value='Manual lead research')  # Issue Name
+issues.cell(row=next_row, column=3, value='Reps spend 10+ hrs/week researching leads')  # Description
+issues.cell(row=next_row, column=4, value='Time Efficiency')  # Impact Category
+issues.cell(row=next_row, column=5, value='AI Lead Enrichment')  # Solution Name
+issues.cell(row=next_row, column=6, value='"I spend more time researching than selling" — SR')  # Quote
+issues.cell(row=next_row, column=7, value='No automated enrichment tools')  # Cause
+
+wb.save('discovery-catalog.xlsx')
+```
+
+### Add Solution row:
+```python
+solutions = wb['Solutions']
+next_row = solutions.max_row + 1
+
+solutions.cell(row=next_row, column=1, value='Sales')
+solutions.cell(row=next_row, column=2, value='AI Lead Enrichment')
+solutions.cell(row=next_row, column=3, value='Automated lead research using Clay + LinkedIn')
+solutions.cell(row=next_row, column=4, value='10 hrs/week saved per rep')
+# Tech 1
+solutions.cell(row=next_row, column=7, value='Clay.com')
+solutions.cell(row=next_row, column=8, value='New')
+solutions.cell(row=next_row, column=9, value='~$800/mo')
+
+wb.save('discovery-catalog.xlsx')
+```
+
+### Column index reference:
+```
+Issues sheet:
+A(1): Department
+B(2): Issue Name
+C(3): Description
+D(4): Impact Category
+E(5): Solution Name
+F(6): Pain Point Quote
+G(7): Pain Point Cause
+H(8): Diagram URL
+I(9): Finding 1
+J(10): Finding 2
+K(11): Finding 3
+
+Solutions sheet:
+A(1): Department
+B(2): Solution Name
+C(3): Description
+D(4): Impact
+E(5): Impact Note
+F(6): Diagram URL
+G(7): Tech 1 Name
+H(8): Tech 1 Status
+I(9): Tech 1 Cost
+J(10): Tech 2 Name
+K(11): Tech 2 Status
+L(12): Tech 2 Cost
+... (pattern continues)
+S(19): Data Access
+T(20): Data Access Notes
+U(21): Data Cleanliness
+V(22): Data Cleanliness Notes
+W(23): Data Complexity
+X(24): Data Complexity Notes
+```
+
+---
+
+## Validation Rules
+
+Before writing, validate:
+
+1. **Department exists:** Check Departments sheet before adding Issue/Solution
+2. **Solution exists:** If Issue references a Solution, verify it exists (or create placeholder)
+3. **No duplicates:** Check Issue Name + Department combo doesn't already exist
+4. **Required fields:** Department, Issue/Solution Name, Description must be non-empty
+
+### Validation code:
+```python
+def validate_department(wb, dept_name):
+    depts = wb['Departments']
+    for row in depts.iter_rows(min_row=2, values_only=True):
+        if row[0] == dept_name:
+            return True
+    return False
+
+def validate_solution_exists(wb, solution_name):
+    solutions = wb['Solutions']
+    for row in solutions.iter_rows(min_row=2, values_only=True):
+        if row[1] == solution_name:
+            return True
+    return False
+```
+
+---
+
+## Creating Fresh Template
+
+If template needed from scratch:
+```python
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+
+wb = Workbook()
+
+# Departments sheet
+depts = wb.active
+depts.title = 'Departments'
+depts.append(['Department Name', 'Estimated Hours Saved'])
+depts['A1'].font = Font(bold=True)
+depts['B1'].font = Font(bold=True)
+
+# Issues sheet
+issues = wb.create_sheet('Issues')
+issue_headers = ['Department', 'Issue Name', 'Description', 'Impact Category',
+                 'Solution Name', 'Pain Point Quote', 'Pain Point Cause',
+                 'Diagram URL', 'Finding 1', 'Finding 2', 'Finding 3']
+issues.append(issue_headers)
+for cell in issues[1]:
+    cell.font = Font(bold=True)
+
+# Solutions sheet
+solutions = wb.create_sheet('Solutions')
+solution_headers = ['Department', 'Solution Name', 'Description', 'Impact',
+                    'Impact Note', 'Diagram URL',
+                    'Tech 1 Name', 'Tech 1 Status', 'Tech 1 Cost',
+                    'Tech 2 Name', 'Tech 2 Status', 'Tech 2 Cost',
+                    'Tech 3 Name', 'Tech 3 Status', 'Tech 3 Cost',
+                    'Tech 4 Name', 'Tech 4 Status', 'Tech 4 Cost',
+                    'Data Access', 'Data Access Notes',
+                    'Data Cleanliness', 'Data Cleanliness Notes',
+                    'Data Complexity', 'Data Complexity Notes']
+solutions.append(solution_headers)
+for cell in solutions[1]:
+    cell.font = Font(bold=True)
+
+# Instructions sheet
+instructions = wb.create_sheet('Instructions', 0)
+# ... add instruction text
+
+wb.save('discovery-catalog-lite-template.xlsx')
+```
+
+---
+
+# Client Brain (Google Docs)
+
+The Client Brain is a Google Doc containing narrative relationship context for each client. While the Discovery Catalog captures structured data, the Brain captures the nuanced relationship intelligence that doesn't fit in fields.
+
+> **Related:** Brain Link is stored in the [0_Clients table](#0_clients) in the Discovery Catalog.
+
+---
+
+## Brain Document Structure
+
+Each Client Brain follows this structure:
+
+### Section 1: Client Overview
+- Company name, industry, size
+- Engagement type and timeline
+- Why they engaged Cadre
+
+### Section 2: Stakeholder Map
+| Field | Description |
+|-------|-------------|
+| Name | Full name |
+| Title | Current role |
+| Role Type | Economic Buyer / Champion / Technical Lead / Blocker / Influencer |
+| Power (1-10) | Decision-making authority |
+| Sentiment (1-10) | Current support level |
+| Notes | Key context, preferences, concerns |
+
+### Section 3: Relationship Health
+- Overall score (1-10)
+- Last contact date
+- Engagement trend (improving/stable/declining)
+- Warning signs
+
+### Section 4: Active Context
+- Current engagement phase
+- Open questions
+- Recent wins
+- Current blockers
+- What's working / What's not working
+
+### Section 5: Key Decisions Log
+| Date | Decision | Made By | Rationale |
+|------|----------|---------|-----------|
+| Chronological log of significant decisions |
+
+### Section 6: Preferences & Patterns
+- Communication preferences
+- Meeting preferences
+- Decision-making patterns
+- Things that work well
+- Things to avoid
+
+### Section 7: Update Log
+- Automatic entries from n8n workflow
+- Manual additions
+
+---
+
+## Finding Brains
+
+### Search Patterns
+
+```
+# Find by client name
+google_drive_search:
+  api_query: name contains '[Client Name]' and name contains 'Brain'
+
+# Find all Brains
+google_drive_search:
+  api_query: name contains 'Brain' and mimeType = 'application/vnd.google-apps.document'
+
+# Search Brain content
+google_drive_search:
+  api_query: fullText contains '[search term]' and name contains 'Brain'
+  semantic_query: [what you're looking for]
+```
+
+### Finding Brain Documents
+
+**Option 1: Get link from Catalog (preferred)**
+
+Query 0_Clients table for the Brain Link field:
+```
+Airtable MCP: list_records
+Base: apprH2AppvnKfUpT0
+Table: tbl9MiW4wWEHoNw6t
+Filter: {Client Name} = '[ClientName]'
+```
+Use the "Brain Link" field value to fetch the document directly.
+
+**Option 2: Search Google Drive**
+
+If Brain Link is empty, search by naming convention:
+```
+Google Drive: search
+Query: name contains '[ClientName] Brain'
+```
+
+Common patterns: `[Client] Brain`, `[ShortName] Brain`
+
+---
+
+## Querying Brains
+
+### For Stakeholder Information
+
+1. Find the Brain document
+2. Read Section 2: Stakeholder Map
+3. Look for: name, title, role type, power, sentiment, notes
+
+**Example response format:**
+```
+Key stakeholders at [Client]:
+
+**[Name]** — [Title]
+- Role: [Economic Buyer/Champion/etc.]
+- Power: [X]/10 | Sentiment: [Y]/10
+- Notes: [Key context]
+```
+
+### For Current Status
+
+1. Read Section 4: Active Context
+2. Include: current phase, blockers, open questions
+3. Add Section 3: Relationship Health score
+
+### For Pre-Meeting Brief
+
+Combine:
+- Section 1: Quick company context
+- Section 2: People on the call (filter by attendees if known)
+- Section 4: Current blockers and open questions
+- Section 6: What works / what to avoid
+
+---
+
+## Suggesting Updates
+
+This skill can suggest updates to Brains. Format suggestions clearly:
+
+```
+📝 **Suggested Brain Update for [Client]:**
+
+**Section:** [Section name]
+**Addition:**
+[Formatted content to add]
+
+Would you like me to add this to the Brain?
+```
+
+### Update Types
+
+| Type | Section | Format |
+|------|---------|--------|
+| New stakeholder | 2. Stakeholder Map | Table row |
+| Decision | 5. Key Decisions Log | Table row with date |
+| Blocker | 4.4 Current Blockers | Bullet point |
+| Preference | 6. Preferences | Bullet under relevant subsection |
+| Win | 4.2 Recent Wins | Bullet with date |
+
+### Update Principles
+
+- **Don't overwrite** — Add to existing content
+- **Include dates** — Timestamp new entries
+- **Cite source** — Note where info came from (meeting, email, etc.)
+- **Ask for confirmation** — User approves before committing

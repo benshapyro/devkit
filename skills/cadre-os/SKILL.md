@@ -9,24 +9,94 @@ Cadre AI's consulting operating system. Single entry point for discovery, contex
 
 **Lite Mode** = Excel-based data capture when Airtable is unavailable. Use `discovery-catalog-lite-template.xlsx` instead of Airtable Discovery Catalog.
 
-## Commands
+---
 
-Slash commands provide explicit control. Use natural language OR commands — both work.
+## Commands & Routing
 
-| Category | Examples |
-|----------|----------|
-| Discovery & Analysis | `/prep`, `/debrief`, `/context`, `/gaps`, `/patterns`, `/priorities`, `/lite` |
-| Tech Stack | `/techstack survey`, `/techstack template`, `/techstack parse`, `/techstack research`, `/techstack migrate` |
-| Artifacts | `/artifact overview`, `/artifact map`, `/artifact findings` |
-| Solutions | `/solutions discover`, `/solutions catalog`, `/solutions brief`, `/solutions assistants *`, `/solutions prompts *` |
-| Deliverables | `/deck`, `/summary`, `/report`, `/roadmap`, `/brief` |
-| Communications | `/email`, `/agenda`, `/mbr`, `/3p`, `/newsletter` |
-| SOPs | `/sop discovery`, `/sop techstack`, `/sop solutions` |
-| Meta | `/help`, `/brand` |
+Slash commands and natural language triggers both route to the same references.
 
-See [commands.md](references/commands.md) for full command reference with arguments and examples.
+### Discovery & Analysis
 
-See [trigger-mapping.md](references/trigger-mapping.md) for natural language trigger routing.
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/prep` or "prep me for" | Session prep | prep.md |
+| `/debrief` or transcript pasted | Process session | debrief.md |
+| `/debrief lite` or Excel file | Lite mode debrief | debrief.md + data-schema.md |
+| `/lite template` | Get Excel template | debrief.md |
+| `/lite populate [client]` | Fill template | debrief.md + data-schema.md |
+| `/context [client]` or "what do we know" | Pull client data | data-schema.md |
+| `/gaps` or "coverage", "what's missing" | Coverage gap analysis | synthesis.md |
+| `/patterns` or "themes" | Cross-session patterns | synthesis.md |
+| `/priorities` or "rank" | Challenge/solution ranking | synthesis.md |
+| "what questions should I ask" | Question selection | questions.md |
+
+### Tech Stack
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/techstack survey` | Output Google Form questions | tech-stack.md |
+| `/techstack template` | Provide blank Excel template | tech-stack.md |
+| `/techstack parse` | Parse survey responses | tech-stack.md |
+| `/techstack research [verbose]` | Research APIs/integrations | tech-stack.md |
+| `/techstack migrate` | Promote to Discovery Catalog | tech-stack.md + data-schema.md |
+
+### Artifacts
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/artifact overview` | Tech Stack Overview (HTML) | synthesis.md + tech-stack.md |
+| `/artifact map` | Integration Map (JSX) | synthesis.md + tech-stack.md |
+| `/artifact findings` | Findings Summary (HTML) | synthesis.md + debrief.md |
+
+### Solutions (AI Builds)
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/solutions discover` | Scan for assistant/prompt opportunities | assistants.md |
+| `/solutions catalog` | Generate client-facing catalog HTML | assistants.md + brand.md |
+| `/solutions brief [use case]` | Generate solution brief | deliverables.md + brand.md |
+| `/solutions assistants library` | Browse 50 proven patterns | assistants.md + assistants-library.json |
+| `/solutions assistants prioritize` | Score, rank, classify | assistants.md |
+| `/solutions assistants validate` | Check feasibility blockers | assistants.md |
+| `/solutions assistants estimate` | Calculate build time/cost | assistants.md + assistants-scoping.json |
+| `/solutions assistants spec [light|full]` | Generate implementation spec | assistants.md |
+| `/solutions prompts patterns [category]` | Browse 45+ prompt patterns | prompts.md |
+| `/solutions prompts audit` | Review/improve a prompt | prompts.md |
+| `/solutions prompts template [type]` | Generate system prompt | prompts.md |
+| `/solutions prompts optimize [model]` | Model-specific guidance | prompts.md |
+| `/solutions prompts agentic` | Agent patterns, multi-agent | prompts.md |
+
+### Deliverables
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/deck` or "strategy presentation" | Strategy deck | deliverables.md + brand.md |
+| `/summary` or "executive summary" | One-pager for leadership | deliverables.md + brand.md |
+| `/report` or "findings report" | Detailed findings document | deliverables.md + brand.md |
+| `/roadmap` or "implementation plan" | Implementation roadmap | deliverables.md + brand.md |
+| `/brief` or "solution brief" | Solution/product brief | deliverables.md + brand.md |
+
+### Communications
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/email` or "weekly email" | Client weekly update | comms.md + brand.md |
+| `/agenda` or "meeting agenda" | Meeting agenda | comms.md |
+| `/mbr` or "monthly review" | Monthly business review | comms.md + brand.md |
+| `/3p` or "progress update" | Internal 3P update | comms.md |
+| `/newsletter` | Internal newsletter | comms.md |
+
+### SOPs & Meta
+
+| Command / Trigger | Action | Reference |
+|-------------------|--------|-----------|
+| `/sop discovery` | Show Discovery Catalog process | assets/sops/discovery-catalog-sop.md |
+| `/sop techstack` | Show Tech Stack Survey process | assets/sops/tech-stack-survey-sop.md |
+| `/sop solutions` | Show Solutions process | assets/sops/solutions-sop.md |
+| `/help` | List available commands | (this file) |
+| `/brand` | Show brand quick reference | brand.md |
+
+**Arguments are optional.** If omitted, Claude will ask for needed info.
 
 ---
 
@@ -51,7 +121,7 @@ See [trigger-mapping.md](references/trigger-mapping.md) for natural language tri
 **Always apply:**
 1. Run synthesis first (patterns, priorities)
 2. Pull client context from Catalog/Brain
-3. Apply Cadre brand (load `brand/brand.md`)
+3. Apply Cadre brand (load brand.md)
 4. Use appropriate system skill (pptx, docx)
 
 **Selection guide:**
@@ -66,18 +136,18 @@ See [trigger-mapping.md](references/trigger-mapping.md) for natural language tri
 
 **Client comms:** Always check recent context (Catalog, Slack, Email) before drafting.
 
-| Type | Cadence | Reference |
-|------|---------|-----------|
-| Weekly Email | Weekly | `comms/weekly-email.md` |
-| Meeting Agenda | Per meeting | `comms/meeting-agenda.md` |
-| Monthly Review | Monthly | `comms/monthly-review.md` |
+| Type | Cadence | Section |
+|------|---------|---------|
+| Weekly Email | Weekly | comms.md#weekly-email |
+| Meeting Agenda | Per meeting | comms.md#meeting-agendas |
+| Monthly Review | Monthly | comms.md#monthly-business-review |
 
 **Internal comms:** Use 3P format for progress updates.
 
-| Type | Cadence | Reference |
-|------|---------|-----------|
-| 3P Update | Weekly | `comms/internal-comms.md` |
-| Newsletter | Monthly | `comms/internal-comms.md` |
+| Type | Cadence | Section |
+|------|---------|---------|
+| 3P Update | Weekly | comms.md#internal-communications |
+| Newsletter | Monthly | comms.md#internal-communications |
 
 ---
 
@@ -85,7 +155,7 @@ See [trigger-mapping.md](references/trigger-mapping.md) for natural language tri
 
 Before creating ANY Catalog records:
 
-1. **Load schema first** — Read `data/discovery-catalog.md`
+1. **Load schema first** — Read `data-schema.md`
 2. **Get client record ID** — Query 0_Clients, capture record ID
 3. **Check existing records** — Query relevant tables for UPDATE vs CREATE
 4. **Validate before writing:**
@@ -170,104 +240,40 @@ Pre-built HTML/JSX templates for common artifacts. See [assets/README.md](assets
 
 ## Reference Files
 
-### Discovery & Methodology
+All reference files are in the `references/` directory.
 
 | File | Purpose |
 |------|---------|
-| [prep.md](references/discovery/prep.md) | Session prep (quick/deep mode, external research protocols) |
-| [debrief.md](references/discovery/debrief.md) | Session debrief (quick/full/lite mode) |
-| [question-library.md](references/discovery/question-library.md) | Question selection |
-| [follow-up-patterns.md](references/discovery/follow-up-patterns.md) | Conditional follow-ups |
-| [insight-markers.md](references/discovery/insight-markers.md) | Insight markers (⚡🔄⚠️💡) |
-| [checklists.md](references/discovery/checklists.md) | Quality checks |
-| [special-scenarios.md](references/discovery/special-scenarios.md) | Edge cases |
-| [brain-update-generator.md](references/discovery/brain-update-generator.md) | Brain update docs |
-| [archetypes.md](references/methodology/archetypes.md) | Stakeholder engagement strategy |
-| [playbook.md](references/methodology/playbook.md) | Discovery phases, coverage checklist |
+| [prep.md](references/prep.md) | Session prep workflow, archetypes, follow-up patterns |
+| [debrief.md](references/debrief.md) | Session debrief, Lite mode, insight markers, quality checks |
+| [questions.md](references/questions.md) | Question library for discovery sessions |
+| [synthesis.md](references/synthesis.md) | Pattern analysis, gap analysis, prioritization, artifact generation |
+| [data-schema.md](references/data-schema.md) | Airtable Discovery Catalog + Lite Excel + Client Brain schemas |
+| [tech-stack.md](references/tech-stack.md) | Tech stack survey, research, Tools Library |
+| [deliverables.md](references/deliverables.md) | Strategy deck, executive summary, report, roadmap, solution brief |
+| [comms.md](references/comms.md) | Weekly email, meeting agenda, MBR, 3P updates, newsletter |
+| [assistants.md](references/assistants.md) | Assistant discovery, prioritization, estimation, specs |
+| [prompts.md](references/prompts.md) | Prompt patterns (content, analysis, code, education), model optimization, agentic |
+| [brand.md](references/brand.md) | Brand positioning, voice, messaging, UI components |
 
-### Data & Schema
-
-| File | Purpose |
-|------|---------|
-| [discovery-catalog.md](references/data/discovery-catalog.md) | Airtable schema — load before ANY Catalog writes |
-| [client-brain.md](references/data/client-brain.md) | Brain structure, update templates |
-| [lite-schema.md](references/data/lite-schema.md) | Lite mode Excel schema, field mapping |
-| [tech-stack.md](references/data/tech-stack.md) | Tech stack survey workflows |
-| [tech-stack-research.md](references/data/tech-stack-research.md) | Research process with inference logic |
-| [tools-library.md](references/data/tools-library.md) | Airtable Tools Library schema, queries |
-
-### Synthesis
+### Data Files
 
 | File | Purpose |
 |------|---------|
-| [patterns.md](references/synthesis/patterns.md) | Pattern analysis |
-| [gaps.md](references/synthesis/gaps.md) | Gap/coverage analysis |
-| [prioritizer.md](references/synthesis/prioritizer.md) | Challenge/solution ranking |
-| [insights.md](references/synthesis/insights.md) | Key insight generation |
-| [data-to-artifact.md](references/synthesis/data-to-artifact.md) | Generating branded artifacts from data |
+| [assistants-library.json](references/assistants-library.json) | 50 proven assistant patterns |
+| [assistants-scoping.json](references/assistants-scoping.json) | Build time and cost calculations |
 
-### Deliverables
+---
 
-| File | Purpose |
-|------|---------|
-| [strategy-deck.md](references/deliverables/strategy-deck.md) | Strategy presentation |
-| [executive-summary.md](references/deliverables/executive-summary.md) | One-pager for leadership |
-| [report.md](references/deliverables/report.md) | Detailed findings document |
-| [roadmap.md](references/deliverables/roadmap.md) | Implementation plan |
-| [solution-brief.md](references/deliverables/solution-brief.md) | Workshop protocol + modular templates |
-
-### Communications
-
-| File | Purpose |
-|------|---------|
-| [weekly-email.md](references/comms/weekly-email.md) | Client weekly updates |
-| [meeting-agenda.md](references/comms/meeting-agenda.md) | Meeting agendas |
-| [monthly-review.md](references/comms/monthly-review.md) | Monthly business reviews |
-| [internal-comms.md](references/comms/internal-comms.md) | 3P updates, newsletters |
-
-### Brand
-
-| File | Purpose |
-|------|---------|
-| [brand.md](references/brand/brand.md) | Positioning, voice, messaging |
-| [brand-ui.md](references/brand/brand-ui.md) | UI components + before/after examples |
-
-### Solutions - Assistants
-
-| File | Purpose |
-|------|---------|
-| [assistants-workflow.md](references/solutions/assistants-workflow.md) | Any solutions command |
-| [assistants-library.json](references/solutions/assistants-library.json) | Discover, library browse |
-| [assistants-scoping.json](references/solutions/assistants-scoping.json) | Estimate calculations |
-| [assistants-prioritization.md](references/solutions/assistants-prioritization.md) | Prioritize, validate, scoring |
-| [assistants-categories.md](references/solutions/assistants-categories.md) | Discover |
-| [assistants-spec-light.md](references/solutions/assistants-spec-light.md) | Light specs |
-| [assistants-spec-full.md](references/solutions/assistants-spec-full.md) | Full specs |
-
-### Solutions - Prompts
-
-| File | Purpose |
-|------|---------|
-| [prompts-content.md](references/solutions/prompts-content.md) | Content prompts |
-| [prompts-analysis.md](references/solutions/prompts-analysis.md) | Analysis prompts |
-| [prompts-code.md](references/solutions/prompts-code.md) | Code prompts |
-| [prompts-problem-solving.md](references/solutions/prompts-problem-solving.md) | Decision/planning prompts |
-| [prompts-education.md](references/solutions/prompts-education.md) | Teaching/tutoring prompts |
-| [prompts-audit.md](references/solutions/prompts-audit.md) | Prompt audit/review |
-| [prompts-models.md](references/solutions/prompts-models.md) | Claude, Gemini, GPT optimization |
-| [prompts-agentic.md](references/solutions/prompts-agentic.md) | ReAct, multi-agent, tool patterns |
-
-### Navigation
-
-| File | Purpose |
-|------|---------|
-| [commands.md](references/commands.md) | Full command reference with arguments |
-| [trigger-mapping.md](references/trigger-mapping.md) | Natural language → reference routing |
-
-### SOPs (User-Facing)
+## SOPs (User-Facing)
 
 | File | Present When |
 |------|--------------|
 | [discovery-catalog-sop.md](assets/sops/discovery-catalog-sop.md) | User asks about discovery process |
 | [tech-stack-survey-sop.md](assets/sops/tech-stack-survey-sop.md) | User asks about tech stack process |
 | [solutions-sop.md](assets/sops/solutions-sop.md) | User asks about solutions/builds process |
+
+**SOP Behavior:**
+- **Present SOP** when user asks about the process: "What's the process for debriefing?"
+- **Follow SOP** when user requests action: "Debrief this transcript"
+- **When unclear:** Default to following the SOP, mention: "I'm following the Discovery Catalog SOP — want me to show you the full process?"

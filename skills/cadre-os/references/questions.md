@@ -2,6 +2,8 @@
 
 Comprehensive question bank with multi-tag organization for targeted question selection.
 
+> **Related:** See [prep.md](prep.md) for session preparation workflow including question selection and stakeholder archetype strategies.
+
 ---
 
 ## Contents
@@ -37,7 +39,7 @@ Questions are tagged with multiple attributes. Use any combination to find the r
 5. **Skip questions** already answered in Catalog
 6. **Add inline follow-ups** for key questions
 
-> **Advanced techniques:** See [follow-up-patterns.md](follow-up-patterns.md) for energy-based follow-ups, 5 Whys, mirroring, and other deepening techniques.
+> **Advanced techniques:** See [prep.md#follow-up-patterns](prep.md#follow-up-patterns) for energy-based follow-ups, 5 Whys, mirroring, and other deepening techniques.
 
 ### Question Scaling
 

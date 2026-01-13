@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Repository Purpose
 
@@ -15,28 +15,24 @@ devkit/
 ├── skills/                 # Portable skills (Agent Skills spec)
 │   ├── CLAUDE.md          # Skills-specific context
 │   ├── <skill-name>/      # Individual skill directories
-│   │   └── SKILL.md       # Required: frontmatter + instructions
+│   │   ├── SKILL.md       # Required: frontmatter + instructions
+│   │   ├── scripts/       # Optional: executable code
+│   │   ├── references/    # Optional: docs loaded on demand
+│   │   └── assets/        # Optional: templates, resources
 │   └── archive/           # Excluded from deployment
 │
 ├── hooks/                  # Event-driven automation
 │   ├── CLAUDE.md          # Hooks-specific context
-│   ├── <hook-name>.md     # Individual hook files
-│   └── archive/           # Excluded from deployment
+│   ├── scripts/           # Reusable hook scripts (Python)
+│   └── <hook-name>.md     # Individual hook files
 │
 ├── commands/               # User-invoked slash commands
 │   ├── CLAUDE.md          # Commands-specific context
-│   ├── <command-name>.md  # Individual command files
-│   └── archive/           # Excluded from deployment
+│   └── <command-name>.md  # Individual command files
 │
 ├── agents/                 # Specialized sub-agents
 │   ├── CLAUDE.md          # Agents-specific context
-│   ├── <agent-name>.md    # Individual agent files
-│   └── archive/           # Excluded from deployment
-│
-├── scripts/                # Deployment and management tooling
-│   ├── deploy.py          # Unified interactive deployment
-│   ├── status.py          # Compare deployed vs source
-│   └── validate.py        # Validate artifact formats
+│   └── <agent-name>.md    # Individual agent files
 │
 ├── CUSTOMIZATION.md        # Spec for hooks, commands, agents
 └── CLAUDE.md               # This file
@@ -44,12 +40,12 @@ devkit/
 
 ## Artifact Types
 
-| Type | Purpose | Format | Spec |
-|------|---------|--------|------|
-| **Skills** | Domain knowledge & workflows | SKILL.md in directory | [skills/CLAUDE.md](skills/CLAUDE.md) |
-| **Hooks** | Event-driven automation | .md with YAML frontmatter | [CUSTOMIZATION.md](CUSTOMIZATION.md) |
-| **Commands** | User-invoked workflows | Native Claude Code format | [CUSTOMIZATION.md](CUSTOMIZATION.md) |
-| **Agents** | Delegated sub-agents | Native Claude Code format | [CUSTOMIZATION.md](CUSTOMIZATION.md) |
+| Type | Purpose | Format | Deploy Target |
+|------|---------|--------|---------------|
+| **Skills** | Domain knowledge & workflows | SKILL.md in directory | `~/.claude/skills/` |
+| **Hooks** | Event-driven automation | .md with YAML frontmatter | `~/.claude/settings.json` (merged) |
+| **Commands** | User-invoked workflows | Native Claude Code format | `~/.claude/commands/` |
+| **Agents** | Delegated sub-agents | Native Claude Code format | `~/.claude/agents/` |
 
 ## Key Conventions
 
@@ -63,28 +59,24 @@ devkit/
 
 **Tool field:** All artifacts include `tool: claude-code` in frontmatter for future multi-tool support
 
-## Deployment
+## Development Commands
 
 ```bash
-# Interactive deployment of all types
-./scripts/deploy.py
+# Validate a skill
+./skills/skill-creator/scripts/quick_validate.py <path/to/skill-folder>
 
-# Check what's deployed vs source
-./scripts/status.py
+# Create a new skill from template
+./skills/skill-creator/scripts/init_skill.py <skill-name> --path ./skills
 
-# Validate artifact formats
-./scripts/validate.py
+# Package a skill for distribution
+./skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> [output-dir]
 ```
 
-**Target paths:**
-- Skills: `~/.claude/skills/`
-- Hooks: `~/.claude/settings.json` (merged)
-- Commands: `~/.claude/commands/`
-- Agents: `~/.claude/agents/`
+**Manual deployment:** Copy artifacts to their target paths. Commands and agents copy directly. Hooks require JSON transformation and merge into `settings.json`.
 
 ## Working in Subdirectories
 
-When working in a specific directory, read its CLAUDE.md for detailed guidance:
+Read the CLAUDE.md in each directory for detailed guidance:
 
 - `skills/CLAUDE.md` - Skill authoring, SKILL.md format, bundled resources
 - `hooks/CLAUDE.md` - Hook events, matchers, command/prompt types
@@ -93,13 +85,13 @@ When working in a specific directory, read its CLAUDE.md for detailed guidance:
 
 ## Adding New Artifacts
 
-**Skill:** Create directory with SKILL.md. See `skills/skill-creator/` for tooling.
+**Skill:** Create directory with SKILL.md. Use `./skills/skill-creator/scripts/init_skill.py` for scaffolding.
 
 **Hook:** Create `.md` file in `hooks/` with event, matcher, command in frontmatter.
 
-**Command:** Create `.md` file in `commands/` with native Claude Code format.
+**Command:** Create `.md` file in `commands/` with native Claude Code format. Filename becomes `/command-name`.
 
-**Agent:** Create `.md` file in `agents/` with name, description, tools in frontmatter.
+**Agent:** Create `.md` file in `agents/` with name, description, tools in frontmatter. Filename must match `name` field.
 
 ## Reference Documentation
 
