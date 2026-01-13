@@ -34,7 +34,8 @@ devkit/
 │   ├── CLAUDE.md          # Agents-specific context
 │   └── <agent-name>.md    # Individual agent files
 │
-├── CUSTOMIZATION.md        # Spec for hooks, commands, agents
+├── docs/                   # Documentation and specs
+│   └── archive/            # Deprecated documentation
 └── CLAUDE.md               # This file
 ```
 
@@ -93,9 +94,30 @@ Read the CLAUDE.md in each directory for detailed guidance:
 
 **Agent:** Create `.md` file in `agents/` with name, description, tools in frontmatter. Filename must match `name` field.
 
+## Changelog Maintenance
+
+**IMPORTANT:** When making significant changes to this repository, update `CHANGELOG.md`:
+
+1. Add entries under `[Unreleased]` section
+2. Use appropriate category: Added, Changed, Deprecated, Removed, Fixed, Security
+3. Write clear, concise descriptions in plain English
+4. Focus on what changed and why it matters, not implementation details
+
+**What counts as significant:**
+- New artifacts (skills, hooks, commands, agents)
+- Changes to existing artifact behavior
+- New features or capabilities
+- Bug fixes
+- Breaking changes
+
+**Not needed for:**
+- Typo fixes
+- Internal refactoring with no behavior change
+- Work-in-progress commits
+
 ## Reference Documentation
 
-- [CUSTOMIZATION.md](CUSTOMIZATION.md) - Hooks, commands, agents specification
+- [README.md](README.md) - Usage guide with examples
 - [skills/CLAUDE.md](skills/CLAUDE.md) - Skills specification
 - [Agent Skills Spec](https://agentskills.io) - Portable skills format
 - [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code) - Official documentation
