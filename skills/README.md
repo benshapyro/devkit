@@ -1,0 +1,928 @@
+# Skills Catalog
+
+A curated collection of 47 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+
+**How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
+
+## Quick Navigation
+
+- [Content & Marketing](#content--marketing) — Writing, editing, repurposing content
+- [Development Tools](#development-tools) — APIs, testing, code patterns
+- [Data & Documents](#data--documents) — Spreadsheets, PDFs, analysis
+- [Design & UI](#design--ui) — Frontend, themes, visual design
+- [Infrastructure & Ops](#infrastructure--ops) — Security, monitoring, reliability
+- [Business & Strategy](#business--strategy) — Product, competitive analysis, frameworks
+- [AI & Automation](#ai--automation) — AI APIs, prompts, image generation
+- [Internal & Specialty](#internal--specialty) — Niche tools and meta-skills
+
+---
+
+## Content & Marketing
+
+Skills for writing, editing, and content strategy.
+
+<details>
+<summary><strong>content-repurposer</strong> — Turn one piece of content into many formats</summary>
+
+**Best for:** Content marketers, social media managers, marketing teams
+
+**What it does:** Transforms a single piece of content (blog post, video, podcast) into multiple formats optimized for different platforms. Handles blog-to-social, podcast-to-article, video-to-snippets, and more while maintaining consistent messaging.
+
+**When to use:**
+- Turning a blog post into LinkedIn posts, tweets, and newsletter content
+- Converting a podcast episode into an article and quote graphics
+- Repurposing webinar content for multiple channels
+- Creating platform-specific variations of core content
+
+**Example prompt:**
+> "Take this 2,000-word blog post about AI trends and create a LinkedIn carousel, 5 tweets, and an email newsletter intro."
+
+</details>
+
+<details>
+<summary><strong>editorial-calendar</strong> — Plan and coordinate content across channels</summary>
+
+**Best for:** Content managers, marketing directors, editorial teams
+
+**What it does:** Creates comprehensive content calendars with keyword-first planning, SEO integration, topic clusters, multi-channel coordination, and publication scheduling. Aligns content with business goals and seasonal events.
+
+**When to use:**
+- Planning quarterly content strategy
+- Coordinating blog, social, and email campaigns
+- Aligning content with product launches or events
+- Building out topic clusters for SEO
+
+**Example prompt:**
+> "Create a 3-month editorial calendar for our B2B SaaS blog focusing on customer success themes. Include social media tie-ins."
+
+</details>
+
+<details>
+<summary><strong>ace-content-engine</strong> — Generate blog content with brand voice consistency</summary>
+
+**Best for:** Content writers, marketing teams, blog managers
+
+**What it does:** Generates blog content with brand voice consistency, research support, and structured workflows. Supports Workshop Mode (guided, high-quality with iterations) and YOLO Mode (quick single-pass drafts). Handles citations, structured content sections, and brand voice configuration.
+
+**When to use:**
+- Writing blog posts with consistent brand voice
+- Generating content with proper citations and research
+- Creating high-quality drafts through guided iteration
+- Producing quick content drafts when speed matters
+
+**Example prompt:**
+> "Write a blog post about AI productivity tools using Workshop Mode. Apply our brand voice and include citations."
+
+</details>
+
+<details>
+<summary><strong>internal-comms</strong> — Craft effective internal communications</summary>
+
+**Best for:** HR teams, internal communications managers, executives
+
+**What it does:** Creates clear, engaging internal communications including all-hands announcements, policy updates, change management messages, and executive communications. Balances transparency with appropriate messaging.
+
+**When to use:**
+- Announcing organizational changes
+- Communicating new policies or benefits
+- Writing executive updates and town hall scripts
+- Crafting sensitive employee communications
+
+**Example prompt:**
+> "Write an all-hands announcement about our office relocation. Emphasize the positives while acknowledging the transition period."
+
+</details>
+
+<details>
+<summary><strong>doc-coauthoring</strong> — Co-author documents through structured stages</summary>
+
+**Best for:** Writers, subject matter experts, documentation teams
+
+**What it does:** Guides co-authoring through three structured stages: Context Gathering (transfer knowledge and intent), Refinement & Structure (iterate on content), and Reader Testing (verify with fresh perspective). Catches blind spots before real-world distribution by testing documents with a "fresh Claude."
+
+**When to use:**
+- Transferring complex knowledge into documents
+- Iterating on drafts with structured refinement
+- Testing if documents work for target readers
+- Catching blind spots before publishing
+
+**Example prompt:**
+> "Help me co-author a technical guide. Start with context gathering to understand what I need to convey."
+
+</details>
+
+<details>
+<summary><strong>brand-guidelines</strong> — Apply Anthropic brand colors and typography</summary>
+
+**Best for:** Designers creating Anthropic-branded artifacts
+
+**What it does:** Applies Anthropic's official brand colors, typography, and design standards to artifacts. Provides the specific color palette (Anthropic Tan, accent colors), font guidelines, and visual styling rules for creating on-brand presentations, documents, and HTML artifacts.
+
+**When to use:**
+- Styling artifacts with Anthropic brand colors
+- Applying correct Anthropic typography
+- Creating on-brand presentations or documents
+- Ensuring visual consistency with Anthropic standards
+
+**Example prompt:**
+> "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
+
+</details>
+
+---
+
+## Development Tools
+
+Skills for coding, APIs, testing, and development patterns.
+
+<details>
+<summary><strong>api-design-patterns</strong> — Design robust REST and GraphQL APIs</summary>
+
+**Best for:** Backend developers, API architects, full-stack engineers
+
+**What it does:** Provides REST and GraphQL API design patterns for Node.js, Flask, and FastAPI. Covers endpoint design, request/response structures, pagination, authentication, rate limiting, and error handling.
+
+**When to use:**
+- Designing new API endpoints
+- Reviewing API architecture decisions
+- Implementing pagination and filtering
+- Setting up API authentication and rate limiting
+
+**Example prompt:**
+> "Design a REST API for user management with CRUD operations, pagination, and role-based access control."
+
+</details>
+
+<details>
+<summary><strong>test-generator</strong> — Generate comprehensive test suites</summary>
+
+**Best for:** Developers, QA engineers, test automation specialists
+
+**What it does:** Generates Jest or Pytest tests following testing best practices. Creates unit tests, integration tests, and mocks with proper coverage of edge cases and error conditions.
+
+**When to use:**
+- Adding test coverage to existing code
+- Creating tests for new features
+- Setting up mocks for external dependencies
+- Improving test organization and structure
+
+**Example prompt:**
+> "Generate Jest tests for this UserService class, including happy path, error cases, and mocked database calls."
+
+</details>
+
+<details>
+<summary><strong>react-patterns</strong> — Implement modern React best practices</summary>
+
+**Best for:** Frontend developers, React engineers
+
+**What it does:** Provides modern React patterns for TypeScript applications including hooks, state management, component composition, and performance optimization. Covers custom hooks, context patterns, and render optimization.
+
+**When to use:**
+- Building new React components
+- Refactoring class components to hooks
+- Implementing state management solutions
+- Optimizing component performance
+
+**Example prompt:**
+> "Create a custom hook for managing form state with validation, loading states, and error handling."
+
+</details>
+
+<details>
+<summary><strong>mcp-builder</strong> — Build Model Context Protocol servers</summary>
+
+**Best for:** AI developers, integration engineers, tool builders
+
+**What it does:** Comprehensive guide for building MCP servers that extend Claude's capabilities. Covers server architecture, tool definitions, resource handling, and deployment patterns.
+
+**When to use:**
+- Creating custom MCP servers for Claude
+- Adding new tools and capabilities to Claude
+- Integrating external services via MCP
+- Debugging MCP server issues
+
+**Example prompt:**
+> "Build an MCP server that exposes our internal API as tools Claude can use."
+
+</details>
+
+<details>
+<summary><strong>code-formatter</strong> — Apply consistent code style</summary>
+
+**Best for:** Developers, tech leads, teams establishing standards
+
+**What it does:** Formats code according to style guidelines for TypeScript, Python, and general best practices. Covers naming conventions (camelCase, PascalCase), 100-character line limits, trailing commas, import organization, and explicit type annotations.
+
+**When to use:**
+- Fixing linting and formatting issues
+- Establishing code style standards
+- Reviewing code for style consistency
+- Setting up Prettier, Black, or ESLint
+
+**Example prompt:**
+> "Format this TypeScript file according to our style guide and fix any ESLint violations."
+
+</details>
+
+<details>
+<summary><strong>error-handler</strong> — Implement robust error handling</summary>
+
+**Best for:** Backend developers, full-stack engineers
+
+**What it does:** Provides battle-tested error handling patterns for TypeScript and Python. Covers try/catch strategies, error types, logging, user-friendly messages, and recovery patterns.
+
+**When to use:**
+- Adding error handling to existing code
+- Designing error handling strategies
+- Creating custom error types
+- Implementing graceful degradation
+
+**Example prompt:**
+> "Add comprehensive error handling to this API endpoint, including validation errors, database errors, and user-friendly responses."
+
+</details>
+
+---
+
+## Data & Documents
+
+Skills for working with spreadsheets, documents, PDFs, and data analysis.
+
+<details>
+<summary><strong>pdf</strong> — Extract, merge, split, fill forms, and manipulate PDFs</summary>
+
+**Best for:** Business analysts, document managers, anyone working with PDFs
+
+**What it does:** Comprehensive PDF toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, filling forms, and adding watermarks. Works with both simple and complex PDF structures.
+
+**When to use:**
+- Filling out PDF forms programmatically
+- Extracting text and tables from PDFs
+- Merging or splitting PDF documents
+- Adding annotations or watermarks
+
+**Example prompt:**
+> "Extract all the table data from this PDF invoice and convert it to a structured format."
+
+</details>
+
+<details>
+<summary><strong>docx</strong> — Create and edit Word documents</summary>
+
+**Best for:** Report writers, business analysts, document automation teams
+
+**What it does:** Creates new Word documents using docx-js (JavaScript/TypeScript) or edits existing documents using Python OOXML library. Handles formatting, tables, images, headers/footers, tracked changes, and styles. Choose the right tool based on whether you're creating or editing.
+
+**When to use:**
+- Generating reports from templates
+- Creating formatted documents from data
+- Automating document production
+- Converting content to Word format
+
+**Example prompt:**
+> "Create a professional report document with a cover page, table of contents, and formatted sections from this data."
+
+</details>
+
+<details>
+<summary><strong>pptx</strong> — Create and edit PowerPoint presentations</summary>
+
+**Best for:** Consultants, sales teams, presenters
+
+**What it does:** Creates and edits PowerPoint presentations using OOXML format or html2pptx. Supports three workflows: creating from scratch (html2pptx), editing existing presentations (OOXML), and creating from templates (inventory → rearrange → replace). Handles slides, layouts, charts, and images.
+
+**When to use:**
+- Creating presentations from scratch with html2pptx
+- Creating presentations from existing templates
+- Editing slide content in existing presentations
+- Automating recurring presentations with custom design
+
+**Example prompt:**
+> "Create a 10-slide investor pitch deck from this company overview, including charts for the financial data."
+
+</details>
+
+<details>
+<summary><strong>xlsx</strong> — Work with Excel spreadsheets</summary>
+
+**Best for:** Data analysts, financial analysts, operations teams
+
+**What it does:** Creates and manipulates Excel files with proper formulas (never hardcoded calculations), charts, and formatting. Supports financial modeling standards with color coding. Uses pandas for data analysis and openpyxl for formula-based spreadsheets. Includes formula verification tools.
+
+**When to use:**
+- Generating Excel reports from data
+- Processing and transforming spreadsheet data
+- Creating templates with formulas
+- Analyzing structured tabular data
+
+**Example prompt:**
+> "Create an Excel budget template with monthly columns, category rows, formulas for totals, and conditional formatting."
+
+</details>
+
+<details>
+<summary><strong>ai-data-analyst</strong> — Perform comprehensive data analysis</summary>
+
+**Best for:** Data scientists, business analysts, researchers
+
+**What it does:** Performs comprehensive data analysis, statistical modeling, and visualization by writing and executing Python scripts. Covers exploratory analysis, statistical tests, and predictive modeling.
+
+**When to use:**
+- Analyzing datasets for patterns and insights
+- Performing statistical hypothesis testing
+- Creating data visualizations
+- Building predictive models
+
+**Not for:** Real-time streaming data, extremely large datasets requiring Spark/Dask, production ML deployment, or live dashboarding (use BI tools instead).
+
+**Example prompt:**
+> "Analyze this sales dataset: identify trends, correlations, and create visualizations for a management presentation."
+
+</details>
+
+<details>
+<summary><strong>data-querying</strong> — Query internal data services</summary>
+
+**Best for:** Business intelligence teams, analysts, data engineers
+
+**What it does:** Queries internal data warehouses and marts (not production OLTP databases) to answer business questions. Produces results and reusable query artifacts while respecting data governance and PII policies. Does not create pipelines or share raw PII.
+
+**When to use:**
+- Pulling metrics from data warehouses
+- Creating reusable query templates
+- Building data extracts for stakeholders
+- Answering ad-hoc data questions
+
+**Example prompt:**
+> "Query our data warehouse for monthly active users by region for the past 12 months and visualize the trend."
+
+</details>
+
+---
+
+## Design & UI
+
+Skills for frontend development, visual design, and UI/UX.
+
+<details>
+<summary><strong>frontend-design</strong> — Create distinctive, memorable interfaces</summary>
+
+**Best for:** Frontend developers, UI designers, product teams
+
+**What it does:** Creates distinctive, production-grade user interfaces that avoid generic AI aesthetics. Emphasizes intentional aesthetic direction—brutally minimal, maximalist, retro-futuristic, organic, luxury, playful, editorial, brutalist, or art deco. Implements production-grade working code with exceptional attention to typography, color harmony, motion, and spatial composition.
+
+**When to use:**
+- Building new web pages or applications
+- Designing UI components and layouts
+- Creating landing pages and marketing sites
+- Improving visual design quality
+
+**Example prompt:**
+> "Design a modern dashboard interface for a project management app with a unique visual style."
+
+</details>
+
+<details>
+<summary><strong>canvas-design</strong> — Create museum-quality visual art through design philosophy</summary>
+
+**Best for:** Designers, visual artists, creative professionals
+
+**What it does:** Creates museum and magazine-quality visual art through a two-step design philosophy workflow. First generates a visual philosophy (aesthetic movement manifesto) expressed through form, space, color, and composition. Then creates the artwork as PDF or PNG output (90% visual design, 10% essential text). Emphasizes meticulously crafted, expert-level work.
+
+**When to use:**
+- Creating visual pieces inspired by design movements
+- Generating poster-quality static artwork
+- Applying design philosophy to visual output
+- Building portfolio-worthy visual designs
+
+**Example prompt:**
+> "Create a visual piece inspired by brutalist architecture principles, expressed as a museum-quality poster design."
+
+</details>
+
+<details>
+<summary><strong>theme-factory</strong> — Apply professional themes to slides and documents</summary>
+
+**Best for:** Presenters, document creators, anyone styling artifacts
+
+**What it does:** Provides 10 curated professional font and color themes (Ocean Depths, Sunset Boulevard, Forest Canopy, etc.) that can be applied to presentation slides, documents, and HTML artifacts. Each theme includes cohesive color palettes with hex codes and complementary font pairings. Also supports custom theme generation.
+
+**When to use:**
+- Styling presentation slide decks with professional themes
+- Applying consistent styling to reports and documents
+- Viewing available themes before selecting one
+- Generating custom themes for specific projects
+
+**Example prompt:**
+> "Show me the available themes, then apply Ocean Depths to my slide deck."
+
+</details>
+
+<details>
+<summary><strong>algorithmic-art</strong> — Create generative art with p5.js and seeded reproducibility</summary>
+
+**Best for:** Creative coders, digital artists, generative art enthusiasts
+
+**What it does:** Creates generative art using p5.js through a two-step workflow. First generates an algorithmic philosophy (computational aesthetic manifesto emphasizing seeded randomness, emergent behavior, and mathematical beauty). Then implements as interactive HTML artifact with parameter controls, seed navigation (prev/next/random), and reproducible variations.
+
+**When to use:**
+- Creating generative art with reproducible seeds
+- Building interactive parameter-controlled artwork
+- Implementing creative coding projects with p5.js
+- Exploring algorithmic aesthetics and emergent patterns
+
+**Example prompt:**
+> "Create a generative art piece about organic turbulence using flow fields and Perlin noise, with interactive seed exploration."
+
+</details>
+
+<details>
+<summary><strong>web-artifacts-builder</strong> — Build complex React artifacts with shadcn/ui</summary>
+
+**Best for:** Frontend developers building elaborate claude.ai artifacts
+
+**What it does:** Creates complex, multi-component claude.ai HTML artifacts using React 18, TypeScript, Vite, Tailwind CSS, and shadcn/ui. Initializes frontend repo, develops artifact with state management and routing, then bundles to single HTML file. Explicitly avoids AI slop (centered layouts, purple gradients, excessive rounded corners).
+
+**When to use:**
+- Building complex interactive applications (not simple single-file artifacts)
+- Creating artifacts requiring state management or routing
+- Using shadcn/ui component library for polish
+- Building artifacts beyond simple HTML/JSX prototypes
+
+**Example prompt:**
+> "Build a project management app with React, Tailwind, and shadcn/ui that has drag-and-drop and multi-page navigation."
+
+</details>
+
+<details>
+<summary><strong>tailwind-conventions</strong> — Apply consistent Tailwind patterns</summary>
+
+**Best for:** Frontend developers using Tailwind CSS
+
+**What it does:** Provides consistent Tailwind CSS patterns for React/Next.js applications. Covers utility class organization, responsive design, dark mode, and component styling.
+
+**When to use:**
+- Styling components with Tailwind
+- Implementing responsive designs
+- Adding dark mode support
+- Organizing utility classes consistently
+
+**Example prompt:**
+> "Style this React component using Tailwind with responsive breakpoints and dark mode support."
+
+</details>
+
+---
+
+## Infrastructure & Ops
+
+Skills for security, monitoring, reliability, and operations.
+
+<details>
+<summary><strong>security-guardian</strong> — Identify and fix security vulnerabilities</summary>
+
+**Best for:** Security engineers, developers, DevSecOps teams
+
+**What it does:** Provides security patterns and best practices for building secure applications. Covers implementation of authentication, authorization, API security, secrets management, plus OWASP Top 10 remediation. Guidance for building secure code, not just scanning existing code.
+
+**When to use:**
+- Reviewing code for security issues
+- Fixing identified vulnerabilities
+- Implementing security best practices
+- Preparing for security audits
+
+**Example prompt:**
+> "Review this authentication module for security vulnerabilities and provide fixes for any issues found."
+
+</details>
+
+<details>
+<summary><strong>observability-engineering</strong> — Implement monitoring and tracing</summary>
+
+**Best for:** SRE teams, DevOps engineers, platform teams
+
+**What it does:** Implements observability infrastructure including metrics, logging, tracing, and alerting. Covers OpenTelemetry setup, structured logging, trace correlation, sampling strategies, collector deployment, and alert/SLO design patterns.
+
+**When to use:**
+- Setting up application monitoring
+- Implementing distributed tracing
+- Creating dashboards and alerts
+- Debugging production issues
+
+**Example prompt:**
+> "Add OpenTelemetry instrumentation to this Node.js service with custom metrics and tracing."
+
+</details>
+
+<details>
+<summary><strong>sre-runbook-generator</strong> — Create operational runbooks</summary>
+
+**Best for:** SRE teams, operations engineers, on-call responders
+
+**What it does:** Generates operational runbooks for incident response, maintenance procedures, and troubleshooting guides. Follows SRE best practices for documentation.
+
+**When to use:**
+- Documenting incident response procedures
+- Creating maintenance playbooks
+- Building troubleshooting guides
+- Standardizing operational procedures
+
+**Example prompt:**
+> "Create a runbook for responding to database connection pool exhaustion alerts."
+
+</details>
+
+<details>
+<summary><strong>database-migration</strong> — Plan and execute database migrations</summary>
+
+**Best for:** Database administrators, backend developers, DevOps engineers
+
+**What it does:** Plans and manages database schema migrations safely. Covers migration strategies, rollback plans, zero-downtime deployments, and data transformations.
+
+**When to use:**
+- Planning schema changes
+- Writing migration scripts
+- Implementing zero-downtime migrations
+- Rolling back failed migrations
+
+**Example prompt:**
+> "Create a migration plan to add a new column to our users table with zero downtime."
+
+</details>
+
+<details>
+<summary><strong>web-accessibility-auditor</strong> — Audit and fix accessibility issues</summary>
+
+**Best for:** Frontend developers, QA teams, accessibility specialists
+
+**What it does:** Audits web applications for WCAG compliance and accessibility issues. Identifies problems with screen readers, keyboard navigation, color contrast, and ARIA usage.
+
+**When to use:**
+- Auditing sites for accessibility compliance
+- Fixing identified accessibility issues
+- Implementing accessible components
+- Preparing for accessibility certifications
+
+**Example prompt:**
+> "Audit this page for WCAG 2.2 AA compliance and provide fixes for any issues found."
+
+</details>
+
+<details>
+<summary><strong>webapp-testing</strong> — Test web applications comprehensively</summary>
+
+**Best for:** QA engineers, test automation specialists, frontend developers
+
+**What it does:** Tests web applications using Playwright for E2E testing, UI verification, and debugging. Covers automated browser interaction, DOM inspection, screenshot capture, selector discovery, and browser log viewing.
+
+**When to use:**
+- Writing Playwright E2E test suites
+- Verifying frontend functionality
+- Debugging UI behavior with browser inspection
+- Capturing screenshots for documentation
+
+**Example prompt:**
+> "Write Playwright tests for our checkout flow covering happy path and common error scenarios."
+
+</details>
+
+---
+
+## Business & Strategy
+
+Skills for product management, strategic planning, and business analysis.
+
+<details>
+<summary><strong>product-discovery</strong> — Discover and specify new products</summary>
+
+**Best for:** Product managers, founders, innovation teams
+
+**What it does:** Guides product discovery from problem exploration to solution specification using structured questioning frameworks (Five Whys, MECE, Socratic Probing). Creates SPEC.md, DESIGN.md, and PLAN.md documents with detailed methodology for defining MVP scope and validating ideas.
+
+**When to use:**
+- Starting new product initiatives
+- Validating product ideas
+- Defining MVP scope
+- Writing product requirements
+
+**Example prompt:**
+> "Help me discover and specify a new feature for improving user onboarding. Start with problem exploration."
+
+</details>
+
+<details>
+<summary><strong>product-management</strong> — Execute core PM activities</summary>
+
+**Best for:** Product managers, product owners, team leads, business analysts, startup founders
+
+**What it does:** Assists with core PM activities including PRD writing, feature analysis, user research synthesis, roadmap planning, and communicating product decisions to stakeholders and engineering teams.
+
+**When to use:**
+- Writing product requirements documents
+- Analyzing feature requests
+- Synthesizing user research findings
+- Planning product roadmaps
+- Communicating product decisions to stakeholders
+
+**Example prompt:**
+> "Write a PRD for adding team collaboration features to our app based on these user research findings."
+
+</details>
+
+<details>
+<summary><strong>strategy-frameworks</strong> — Apply strategic business frameworks</summary>
+
+**Best for:** Strategists, consultants, business analysts, executives
+
+**What it does:** Applies structured strategic frameworks including Porter's Five Forces, BCG Matrix, SWOT Analysis, and McKinsey 7S. Guides analysis and generates actionable outputs.
+
+**When to use:**
+- Analyzing industry competitive dynamics
+- Evaluating product/business portfolios
+- Strategic planning sessions
+- Organizational transformation planning
+
+**Example prompt:**
+> "Conduct a Porter's Five Forces analysis for the electric vehicle charging market."
+
+</details>
+
+<details>
+<summary><strong>competitive-intelligence</strong> — Gather and analyze competitor information</summary>
+
+**Best for:** Sales teams, marketing strategists, product managers, competitive analysts, business development teams
+
+**What it does:** Gathers and analyzes competitor information, creates battle cards, builds competitive matrices, and conducts win/loss analysis. Enables data-driven competitive positioning.
+
+**When to use:**
+- Creating sales battle cards
+- Building feature comparison matrices
+- Analyzing win/loss patterns
+- Monitoring competitor activity
+
+**Example prompt:**
+> "Create a battle card for competing against [Competitor] including objection handling and trap questions."
+
+</details>
+
+<details>
+<summary><strong>expense-categorizer</strong> — Categorize business expenses accurately</summary>
+
+**Best for:** Finance teams, accountants, business owners
+
+**What it does:** Categorizes business expenses with proper tax treatment and policy compliance. Assigns GL codes, determines deductibility, and flags policy violations.
+
+**When to use:**
+- Processing expense receipts
+- Categorizing transactions for bookkeeping
+- Checking tax deductibility
+- Identifying policy violations
+
+**Example prompt:**
+> "Categorize this batch of expenses and identify any that exceed policy limits or have tax implications."
+
+</details>
+
+---
+
+## AI & Automation
+
+Skills for working with AI APIs, prompts, and automation.
+
+<details>
+<summary><strong>anthropic-messages-api</strong> — Implement Anthropic's Claude API</summary>
+
+**Best for:** AI developers, backend engineers, integration specialists
+
+**What it does:** Implements and troubleshoots Anthropic Messages API calls including model selection, tool use blocks, streaming, response parsing, structured outputs, and prompt caching. Covers advanced patterns like tool runners and Message Batches API.
+
+**When to use:**
+- Integrating Claude via the Messages API
+- Implementing tool use with Claude
+- Handling streaming responses
+- Troubleshooting API issues
+
+**Example prompt:**
+> "Help me implement Claude API integration with tool use for a customer support bot."
+
+</details>
+
+<details>
+<summary><strong>openai-responses-api</strong> — Implement OpenAI's Responses API</summary>
+
+**Best for:** AI developers, backend engineers, integration specialists
+
+**What it does:** Implements and troubleshoots OpenAI Responses API calls including model selection, built-in tools (web search, file search, code interpreter), output parsing, and conversation state management. Covers migrating from Chat Completions API and tool output customization.
+
+**When to use:**
+- Integrating OpenAI models via Responses API
+- Migrating from Chat Completions API
+- Enabling built-in tools
+- Troubleshooting API issues
+
+**Example prompt:**
+> "Migrate our Chat Completions integration to the new Responses API with web search enabled."
+
+</details>
+
+<details>
+<summary><strong>ai-art-generation</strong> — Guide AI image generation</summary>
+
+**Best for:** Game developers, creative teams, digital artists
+
+**What it does:** Guides AI image generation for game assets and creative projects. Covers prompt engineering for Midjourney, DALL-E, Stable Diffusion, with focus on iterative refinement and style consistency.
+
+**When to use:**
+- Generating pixel art game assets and sprites
+- Creating consistent visual styles across asset batches
+- Iterating on and refining AI-generated images (3-5 cycles)
+- Validating output quality before engine integration
+- Selecting the right tool (Midjourney, DALL-E, Stable Diffusion)
+
+**Example prompt:**
+> "Help me create prompts for generating a consistent set of fantasy character portraits in pixel art style."
+
+</details>
+
+---
+
+## Internal & Specialty
+
+Specialized skills and meta-tools.
+
+<details>
+<summary><strong>skill-creator</strong> — Create new skills for this library</summary>
+
+**Best for:** Skill authors, platform developers
+
+**What it does:** Meta-skill for creating new skills that extend Claude's capabilities. Guides SKILL.md structure, frontmatter, progressive disclosure, and bundled resources.
+
+**When to use:**
+- Creating a new skill
+- Validating skill structure
+- Packaging skills for distribution
+- Understanding skill authoring best practices
+
+**Example prompt:**
+> "Help me create a new skill for [domain]. Guide me through the structure and best practices."
+
+</details>
+
+<details>
+<summary><strong>vibe-coding</strong> — Rapidly prototype web applications</summary>
+
+**Best for:** Developers, indie hackers, prototypers
+
+**What it does:** Rapidly prototypes and builds modern, responsive web applications from scratch. Local alternative to tools like Lovable, Bolt, and v0 with full control.
+
+**When to use:**
+- Building quick web app prototypes
+- Creating MVPs rapidly
+- Experimenting with ideas
+- Building demos and proof-of-concepts
+
+**Example prompt:**
+> "Build a simple task management app with drag-and-drop, local storage, and a clean modern UI."
+
+</details>
+
+<details>
+<summary><strong>browser</strong> — Automate browser interactions</summary>
+
+**Best for:** Automation engineers, QA specialists, scrapers
+
+**What it does:** Provides Chrome DevTools Protocol tools for browser automation and scraping. Start Chrome, navigate pages, execute JavaScript, take screenshots, and interact with DOM elements.
+
+**When to use:**
+- Automating repetitive browser tasks
+- Scraping web data
+- Taking screenshots programmatically
+- Testing web interactions
+
+**Example prompt:**
+> "Navigate to this page, fill out the form, and capture a screenshot of the result."
+
+</details>
+
+<details>
+<summary><strong>slack-gif-creator</strong> — Create animated GIFs for Slack</summary>
+
+**Best for:** Team communicators, documentation creators
+
+**What it does:** Creates animated GIFs optimized for Slack using programmatic graphics drawing (PIL/ImageDraw). Provides utilities for animation, easing functions, optimization, and proper sizing for chat platforms. Note: This is for generating GIFs with code, not screen recording.
+
+**When to use:**
+- Creating demo GIFs for Slack
+- Documenting features visually
+- Making quick tutorial animations
+- Sharing visual updates with teams
+
+**Example prompt:**
+> "Create a GIF showing how to use the new feature, optimized for Slack."
+
+</details>
+
+<details>
+<summary><strong>cadre-os</strong> — Cadre AI consulting operating system</summary>
+
+**Best for:** Cadre consultants and team members
+
+**What it does:** Cadre AI's consulting operating system for strategy engagements. Handles discovery sessions, client context, synthesis, deliverables, and branded outputs.
+
+**When to use:**
+- Preparing for discovery sessions
+- Debriefing after client calls
+- Creating strategy decks and reports
+- Managing tech stack assessments
+
+**Example prompt:**
+> "/prep [Client Name] — Prepare for upcoming discovery session"
+
+</details>
+
+<details>
+<summary><strong>documentation-templates</strong> — Generate structured documentation</summary>
+
+**Best for:** Technical writers, developers, team leads
+
+**What it does:** Generates README files, API documentation, and inline code comments following best practices. Creates consistent, well-structured documentation.
+
+**When to use:**
+- Creating project READMEs
+- Documenting APIs
+- Adding code comments
+- Building documentation templates
+
+**Example prompt:**
+> "Generate a comprehensive README for this project including setup, usage, and API documentation."
+
+</details>
+
+<details>
+<summary><strong>frontend-ui-integration</strong> — Integrate frontend with existing APIs</summary>
+
+**Best for:** Frontend developers, full-stack engineers
+
+**What it does:** Implements or extends user-facing workflows in web applications, integrating with existing backend APIs. Follows design system, routing, and testing conventions.
+
+**When to use:**
+- Building new UI features backed by existing APIs
+- Integrating frontend with backend services
+- Following established frontend patterns
+- Creating consistent UI workflows
+
+**Example prompt:**
+> "Build a user settings page that integrates with our existing user API and follows our design system."
+
+</details>
+
+<details>
+<summary><strong>service-integration</strong> — Integrate services in shared codebases</summary>
+
+**Best for:** Backend developers, platform engineers
+
+**What it does:** Extends or integrates services in shared monorepos while preserving ownership boundaries, reliability standards, and observability requirements.
+
+**When to use:**
+- Adding backend APIs in shared codebases
+- Integrating with existing services
+- Maintaining service boundaries
+- Following monorepo conventions
+
+**Example prompt:**
+> "Add a new notification service that integrates with our existing user service in the monorepo."
+
+</details>
+
+<details>
+<summary><strong>internal-tools</strong> — Build internal operational tools</summary>
+
+**Best for:** Internal tools developers, operations teams
+
+**What it does:** Designs and implements internal tools that help employees operate systems safely. Respects access controls and audit requirements.
+
+**When to use:**
+- Building admin dashboards
+- Creating internal operational tools
+- Implementing access-controlled interfaces
+- Building audit-compliant tools
+
+**Example prompt:**
+> "Build an internal tool for customer support to view and manage user subscriptions with proper access logging."
+
+</details>
+
+---
+
+## Need Something Else?
+
+If none of these skills fit your needs:
+
+1. **Ask Claude directly** — Many tasks don't require a specialized skill
+2. **Check if a skill exists** — Skills auto-activate, so you might already have what you need
+3. **Create a new skill** — Use the `skill-creator` skill to build your own
+
+---
+
+*This catalog contains 47 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
