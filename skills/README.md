@@ -17,6 +17,97 @@ A curated collection of 47 skills that extend Claude's capabilities for specific
 
 ---
 
+## Quick Reference
+
+### Content & Marketing
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| content-repurposer | Transform one piece of content into multiple platform-specific formats | "Turn this blog post into 5 tweets, a LinkedIn post, and newsletter intro" |
+| editorial-calendar | Plan content calendars with SEO integration and multi-channel coordination | "Create a 3-month editorial calendar for our B2B blog with social tie-ins" |
+| ace-content-engine | Generate blog content with brand voice using Workshop or YOLO modes | "Write a blog post about AI tools using Workshop Mode with citations" |
+| internal-comms | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
+| doc-coauthoring | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
+| brand-guidelines | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
+
+### Development Tools
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| api-design-patterns | Design REST and GraphQL APIs with proper patterns for Node.js, Flask, FastAPI | "Design a REST API for user management with pagination and RBAC" |
+| test-generator | Generate Jest or Pytest tests with proper coverage and mocking | "Generate Jest tests for this UserService including error cases" |
+| react-patterns | Implement modern React patterns with hooks, state management, optimization | "Create a custom hook for form state with validation and error handling" |
+| mcp-builder | Build Model Context Protocol servers to extend Claude's capabilities | "Build an MCP server that exposes our internal API as tools" |
+| code-formatter | Apply consistent code style with naming conventions and formatting rules | "Format this TypeScript file according to our style guide" |
+| error-handler | Implement robust error handling patterns for TypeScript and Python | "Add comprehensive error handling to this API endpoint" |
+
+### Data & Documents
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| pdf | Extract, merge, split, fill forms, and manipulate PDF documents | "Extract all table data from this PDF invoice" |
+| docx | Create Word docs with docx-js or edit existing docs with Python OOXML | "Create a professional report with cover page and table of contents" |
+| pptx | Create presentations from scratch, templates, or edit existing slides | "Create a 10-slide investor pitch deck from this company overview" |
+| xlsx | Create Excel files with formulas (never hardcoded), charts, and formatting | "Create an Excel budget template with formulas and conditional formatting" |
+| ai-data-analyst | Perform data analysis, statistical modeling, and visualization with Python | "Analyze this sales dataset: identify trends and create visualizations" |
+| data-querying | Query internal data warehouses while respecting governance and PII policies | "Query our data warehouse for monthly active users by region" |
+
+### Design & UI
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| frontend-design | Create distinctive UIs with intentional aesthetic direction, not generic AI look | "Design a modern dashboard with a unique brutalist visual style" |
+| canvas-design | Create museum-quality visual art through design philosophy workflow | "Create a visual piece inspired by brutalist architecture as a poster" |
+| theme-factory | Apply 10 professional themes (Ocean Depths, etc.) to slides and documents | "Show me available themes, then apply Ocean Depths to my deck" |
+| algorithmic-art | Create generative art with p5.js, seeded reproducibility, and interactivity | "Create generative art with flow fields and Perlin noise with seed controls" |
+| web-artifacts-builder | Build complex React/shadcn/ui artifacts that bundle to single HTML | "Build a project management app with React, Tailwind, and drag-and-drop" |
+| tailwind-conventions | Apply consistent Tailwind CSS patterns for React/Next.js apps | "Style this component with Tailwind including responsive and dark mode" |
+
+### Infrastructure & Ops
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| security-guardian | Security patterns for authentication, authorization, and OWASP remediation | "Review this auth module for vulnerabilities and provide fixes" |
+| observability-engineering | Implement metrics, logging, tracing, and alerting with OpenTelemetry | "Add OpenTelemetry instrumentation to this Node.js service" |
+| sre-runbook-generator | Generate operational runbooks for incidents and maintenance procedures | "Create a runbook for database connection pool exhaustion alerts" |
+| database-migration | Plan and execute zero-downtime database schema migrations | "Create a migration plan to add a column with zero downtime" |
+| web-accessibility-auditor | Audit for WCAG 2.2 compliance and fix accessibility issues | "Audit this page for WCAG 2.2 AA compliance and provide fixes" |
+| webapp-testing | Test web applications with Playwright for E2E and UI verification | "Write Playwright tests for our checkout flow" |
+
+### Business & Strategy
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| product-discovery | Discover products using Five Whys, MECE; outputs SPEC.md, DESIGN.md, PLAN.md | "Help me discover a new onboarding feature, start with problem exploration" |
+| product-management | PRD writing, feature analysis, research synthesis, stakeholder communication | "Write a PRD for team collaboration features based on user research" |
+| strategy-frameworks | Apply Porter's Five Forces, BCG Matrix, SWOT, McKinsey 7S frameworks | "Conduct a Porter's Five Forces analysis for EV charging market" |
+| competitive-intelligence | Create battle cards, competitive matrices, and win/loss analysis | "Create a battle card for competing against [Competitor]" |
+| expense-categorizer | Categorize expenses with tax treatment, GL codes, and policy compliance | "Categorize these expenses and flag policy violations" |
+
+### AI & Automation
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| anthropic-messages-api | Implement Claude API with tool use, streaming, caching, and batches | "Implement Claude API integration with tool use for a support bot" |
+| openai-responses-api | Implement OpenAI Responses API with built-in tools and migration guidance | "Migrate our Chat Completions to Responses API with web search" |
+| ai-art-generation | Guide AI image generation with Midjourney, DALL-E, Stable Diffusion | "Create prompts for consistent fantasy character portraits in pixel art" |
+
+### Internal & Specialty
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
+| skill-creator | Create new skills with proper SKILL.md structure and best practices | "Help me create a new skill for [domain]" |
+| vibe-coding | Rapidly prototype web apps; local alternative to Lovable, Bolt, v0 | "Build a task management app with drag-and-drop and local storage" |
+| browser | Automate Chrome with DevTools Protocol for navigation and scraping | "Navigate to this page, fill the form, and capture a screenshot" |
+| slack-gif-creator | Create animated GIFs for Slack using programmatic graphics (PIL) | "Create a GIF showing the new feature, optimized for Slack" |
+| cadre-os | Cadre AI consulting OS for discovery, synthesis, and deliverables | "/prep [Client Name] — Prepare for upcoming discovery session" |
+| documentation-templates | Generate READMEs, API docs, and code comments following best practices | "Generate a comprehensive README with setup, usage, and API docs" |
+| frontend-ui-integration | Build frontend features that integrate with existing backend APIs | "Build a user settings page integrating with our user API" |
+| service-integration | Integrate services in monorepos while preserving ownership boundaries | "Add a notification service that integrates with user service" |
+| internal-tools | Build internal operational tools with access controls and audit logging | "Build an internal tool for support to manage subscriptions" |
+
+---
+
 ## Content & Marketing
 
 Skills for writing, editing, and content strategy.
