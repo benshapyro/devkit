@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 120 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 122 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -85,6 +85,7 @@ A curated collection of 120 skills that extend Claude's capabilities for specifi
 | verification-before-completion | ❓ | Evidence before claiming work is complete or passing | "Verify all tests pass before saying we're done" |
 | writing-plans | ❓ | Write comprehensive implementation plans with bite-sized tasks | "Create an implementation plan for this feature" |
 | writing-skills | ❓ | Create new skills using TDD principles | "Help me create a skill for database migrations" |
+| react-best-practices | ❓ | Vercel's 45+ React/Next.js performance rules by priority | "Optimize this component for eliminating waterfalls and bundle size" |
 
 ### Data & Documents
 
@@ -110,6 +111,7 @@ A curated collection of 120 skills that extend Claude's capabilities for specifi
 | code-connect-components | ❓ | Link Figma components to code with Code Connect | "Set up Code Connect for our design system components" |
 | create-design-system-rules | ❓ | Extract design rules from Figma for consistent implementation | "Extract spacing, typography, and color rules from our Figma file" |
 | implement-design | ❓ | Implement UI directly from Figma designs | "Implement this Figma design as a React component" |
+| web-design-guidelines | ❓ | Review UI code for Web Interface Guidelines compliance | "Review my UI components for accessibility and UX best practices" |
 
 ### Infrastructure & Ops
 
@@ -1121,6 +1123,24 @@ Skills for coding, APIs, testing, and development patterns.
 
 </details>
 
+<details>
+<summary><strong>react-best-practices</strong> — Vercel's 45+ React/Next.js performance optimization rules</summary>
+
+**Best for:** React developers, Next.js engineers, frontend performance specialists
+
+**What it does:** Comprehensive performance optimization guide from Vercel Engineering with 45 rules across 8 categories (waterfalls, bundle size, server-side, client-side, re-renders, rendering, JS, advanced). Each rule is prioritized by impact (CRITICAL → LOW) with code examples.
+
+**When to use:**
+- Writing new React components or Next.js pages
+- Reviewing code for performance issues
+- Optimizing bundle size or load times
+- Implementing data fetching patterns
+
+**Example prompt:**
+> "Review this component for waterfall issues and bundle size optimization using the Vercel best practices."
+
+</details>
+
 ---
 
 ## Data & Documents
@@ -1402,6 +1422,24 @@ Skills for frontend development, visual design, and UI/UX.
 
 **Example prompt:**
 > "Implement this Figma dashboard design as a React component with all the specified styling."
+
+</details>
+
+<details>
+<summary><strong>web-design-guidelines</strong> — Review UI for Web Interface Guidelines compliance</summary>
+
+**Best for:** Frontend developers, UI reviewers, accessibility auditors
+
+**What it does:** Reviews UI code against Web Interface Guidelines by fetching the latest rules from Vercel's guidelines repo. Checks for accessibility, UX patterns, and design best practices. Outputs findings in terse `file:line` format.
+
+**When to use:**
+- Auditing UI components for best practices
+- Checking accessibility compliance
+- Reviewing UX patterns before shipping
+- Getting actionable feedback on design quality
+
+**Example prompt:**
+> "Review my UI components for Web Interface Guidelines compliance and accessibility."
 
 </details>
 

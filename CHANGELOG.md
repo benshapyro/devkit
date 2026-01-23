@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- 2 skills imported from vercel-labs/agent-skills
+  - react-best-practices: Vercel's 45+ React/Next.js performance rules with priority ratings
+  - web-design-guidelines: UI compliance checker against Web Interface Guidelines
 - 23 marketing skills imported from coreyhaines31/marketingskills
   - CRO skills: page-cro, form-cro, popup-cro, signup-flow-cro, onboarding-cro, paywall-upgrade-cro
   - SEO skills: seo-audit, programmatic-seo, schema-markup
@@ -32,7 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Split content-marketing into marketing/ (27 skills) and communications/ (3 skills)
 - Reorganized skills directory into 9 group subdirectories matching README categories
 - Updated packaging script to handle grouped directory structure
-- Skills count increased from initial ~30 to 120
+- Skills count increased from initial ~30 to 122
 - Updated CLAUDE.md with changelog maintenance instructions
 
 ### Removed

@@ -91,15 +91,15 @@ Provide findings as:
 
 ### Organization
 
-Skills are organized into 9 groups (120 skills total):
+Skills are organized into 9 groups (122 skills total):
 
 | Group | Skills | Examples |
 |-------|--------|----------|
 | **Marketing** | 27 | copywriting, page-cro, seo-audit, email-sequence, pricing-strategy |
 | **Communications** | 3 | presentation-composer, doc-coauthoring, internal-comms |
-| **Development Tools** | 21 | api-design-patterns, test-generator, stripe-best-practices, TDD, debugging |
+| **Development Tools** | 22 | api-design-patterns, test-generator, react-best-practices, TDD, debugging |
 | **Data & Documents** | 6 | pdf, docx, pptx, xlsx, ai-data-analyst |
-| **Design & UI** | 9 | frontend-design, canvas-design, Figma integration |
+| **Design & UI** | 10 | frontend-design, canvas-design, web-design-guidelines, Figma integration |
 | **Infrastructure & Ops** | 9 | security-guardian, observability, Vercel deployment |
 | **Business & Strategy** | 8 | product-discovery, strategy-frameworks, competitive-intelligence |
 | **AI & Automation** | 13 | anthropic-messages-api, openai-responses-api, n8n workflows |
