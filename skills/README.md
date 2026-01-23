@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 66 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 97 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -41,6 +41,21 @@ A curated collection of 66 skills that extend Claude's capabilities for specific
 | mcp-builder | Build Model Context Protocol servers to extend Claude's capabilities | "Build an MCP server that exposes our internal API as tools" |
 | code-formatter | Apply consistent code style with naming conventions and formatting rules | "Format this TypeScript file according to our style guide" |
 | error-handler | Implement robust error handling patterns for TypeScript and Python | "Add comprehensive error handling to this API endpoint" |
+| brainstorming | Turn ideas into designs through collaborative dialogue before implementation | "Help me design a new user dashboard feature" |
+| dispatching-parallel-agents | Run multiple independent agents concurrently on unrelated tasks | "I have 5 failing tests in different files, investigate in parallel" |
+| executing-plans | Execute written implementation plans with batch checkpoints | "Execute the plan in docs/plans/auth-system.md" |
+| finishing-a-development-branch | Complete dev work with merge, PR, or cleanup options | "I'm done with this feature, help me wrap up the branch" |
+| receiving-code-review | Handle code review feedback with technical rigor, not blind agreement | "Address the review feedback on my PR" |
+| requesting-code-review | Request code reviews on completed work before merging | "Review my changes before I merge to main" |
+| stripe-best-practices | Stripe integration using CheckoutSessions and Payment Element | "Help me implement Stripe checkout for subscriptions" |
+| subagent-driven-development | Execute plans with fresh subagent per task plus two-stage review | "Implement this plan using subagent-driven development" |
+| systematic-debugging | Root cause investigation before proposing any fixes | "Debug why this test is failing intermittently" |
+| test-driven-development | Write failing test first, then minimal code to pass | "Implement this feature using TDD" |
+| using-git-worktrees | Create isolated git workspaces for feature work | "Set up a worktree for this new feature" |
+| using-superpowers | Find and invoke relevant skills before taking action | "What skills should I use for this task?" |
+| verification-before-completion | Evidence before claiming work is complete or passing | "Verify all tests pass before saying we're done" |
+| writing-plans | Write comprehensive implementation plans with bite-sized tasks | "Create an implementation plan for this feature" |
+| writing-skills | Create new skills using TDD principles | "Help me create a skill for database migrations" |
 
 ### Data & Documents
 
@@ -63,6 +78,9 @@ A curated collection of 66 skills that extend Claude's capabilities for specific
 | algorithmic-art | Create generative art with p5.js, seeded reproducibility, and interactivity | "Create generative art with flow fields and Perlin noise with seed controls" |
 | web-artifacts-builder | Build complex React/shadcn/ui artifacts that bundle to single HTML | "Build a project management app with React, Tailwind, and drag-and-drop" |
 | tailwind-conventions | Apply consistent Tailwind CSS patterns for React/Next.js apps | "Style this component with Tailwind including responsive and dark mode" |
+| code-connect-components | Link Figma components to code with Code Connect | "Set up Code Connect for our design system components" |
+| create-design-system-rules | Extract design rules from Figma for consistent implementation | "Extract spacing, typography, and color rules from our Figma file" |
+| implement-design | Implement UI directly from Figma designs | "Implement this Figma design as a React component" |
 
 ### Infrastructure & Ops
 
@@ -74,6 +92,9 @@ A curated collection of 66 skills that extend Claude's capabilities for specific
 | database-migration | Plan and execute zero-downtime database schema migrations | "Create a migration plan to add a column with zero downtime" |
 | web-accessibility-auditor | Audit for WCAG 2.2 compliance and fix accessibility issues | "Audit this page for WCAG 2.2 AA compliance and provide fixes" |
 | webapp-testing | Test web applications with Playwright for E2E and UI verification | "Write Playwright tests for our checkout flow" |
+| deploy | Deploy applications to Vercel | "Deploy this app to Vercel" |
+| logs | View Vercel deployment logs for debugging | "Show me the logs for the last deployment" |
+| setup | Set up Vercel CLI and project configuration | "Set up Vercel for this project" |
 
 ### Business & Strategy
 
@@ -124,6 +145,16 @@ A curated collection of 66 skills that extend Claude's capabilities for specific
 | clickup-guide | ClickUp structure, permissions, and features optimized for consulting firms | "How should I organize client projects in ClickUp with proper permissions?" |
 | onboarding | Generate comprehensive onboarding docs for engagements, teams, and pods | "Onboard me to the Hyperion client engagement with strategic context" |
 | project-resource-planner | Convert SOWs to week-by-week ClickUp resource plans with SMART goals | "Convert this SOW into a resource allocation plan with hour estimates" |
+| agent-development | Create Claude Code plugin agents with proper structure | "Create an agent for code review in my plugin" |
+| command-development | Create Claude Code slash commands with arguments | "Create a /deploy command for my plugin" |
+| hook-development | Create Claude Code event hooks for automation | "Create a hook that runs tests after file edits" |
+| mcp-integration | Integrate MCP servers into Claude Code plugins | "Add an MCP server for our internal API to my plugin" |
+| plugin-settings | Store plugin configuration in local files | "Set up persistent settings for my plugin" |
+| plugin-structure | Claude Code plugin directory layout and manifest | "Help me structure my new Claude Code plugin" |
+| skill-development | Create skills for Claude Code plugins | "Add a skill to my plugin for database operations" |
+| claude-automation-recommender | Analyze codebase and recommend Claude Code automations | "What hooks, skills, and MCP servers should I set up?" |
+| claude-md-improver | Audit and improve CLAUDE.md files in repositories | "Audit and improve the CLAUDE.md files in this repo" |
+| writing-rules | Create hookify rules for Claude Code automation | "Create a hookify rule to warn about console.log" |
 
 ---
 
@@ -371,6 +402,276 @@ Skills for coding, APIs, testing, and development patterns.
 
 </details>
 
+<details>
+<summary><strong>brainstorming</strong> — Turn ideas into designs through collaborative dialogue</summary>
+
+**Best for:** Product managers, developers, anyone starting new features
+
+**What it does:** Guides collaborative design sessions by asking questions one at a time, proposing 2-3 approaches with trade-offs, and presenting designs in digestible 200-300 word sections. Checks project context first, then refines ideas through structured dialogue before documenting the validated design.
+
+**When to use:**
+- Before implementing any new feature
+- When requirements are unclear or evolving
+- Exploring different approaches to a problem
+- Turning vague ideas into concrete specifications
+
+**Example prompt:**
+> "Help me brainstorm a new user dashboard feature. Start by understanding my current project."
+
+</details>
+
+<details>
+<summary><strong>dispatching-parallel-agents</strong> — Run independent investigations concurrently</summary>
+
+**Best for:** Developers debugging multiple unrelated failures
+
+**What it does:** When facing multiple independent problems (different test files, different subsystems), dispatches separate agents to investigate each in parallel rather than sequentially. Identifies independent domains and coordinates concurrent investigation.
+
+**When to use:**
+- 3+ test files failing with different root causes
+- Multiple subsystems broken independently
+- Problems that can be understood without context from others
+- No shared state between investigations
+
+**Example prompt:**
+> "I have 5 failing tests in completely different files. Investigate them all in parallel."
+
+</details>
+
+<details>
+<summary><strong>executing-plans</strong> — Execute implementation plans with review checkpoints</summary>
+
+**Best for:** Developers working from written plans
+
+**What it does:** Loads a plan file, reviews it critically for issues, then executes tasks in batches (default 3 tasks), reporting for review between batches. Follows bite-sized steps exactly as specified in the plan.
+
+**When to use:**
+- You have a written implementation plan
+- Working in a separate session with checkpoints
+- Want architect review between task batches
+- Executing detailed multi-step implementations
+
+**Example prompt:**
+> "Execute the implementation plan at docs/plans/2024-01-15-auth-system.md"
+
+</details>
+
+<details>
+<summary><strong>finishing-a-development-branch</strong> — Complete dev work with structured options</summary>
+
+**Best for:** Developers ready to merge or create PRs
+
+**What it does:** Verifies tests pass, determines base branch, then presents clear options for completing work: merge to main, create PR, continue working, or discard. Handles the chosen workflow including cleanup.
+
+**When to use:**
+- Implementation is complete and tests pass
+- Ready to integrate work into main branch
+- Need to decide between merge, PR, or continue
+- Want structured cleanup of development branch
+
+**Example prompt:**
+> "I've finished implementing this feature and tests pass. Help me complete the branch."
+
+</details>
+
+<details>
+<summary><strong>receiving-code-review</strong> — Handle feedback with technical rigor</summary>
+
+**Best for:** Developers responding to code reviews
+
+**What it does:** Ensures code review feedback is handled with technical evaluation, not emotional performance. Read → Understand (restate) → Verify → Evaluate → Respond → Implement. Explicitly forbids "You're absolutely right!" responses.
+
+**When to use:**
+- Receiving code review feedback
+- Feedback seems unclear or technically questionable
+- Need to push back with reasoning
+- Implementing review suggestions systematically
+
+**Example prompt:**
+> "I just received code review feedback. Help me evaluate and respond appropriately."
+
+</details>
+
+<details>
+<summary><strong>requesting-code-review</strong> — Request reviews before merging</summary>
+
+**Best for:** Developers completing features or tasks
+
+**What it does:** Dispatches the code-reviewer subagent with proper context (base SHA, head SHA, what was implemented, requirements). Guides acting on feedback: fix Critical immediately, Important before proceeding, note Minor for later.
+
+**When to use:**
+- After completing each task in subagent-driven development
+- After completing major features
+- Before merge to main
+- When stuck and need fresh perspective
+
+**Example prompt:**
+> "Review my changes before I merge to main."
+
+</details>
+
+<details>
+<summary><strong>stripe-best-practices</strong> — Build correct Stripe integrations</summary>
+
+**Best for:** Developers implementing payments
+
+**What it does:** Guides Stripe integration with current best practices: prefer CheckoutSessions over PaymentIntents, use Payment Element over Card Element, enable dynamic payment methods, follow Connect integration recommendations. Warns against deprecated APIs (Charges, Sources, Tokens).
+
+**When to use:**
+- Implementing Stripe checkout or subscriptions
+- Adding payment processing to an app
+- Migrating from legacy Stripe APIs
+- Setting up Stripe Connect for platforms
+
+**Example prompt:**
+> "Help me implement Stripe checkout for a subscription product."
+
+</details>
+
+<details>
+<summary><strong>subagent-driven-development</strong> — Execute plans with fresh agents per task</summary>
+
+**Best for:** Developers executing implementation plans in current session
+
+**What it does:** Executes plans by dispatching a fresh subagent per task (no context pollution), with two-stage review after each: spec compliance first, then code quality. Faster iteration than executing-plans since no human-in-loop between tasks.
+
+**When to use:**
+- Have an implementation plan with independent tasks
+- Want to stay in current session (not parallel)
+- Need fresh context per task
+- Want automated review between tasks
+
+**Example prompt:**
+> "Implement this plan using subagent-driven development with reviews after each task."
+
+</details>
+
+<details>
+<summary><strong>systematic-debugging</strong> — Find root cause before fixing</summary>
+
+**Best for:** Developers facing bugs, test failures, unexpected behavior
+
+**What it does:** Enforces root cause investigation before any fixes. Four phases: Root Cause Investigation → Theory Formation → Targeted Fix → Regression Prevention. No fixes without completing Phase 1. Symptom fixes are failure.
+
+**When to use:**
+- Any test failure or bug
+- Unexpected behavior
+- Previous fix didn't work
+- Under time pressure (especially then!)
+
+**Example prompt:**
+> "Debug why this test fails intermittently. Find the root cause before proposing fixes."
+
+</details>
+
+<details>
+<summary><strong>test-driven-development</strong> — Write tests first, then code</summary>
+
+**Best for:** Developers implementing features or fixes
+
+**What it does:** Enforces red-green-refactor cycle: write failing test → watch it fail → write minimal code to pass → watch it pass → refactor. If code is written before test, delete it and start over.
+
+**When to use:**
+- New features
+- Bug fixes
+- Refactoring
+- Any behavior changes
+
+**Example prompt:**
+> "Implement this user authentication feature using TDD."
+
+</details>
+
+<details>
+<summary><strong>using-git-worktrees</strong> — Create isolated workspaces for features</summary>
+
+**Best for:** Developers needing workspace isolation
+
+**What it does:** Creates git worktrees for isolated feature work. Smart directory selection: checks .worktrees/, worktrees/, CLAUDE.md preferences, then asks user. Includes safety verification before creating worktrees.
+
+**When to use:**
+- Starting feature work that needs isolation
+- Before executing implementation plans
+- Working on multiple branches simultaneously
+- Need clean workspace for each feature
+
+**Example prompt:**
+> "Set up an isolated worktree for this new authentication feature."
+
+</details>
+
+<details>
+<summary><strong>using-superpowers</strong> — Find and use skills before acting</summary>
+
+**Best for:** Anyone starting tasks
+
+**What it does:** Establishes the rule: invoke relevant skills BEFORE any response or action, even with just 1% chance of applicability. Lists red flag thoughts that mean stop (e.g., "This is just a simple question" - questions are tasks, check for skills).
+
+**When to use:**
+- Starting any conversation
+- Beginning any task
+- Before exploring codebase
+- Before asking clarifying questions
+
+**Example prompt:**
+> "What skills should I consider for this task?"
+
+</details>
+
+<details>
+<summary><strong>verification-before-completion</strong> — Evidence before claims</summary>
+
+**Best for:** Developers about to claim work is done
+
+**What it does:** Enforces running verification commands and confirming output before any success claims. The gate function: IDENTIFY (what command proves this?) → RUN → READ → VERIFY → CLAIM. Using "should" or "probably" is a red flag.
+
+**When to use:**
+- About to claim work is complete
+- Before committing or creating PRs
+- Before moving to next task
+- After delegating to agents
+
+**Example prompt:**
+> "Verify all tests pass before we say this is done."
+
+</details>
+
+<details>
+<summary><strong>writing-plans</strong> — Create comprehensive implementation plans</summary>
+
+**Best for:** Developers planning multi-step implementations
+
+**What it does:** Writes detailed plans assuming the engineer has zero context. Documents files to touch, code snippets, test commands, expected output. Each step is one action (2-5 minutes): write test, run test, implement, run test, commit.
+
+**When to use:**
+- Have a spec or requirements for multi-step task
+- Before writing any code
+- Need detailed implementation guide
+- Working with or handing off to others
+
+**Example prompt:**
+> "Create an implementation plan for adding user authentication with OAuth."
+
+</details>
+
+<details>
+<summary><strong>writing-skills</strong> — Create skills using TDD principles</summary>
+
+**Best for:** Skill authors, platform developers
+
+**What it does:** Applies TDD to skill creation: write test case (pressure scenario with subagent) → watch it fail (baseline behavior) → write skill → watch it pass (agents comply) → refactor (close loopholes). If you didn't watch an agent fail without the skill, you don't know if it teaches the right thing.
+
+**When to use:**
+- Creating new skills
+- Editing existing skills
+- Verifying skills work before deployment
+- Closing loopholes in skill coverage
+
+**Example prompt:**
+> "Help me create a skill for database migrations using the TDD approach."
+
+</details>
+
 ---
 
 ## Data & Documents
@@ -601,6 +902,60 @@ Skills for frontend development, visual design, and UI/UX.
 
 </details>
 
+<details>
+<summary><strong>code-connect-components</strong> — Link Figma components to code implementations</summary>
+
+**Best for:** Design system engineers, frontend developers
+
+**What it does:** Sets up Figma Code Connect to link design components with their code implementations. Creates bidirectional references so designers and developers can navigate between Figma and code.
+
+**When to use:**
+- Setting up Code Connect for design systems
+- Linking Figma components to React/Vue/etc. components
+- Creating design-to-code documentation
+- Maintaining design-code sync
+
+**Example prompt:**
+> "Set up Code Connect to link our Figma Button component to our React Button implementation."
+
+</details>
+
+<details>
+<summary><strong>create-design-system-rules</strong> — Extract design rules from Figma</summary>
+
+**Best for:** Design system engineers, frontend developers
+
+**What it does:** Extracts design system rules from Figma files including spacing scales, typography styles, color tokens, and component patterns. Creates consistent implementation guidelines from design source of truth.
+
+**When to use:**
+- Starting implementation from Figma designs
+- Documenting design system tokens
+- Ensuring consistent spacing and typography
+- Creating developer guidelines from design specs
+
+**Example prompt:**
+> "Extract the spacing, typography, and color rules from our Figma design system file."
+
+</details>
+
+<details>
+<summary><strong>implement-design</strong> — Implement UI directly from Figma designs</summary>
+
+**Best for:** Frontend developers implementing designs
+
+**What it does:** Guides implementation of UI directly from Figma designs, translating design specifications into code. Handles component structure, styling, responsive behavior, and interactions as specified in Figma.
+
+**When to use:**
+- Implementing a new page from Figma mockups
+- Building components from design specs
+- Translating Figma prototypes to working code
+- Pixel-perfect implementation from designs
+
+**Example prompt:**
+> "Implement this Figma dashboard design as a React component with all the specified styling."
+
+</details>
+
 ---
 
 ## Infrastructure & Ops
@@ -712,6 +1067,60 @@ Skills for security, monitoring, reliability, and operations.
 
 **Example prompt:**
 > "Write Playwright tests for our checkout flow covering happy path and common error scenarios."
+
+</details>
+
+<details>
+<summary><strong>deploy</strong> — Deploy applications to Vercel</summary>
+
+**Best for:** Developers deploying frontend applications
+
+**What it does:** Deploys applications to Vercel with proper configuration. Handles production and preview deployments, environment variables, and build settings.
+
+**When to use:**
+- Deploying to production
+- Creating preview deployments
+- Setting up continuous deployment
+- Configuring Vercel deployment settings
+
+**Example prompt:**
+> "Deploy this Next.js app to Vercel as a production deployment."
+
+</details>
+
+<details>
+<summary><strong>logs</strong> — View Vercel deployment logs</summary>
+
+**Best for:** Developers debugging deployment issues
+
+**What it does:** Retrieves and displays Vercel deployment logs for debugging. Shows build logs, runtime logs, and function execution logs.
+
+**When to use:**
+- Debugging failed deployments
+- Investigating runtime errors
+- Checking build output
+- Monitoring function execution
+
+**Example prompt:**
+> "Show me the logs from the last failed Vercel deployment."
+
+</details>
+
+<details>
+<summary><strong>setup</strong> — Set up Vercel CLI and project configuration</summary>
+
+**Best for:** Developers starting new Vercel projects
+
+**What it does:** Guides Vercel CLI setup and project configuration. Links projects, configures build settings, sets up environment variables, and establishes deployment workflows.
+
+**When to use:**
+- Setting up Vercel for a new project
+- Configuring Vercel CLI locally
+- Linking existing project to Vercel
+- Configuring project settings
+
+**Example prompt:**
+> "Set up Vercel for this project and configure the build settings."
 
 </details>
 
@@ -1365,6 +1774,186 @@ Specialized skills and meta-tools.
 
 </details>
 
+<details>
+<summary><strong>agent-development</strong> — Create Claude Code plugin agents</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Guides creation of Claude Code plugin agents with proper YAML frontmatter (name, description, tools, colors), system prompts, triggering conditions, and auto-invocation patterns. Covers tool restrictions and permission modes.
+
+**When to use:**
+- Creating agents for Claude Code plugins
+- Defining specialized sub-agents
+- Setting up auto-invocation patterns
+- Configuring agent tool access
+
+**Example prompt:**
+> "Create a code-reviewer agent for my Claude Code plugin."
+
+</details>
+
+<details>
+<summary><strong>command-development</strong> — Create Claude Code slash commands</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Guides creation of slash commands with YAML frontmatter, arguments, dynamic parameters, file references, and bash execution. Covers interactive commands using AskUserQuestion.
+
+**When to use:**
+- Adding commands to Claude Code plugins
+- Creating user-invocable workflows
+- Building interactive command experiences
+- Setting up command arguments
+
+**Example prompt:**
+> "Create a /deploy command with environment and branch arguments."
+
+</details>
+
+<details>
+<summary><strong>hook-development</strong> — Create Claude Code event hooks</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Comprehensive guide for creating hooks that respond to events (PreToolUse, PostToolUse, Stop, SessionStart, etc.). Covers matchers, command/prompt types, and advanced prompt-based hooks API.
+
+**When to use:**
+- Creating automation that triggers on tool use
+- Building validation or guard rails
+- Implementing post-action formatting
+- Setting up session lifecycle hooks
+
+**Example prompt:**
+> "Create a hook that runs prettier after any file edit."
+
+</details>
+
+<details>
+<summary><strong>mcp-integration</strong> — Integrate MCP servers into plugins</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Guides MCP server integration into Claude Code plugins using .mcp.json configuration. Covers server types (SSE, stdio, HTTP, WebSocket), ${CLAUDE_PLUGIN_ROOT} paths, and external service connections.
+
+**When to use:**
+- Adding MCP servers to plugins
+- Connecting external services
+- Configuring MCP server types
+- Setting up plugin-bundled MCP servers
+
+**Example prompt:**
+> "Add an MCP server for our internal API to my Claude Code plugin."
+
+</details>
+
+<details>
+<summary><strong>plugin-settings</strong> — Store plugin configuration</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Documents the .claude/plugin-name.local.md pattern for storing plugin-specific configuration with YAML frontmatter and markdown content. Covers per-project settings and state files.
+
+**When to use:**
+- Making plugin behavior configurable
+- Storing persistent plugin state
+- Creating per-project settings
+- Reading configuration from local files
+
+**Example prompt:**
+> "Set up persistent settings for my plugin to remember user preferences."
+
+</details>
+
+<details>
+<summary><strong>plugin-structure</strong> — Claude Code plugin directory layout</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Comprehensive guide to plugin directory structure, manifest configuration (plugin.json), component organization, and file naming conventions. Covers ${CLAUDE_PLUGIN_ROOT} and auto-discovery.
+
+**When to use:**
+- Starting a new Claude Code plugin
+- Understanding plugin architecture
+- Organizing plugin components
+- Setting up plugin.json manifest
+
+**Example prompt:**
+> "Help me structure my new Claude Code plugin with proper directory layout."
+
+</details>
+
+<details>
+<summary><strong>skill-development</strong> — Create skills for plugins</summary>
+
+**Best for:** Claude Code plugin developers
+
+**What it does:** Guides skill creation for Claude Code plugins including SKILL.md structure, progressive disclosure, description writing, and organization. Covers when skills should be Claude-invocable vs user-only.
+
+**When to use:**
+- Adding skills to Claude Code plugins
+- Creating reusable knowledge packages
+- Writing effective skill descriptions
+- Organizing skill content
+
+**Example prompt:**
+> "Add a database-operations skill to my plugin."
+
+</details>
+
+<details>
+<summary><strong>claude-automation-recommender</strong> — Recommend Claude Code automations for a codebase</summary>
+
+**Best for:** Developers setting up Claude Code for projects
+
+**What it does:** Analyzes codebase patterns to recommend Claude Code automations: MCP servers (context7, Playwright, databases), skills (user-invoked workflows), hooks (auto-format, lint, test), subagents (reviewers, analyzers), and plugins. Outputs 1-2 top recommendations per category.
+
+**When to use:**
+- First-time Claude Code setup for a project
+- Optimizing existing Claude Code configuration
+- Finding relevant MCP servers for your stack
+- Identifying automation opportunities
+
+**Example prompt:**
+> "What Claude Code automations should I set up for this React/Node.js project?"
+
+</details>
+
+<details>
+<summary><strong>claude-md-improver</strong> — Audit and improve CLAUDE.md files</summary>
+
+**Best for:** Project maintainers, developers
+
+**What it does:** Audits CLAUDE.md files against quality criteria (commands, architecture, gotchas, conciseness, currency, actionability). Generates quality report with scores, then makes targeted updates with user approval. Covers root, local, and package-specific CLAUDE.md files.
+
+**When to use:**
+- Auditing project CLAUDE.md quality
+- Improving Claude's project context
+- Documenting missing commands or gotchas
+- Ensuring CLAUDE.md is current
+
+**Example prompt:**
+> "Audit and improve the CLAUDE.md files in this repository."
+
+</details>
+
+<details>
+<summary><strong>writing-rules</strong> — Create hookify rules for automation</summary>
+
+**Best for:** Claude Code users wanting custom automation
+
+**What it does:** Guides creation of hookify rules—markdown files with YAML frontmatter that define patterns to watch for and messages to show. Covers events (bash, file, stop, prompt), patterns (regex), conditions, and actions (warn, block).
+
+**When to use:**
+- Creating custom automation rules
+- Warning about dangerous commands
+- Blocking edits to sensitive files
+- Enforcing coding standards
+
+**Example prompt:**
+> "Create a hookify rule that warns when console.log is added to production code."
+
+</details>
+
 ---
 
 ## Need Something Else?
@@ -1377,4 +1966,4 @@ If none of these skills fit your needs:
 
 ---
 
-*This catalog contains 66 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
+*This catalog contains 97 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
