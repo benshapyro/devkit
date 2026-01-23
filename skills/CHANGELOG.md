@@ -1,8 +1,28 @@
-# Changelog
+# Skills Changelog
 
-## [2.1.0] - 2025-01-10
+All notable changes to skills in this repository.
 
-### What Changed
+## [Unreleased]
+
+## 2025-01-21
+
+### Added
+
+**Phase 4 Domain Skills**
+
+- **security-guardian** - OWASP Top 10, authentication, authorization, API security, secrets management
+- **database-migration** - Zero-downtime patterns, tool comparison, rollback strategies, testing
+- **observability-engineering** - OpenTelemetry, structured logging, tracing, alerting, collectors
+- **sre-runbook-generator** - Runbook templates, incident classification, escalation, automation
+- **web-accessibility-auditor** - WCAG 2.2, ARIA patterns, keyboard navigation, screen reader testing
+
+---
+
+## cadre-os
+
+### [2.1.0] - 2025-01-10
+
+#### What Changed
 
 - **Removed deprecated template** - Deleted `mbr-template-legacy.pptx`
 - **Eliminated code duplication** - Inference logic now single source in `tech-stack-research.md`
@@ -11,7 +31,7 @@
 - **Standardized SOP commands** - Fixed 7 inconsistent commands in `solutions-sop.md`
 - **Added cross-references** - `question-library.md` → `follow-up-patterns.md`
 
-### Technical Changes
+#### Technical Changes
 
 | Action | File | Details |
 |--------|------|---------|
@@ -27,9 +47,9 @@
 
 ---
 
-## [2.0.0] - 2025-01-09
+### [2.0.0] - 2025-01-09
 
-### What Changed for Users
+#### What Changed for Users
 
 - **SKILL.md is now a navigation hub** - Commands and triggers moved to reference files for faster loading
 - **Faster context loading** - Reduced from 651 to ~280 lines
@@ -37,7 +57,7 @@
 - **All content preserved** - Just reorganized into proper reference locations
 - **Comprehensive assets documentation** - Full inventory in `assets/README.md`
 
-### Technical Changes
+#### Technical Changes
 
 **Extracted to new files:**
 
@@ -63,7 +83,6 @@
 - `references/commands.md` - Full command reference (~100 lines)
 - `references/trigger-mapping.md` - Trigger-to-reference routing (~100 lines)
 - `assets/README.md` - Comprehensive asset documentation (~150 lines)
-- `CHANGELOG.md` - This file
 - Grouped navigation hub table in Reference Files section
 - "Last verified" notes on model-specific prompt references
 
@@ -72,7 +91,7 @@
 - Placeholder notation to `{{VAR}}` format
 - Role references made generic (project lead, consultant)
 
-### Migration
+#### Migration
 
 This is a breaking change. Redeploy to get the new structure.
 

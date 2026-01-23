@@ -23,6 +23,7 @@ npm-debug.log
 dist/
 build/
 *.egg-info/
+skills/.zip/
 
 # Local settings (don't commit user-specific overrides)
 *.local.json
