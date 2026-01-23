@@ -91,11 +91,12 @@ Provide findings as:
 
 ### Organization
 
-Skills are organized into 8 groups (97 skills total):
+Skills are organized into 9 groups (97 skills total):
 
 | Group | Skills | Examples |
 |-------|--------|----------|
-| **Content & Marketing** | 7 | content-repurposer, editorial-calendar, presentation-composer |
+| **Marketing** | 4 | content-repurposer, editorial-calendar, ace-content-engine, brand-guidelines |
+| **Communications** | 3 | presentation-composer, doc-coauthoring, internal-comms |
 | **Development Tools** | 21 | api-design-patterns, test-generator, stripe-best-practices, TDD, debugging |
 | **Data & Documents** | 6 | pdf, docx, pptx, xlsx, ai-data-analyst |
 | **Design & UI** | 9 | frontend-design, canvas-design, Figma integration |

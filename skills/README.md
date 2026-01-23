@@ -6,7 +6,8 @@ A curated collection of 97 skills that extend Claude's capabilities for specific
 
 ## Quick Navigation
 
-- [Content & Marketing](#content--marketing) — Writing, editing, repurposing content
+- [Marketing](#marketing) — Content strategy, campaigns, brand
+- [Communications](#communications) — Presentations, internal docs, co-authoring
 - [Development Tools](#development-tools) — APIs, testing, code patterns
 - [Data & Documents](#data--documents) — Spreadsheets, PDFs, analysis
 - [Design & UI](#design--ui) — Frontend, themes, visual design
@@ -19,17 +20,22 @@ A curated collection of 97 skills that extend Claude's capabilities for specific
 
 ## Quick Reference
 
-### Content & Marketing
+### Marketing
 
 | Skill | Description | Example Prompt |
 |-------|-------------|----------------|
 | content-repurposer | Transform one piece of content into multiple platform-specific formats | "Turn this blog post into 5 tweets, a LinkedIn post, and newsletter intro" |
 | editorial-calendar | Plan content calendars with SEO integration and multi-channel coordination | "Create a 3-month editorial calendar for our B2B blog with social tie-ins" |
 | ace-content-engine | Generate blog content with brand voice using Workshop or YOLO modes | "Write a blog post about AI tools using Workshop Mode with citations" |
-| internal-comms | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
-| doc-coauthoring | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
 | brand-guidelines | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
+
+### Communications
+
+| Skill | Description | Example Prompt |
+|-------|-------------|----------------|
 | presentation-composer | Create scientifically-optimized presentations with cognitive science principles | "Create an executive briefing deck using Pyramid Principle structure" |
+| doc-coauthoring | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
+| internal-comms | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
 
 ### Development Tools
 
@@ -158,9 +164,9 @@ A curated collection of 97 skills that extend Claude's capabilities for specific
 
 ---
 
-## Content & Marketing
+## Marketing
 
-Skills for writing, editing, and content strategy.
+Skills for content strategy, campaigns, and brand.
 
 <details>
 <summary><strong>content-repurposer</strong> — Turn one piece of content into many formats</summary>
@@ -217,20 +223,44 @@ Skills for writing, editing, and content strategy.
 </details>
 
 <details>
-<summary><strong>internal-comms</strong> — Craft effective internal communications</summary>
+<summary><strong>brand-guidelines</strong> — Apply Anthropic brand colors and typography</summary>
 
-**Best for:** HR teams, internal communications managers, executives
+**Best for:** Designers creating Anthropic-branded artifacts
 
-**What it does:** Creates clear, engaging internal communications including all-hands announcements, policy updates, change management messages, and executive communications. Balances transparency with appropriate messaging.
+**What it does:** Applies Anthropic's official brand colors, typography, and design standards to artifacts. Provides the specific color palette (Anthropic Tan, accent colors), font guidelines, and visual styling rules for creating on-brand presentations, documents, and HTML artifacts.
 
 **When to use:**
-- Announcing organizational changes
-- Communicating new policies or benefits
-- Writing executive updates and town hall scripts
-- Crafting sensitive employee communications
+- Styling artifacts with Anthropic brand colors
+- Applying correct Anthropic typography
+- Creating on-brand presentations or documents
+- Ensuring visual consistency with Anthropic standards
 
 **Example prompt:**
-> "Write an all-hands announcement about our office relocation. Emphasize the positives while acknowledging the transition period."
+> "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
+
+</details>
+
+---
+
+## Communications
+
+Skills for presentations, internal docs, and professional document co-authoring.
+
+<details>
+<summary><strong>presentation-composer</strong> — Create scientifically-optimized presentations</summary>
+
+**Best for:** Consultants, executives, presenters, sales teams
+
+**What it does:** Creates presentations using neuroscience-based frameworks (working memory limits, serial position effects) and consulting methodologies (Pyramid Principle, SCR, McKinsey/BCG approaches). Applies cognitive science principles: 3-4 chunks maximum per slide, 30 words or less, F/Z-pattern layouts, and strategic primacy/recency placement. Includes validation scripts and quality checklists.
+
+**When to use:**
+- Creating executive briefings or board decks
+- Building sales presentations or strategy consulting deliverables
+- Improving existing presentations with cognitive science principles
+- Selecting the right framework (Pyramid Principle, SCR, Duarte's Resonate, TED 4-Step)
+
+**Example prompt:**
+> "Create an executive briefing deck using Pyramid Principle structure with recommendation upfront and MECE supporting arguments."
 
 </details>
 
@@ -253,38 +283,20 @@ Skills for writing, editing, and content strategy.
 </details>
 
 <details>
-<summary><strong>brand-guidelines</strong> — Apply Anthropic brand colors and typography</summary>
+<summary><strong>internal-comms</strong> — Craft effective internal communications</summary>
 
-**Best for:** Designers creating Anthropic-branded artifacts
+**Best for:** HR teams, internal communications managers, executives
 
-**What it does:** Applies Anthropic's official brand colors, typography, and design standards to artifacts. Provides the specific color palette (Anthropic Tan, accent colors), font guidelines, and visual styling rules for creating on-brand presentations, documents, and HTML artifacts.
-
-**When to use:**
-- Styling artifacts with Anthropic brand colors
-- Applying correct Anthropic typography
-- Creating on-brand presentations or documents
-- Ensuring visual consistency with Anthropic standards
-
-**Example prompt:**
-> "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
-
-</details>
-
-<details>
-<summary><strong>presentation-composer</strong> — Create scientifically-optimized presentations</summary>
-
-**Best for:** Consultants, executives, presenters, sales teams
-
-**What it does:** Creates presentations using neuroscience-based frameworks (working memory limits, serial position effects) and consulting methodologies (Pyramid Principle, SCR, McKinsey/BCG approaches). Applies cognitive science principles: 3-4 chunks maximum per slide, 30 words or less, F/Z-pattern layouts, and strategic primacy/recency placement. Includes validation scripts and quality checklists.
+**What it does:** Creates clear, engaging internal communications including all-hands announcements, policy updates, change management messages, and executive communications. Balances transparency with appropriate messaging.
 
 **When to use:**
-- Creating executive briefings or board decks
-- Building sales presentations or strategy consulting deliverables
-- Improving existing presentations with cognitive science principles
-- Selecting the right framework (Pyramid Principle, SCR, Duarte's Resonate, TED 4-Step)
+- Announcing organizational changes
+- Communicating new policies or benefits
+- Writing executive updates and town hall scripts
+- Crafting sensitive employee communications
 
 **Example prompt:**
-> "Create an executive briefing deck using Pyramid Principle structure with recommendation upfront and MECE supporting arguments."
+> "Write an all-hands announcement about our office relocation. Emphasize the positives while acknowledging the transition period."
 
 </details>
 
