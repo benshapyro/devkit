@@ -1,0 +1,22 @@
+© 2025 Cadre AI. All rights reserved.
+
+LICENSE: This skill is proprietary to Cadre AI and intended for internal use 
+by Cadre AI team members and authorized clients.
+
+Permission is granted to:
+- Use this skill within Claude's interface for business purposes
+- Modify the skill for your specific organizational needs
+- Share with team members within your organization
+
+Restrictions:
+- Do not redistribute this skill publicly
+- Do not extract and reuse substantial portions without attribution
+- Do not claim this methodology as your own creation
+
+Attribution: If you share modifications or derivative works, please credit:
+"Based on Cadre AI Block Builder methodology"
+
+NO WARRANTY: This skill is provided "as is" without warranty of any kind.
+Cadre AI is not liable for any damages arising from use of this skill.
+
+For questions or licensing inquiries: strategy@cadre-ai.com

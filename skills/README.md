@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 47 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 60 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -29,6 +29,7 @@ A curated collection of 47 skills that extend Claude's capabilities for specific
 | internal-comms | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
 | doc-coauthoring | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
 | brand-guidelines | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
+| presentation-composer | Create scientifically-optimized presentations with cognitive science principles | "Create an executive briefing deck using Pyramid Principle structure" |
 
 ### Development Tools
 
@@ -83,6 +84,9 @@ A curated collection of 47 skills that extend Claude's capabilities for specific
 | strategy-frameworks | Apply Porter's Five Forces, BCG Matrix, SWOT, McKinsey 7S frameworks | "Conduct a Porter's Five Forces analysis for EV charging market" |
 | competitive-intelligence | Create battle cards, competitive matrices, and win/loss analysis | "Create a battle card for competing against [Competitor]" |
 | expense-categorizer | Categorize expenses with tax treatment, GL codes, and policy compliance | "Categorize these expenses and flag policy violations" |
+| ai-maturity-assessor | Assess AI transformation maturity across governance, fluency, and production | "Assess our organization's AI readiness and create a transformation roadmap" |
+| software-research-analyst | Strategic software research for $50K+ purchases with TCO analysis | "Evaluate HubSpot vs Salesforce vs Pipedrive for our 50-person sales team" |
+| tool-research-architect | Tool research with Jobs-to-be-Done framework and LLM integration analysis | "Research these 10 GTM tools focusing on AI/LLM integration capabilities" |
 
 ### AI & Automation
 
@@ -91,6 +95,10 @@ A curated collection of 47 skills that extend Claude's capabilities for specific
 | anthropic-messages-api | Implement Claude API with tool use, streaming, caching, and batches | "Implement Claude API integration with tool use for a support bot" |
 | openai-responses-api | Implement OpenAI Responses API with built-in tools and migration guidance | "Migrate our Chat Completions to Responses API with web search" |
 | ai-art-generation | Guide AI image generation with Midjourney, DALL-E, Stable Diffusion | "Create prompts for consistent fantasy character portraits in pixel art" |
+| clay-mastery | Build Clay.com data enrichment workflows with waterfall enrichment and Claygent | "Build a prospect list workflow with email waterfall and AI personalization" |
+| n8n-architect | Design and build production-ready n8n workflows using MCP tools | "Build an n8n workflow that triggers on webhook and sends to Slack" |
+| prompt-engineering | Comprehensive prompt patterns for Claude, GPT, and Gemini with model-specific optimization | "Optimize this prompt for Claude 4.5 with tool use" |
+| client-prompt-coach-builder | Generate customized prompt coaching CustomGPTs for clients | "Build a prompt coach for our client in the real estate industry" |
 
 ### Internal & Specialty
 
@@ -105,6 +113,11 @@ A curated collection of 47 skills that extend Claude's capabilities for specific
 | frontend-ui-integration | Build frontend features that integrate with existing backend APIs | "Build a user settings page integrating with our user API" |
 | service-integration | Integrate services in monorepos while preserving ownership boundaries | "Add a notification service that integrates with user service" |
 | internal-tools | Build internal operational tools with access controls and audit logging | "Build an internal tool for support to manage subscriptions" |
+| cadre-block-builder | Create implementation blocks for client SOWs with dual internal/client versions | "Create a 3-month implementation block for this Salesforce integration project" |
+| clickup-automation-architect | Design and optimize ClickUp automations for consulting workflows | "Build a client onboarding automation that triggers on task creation" |
+| clickup-guide | ClickUp structure, permissions, and features optimized for consulting firms | "How should I organize client projects in ClickUp with proper permissions?" |
+| onboarding | Generate comprehensive onboarding docs for engagements, teams, and pods | "Onboard me to the Hyperion client engagement with strategic context" |
+| project-resource-planner | Convert SOWs to week-by-week ClickUp resource plans with SMART goals | "Convert this SOW into a resource allocation plan with hour estimates" |
 
 ---
 
@@ -217,6 +230,24 @@ Skills for writing, editing, and content strategy.
 
 **Example prompt:**
 > "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
+
+</details>
+
+<details>
+<summary><strong>presentation-composer</strong> — Create scientifically-optimized presentations</summary>
+
+**Best for:** Consultants, executives, presenters, sales teams
+
+**What it does:** Creates presentations using neuroscience-based frameworks (working memory limits, serial position effects) and consulting methodologies (Pyramid Principle, SCR, McKinsey/BCG approaches). Applies cognitive science principles: 3-4 chunks maximum per slide, 30 words or less, F/Z-pattern layouts, and strategic primacy/recency placement. Includes validation scripts and quality checklists.
+
+**When to use:**
+- Creating executive briefings or board decks
+- Building sales presentations or strategy consulting deliverables
+- Improving existing presentations with cognitive science principles
+- Selecting the right framework (Pyramid Principle, SCR, Duarte's Resonate, TED 4-Step)
+
+**Example prompt:**
+> "Create an executive briefing deck using Pyramid Principle structure with recommendation upfront and MECE supporting arguments."
 
 </details>
 
@@ -775,6 +806,60 @@ Skills for product management, strategic planning, and business analysis.
 
 </details>
 
+<details>
+<summary><strong>ai-maturity-assessor</strong> — Assess organizational AI transformation readiness</summary>
+
+**Best for:** AI consultants, transformation leads, strategy teams
+
+**What it does:** Conducts structured diagnostic assessments evaluating AI maturity across four phases: Foundations (governance, data, executive alignment), AI Fluency (literacy, champions, learning), Scope & Prioritize (use case intake, evaluation), and Build & Scale (cross-functional teams, deployment). Generates quantitative scores, identifies capability gaps, and produces 12-18 month transformation roadmaps with investment estimates and ROI projections.
+
+**When to use:**
+- Evaluating a client's AI readiness before planning initiatives
+- Creating AI transformation roadmaps with investment estimates
+- Identifying capability gaps preventing progression from experimentation to maturity
+- Benchmarking against industry standards
+
+**Example prompt:**
+> "Assess our organization's AI maturity level and create a transformation roadmap with investment estimates."
+
+</details>
+
+<details>
+<summary><strong>software-research-analyst</strong> — Strategic software evaluation for major purchases</summary>
+
+**Best for:** IT leaders, procurement teams, business analysts
+
+**What it does:** Conducts systematic software research for decisions worth $50K+ annually using an 11-section template: vendor stability, feature analysis, technical architecture, user experience, pricing/TCO, security, support, implementation risks, decision matrix, strategic recommendation, and next steps. Produces executive-ready recommendations with evidence-based scoring.
+
+**When to use:**
+- Evaluating 2-5 finalist tools for major software purchases
+- Justifying software choices to executives or board
+- Calculating total cost of ownership over 3 years
+- Creating vendor comparison matrices with weighted scoring
+
+**Example prompt:**
+> "Evaluate HubSpot, Salesforce, and Pipedrive for our 50-person sales team with $100K 3-year budget."
+
+</details>
+
+<details>
+<summary><strong>tool-research-architect</strong> — Comprehensive tool research with LLM integration focus</summary>
+
+**Best for:** AI consultants, solution architects, technical evaluators
+
+**What it does:** Conducts comprehensive tool research using a 6-section framework: identity, description, primary/secondary use cases, pricing, and LLM connection analysis. Special emphasis on evaluating integration quality with ChatGPT, Claude, Gemini, and Copilot—categorizing as Official Integration, MCP Server, API Available, Community Integration, or None.
+
+**When to use:**
+- Researching tools with focus on AI/LLM integration capabilities
+- Building tool comparison documents for client recommendations
+- Creating competitive landscapes with Jobs-to-be-Done analysis
+- Evaluating how tools connect to major LLM platforms
+
+**Example prompt:**
+> "Research these 10 GTM automation tools, focusing on their LLM integration capabilities and pricing."
+
+</details>
+
 ---
 
 ## AI & Automation
@@ -833,6 +918,78 @@ Skills for working with AI APIs, prompts, and automation.
 
 **Example prompt:**
 > "Help me create prompts for generating a consistent set of fantasy character portraits in pixel art style."
+
+</details>
+
+<details>
+<summary><strong>clay-mastery</strong> — Build Clay.com data enrichment and GTM automation workflows</summary>
+
+**Best for:** RevOps teams, sales operations, growth marketers
+
+**What it does:** Provides implementation guidance for Clay.com workflows including waterfall enrichment (query multiple providers until data found), Claygent AI research (Helium, Neon, Argon, Navigator models), formula generation, and credit optimization. Covers outbound prospecting, inbound automation, CRM enrichment, and signal monitoring patterns.
+
+**When to use:**
+- Building prospect lists with email/phone waterfall enrichment
+- Configuring Claygent for AI-powered research
+- Optimizing credit usage across 150+ data providers
+- Creating inbound lead scoring and routing workflows
+
+**Example prompt:**
+> "Build a Clay workflow: LinkedIn Sales Nav import → company filter → email waterfall → AI personalization → Smartlead export."
+
+</details>
+
+<details>
+<summary><strong>n8n-architect</strong> — Design and build production-ready n8n workflows</summary>
+
+**Best for:** Automation engineers, integration specialists, ops teams
+
+**What it does:** Builds n8n workflows through MCP-validated construction. Routes complexity appropriately—lightweight path for simple trigger→transform→output, comprehensive path for enterprise integrations and AI agents. Provides core workflow patterns, validation checklists, and common pitfall prevention.
+
+**When to use:**
+- Building n8n workflows from requirements
+- Implementing AI agents in n8n with LangChain
+- Troubleshooting existing n8n workflows
+- Validating workflow JSON before deployment
+
+**Example prompt:**
+> "Build an n8n workflow that receives webhooks, transforms the data, and sends Slack notifications with error handling."
+
+</details>
+
+<details>
+<summary><strong>prompt-engineering</strong> — Comprehensive prompt patterns for Claude, GPT, and Gemini</summary>
+
+**Best for:** AI developers, prompt engineers, LLM application builders
+
+**What it does:** Provides 45+ prompt patterns across content creation, analysis, code generation, problem-solving, and education. Includes model-specific optimizations for Claude 4.5 (extreme explicitness, XML tags), GPT-5.1 (persistence instructions, adaptive reasoning), and Gemini 3.0 Pro (context-first, temperature 1.0). Contains production-ready system prompt templates.
+
+**When to use:**
+- Writing prompts optimized for specific models
+- Building AI agents or complex workflows
+- Auditing and improving existing prompts
+- Generating production system prompt templates
+
+**Example prompt:**
+> "Optimize this prompt for Claude 4.5 with tool use. Apply the appropriate patterns for autonomous coding."
+
+</details>
+
+<details>
+<summary><strong>client-prompt-coach-builder</strong> — Generate customized prompt coaching CustomGPTs</summary>
+
+**Best for:** AI consultants, client success teams, training specialists
+
+**What it does:** Automates creation of client-specific Prompt Engineering Coach CustomGPTs by analyzing project knowledge bases. Extracts context about industry, personas, and tasks, then generates deployment-ready CustomGPT instructions (<8,000 chars) and team user guides with real persona examples and before/after prompts.
+
+**When to use:**
+- Deploying prompt coaching to new clients
+- Creating industry-specific prompt training materials
+- Building CustomGPTs with client context baked in
+- Updating existing prompt coaches with new personas
+
+**Example prompt:**
+> "Build a prompt coach CustomGPT for our real estate client. Analyze their KB and generate instructions + user guide."
 
 </details>
 
@@ -1004,6 +1161,96 @@ Specialized skills and meta-tools.
 
 </details>
 
+<details>
+<summary><strong>cadre-block-builder</strong> — Create implementation blocks for client SOWs</summary>
+
+**Best for:** Cadre project managers, account leads, SOW authors
+
+**What it does:** Creates month-by-month implementation blocks using compositional activity clusters (Discovery, Process Design, Integration, Custom Development, Automation, AI/LLM, Testing, Deployment, Training, Optimization). Generates both internal versions (risks, confidence scores, technical notes) and client-facing versions (executive summaries, business outcomes). Enforces strategy/implementation boundary separation.
+
+**When to use:**
+- Planning new client engagements or SOW components
+- Defining project phases with month-by-month execution plans
+- Creating blocks for proposals or schedules
+- Generating dual internal/client documentation
+
+**Example prompt:**
+> "Create a 3-month implementation block for a Salesforce-HubSpot integration project with discovery and training phases."
+
+</details>
+
+<details>
+<summary><strong>clickup-automation-architect</strong> — Design ClickUp automations for consulting workflows</summary>
+
+**Best for:** Cadre operations team, project managers
+
+**What it does:** Designs and implements ClickUp automations optimized for consulting workflows and the 10,000/month Business tier limit. Provides ready-to-use recipes for client onboarding, milestone alerts, approval routing, and time entry detection. Includes limit optimization strategies and troubleshooting guides.
+
+**When to use:**
+- Building automations for client onboarding sequences
+- Creating approval workflows with status-based triggers
+- Optimizing automation usage against monthly limits
+- Troubleshooting failing or unexpected automations
+
+**Example prompt:**
+> "Build a ClickUp automation that triggers when a task enters 'Pending Approval' and notifies the assigned approver."
+
+</details>
+
+<details>
+<summary><strong>clickup-guide</strong> — ClickUp structure and permissions for consulting firms</summary>
+
+**Best for:** Cadre operations team, new team members
+
+**What it does:** Provides consulting-firm-specific ClickUp guidance for structure (Space vs Folder vs List), permissions and guest access, custom fields, feature selection (subtasks vs checklists, docs vs descriptions), views/dashboards, and time tracking. Optimized for 30-person teams on Business tier with client guest access needs.
+
+**When to use:**
+- Organizing client projects in ClickUp
+- Setting up permissions for client guests
+- Choosing between subtasks and checklists
+- Deciding on custom field configuration
+
+**Example prompt:**
+> "How should I organize our new client's project in ClickUp with proper folder structure and guest permissions?"
+
+</details>
+
+<details>
+<summary><strong>onboarding</strong> — Generate comprehensive onboarding documentation</summary>
+
+**Best for:** Cadre consultants, team leads, HR
+
+**What it does:** Generates comprehensive onboarding documentation for three scenarios: (1) Client Engagement Onboarding for consultants joining existing engagements (30-50 page strategic briefs), (2) Employee-to-Client for team members joining delivery teams (15-25 page operational docs), (3) Employee-to-Pod for new hires joining internal teams. Analyzes contracts, discovery intelligence, and stakeholder context.
+
+**When to use:**
+- Onboarding a consultant to an existing client engagement
+- Bringing a new team member onto a client delivery team
+- Creating handoff documentation for account transitions
+- Preparing strategic briefs for incoming strategists
+
+**Example prompt:**
+> "Onboard me to the Hyperion engagement. Generate a strategic handoff with contracts, stakeholders, and execution playbook."
+
+</details>
+
+<details>
+<summary><strong>project-resource-planner</strong> — Convert SOWs to ClickUp resource allocation plans</summary>
+
+**Best for:** Cadre project managers, resource planners
+
+**What it does:** Transforms semi-structured SOWs into detailed week-by-week resource allocation plans for ClickUp. Creates hierarchical structure (Initiative → Monthly Goals → Weekly Goals → Sub-tasks) with SMART goals, hour estimates for AI Managers/Strategists/Engineers, and role-tagged sub-tasks. Generates optional weekly calendar views and CSV exports for ClickUp import.
+
+**When to use:**
+- Converting client SOWs into detailed project plans
+- Planning 2-12 month consulting engagements
+- Allocating hours across AI Manager, Strategist, and Engineer roles
+- Creating ClickUp-importable resource schedules
+
+**Example prompt:**
+> "Convert this 6-month SOW into a resource allocation plan with weekly breakdowns and hour estimates by role."
+
+</details>
+
 ---
 
 ## Need Something Else?
@@ -1016,4 +1263,4 @@ If none of these skills fit your needs:
 
 ---
 
-*This catalog contains 47 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
+*This catalog contains 60 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
