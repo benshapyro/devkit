@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- 23 marketing skills imported from coreyhaines31/marketingskills
+  - CRO skills: page-cro, form-cro, popup-cro, signup-flow-cro, onboarding-cro, paywall-upgrade-cro
+  - SEO skills: seo-audit, programmatic-seo, schema-markup
+  - Growth skills: launch-strategy, referral-program, free-tool-strategy
+  - Copy skills: copywriting, copy-editing
+  - Strategy skills: marketing-psychology, pricing-strategy, competitor-alternatives, marketing-ideas
+  - Other: email-sequence, paid-ads, ab-test-setup, analytics-tracking, social-content
+- Rating column (⭐ favorite, 👍 like, ❓ not reviewed) added to all Quick Reference tables in skills README
 - 31 skills from official Claude Code plugins (superpowers, plugin-dev, figma, vercel)
   - Development Tools: brainstorming, TDD, systematic-debugging, verification-before-completion, writing-plans, etc.
   - Design & UI: code-connect-components, create-design-system-rules, implement-design (Figma)
@@ -21,10 +29,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - README-SPEC.md capturing documentation requirements
 
 ### Changed
-- Split content-marketing into marketing/ (4 skills) and communications/ (3 skills)
+- Split content-marketing into marketing/ (27 skills) and communications/ (3 skills)
 - Reorganized skills directory into 9 group subdirectories matching README categories
 - Updated packaging script to handle grouped directory structure
-- Skills count increased from initial ~30 to 97
+- Skills count increased from initial ~30 to 120
 - Updated CLAUDE.md with changelog maintenance instructions
 
 ### Removed

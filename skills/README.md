@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 97 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 120 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -22,185 +22,190 @@ A curated collection of 97 skills that extend Claude's capabilities for specific
 
 ### Marketing
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| content-repurposer | Transform one piece of content into multiple platform-specific formats | "Turn this blog post into 5 tweets, a LinkedIn post, and newsletter intro" |
-| editorial-calendar | Plan content calendars with SEO integration and multi-channel coordination | "Create a 3-month editorial calendar for our B2B blog with social tie-ins" |
-| ace-content-engine | Generate blog content with brand voice using Workshop or YOLO modes | "Write a blog post about AI tools using Workshop Mode with citations" |
-| brand-guidelines | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| ab-test-setup | ❓ | Plan and design A/B tests with statistical rigor | "Design an A/B test for our pricing page headline" |
+| ace-content-engine | ❓ | Generate blog content with brand voice using Workshop or YOLO modes | "Write a blog post about AI tools using Workshop Mode with citations" |
+| analytics-tracking | ❓ | Set up GA4, GTM, and conversion tracking | "Create a tracking plan for our SaaS product" |
+| brand-guidelines | ❓ | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
+| competitor-alternatives | ❓ | Create competitor comparison and alternative pages | "Create a '[Product] vs [Competitor]' comparison page" |
+| content-repurposer | ❓ | Transform one piece of content into multiple platform-specific formats | "Turn this blog post into 5 tweets, a LinkedIn post, and newsletter intro" |
+| copy-editing | ❓ | Edit and polish existing marketing copy | "Review and improve this landing page copy" |
+| copywriting | ❓ | Write marketing copy for any page type | "Write homepage copy for our developer tool" |
+| editorial-calendar | ❓ | Plan content calendars with SEO integration and multi-channel coordination | "Create a 3-month editorial calendar for our B2B blog with social tie-ins" |
+| email-sequence | ❓ | Create email sequences and drip campaigns | "Design a 5-email onboarding sequence for new signups" |
+| form-cro | ❓ | Optimize lead capture and contact forms | "Improve conversions on our demo request form" |
+| free-tool-strategy | ❓ | Plan free tools for lead generation and SEO | "Design a free calculator tool for lead generation" |
+| launch-strategy | ❓ | Plan product launches and announcements | "Create a Product Hunt launch strategy" |
+| marketing-ideas | ❓ | Get 140+ proven marketing strategies and tactics | "Give me marketing ideas for my B2B SaaS" |
+| marketing-psychology | ❓ | Apply 70+ mental models to marketing | "Apply cognitive biases to improve this landing page" |
+| onboarding-cro | ❓ | Optimize post-signup activation and time-to-value | "Improve our new user onboarding flow" |
+| page-cro | ❓ | Optimize any marketing page for conversions | "Why isn't this landing page converting?" |
+| paid-ads | ❓ | Create and optimize paid ad campaigns | "Write ad copy for a Google Ads campaign" |
+| paywall-upgrade-cro | ❓ | Optimize in-app paywalls and upgrade screens | "Design an upgrade modal for free users hitting limits" |
+| popup-cro | ❓ | Create and optimize popups and modals | "Design an exit-intent popup for lead capture" |
+| pricing-strategy | ❓ | Design pricing tiers and packaging | "Help me structure pricing tiers for my SaaS" |
+| programmatic-seo | ❓ | Build SEO pages at scale with templates | "Create a template for '[Tool] integrations' pages" |
+| referral-program | ❓ | Design referral and affiliate programs | "Design a refer-a-friend program with incentives" |
+| schema-markup | ❓ | Add JSON-LD structured data for rich snippets | "Add FAQ schema to this page" |
+| seo-audit | ❓ | Audit technical and on-page SEO issues | "Run an SEO audit on my homepage" |
+| signup-flow-cro | ❓ | Optimize signup and registration flows | "Reduce friction in our signup form" |
+| social-content | ❓ | Create content for LinkedIn, Twitter, Instagram | "Write a LinkedIn post about our new feature" |
 
 ### Communications
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| presentation-composer | Create scientifically-optimized presentations with cognitive science principles | "Create an executive briefing deck using Pyramid Principle structure" |
-| doc-coauthoring | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
-| internal-comms | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| presentation-composer | ❓ | Create scientifically-optimized presentations with cognitive science principles | "Create an executive briefing deck using Pyramid Principle structure" |
+| doc-coauthoring | ❓ | Co-author documents through Context → Refinement → Reader Testing stages | "Help me co-author a technical guide, starting with context gathering" |
+| internal-comms | ❓ | Create internal communications like all-hands announcements and policy updates | "Write an all-hands announcement about our office relocation" |
 
 ### Development Tools
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| api-design-patterns | Design REST and GraphQL APIs with proper patterns for Node.js, Flask, FastAPI | "Design a REST API for user management with pagination and RBAC" |
-| test-generator | Generate Jest or Pytest tests with proper coverage and mocking | "Generate Jest tests for this UserService including error cases" |
-| react-patterns | Implement modern React patterns with hooks, state management, optimization | "Create a custom hook for form state with validation and error handling" |
-| mcp-builder | Build Model Context Protocol servers to extend Claude's capabilities | "Build an MCP server that exposes our internal API as tools" |
-| code-formatter | Apply consistent code style with naming conventions and formatting rules | "Format this TypeScript file according to our style guide" |
-| error-handler | Implement robust error handling patterns for TypeScript and Python | "Add comprehensive error handling to this API endpoint" |
-| brainstorming | Turn ideas into designs through collaborative dialogue before implementation | "Help me design a new user dashboard feature" |
-| dispatching-parallel-agents | Run multiple independent agents concurrently on unrelated tasks | "I have 5 failing tests in different files, investigate in parallel" |
-| executing-plans | Execute written implementation plans with batch checkpoints | "Execute the plan in docs/plans/auth-system.md" |
-| finishing-a-development-branch | Complete dev work with merge, PR, or cleanup options | "I'm done with this feature, help me wrap up the branch" |
-| receiving-code-review | Handle code review feedback with technical rigor, not blind agreement | "Address the review feedback on my PR" |
-| requesting-code-review | Request code reviews on completed work before merging | "Review my changes before I merge to main" |
-| stripe-best-practices | Stripe integration using CheckoutSessions and Payment Element | "Help me implement Stripe checkout for subscriptions" |
-| subagent-driven-development | Execute plans with fresh subagent per task plus two-stage review | "Implement this plan using subagent-driven development" |
-| systematic-debugging | Root cause investigation before proposing any fixes | "Debug why this test is failing intermittently" |
-| test-driven-development | Write failing test first, then minimal code to pass | "Implement this feature using TDD" |
-| using-git-worktrees | Create isolated git workspaces for feature work | "Set up a worktree for this new feature" |
-| using-superpowers | Find and invoke relevant skills before taking action | "What skills should I use for this task?" |
-| verification-before-completion | Evidence before claiming work is complete or passing | "Verify all tests pass before saying we're done" |
-| writing-plans | Write comprehensive implementation plans with bite-sized tasks | "Create an implementation plan for this feature" |
-| writing-skills | Create new skills using TDD principles | "Help me create a skill for database migrations" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| api-design-patterns | ❓ | Design REST and GraphQL APIs with proper patterns for Node.js, Flask, FastAPI | "Design a REST API for user management with pagination and RBAC" |
+| test-generator | ❓ | Generate Jest or Pytest tests with proper coverage and mocking | "Generate Jest tests for this UserService including error cases" |
+| react-patterns | ❓ | Implement modern React patterns with hooks, state management, optimization | "Create a custom hook for form state with validation and error handling" |
+| mcp-builder | ❓ | Build Model Context Protocol servers to extend Claude's capabilities | "Build an MCP server that exposes our internal API as tools" |
+| code-formatter | ❓ | Apply consistent code style with naming conventions and formatting rules | "Format this TypeScript file according to our style guide" |
+| error-handler | ❓ | Implement robust error handling patterns for TypeScript and Python | "Add comprehensive error handling to this API endpoint" |
+| brainstorming | ❓ | Turn ideas into designs through collaborative dialogue before implementation | "Help me design a new user dashboard feature" |
+| dispatching-parallel-agents | ❓ | Run multiple independent agents concurrently on unrelated tasks | "I have 5 failing tests in different files, investigate in parallel" |
+| executing-plans | ❓ | Execute written implementation plans with batch checkpoints | "Execute the plan in docs/plans/auth-system.md" |
+| finishing-a-development-branch | ❓ | Complete dev work with merge, PR, or cleanup options | "I'm done with this feature, help me wrap up the branch" |
+| receiving-code-review | ❓ | Handle code review feedback with technical rigor, not blind agreement | "Address the review feedback on my PR" |
+| requesting-code-review | ❓ | Request code reviews on completed work before merging | "Review my changes before I merge to main" |
+| stripe-best-practices | ❓ | Stripe integration using CheckoutSessions and Payment Element | "Help me implement Stripe checkout for subscriptions" |
+| subagent-driven-development | ❓ | Execute plans with fresh subagent per task plus two-stage review | "Implement this plan using subagent-driven development" |
+| systematic-debugging | ❓ | Root cause investigation before proposing any fixes | "Debug why this test is failing intermittently" |
+| test-driven-development | ❓ | Write failing test first, then minimal code to pass | "Implement this feature using TDD" |
+| using-git-worktrees | ❓ | Create isolated git workspaces for feature work | "Set up a worktree for this new feature" |
+| using-superpowers | ❓ | Find and invoke relevant skills before taking action | "What skills should I use for this task?" |
+| verification-before-completion | ❓ | Evidence before claiming work is complete or passing | "Verify all tests pass before saying we're done" |
+| writing-plans | ❓ | Write comprehensive implementation plans with bite-sized tasks | "Create an implementation plan for this feature" |
+| writing-skills | ❓ | Create new skills using TDD principles | "Help me create a skill for database migrations" |
 
 ### Data & Documents
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| pdf | Extract, merge, split, fill forms, and manipulate PDF documents | "Extract all table data from this PDF invoice" |
-| docx | Create Word docs with docx-js or edit existing docs with Python OOXML | "Create a professional report with cover page and table of contents" |
-| pptx | Create presentations from scratch, templates, or edit existing slides | "Create a 10-slide investor pitch deck from this company overview" |
-| xlsx | Create Excel files with formulas (never hardcoded), charts, and formatting | "Create an Excel budget template with formulas and conditional formatting" |
-| ai-data-analyst | Perform data analysis, statistical modeling, and visualization with Python | "Analyze this sales dataset: identify trends and create visualizations" |
-| data-querying | Query internal data warehouses while respecting governance and PII policies | "Query our data warehouse for monthly active users by region" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| pdf | ❓ | Extract, merge, split, fill forms, and manipulate PDF documents | "Extract all table data from this PDF invoice" |
+| docx | ❓ | Create Word docs with docx-js or edit existing docs with Python OOXML | "Create a professional report with cover page and table of contents" |
+| pptx | ❓ | Create presentations from scratch, templates, or edit existing slides | "Create a 10-slide investor pitch deck from this company overview" |
+| xlsx | ❓ | Create Excel files with formulas (never hardcoded), charts, and formatting | "Create an Excel budget template with formulas and conditional formatting" |
+| ai-data-analyst | ❓ | Perform data analysis, statistical modeling, and visualization with Python | "Analyze this sales dataset: identify trends and create visualizations" |
+| data-querying | ❓ | Query internal data warehouses while respecting governance and PII policies | "Query our data warehouse for monthly active users by region" |
 
 ### Design & UI
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| frontend-design | Create distinctive UIs with intentional aesthetic direction, not generic AI look | "Design a modern dashboard with a unique brutalist visual style" |
-| canvas-design | Create museum-quality visual art through design philosophy workflow | "Create a visual piece inspired by brutalist architecture as a poster" |
-| theme-factory | Apply 10 professional themes (Ocean Depths, etc.) to slides and documents | "Show me available themes, then apply Ocean Depths to my deck" |
-| algorithmic-art | Create generative art with p5.js, seeded reproducibility, and interactivity | "Create generative art with flow fields and Perlin noise with seed controls" |
-| web-artifacts-builder | Build complex React/shadcn/ui artifacts that bundle to single HTML | "Build a project management app with React, Tailwind, and drag-and-drop" |
-| tailwind-conventions | Apply consistent Tailwind CSS patterns for React/Next.js apps | "Style this component with Tailwind including responsive and dark mode" |
-| code-connect-components | Link Figma components to code with Code Connect | "Set up Code Connect for our design system components" |
-| create-design-system-rules | Extract design rules from Figma for consistent implementation | "Extract spacing, typography, and color rules from our Figma file" |
-| implement-design | Implement UI directly from Figma designs | "Implement this Figma design as a React component" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| frontend-design | ❓ | Create distinctive UIs with intentional aesthetic direction, not generic AI look | "Design a modern dashboard with a unique brutalist visual style" |
+| canvas-design | ❓ | Create museum-quality visual art through design philosophy workflow | "Create a visual piece inspired by brutalist architecture as a poster" |
+| theme-factory | ❓ | Apply 10 professional themes (Ocean Depths, etc.) to slides and documents | "Show me available themes, then apply Ocean Depths to my deck" |
+| algorithmic-art | ❓ | Create generative art with p5.js, seeded reproducibility, and interactivity | "Create generative art with flow fields and Perlin noise with seed controls" |
+| web-artifacts-builder | ❓ | Build complex React/shadcn/ui artifacts that bundle to single HTML | "Build a project management app with React, Tailwind, and drag-and-drop" |
+| tailwind-conventions | ❓ | Apply consistent Tailwind CSS patterns for React/Next.js apps | "Style this component with Tailwind including responsive and dark mode" |
+| code-connect-components | ❓ | Link Figma components to code with Code Connect | "Set up Code Connect for our design system components" |
+| create-design-system-rules | ❓ | Extract design rules from Figma for consistent implementation | "Extract spacing, typography, and color rules from our Figma file" |
+| implement-design | ❓ | Implement UI directly from Figma designs | "Implement this Figma design as a React component" |
 
 ### Infrastructure & Ops
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| security-guardian | Security patterns for authentication, authorization, and OWASP remediation | "Review this auth module for vulnerabilities and provide fixes" |
-| observability-engineering | Implement metrics, logging, tracing, and alerting with OpenTelemetry | "Add OpenTelemetry instrumentation to this Node.js service" |
-| sre-runbook-generator | Generate operational runbooks for incidents and maintenance procedures | "Create a runbook for database connection pool exhaustion alerts" |
-| database-migration | Plan and execute zero-downtime database schema migrations | "Create a migration plan to add a column with zero downtime" |
-| web-accessibility-auditor | Audit for WCAG 2.2 compliance and fix accessibility issues | "Audit this page for WCAG 2.2 AA compliance and provide fixes" |
-| webapp-testing | Test web applications with Playwright for E2E and UI verification | "Write Playwright tests for our checkout flow" |
-| deploy | Deploy applications to Vercel | "Deploy this app to Vercel" |
-| logs | View Vercel deployment logs for debugging | "Show me the logs for the last deployment" |
-| setup | Set up Vercel CLI and project configuration | "Set up Vercel for this project" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| security-guardian | ❓ | Security patterns for authentication, authorization, and OWASP remediation | "Review this auth module for vulnerabilities and provide fixes" |
+| observability-engineering | ❓ | Implement metrics, logging, tracing, and alerting with OpenTelemetry | "Add OpenTelemetry instrumentation to this Node.js service" |
+| sre-runbook-generator | ❓ | Generate operational runbooks for incidents and maintenance procedures | "Create a runbook for database connection pool exhaustion alerts" |
+| database-migration | ❓ | Plan and execute zero-downtime database schema migrations | "Create a migration plan to add a column with zero downtime" |
+| web-accessibility-auditor | ❓ | Audit for WCAG 2.2 compliance and fix accessibility issues | "Audit this page for WCAG 2.2 AA compliance and provide fixes" |
+| webapp-testing | ❓ | Test web applications with Playwright for E2E and UI verification | "Write Playwright tests for our checkout flow" |
+| deploy | ❓ | Deploy applications to Vercel | "Deploy this app to Vercel" |
+| logs | ❓ | View Vercel deployment logs for debugging | "Show me the logs for the last deployment" |
+| setup | ❓ | Set up Vercel CLI and project configuration | "Set up Vercel for this project" |
 
 ### Business & Strategy
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| product-discovery | Discover products using Five Whys, MECE; outputs SPEC.md, DESIGN.md, PLAN.md | "Help me discover a new onboarding feature, start with problem exploration" |
-| product-management | PRD writing, feature analysis, research synthesis, stakeholder communication | "Write a PRD for team collaboration features based on user research" |
-| strategy-frameworks | Apply Porter's Five Forces, BCG Matrix, SWOT, McKinsey 7S frameworks | "Conduct a Porter's Five Forces analysis for EV charging market" |
-| competitive-intelligence | Create battle cards, competitive matrices, and win/loss analysis | "Create a battle card for competing against [Competitor]" |
-| expense-categorizer | Categorize expenses with tax treatment, GL codes, and policy compliance | "Categorize these expenses and flag policy violations" |
-| ai-maturity-assessor | Assess AI transformation maturity across governance, fluency, and production | "Assess our organization's AI readiness and create a transformation roadmap" |
-| software-research-analyst | Strategic software research for $50K+ purchases with TCO analysis | "Evaluate HubSpot vs Salesforce vs Pipedrive for our 50-person sales team" |
-| tool-research-architect | Tool research with Jobs-to-be-Done framework and LLM integration analysis | "Research these 10 GTM tools focusing on AI/LLM integration capabilities" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| product-discovery | ❓ | Discover products using Five Whys, MECE; outputs SPEC.md, DESIGN.md, PLAN.md | "Help me discover a new onboarding feature, start with problem exploration" |
+| product-management | ❓ | PRD writing, feature analysis, research synthesis, stakeholder communication | "Write a PRD for team collaboration features based on user research" |
+| strategy-frameworks | ❓ | Apply Porter's Five Forces, BCG Matrix, SWOT, McKinsey 7S frameworks | "Conduct a Porter's Five Forces analysis for EV charging market" |
+| competitive-intelligence | ❓ | Create battle cards, competitive matrices, and win/loss analysis | "Create a battle card for competing against [Competitor]" |
+| expense-categorizer | ❓ | Categorize expenses with tax treatment, GL codes, and policy compliance | "Categorize these expenses and flag policy violations" |
+| ai-maturity-assessor | ❓ | Assess AI transformation maturity across governance, fluency, and production | "Assess our organization's AI readiness and create a transformation roadmap" |
+| software-research-analyst | ❓ | Strategic software research for $50K+ purchases with TCO analysis | "Evaluate HubSpot vs Salesforce vs Pipedrive for our 50-person sales team" |
+| tool-research-architect | ❓ | Tool research with Jobs-to-be-Done framework and LLM integration analysis | "Research these 10 GTM tools focusing on AI/LLM integration capabilities" |
 
 ### AI & Automation
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| anthropic-messages-api | Implement Claude API with tool use, streaming, caching, and batches | "Implement Claude API integration with tool use for a support bot" |
-| openai-responses-api | Implement OpenAI Responses API with built-in tools and migration guidance | "Migrate our Chat Completions to Responses API with web search" |
-| ai-art-generation | Guide AI image generation with Midjourney, DALL-E, Stable Diffusion | "Create prompts for consistent fantasy character portraits in pixel art" |
-| clay-mastery | Build Clay.com data enrichment workflows with waterfall enrichment and Claygent | "Build a prospect list workflow with email waterfall and AI personalization" |
-| prompt-engineering | Comprehensive prompt patterns for Claude, GPT, and Gemini with model-specific optimization | "Optimize this prompt for Claude 4.5 with tool use" |
-| client-prompt-coach-builder | Generate customized prompt coaching CustomGPTs for clients | "Build a prompt coach for our client in the real estate industry" |
-| n8n-workflow-patterns | 5 core workflow architectures (webhook, API, database, AI agent, scheduled) | "What pattern should I use for a Slack bot that queries our database?" |
-| n8n-mcp-tools-expert | Master guide for n8n MCP tools (search_nodes, get_node, validate, create) | "How do I use get_node to understand Slack node configuration?" |
-| n8n-node-configuration | Operation-aware configuration with property dependencies | "Why does my HTTP Request node require sendBody for POST?" |
-| n8n-validation-expert | Interpret validation errors and fix them with iterative workflow | "I'm getting a missing_required error on my Slack node" |
-| n8n-expression-syntax | Write correct n8n expressions with {{}} syntax and webhook data access | "Why is my webhook data coming back undefined?" |
-| n8n-code-javascript | Write JavaScript in n8n Code nodes with $input, $json, $helpers | "Write a Code node that aggregates data from multiple items" |
-| n8n-code-python | Write Python in n8n Code nodes (standard library only, no pandas/requests) | "When should I use Python instead of JavaScript in n8n?" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| anthropic-messages-api | ❓ | Implement Claude API with tool use, streaming, caching, and batches | "Implement Claude API integration with tool use for a support bot" |
+| openai-responses-api | ❓ | Implement OpenAI Responses API with built-in tools and migration guidance | "Migrate our Chat Completions to Responses API with web search" |
+| ai-art-generation | ❓ | Guide AI image generation with Midjourney, DALL-E, Stable Diffusion | "Create prompts for consistent fantasy character portraits in pixel art" |
+| clay-mastery | ❓ | Build Clay.com data enrichment workflows with waterfall enrichment and Claygent | "Build a prospect list workflow with email waterfall and AI personalization" |
+| prompt-engineering | ❓ | Comprehensive prompt patterns for Claude, GPT, and Gemini with model-specific optimization | "Optimize this prompt for Claude 4.5 with tool use" |
+| client-prompt-coach-builder | ❓ | Generate customized prompt coaching CustomGPTs for clients | "Build a prompt coach for our client in the real estate industry" |
+| n8n-workflow-patterns | ❓ | 5 core workflow architectures (webhook, API, database, AI agent, scheduled) | "What pattern should I use for a Slack bot that queries our database?" |
+| n8n-mcp-tools-expert | ❓ | Master guide for n8n MCP tools (search_nodes, get_node, validate, create) | "How do I use get_node to understand Slack node configuration?" |
+| n8n-node-configuration | ❓ | Operation-aware configuration with property dependencies | "Why does my HTTP Request node require sendBody for POST?" |
+| n8n-validation-expert | ❓ | Interpret validation errors and fix them with iterative workflow | "I'm getting a missing_required error on my Slack node" |
+| n8n-expression-syntax | ❓ | Write correct n8n expressions with {{}} syntax and webhook data access | "Why is my webhook data coming back undefined?" |
+| n8n-code-javascript | ❓ | Write JavaScript in n8n Code nodes with $input, $json, $helpers | "Write a Code node that aggregates data from multiple items" |
+| n8n-code-python | ❓ | Write Python in n8n Code nodes (standard library only, no pandas/requests) | "When should I use Python instead of JavaScript in n8n?" |
 
 ### Internal & Specialty
 
-| Skill | Description | Example Prompt |
-|-------|-------------|----------------|
-| skill-creator | Create new skills with proper SKILL.md structure and best practices | "Help me create a new skill for [domain]" |
-| vibe-coding | Rapidly prototype web apps; local alternative to Lovable, Bolt, v0 | "Build a task management app with drag-and-drop and local storage" |
-| browser | Automate Chrome with DevTools Protocol for navigation and scraping | "Navigate to this page, fill the form, and capture a screenshot" |
-| slack-gif-creator | Create animated GIFs for Slack using programmatic graphics (PIL) | "Create a GIF showing the new feature, optimized for Slack" |
-| cadre-os | Cadre AI consulting OS for discovery, synthesis, and deliverables | "/prep [Client Name] — Prepare for upcoming discovery session" |
-| documentation-templates | Generate READMEs, API docs, and code comments following best practices | "Generate a comprehensive README with setup, usage, and API docs" |
-| frontend-ui-integration | Build frontend features that integrate with existing backend APIs | "Build a user settings page integrating with our user API" |
-| service-integration | Integrate services in monorepos while preserving ownership boundaries | "Add a notification service that integrates with user service" |
-| internal-tools | Build internal operational tools with access controls and audit logging | "Build an internal tool for support to manage subscriptions" |
-| cadre-block-builder | Create implementation blocks for client SOWs with dual internal/client versions | "Create a 3-month implementation block for this Salesforce integration project" |
-| clickup-automation-architect | Design and optimize ClickUp automations for consulting workflows | "Build a client onboarding automation that triggers on task creation" |
-| clickup-guide | ClickUp structure, permissions, and features optimized for consulting firms | "How should I organize client projects in ClickUp with proper permissions?" |
-| onboarding | Generate comprehensive onboarding docs for engagements, teams, and pods | "Onboard me to the Hyperion client engagement with strategic context" |
-| project-resource-planner | Convert SOWs to week-by-week ClickUp resource plans with SMART goals | "Convert this SOW into a resource allocation plan with hour estimates" |
-| agent-development | Create Claude Code plugin agents with proper structure | "Create an agent for code review in my plugin" |
-| command-development | Create Claude Code slash commands with arguments | "Create a /deploy command for my plugin" |
-| hook-development | Create Claude Code event hooks for automation | "Create a hook that runs tests after file edits" |
-| mcp-integration | Integrate MCP servers into Claude Code plugins | "Add an MCP server for our internal API to my plugin" |
-| plugin-settings | Store plugin configuration in local files | "Set up persistent settings for my plugin" |
-| plugin-structure | Claude Code plugin directory layout and manifest | "Help me structure my new Claude Code plugin" |
-| skill-development | Create skills for Claude Code plugins | "Add a skill to my plugin for database operations" |
-| claude-automation-recommender | Analyze codebase and recommend Claude Code automations | "What hooks, skills, and MCP servers should I set up?" |
-| claude-md-improver | Audit and improve CLAUDE.md files in repositories | "Audit and improve the CLAUDE.md files in this repo" |
-| writing-rules | Create hookify rules for Claude Code automation | "Create a hookify rule to warn about console.log" |
+| Skill | Rating | Description | Example Prompt |
+|-------|--------|-------------|----------------|
+| skill-creator | ❓ | Create new skills with proper SKILL.md structure and best practices | "Help me create a new skill for [domain]" |
+| vibe-coding | ❓ | Rapidly prototype web apps; local alternative to Lovable, Bolt, v0 | "Build a task management app with drag-and-drop and local storage" |
+| browser | ❓ | Automate Chrome with DevTools Protocol for navigation and scraping | "Navigate to this page, fill the form, and capture a screenshot" |
+| slack-gif-creator | ❓ | Create animated GIFs for Slack using programmatic graphics (PIL) | "Create a GIF showing the new feature, optimized for Slack" |
+| cadre-os | ❓ | Cadre AI consulting OS for discovery, synthesis, and deliverables | "/prep [Client Name] — Prepare for upcoming discovery session" |
+| documentation-templates | ❓ | Generate READMEs, API docs, and code comments following best practices | "Generate a comprehensive README with setup, usage, and API docs" |
+| frontend-ui-integration | ❓ | Build frontend features that integrate with existing backend APIs | "Build a user settings page integrating with our user API" |
+| service-integration | ❓ | Integrate services in monorepos while preserving ownership boundaries | "Add a notification service that integrates with user service" |
+| internal-tools | ❓ | Build internal operational tools with access controls and audit logging | "Build an internal tool for support to manage subscriptions" |
+| cadre-block-builder | ❓ | Create implementation blocks for client SOWs with dual internal/client versions | "Create a 3-month implementation block for this Salesforce integration project" |
+| clickup-automation-architect | ❓ | Design and optimize ClickUp automations for consulting workflows | "Build a client onboarding automation that triggers on task creation" |
+| clickup-guide | ❓ | ClickUp structure, permissions, and features optimized for consulting firms | "How should I organize client projects in ClickUp with proper permissions?" |
+| onboarding | ❓ | Generate comprehensive onboarding docs for engagements, teams, and pods | "Onboard me to the Hyperion client engagement with strategic context" |
+| project-resource-planner | ❓ | Convert SOWs to week-by-week ClickUp resource plans with SMART goals | "Convert this SOW into a resource allocation plan with hour estimates" |
+| agent-development | ❓ | Create Claude Code plugin agents with proper structure | "Create an agent for code review in my plugin" |
+| command-development | ❓ | Create Claude Code slash commands with arguments | "Create a /deploy command for my plugin" |
+| hook-development | ❓ | Create Claude Code event hooks for automation | "Create a hook that runs tests after file edits" |
+| mcp-integration | ❓ | Integrate MCP servers into Claude Code plugins | "Add an MCP server for our internal API to my plugin" |
+| plugin-settings | ❓ | Store plugin configuration in local files | "Set up persistent settings for my plugin" |
+| plugin-structure | ❓ | Claude Code plugin directory layout and manifest | "Help me structure my new Claude Code plugin" |
+| skill-development | ❓ | Create skills for Claude Code plugins | "Add a skill to my plugin for database operations" |
+| claude-automation-recommender | ❓ | Analyze codebase and recommend Claude Code automations | "What hooks, skills, and MCP servers should I set up?" |
+| claude-md-improver | ❓ | Audit and improve CLAUDE.md files in repositories | "Audit and improve the CLAUDE.md files in this repo" |
+| writing-rules | ❓ | Create hookify rules for Claude Code automation | "Create a hookify rule to warn about console.log" |
 
 ---
 
 ## Marketing
 
-Skills for content strategy, campaigns, and brand.
+Skills for content strategy, campaigns, CRO, SEO, and growth marketing.
 
 <details>
-<summary><strong>content-repurposer</strong> — Turn one piece of content into many formats</summary>
+<summary><strong>ab-test-setup</strong> — Plan and design A/B tests with statistical rigor</summary>
 
-**Best for:** Content marketers, social media managers, marketing teams
+**Best for:** Marketers, product managers, growth teams
 
-**What it does:** Transforms a single piece of content (blog post, video, podcast) into multiple formats optimized for different platforms. Handles blog-to-social, podcast-to-article, video-to-snippets, and more while maintaining consistent messaging.
-
-**When to use:**
-- Turning a blog post into LinkedIn posts, tweets, and newsletter content
-- Converting a podcast episode into an article and quote graphics
-- Repurposing webinar content for multiple channels
-- Creating platform-specific variations of core content
-
-**Example prompt:**
-> "Take this 2,000-word blog post about AI trends and create a LinkedIn carousel, 5 tweets, and an email newsletter intro."
-
-</details>
-
-<details>
-<summary><strong>editorial-calendar</strong> — Plan and coordinate content across channels</summary>
-
-**Best for:** Content managers, marketing directors, editorial teams
-
-**What it does:** Creates comprehensive content calendars with keyword-first planning, SEO integration, topic clusters, multi-channel coordination, and publication scheduling. Aligns content with business goals and seasonal events.
+**What it does:** Helps design A/B tests that produce statistically valid, actionable results. Covers hypothesis formation, sample size calculation, test duration, and avoiding common pitfalls like peeking at results early.
 
 **When to use:**
-- Planning quarterly content strategy
-- Coordinating blog, social, and email campaigns
-- Aligning content with product launches or events
-- Building out topic clusters for SEO
+- Planning a new A/B test or experiment
+- Calculating required sample size
+- Designing variant copy or layouts
+- Ensuring statistical validity
 
 **Example prompt:**
-> "Create a 3-month editorial calendar for our B2B SaaS blog focusing on customer success themes. Include social media tie-ins."
+> "Design an A/B test for our pricing page headline with proper sample size calculations."
 
 </details>
 
@@ -223,6 +228,24 @@ Skills for content strategy, campaigns, and brand.
 </details>
 
 <details>
+<summary><strong>analytics-tracking</strong> — Set up GA4, GTM, and conversion tracking</summary>
+
+**Best for:** Marketers, growth teams, developers implementing tracking
+
+**What it does:** Guides setup and improvement of analytics tracking including GA4, Google Tag Manager, conversion tracking, UTM parameters, and event tracking. Creates tracking plans and ensures data quality.
+
+**When to use:**
+- Setting up GA4 or Google Tag Manager
+- Creating a tracking plan for a product
+- Implementing conversion tracking
+- Auditing existing analytics setup
+
+**Example prompt:**
+> "Create a tracking plan for our SaaS product covering signups, activations, and key feature usage."
+
+</details>
+
+<details>
 <summary><strong>brand-guidelines</strong> — Apply Anthropic brand colors and typography</summary>
 
 **Best for:** Designers creating Anthropic-branded artifacts
@@ -237,6 +260,420 @@ Skills for content strategy, campaigns, and brand.
 
 **Example prompt:**
 > "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
+
+</details>
+
+<details>
+<summary><strong>competitor-alternatives</strong> — Create competitor comparison and alternative pages</summary>
+
+**Best for:** Content marketers, SEO specialists, product marketers
+
+**What it does:** Creates competitor comparison and alternative pages for SEO and sales enablement. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. Emphasizes deep research and varied content beyond feature tables.
+
+**When to use:**
+- Creating "[Product] vs [Competitor]" comparison pages
+- Building "[Product] alternatives" pages for SEO
+- Developing sales enablement comparison content
+- Capturing competitor-related search traffic
+
+**Example prompt:**
+> "Create a '[Product] vs [Competitor]' comparison page with feature tables and use case analysis."
+
+</details>
+
+<details>
+<summary><strong>content-repurposer</strong> — Turn one piece of content into many formats</summary>
+
+**Best for:** Content marketers, social media managers, marketing teams
+
+**What it does:** Transforms a single piece of content (blog post, video, podcast) into multiple formats optimized for different platforms. Handles blog-to-social, podcast-to-article, video-to-snippets, and more while maintaining consistent messaging.
+
+**When to use:**
+- Turning a blog post into LinkedIn posts, tweets, and newsletter content
+- Converting a podcast episode into an article and quote graphics
+- Repurposing webinar content for multiple channels
+- Creating platform-specific variations of core content
+
+**Example prompt:**
+> "Take this 2,000-word blog post about AI trends and create a LinkedIn carousel, 5 tweets, and an email newsletter intro."
+
+</details>
+
+<details>
+<summary><strong>copy-editing</strong> — Edit and polish existing marketing copy</summary>
+
+**Best for:** Marketers, content editors, copywriters
+
+**What it does:** Provides systematic approach to editing marketing copy through multiple focused passes. Covers clarity, persuasion, tone, and technical accuracy. Helps polish existing copy rather than writing from scratch.
+
+**When to use:**
+- Reviewing and improving landing page copy
+- Polishing email sequences
+- Editing marketing content for consistency
+- Getting feedback on draft copy
+
+**Example prompt:**
+> "Review and improve this landing page copy for clarity and conversion."
+
+</details>
+
+<details>
+<summary><strong>copywriting</strong> — Write marketing copy for any page type</summary>
+
+**Best for:** Marketers, founders, product teams
+
+**What it does:** Writes conversion-focused marketing copy for any page type including homepages, landing pages, pricing pages, feature pages, and about pages. Emphasizes clarity over cleverness and benefits over features.
+
+**When to use:**
+- Writing homepage or landing page copy
+- Creating pricing page content
+- Drafting feature page copy
+- Writing product descriptions
+
+**Example prompt:**
+> "Write homepage copy for our developer tool that emphasizes time savings."
+
+</details>
+
+<details>
+<summary><strong>editorial-calendar</strong> — Plan and coordinate content across channels</summary>
+
+**Best for:** Content managers, marketing directors, editorial teams
+
+**What it does:** Creates comprehensive content calendars with keyword-first planning, SEO integration, topic clusters, multi-channel coordination, and publication scheduling. Aligns content with business goals and seasonal events.
+
+**When to use:**
+- Planning quarterly content strategy
+- Coordinating blog, social, and email campaigns
+- Aligning content with product launches or events
+- Building out topic clusters for SEO
+
+**Example prompt:**
+> "Create a 3-month editorial calendar for our B2B SaaS blog focusing on customer success themes. Include social media tie-ins."
+
+</details>
+
+<details>
+<summary><strong>email-sequence</strong> — Create email sequences and drip campaigns</summary>
+
+**Best for:** Marketers, growth teams, customer success
+
+**What it does:** Creates email sequences, drip campaigns, and lifecycle email programs. Covers onboarding sequences, nurture campaigns, re-engagement flows, and welcome sequences with proper timing and messaging.
+
+**When to use:**
+- Designing onboarding email sequences
+- Creating nurture drip campaigns
+- Building re-engagement email flows
+- Planning lifecycle email programs
+
+**Example prompt:**
+> "Design a 5-email onboarding sequence for new trial signups with activation focus."
+
+</details>
+
+<details>
+<summary><strong>form-cro</strong> — Optimize lead capture and contact forms</summary>
+
+**Best for:** Marketers, growth teams, web developers
+
+**What it does:** Optimizes forms that are NOT signup/registration — including lead capture, contact forms, demo requests, and application forms. Focuses on reducing friction and improving completion rates.
+
+**When to use:**
+- Improving demo request form conversions
+- Optimizing contact form completion
+- Reducing lead capture form friction
+- Analyzing form abandonment
+
+**Example prompt:**
+> "Audit and improve our demo request form to increase completion rate."
+
+</details>
+
+<details>
+<summary><strong>free-tool-strategy</strong> — Plan free tools for lead generation and SEO</summary>
+
+**Best for:** Founders, marketers, growth teams
+
+**What it does:** Plans and evaluates free tools for marketing purposes — lead generation, SEO value, or brand awareness. Bridges engineering and marketing with strategies for calculators, generators, and interactive tools.
+
+**When to use:**
+- Planning an "engineering as marketing" tool
+- Evaluating ROI of building a free tool
+- Designing lead generation tools
+- Creating SEO-focused interactive content
+
+**Example prompt:**
+> "Design a free calculator tool for lead generation in the SaaS space."
+
+</details>
+
+<details>
+<summary><strong>launch-strategy</strong> — Plan product launches and announcements</summary>
+
+**Best for:** Product marketers, founders, marketing teams
+
+**What it does:** Plans product launches, feature announcements, and release strategies. Covers phased launches, channel strategy, Product Hunt launches, beta/early access programs, and ongoing launch momentum.
+
+**When to use:**
+- Planning a Product Hunt launch
+- Designing a beta or early access program
+- Coordinating a feature announcement
+- Building launch momentum
+
+**Example prompt:**
+> "Create a Product Hunt launch strategy with pre-launch, launch day, and post-launch phases."
+
+</details>
+
+<details>
+<summary><strong>marketing-ideas</strong> — Get 140+ proven marketing strategies and tactics</summary>
+
+**Best for:** Founders, marketers, growth teams
+
+**What it does:** Provides 140+ proven marketing approaches organized by category. Useful for brainstorming marketing strategies, finding new growth channels, and discovering tactics that work for SaaS and software products.
+
+**When to use:**
+- Brainstorming marketing strategies
+- Finding new growth channels
+- Getting inspiration for campaigns
+- Exploring marketing tactics
+
+**Example prompt:**
+> "Give me marketing ideas for a B2B SaaS product in the HR tech space."
+
+</details>
+
+<details>
+<summary><strong>marketing-psychology</strong> — Apply 70+ mental models to marketing</summary>
+
+**Best for:** Marketers, copywriters, product teams
+
+**What it does:** Provides 70+ mental models and psychological principles organized for marketing application. Covers cognitive biases, persuasion principles, and behavioral science concepts.
+
+**When to use:**
+- Applying psychology to landing pages
+- Using cognitive biases in copywriting
+- Understanding decision-making
+- Improving persuasion in marketing
+
+**Example prompt:**
+> "Apply cognitive biases to improve this landing page for conversions."
+
+</details>
+
+<details>
+<summary><strong>onboarding-cro</strong> — Optimize post-signup activation and time-to-value</summary>
+
+**Best for:** Product teams, growth teams, UX designers
+
+**What it does:** Optimizes post-signup onboarding, user activation, and first-run experience. Focuses on reducing time-to-value, improving activation rates, and guiding users to their "aha moment."
+
+**When to use:**
+- Improving new user onboarding flows
+- Increasing activation rates
+- Designing first-run experiences
+- Optimizing empty states and checklists
+
+**Example prompt:**
+> "Audit and improve our new user onboarding flow to increase activation."
+
+</details>
+
+<details>
+<summary><strong>page-cro</strong> — Optimize any marketing page for conversions</summary>
+
+**Best for:** Marketers, growth teams, web developers
+
+**What it does:** Optimizes any marketing page for conversions including homepages, landing pages, pricing pages, and feature pages. Provides systematic CRO analysis and recommendations.
+
+**When to use:**
+- Diagnosing why a page isn't converting
+- Improving landing page performance
+- Optimizing pricing page conversions
+- Running CRO audits
+
+**Example prompt:**
+> "Why isn't this landing page converting? Provide a CRO analysis and recommendations."
+
+</details>
+
+<details>
+<summary><strong>paid-ads</strong> — Create and optimize paid ad campaigns</summary>
+
+**Best for:** Marketers, growth teams, PPC specialists
+
+**What it does:** Helps with paid advertising campaigns on Google Ads, Meta, LinkedIn, and other platforms. Covers campaign strategy, ad copy, audience targeting, and optimization.
+
+**When to use:**
+- Creating ad campaign strategies
+- Writing ad copy and creatives
+- Setting up audience targeting
+- Optimizing campaign performance
+
+**Example prompt:**
+> "Write ad copy for a Google Ads campaign targeting 'project management software.'"
+
+</details>
+
+<details>
+<summary><strong>paywall-upgrade-cro</strong> — Optimize in-app paywalls and upgrade screens</summary>
+
+**Best for:** Product teams, growth teams, UX designers
+
+**What it does:** Creates and optimizes in-app paywalls, upgrade screens, and feature gates. Focuses on converting free users to paid at moments when they've experienced value.
+
+**When to use:**
+- Designing upgrade modals for free users
+- Optimizing feature gate messaging
+- Improving freemium conversion
+- Creating trial expiration screens
+
+**Example prompt:**
+> "Design an upgrade modal for free users who hit their project limit."
+
+</details>
+
+<details>
+<summary><strong>popup-cro</strong> — Create and optimize popups and modals</summary>
+
+**Best for:** Marketers, growth teams, web developers
+
+**What it does:** Creates and optimizes popups, modals, slide-ins, and banners for conversion purposes. Covers exit intent, lead capture, announcements, and promotional popups.
+
+**When to use:**
+- Designing exit-intent popups
+- Creating lead capture modals
+- Building announcement banners
+- Optimizing popup conversions
+
+**Example prompt:**
+> "Design an exit-intent popup for lead capture with a compelling offer."
+
+</details>
+
+<details>
+<summary><strong>pricing-strategy</strong> — Design pricing tiers and packaging</summary>
+
+**Best for:** Founders, product managers, growth teams
+
+**What it does:** Helps with pricing decisions, tier structure, and packaging strategy. Covers pricing research methods, freemium vs free trial decisions, and value metric selection.
+
+**When to use:**
+- Structuring pricing tiers
+- Deciding between freemium and free trial
+- Planning a price increase
+- Researching willingness to pay
+
+**Example prompt:**
+> "Help me structure pricing tiers for my SaaS product with the right value metrics."
+
+</details>
+
+<details>
+<summary><strong>programmatic-seo</strong> — Build SEO pages at scale with templates</summary>
+
+**Best for:** SEO specialists, growth teams, developers
+
+**What it does:** Creates SEO-driven pages at scale using templates and data. Covers directory pages, location pages, comparison pages, and integration pages built programmatically.
+
+**When to use:**
+- Building "[keyword] + [city]" pages
+- Creating integration directory pages
+- Scaling comparison pages
+- Developing template-based SEO content
+
+**Example prompt:**
+> "Create a template strategy for '[Tool] integrations' pages at scale."
+
+</details>
+
+<details>
+<summary><strong>referral-program</strong> — Design referral and affiliate programs</summary>
+
+**Best for:** Growth teams, marketers, product managers
+
+**What it does:** Creates and optimizes referral programs, affiliate programs, and word-of-mouth strategies. Covers incentive design, viral loops, and program optimization.
+
+**When to use:**
+- Designing a refer-a-friend program
+- Setting up an affiliate program
+- Creating viral loop mechanics
+- Optimizing referral conversions
+
+**Example prompt:**
+> "Design a refer-a-friend program with incentives for both referrer and referee."
+
+</details>
+
+<details>
+<summary><strong>schema-markup</strong> — Add JSON-LD structured data for rich snippets</summary>
+
+**Best for:** SEO specialists, developers, content teams
+
+**What it does:** Adds, fixes, and optimizes schema markup and structured data. Covers JSON-LD implementation for FAQ, product, review, and other schema types to enable rich snippets.
+
+**When to use:**
+- Adding FAQ schema to pages
+- Implementing product schema
+- Fixing structured data errors
+- Optimizing for rich snippets
+
+**Example prompt:**
+> "Add FAQ schema to this page and generate the JSON-LD code."
+
+</details>
+
+<details>
+<summary><strong>seo-audit</strong> — Audit technical and on-page SEO issues</summary>
+
+**Best for:** SEO specialists, marketers, developers
+
+**What it does:** Identifies SEO issues and provides actionable recommendations. Covers crawlability, technical foundations, on-page optimization, content quality, and authority.
+
+**When to use:**
+- Running a full SEO audit
+- Diagnosing ranking issues
+- Reviewing technical SEO
+- Analyzing on-page optimization
+
+**Example prompt:**
+> "Run an SEO audit on my homepage and identify the top issues to fix."
+
+</details>
+
+<details>
+<summary><strong>signup-flow-cro</strong> — Optimize signup and registration flows</summary>
+
+**Best for:** Product teams, growth teams, UX designers
+
+**What it does:** Optimizes signup, registration, and account creation flows. Focuses on reducing friction, improving completion rates, and balancing data collection with conversion.
+
+**When to use:**
+- Reducing signup form dropoff
+- Optimizing registration flow
+- Improving free trial signup
+- Analyzing signup funnel
+
+**Example prompt:**
+> "Audit our signup flow and reduce friction to improve conversion rate."
+
+</details>
+
+<details>
+<summary><strong>social-content</strong> — Create content for LinkedIn, Twitter, Instagram</summary>
+
+**Best for:** Social media managers, marketers, founders
+
+**What it does:** Helps create, schedule, and optimize social media content for LinkedIn, Twitter/X, Instagram, TikTok, and other platforms. Covers content creation, repurposing, and platform-specific strategies.
+
+**When to use:**
+- Writing LinkedIn posts and articles
+- Creating Twitter threads
+- Planning social content calendars
+- Optimizing for engagement
+
+**Example prompt:**
+> "Write a LinkedIn post announcing our new feature with a storytelling hook."
 
 </details>
 
