@@ -27,3 +27,4 @@ skills/.zip/
 
 # Local settings (don't commit user-specific overrides)
 *.local.json
+skills/.archive/
