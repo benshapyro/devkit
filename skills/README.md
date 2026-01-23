@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 60 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 66 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -96,9 +96,15 @@ A curated collection of 60 skills that extend Claude's capabilities for specific
 | openai-responses-api | Implement OpenAI Responses API with built-in tools and migration guidance | "Migrate our Chat Completions to Responses API with web search" |
 | ai-art-generation | Guide AI image generation with Midjourney, DALL-E, Stable Diffusion | "Create prompts for consistent fantasy character portraits in pixel art" |
 | clay-mastery | Build Clay.com data enrichment workflows with waterfall enrichment and Claygent | "Build a prospect list workflow with email waterfall and AI personalization" |
-| n8n-architect | Design and build production-ready n8n workflows using MCP tools | "Build an n8n workflow that triggers on webhook and sends to Slack" |
 | prompt-engineering | Comprehensive prompt patterns for Claude, GPT, and Gemini with model-specific optimization | "Optimize this prompt for Claude 4.5 with tool use" |
 | client-prompt-coach-builder | Generate customized prompt coaching CustomGPTs for clients | "Build a prompt coach for our client in the real estate industry" |
+| n8n-workflow-patterns | 5 core workflow architectures (webhook, API, database, AI agent, scheduled) | "What pattern should I use for a Slack bot that queries our database?" |
+| n8n-mcp-tools-expert | Master guide for n8n MCP tools (search_nodes, get_node, validate, create) | "How do I use get_node to understand Slack node configuration?" |
+| n8n-node-configuration | Operation-aware configuration with property dependencies | "Why does my HTTP Request node require sendBody for POST?" |
+| n8n-validation-expert | Interpret validation errors and fix them with iterative workflow | "I'm getting a missing_required error on my Slack node" |
+| n8n-expression-syntax | Write correct n8n expressions with {{}} syntax and webhook data access | "Why is my webhook data coming back undefined?" |
+| n8n-code-javascript | Write JavaScript in n8n Code nodes with $input, $json, $helpers | "Write a Code node that aggregates data from multiple items" |
+| n8n-code-python | Write Python in n8n Code nodes (standard library only, no pandas/requests) | "When should I use Python instead of JavaScript in n8n?" |
 
 ### Internal & Specialty
 
@@ -940,20 +946,128 @@ Skills for working with AI APIs, prompts, and automation.
 </details>
 
 <details>
-<summary><strong>n8n-architect</strong> — Design and build production-ready n8n workflows</summary>
+<summary><strong>n8n-workflow-patterns</strong> — 5 core workflow architectures for n8n</summary>
 
-**Best for:** Automation engineers, integration specialists, ops teams
+**Best for:** Automation engineers, solution architects, anyone starting n8n workflows
 
-**What it does:** Builds n8n workflows through MCP-validated construction. Routes complexity appropriately—lightweight path for simple trigger→transform→output, comprehensive path for enterprise integrations and AI agents. Provides core workflow patterns, validation checklists, and common pitfall prevention.
+**What it does:** Provides proven architectural patterns based on real workflow analysis: Webhook Processing (35% of workflows), HTTP API Integration, Database Operations, AI Agent Workflows, and Scheduled Tasks. Includes pattern selection guide, workflow creation checklist, data flow patterns, and common gotchas.
 
 **When to use:**
-- Building n8n workflows from requirements
-- Implementing AI agents in n8n with LangChain
-- Troubleshooting existing n8n workflows
-- Validating workflow JSON before deployment
+- Starting a new n8n workflow and choosing architecture
+- Deciding between webhook vs scheduled vs API patterns
+- Building AI agent workflows with tools and memory
+- Understanding workflow statistics and best practices
 
 **Example prompt:**
-> "Build an n8n workflow that receives webhooks, transforms the data, and sends Slack notifications with error handling."
+> "What pattern should I use for a Slack bot that queries our database and responds with formatted data?"
+
+</details>
+
+<details>
+<summary><strong>n8n-mcp-tools-expert</strong> — Master guide for n8n MCP server tools</summary>
+
+**Best for:** Anyone building n8n workflows programmatically
+
+**What it does:** Complete guide for using n8n-mcp tools effectively. Covers search_nodes, get_node (with detail levels), validate_node (with profiles), workflow creation, and template deployment. Explains critical differences like nodeType formats (`nodes-base.*` vs `n8n-nodes-base.*`) and smart parameters for IF/Switch connections.
+
+**When to use:**
+- Finding nodes with search_nodes
+- Understanding node configuration with get_node
+- Validating configurations before deployment
+- Creating and updating workflows via API
+
+**Example prompt:**
+> "How do I use get_node to understand Slack node configuration? What detail level should I use?"
+
+</details>
+
+<details>
+<summary><strong>n8n-node-configuration</strong> — Operation-aware configuration with property dependencies</summary>
+
+**Best for:** Anyone configuring n8n nodes
+
+**What it does:** Explains that different operations require different fields (Slack post vs update), how displayOptions control field visibility, and the progressive discovery workflow. Guides when to use `detail="standard"` (95% of cases) vs `search_properties` vs `detail="full"`.
+
+**When to use:**
+- Configuring nodes and unsure what fields are required
+- Understanding why fields appear/disappear based on selections
+- Debugging "field not found" or "required field missing" issues
+- Choosing between get_node detail levels
+
+**Example prompt:**
+> "Why does my HTTP Request node suddenly require sendBody when I switch to POST method?"
+
+</details>
+
+<details>
+<summary><strong>n8n-validation-expert</strong> — Interpret validation errors and fix them</summary>
+
+**Best for:** Anyone debugging n8n workflow issues
+
+**What it does:** Explains validation severity levels (errors must fix, warnings should fix, suggestions optional), the iterative validation loop (avg 2-3 cycles, 23s thinking + 58s fixing), auto-sanitization system, and common false positives. Covers all error types: missing_required, invalid_value, type_mismatch, invalid_expression, invalid_reference.
+
+**When to use:**
+- Getting validation errors and need to understand them
+- Deciding which validation profile to use
+- Understanding auto-sanitization behavior
+- Recognizing false positives vs real issues
+
+**Example prompt:**
+> "I'm getting a 'missing_required' error on my Slack node but I think I have all fields. Help me debug."
+
+</details>
+
+<details>
+<summary><strong>n8n-expression-syntax</strong> — Write correct n8n expressions with {{}} syntax</summary>
+
+**Best for:** Anyone writing dynamic content in n8n workflows
+
+**What it does:** Explains n8n expression format (`{{expression}}`), core variables ($json, $node, $now, $env), the critical webhook data structure (data is under `.body`!), and when NOT to use expressions (Code nodes, webhook paths, credentials). Includes validation rules and common mistakes.
+
+**When to use:**
+- Writing expressions in n8n workflow fields
+- Accessing data from webhooks (remember `.body`!)
+- Referencing other nodes with $node
+- Debugging "undefined" or expression syntax errors
+
+**Example prompt:**
+> "Why is `{{$json.email}}` returning undefined when my webhook clearly sends email in the body?"
+
+</details>
+
+<details>
+<summary><strong>n8n-code-javascript</strong> — Write JavaScript in n8n Code nodes</summary>
+
+**Best for:** Anyone writing custom logic in n8n workflows
+
+**What it does:** Complete guide for JavaScript Code nodes: mode selection (Run Once for All Items vs Each Item), data access patterns ($input.all(), $input.first(), $input.item, $node), return format requirements (`[{json: {...}}]`), built-in functions ($helpers.httpRequest, DateTime/Luxon, $jmespath), and the top 5 mistakes with fixes.
+
+**When to use:**
+- Writing Code nodes for transformations or custom logic
+- Choosing between "All Items" and "Each Item" modes
+- Using $helpers for HTTP requests or DateTime for dates
+- Debugging Code node errors
+
+**Example prompt:**
+> "Write a Code node that aggregates sales data from multiple items and returns total, count, and average."
+
+</details>
+
+<details>
+<summary><strong>n8n-code-python</strong> — Write Python in n8n Code nodes (with limitations)</summary>
+
+**Best for:** Python developers who need n8n Code nodes
+
+**What it does:** Guide for Python Code nodes with an important caveat: **use JavaScript for 95% of cases**. Explains Python limitations (no external libraries—no requests, pandas, numpy), what IS available (standard library only), data access with `_input`/`_json`/`_node`, and when Python actually makes sense (statistics module, strong Python preference).
+
+**When to use:**
+- Deciding between Python and JavaScript for Code nodes
+- Writing Python when you specifically need standard library functions
+- Understanding Python's limitations in n8n
+- Migrating from Python to JavaScript when needed
+
+**Example prompt:**
+> "I want to use pandas in my n8n Code node. Is that possible?" (Answer: No, but here's what you can do instead)
 
 </details>
 
@@ -1263,4 +1377,4 @@ If none of these skills fit your needs:
 
 ---
 
-*This catalog contains 60 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
+*This catalog contains 66 skills. Skills are auto-detected by the presence of a SKILL.md file. Run the validation script to verify all skills are documented.*
