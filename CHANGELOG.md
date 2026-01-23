@@ -35,7 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Split content-marketing into marketing/ (27 skills) and communications/ (3 skills)
 - Reorganized skills directory into 9 group subdirectories matching README categories
 - Updated packaging script to handle grouped directory structure
-- Skills count increased from initial ~30 to 122
+- Skills count increased from initial ~30 to 121
 - Updated CLAUDE.md with changelog maintenance instructions
 
 ### Removed

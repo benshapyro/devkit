@@ -1,6 +1,6 @@
 # Skills Catalog
 
-A curated collection of 122 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
+A curated collection of 121 skills that extend Claude's capabilities for specific tasks and workflows. Skills auto-activate based on context, or you can invoke them explicitly.
 
 **How skills work:** When you start a task that matches a skill's triggers, it automatically loads specialized knowledge and workflows. Think of skills as expert assistants for specific domains.
 
@@ -27,7 +27,6 @@ A curated collection of 122 skills that extend Claude's capabilities for specifi
 | ab-test-setup | ❓ | Plan and design A/B tests with statistical rigor | "Design an A/B test for our pricing page headline" |
 | ace-content-engine | ❓ | Generate blog content with brand voice using Workshop or YOLO modes | "Write a blog post about AI tools using Workshop Mode with citations" |
 | analytics-tracking | ❓ | Set up GA4, GTM, and conversion tracking | "Create a tracking plan for our SaaS product" |
-| brand-guidelines | ❓ | Apply Anthropic brand colors and typography to artifacts | "Apply Anthropic brand styling to this HTML artifact" |
 | competitor-alternatives | ❓ | Create competitor comparison and alternative pages | "Create a '[Product] vs [Competitor]' comparison page" |
 | content-repurposer | ❓ | Transform one piece of content into multiple platform-specific formats | "Turn this blog post into 5 tweets, a LinkedIn post, and newsletter intro" |
 | copy-editing | ❓ | Edit and polish existing marketing copy | "Review and improve this landing page copy" |
@@ -244,24 +243,6 @@ Skills for content strategy, campaigns, CRO, SEO, and growth marketing.
 
 **Example prompt:**
 > "Create a tracking plan for our SaaS product covering signups, activations, and key feature usage."
-
-</details>
-
-<details>
-<summary><strong>brand-guidelines</strong> — Apply Anthropic brand colors and typography</summary>
-
-**Best for:** Designers creating Anthropic-branded artifacts
-
-**What it does:** Applies Anthropic's official brand colors, typography, and design standards to artifacts. Provides the specific color palette (Anthropic Tan, accent colors), font guidelines, and visual styling rules for creating on-brand presentations, documents, and HTML artifacts.
-
-**When to use:**
-- Styling artifacts with Anthropic brand colors
-- Applying correct Anthropic typography
-- Creating on-brand presentations or documents
-- Ensuring visual consistency with Anthropic standards
-
-**Example prompt:**
-> "Apply Anthropic brand styling to this HTML artifact, using the correct colors and typography."
 
 </details>
 
