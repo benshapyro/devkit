@@ -55,27 +55,49 @@ def should_exclude(path: Path) -> bool:
     return False
 
 
-def get_skill_folders() -> list[Path]:
-    """Get all skill folders (excludes hidden/special directories)."""
+def get_skill_folders() -> list[tuple[Path, str]]:
+    """
+    Get all skill folders with their group.
+    Returns list of (skill_path, group_name) tuples.
+    Skills can be at root level or inside group directories.
+    """
     skills = []
+
     for item in SKILLS_DIR.iterdir():
         if not item.is_dir():
             continue
         # Skip hidden directories and special folders
         if item.name.startswith(".") or item.name.startswith("_"):
             continue
-        # Must have SKILL.md to be a valid skill
+
+        # Check if this is a skill at root level
         if (item / "SKILL.md").exists():
-            skills.append(item)
-    return sorted(skills)
+            skills.append((item, ""))  # No group
+            continue
+
+        # Check if this is a group directory containing skills
+        for subitem in item.iterdir():
+            if not subitem.is_dir():
+                continue
+            if subitem.name.startswith(".") or subitem.name.startswith("_"):
+                continue
+            if (subitem / "SKILL.md").exists():
+                skills.append((subitem, item.name))  # (skill_path, group_name)
+
+    return sorted(skills, key=lambda x: (x[1], x[0].name))
 
 
-def archive_existing_zip(skill_name: str, dry_run: bool = False) -> Path | None:
+def archive_existing_zip(skill_name: str, group: str, dry_run: bool = False) -> Path | None:
     """
     Move existing zip to archive with timestamp.
     Returns the archive path if moved, None if no existing zip.
     """
-    existing_zip = ZIP_DIR / f"{skill_name}.zip"
+    # Zip location depends on group
+    if group:
+        existing_zip = ZIP_DIR / group / f"{skill_name}.zip"
+    else:
+        existing_zip = ZIP_DIR / f"{skill_name}.zip"
+
     if not existing_zip.exists():
         return None
 
@@ -106,10 +128,17 @@ def archive_existing_zip(skill_name: str, dry_run: bool = False) -> Path | None:
     return archive_path
 
 
-def create_skill_zip(skill_path: Path, dry_run: bool = False) -> Path:
-    """Create a zip file for a skill folder."""
+def create_skill_zip(skill_path: Path, group: str, dry_run: bool = False) -> Path:
+    """Create a zip file for a skill folder in its group directory."""
     skill_name = skill_path.name
-    zip_path = ZIP_DIR / f"{skill_name}.zip"
+
+    # Zip goes in group subdirectory if grouped
+    if group:
+        zip_dir = ZIP_DIR / group
+        zip_path = zip_dir / f"{skill_name}.zip"
+    else:
+        zip_dir = ZIP_DIR
+        zip_path = ZIP_DIR / f"{skill_name}.zip"
 
     if dry_run:
         # Count files that would be included
@@ -120,11 +149,12 @@ def create_skill_zip(skill_path: Path, dry_run: bool = False) -> Path:
             for f in files:
                 if not should_exclude(Path(f)):
                     file_count += 1
-        print(f"  Would create: {skill_name}.zip ({file_count} files)")
+        group_prefix = f"{group}/" if group else ""
+        print(f"  Would create: {group_prefix}{skill_name}.zip ({file_count} files)")
         return zip_path
 
-    # Ensure .zip directory exists
-    ZIP_DIR.mkdir(parents=True, exist_ok=True)
+    # Ensure zip directory exists (including group subdirectory)
+    zip_dir.mkdir(parents=True, exist_ok=True)
 
     # Create the zip
     file_count = 0
@@ -144,26 +174,29 @@ def create_skill_zip(skill_path: Path, dry_run: bool = False) -> Path:
                 file_count += 1
 
     size_kb = zip_path.stat().st_size / 1024
-    print(f"  Created: {skill_name}.zip ({file_count} files, {size_kb:.0f}KB)")
+    group_prefix = f"{group}/" if group else ""
+    print(f"  Created: {group_prefix}{skill_name}.zip ({file_count} files, {size_kb:.0f}KB)")
     return zip_path
 
 
-def package_skill(skill_path: Path, dry_run: bool = False) -> None:
+def package_skill(skill_path: Path, group: str, dry_run: bool = False) -> None:
     """Package a single skill: archive old zip if exists, create new zip."""
     skill_name = skill_path.name
-    print(f"\n{skill_name}/")
+    group_prefix = f"{group}/" if group else ""
+    print(f"\n{group_prefix}{skill_name}/")
 
     # Archive existing zip if present
-    archive_existing_zip(skill_name, dry_run)
+    archive_existing_zip(skill_name, group, dry_run)
 
     # Create new zip
-    create_skill_zip(skill_path, dry_run)
+    create_skill_zip(skill_path, group, dry_run)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Package skills into distributable zips")
     parser.add_argument("--dry-run", action="store_true", help="Show what would be done")
     parser.add_argument("--skill", type=str, help="Only package a specific skill")
+    parser.add_argument("--group", type=str, help="Only package skills in a specific group")
     args = parser.parse_args()
 
     print("=" * 50)
@@ -177,20 +210,28 @@ def main():
 
     if args.skill:
         # Filter to specific skill
-        skills = [s for s in skills if s.name == args.skill]
+        skills = [(s, g) for s, g in skills if s.name == args.skill]
         if not skills:
             print(f"Error: Skill '{args.skill}' not found")
             return 1
 
-    print(f"Found {len(skills)} skills to package:")
-    for s in skills:
-        print(f"  - {s.name}")
+    if args.group:
+        # Filter to specific group
+        skills = [(s, g) for s, g in skills if g == args.group]
+        if not skills:
+            print(f"Error: No skills found in group '{args.group}'")
+            return 1
 
-    for skill in skills:
-        package_skill(skill, args.dry_run)
+    print(f"Found {len(skills)} skills to package:")
+    for skill_path, group in skills:
+        group_prefix = f"{group}/" if group else ""
+        print(f"  - {group_prefix}{skill_path.name}")
+
+    for skill_path, group in skills:
+        package_skill(skill_path, group, args.dry_run)
 
     print("\n" + "=" * 50)
-    print(f"Done. Zips in: skills/.zip/")
+    print(f"Done. Zips in: skills/.zip/<group>/")
     if not args.dry_run:
         print(f"Archives in:   skills/.archive/")
     print("=" * 50)
