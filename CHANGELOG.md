@@ -7,12 +7,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- 31 skills from official Claude Code plugins (superpowers, plugin-dev, figma, vercel)
+  - Development Tools: brainstorming, TDD, systematic-debugging, verification-before-completion, writing-plans, etc.
+  - Design & UI: code-connect-components, create-design-system-rules, implement-design (Figma)
+  - Infrastructure & Ops: deploy, logs, setup (Vercel)
+  - Internal & Specialty: Claude Code plugin development skills (agents, commands, hooks, MCP, skills)
+- 7 specialized n8n skills replacing monolithic n8n-architect
+- 13 new skills: ai-maturity-assessor, clay-mastery, clickup-automation-architect, n8n-architect, onboarding, presentation-composer, prompt-engineering, and more
+- Comprehensive skills catalog README with Quick Reference tables and detailed entries
+- Packaging script with group support (`--group` flag)
 - README.md with comprehensive documentation, architecture diagram, and examples for all artifact types
 - CHANGELOG.md to track project changes
 - README-SPEC.md capturing documentation requirements
 
 ### Changed
+- Reorganized skills directory into 8 group subdirectories matching README categories
+- Updated packaging script to handle grouped directory structure
+- Skills count increased from initial ~30 to 97
 - Updated CLAUDE.md with changelog maintenance instructions
+
+### Removed
+- n8n-architect skill (superseded by 7 specialized n8n skills, archived)
 
 ## [0.1.0] - 2025-01-08
 

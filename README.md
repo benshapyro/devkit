@@ -89,12 +89,22 @@ Provide findings as:
 - **Suggestion**: Optional improvements
 ```
 
-### Available Categories
+### Organization
 
-- **Document Processing**: PDF, Word, PowerPoint, Excel manipulation
-- **Development**: MCP servers, frontend design, testing
-- **Business**: Strategy frameworks, competitive intelligence
-- **Content**: Editorial calendars, content repurposing
+Skills are organized into 8 groups (97 skills total):
+
+| Group | Skills | Examples |
+|-------|--------|----------|
+| **Content & Marketing** | 7 | content-repurposer, editorial-calendar, presentation-composer |
+| **Development Tools** | 21 | api-design-patterns, test-generator, stripe-best-practices, TDD, debugging |
+| **Data & Documents** | 6 | pdf, docx, pptx, xlsx, ai-data-analyst |
+| **Design & UI** | 9 | frontend-design, canvas-design, Figma integration |
+| **Infrastructure & Ops** | 9 | security-guardian, observability, Vercel deployment |
+| **Business & Strategy** | 8 | product-discovery, strategy-frameworks, competitive-intelligence |
+| **AI & Automation** | 13 | anthropic-messages-api, openai-responses-api, n8n workflows |
+| **Internal & Specialty** | 24 | skill-creator, vibe-coding, Claude Code plugin development |
+
+See `skills/README.md` for the full catalog with descriptions and example prompts.
 
 ## Hooks
 
