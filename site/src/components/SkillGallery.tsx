@@ -84,8 +84,14 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
             aria-label="Skills"
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
-            {filteredSkills.map(skill => (
-              <SkillCard key={skill.slug} skill={skill} baseUrl={baseUrl} />
+            {filteredSkills.map((skill, index) => (
+              <div
+                key={skill.slug}
+                className="animate-fade-in-up opacity-0"
+                style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
+              >
+                <SkillCard skill={skill} baseUrl={baseUrl} />
+              </div>
             ))}
           </div>
         )}
