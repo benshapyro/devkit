@@ -28,54 +28,62 @@ function ensureDir(dirPath) {
 function copyZipFiles() {
   const manifest = {};
 
-  if (!existsSync(sourceDir)) {
-    console.log(`Source directory not found: ${sourceDir}`);
-    console.log("No zip files to copy.");
+  try {
+    if (!existsSync(sourceDir)) {
+      console.log(`Source directory not found: ${sourceDir}`);
+      console.log("No zip files to copy.");
+      ensureDir(dirname(manifestPath));
+      writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+      return;
+    }
+
+    const groups = readdirSync(sourceDir).filter((item) => {
+      const itemPath = join(sourceDir, item);
+      return statSync(itemPath).isDirectory();
+    });
+
+    let totalFiles = 0;
+
+    for (const group of groups) {
+      const groupSourcePath = join(sourceDir, group);
+      const groupDestPath = join(destDir, group);
+
+      const files = readdirSync(groupSourcePath).filter((file) => file.endsWith(".zip"));
+
+      if (files.length === 0) {
+        continue;
+      }
+
+      ensureDir(groupDestPath);
+
+      for (const file of files) {
+        const sourcePath = join(groupSourcePath, file);
+        const destPath = join(groupDestPath, file);
+        const slug = file.replace(".zip", "");
+        const stats = statSync(sourcePath);
+
+        copyFileSync(sourcePath, destPath);
+        totalFiles++;
+
+        // Use composite key to avoid collisions when same skill appears in multiple groups
+        manifest[`${group}/${slug}`] = {
+          path: `/downloads/${group}/${file}`,
+          group,
+          size: stats.size,
+        };
+      }
+    }
+
+    ensureDir(dirname(manifestPath));
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-    return;
+
+    console.log(`Copied ${totalFiles} zip files to public/downloads/`);
+    console.log(`Generated manifest with ${Object.keys(manifest).length} entries`);
+  } catch (error) {
+    console.error(`Error copying zip files: ${error.message}`);
+    console.error("Stack trace:", error.stack);
+    process.exit(1);
   }
-
-  const groups = readdirSync(sourceDir).filter((item) => {
-    const itemPath = join(sourceDir, item);
-    return statSync(itemPath).isDirectory();
-  });
-
-  let totalFiles = 0;
-
-  for (const group of groups) {
-    const groupSourcePath = join(sourceDir, group);
-    const groupDestPath = join(destDir, group);
-
-    const files = readdirSync(groupSourcePath).filter((file) => file.endsWith(".zip"));
-
-    if (files.length === 0) {
-      continue;
-    }
-
-    ensureDir(groupDestPath);
-
-    for (const file of files) {
-      const sourcePath = join(groupSourcePath, file);
-      const destPath = join(groupDestPath, file);
-      const slug = file.replace(".zip", "");
-      const stats = statSync(sourcePath);
-
-      copyFileSync(sourcePath, destPath);
-      totalFiles++;
-
-      manifest[slug] = {
-        path: `/downloads/${group}/${file}`,
-        group: group,
-        size: stats.size,
-      };
-    }
-  }
-
-  ensureDir(dirname(manifestPath));
-  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-
-  console.log(`Copied ${totalFiles} zip files to public/downloads/`);
-  console.log(`Generated manifest with ${Object.keys(manifest).length} entries`);
 }
 
 copyZipFiles();
