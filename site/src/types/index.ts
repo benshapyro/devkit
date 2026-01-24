@@ -5,6 +5,10 @@ export interface Skill {
   slug: string;
   excerpt: string;
   license?: string;
+  tagline?: string;
+  roles?: string[];
+  tasks?: string[];
+  favorite?: boolean;
 }
 
 export interface Hook {
