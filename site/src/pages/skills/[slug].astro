@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { parseSkillId } from '../../content.config';
 import { hasDownload } from '../../lib/downloads';
 import { DownloadButton } from '../../components/DownloadButton';
+import { CopyInstallButton } from '../../components/CopyInstallButton';
 
 export const prerender = true;
 
@@ -92,11 +93,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 {skill.data.description}
               </p>
 
-              {hasDownload(slug) && (
-                <div class="mt-6">
+              <div class="flex items-center gap-3 mt-6">
+                {hasDownload(slug) && (
                   <DownloadButton slug={slug} baseUrl={baseUrl} variant="full" />
-                </div>
-              )}
+                )}
+                <CopyInstallButton client:load skillPath={`${group}/${slug}`} />
+              </div>
             </div>
           </header>
 
