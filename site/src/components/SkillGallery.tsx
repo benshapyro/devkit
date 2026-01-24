@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import type { Skill } from '../types';
 import { useUrlFilters } from '../hooks/useUrlFilters';
 import { useDebouncedValue } from '../hooks/useDebouncedValue';
@@ -16,11 +16,25 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
   const { filters, setFilters } = useUrlFilters();
   const [searchInput, setSearchInput] = useState(filters.search);
   const debouncedSearch = useDebouncedValue(searchInput, 300);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Sync debounced search to URL
   useEffect(() => {
     setFilters({ search: debouncedSearch });
   }, [debouncedSearch, setFilters]);
+
+  // Keyboard shortcut: Cmd+K (Mac) or Ctrl+K (Windows/Linux) to focus search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Extract groups with counts
   const groups = useMemo(() => {
@@ -67,7 +81,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
       />
 
       <div className="flex-1">
-        <SearchInput value={searchInput} onChange={setSearchInput} />
+        <SearchInput ref={searchInputRef} value={searchInput} onChange={setSearchInput} />
 
         {/* Screen reader announcement */}
         <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
