@@ -3,15 +3,13 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-zinc-850: #1f1f23;
-  --color-zinc-950: #0c0c0e;
   --gradient-hero: linear-gradient(135deg, #0c0c0e 0%, #1a1a2e 50%, #16213e 100%);
   --gradient-glow: radial-gradient(ellipse at 50% -20%, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
 }
 
 @layer base {
   body {
-    @apply bg-zinc-950 text-zinc-100 antialiased;
+    @apply text-zinc-100 antialiased;
     background: var(--gradient-hero);
     background-attachment: fixed;
     min-height: 100vh;
@@ -27,5 +25,11 @@
     background: var(--gradient-glow);
     pointer-events: none;
     z-index: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      background-attachment: scroll;
+    }
   }
 }
