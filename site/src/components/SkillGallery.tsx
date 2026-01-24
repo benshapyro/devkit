@@ -46,17 +46,28 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
   }, [skills]);
 
   // Filter skills
+  // Logic: OR within each dimension, AND between dimensions
   const filteredSkills = useMemo(() => {
     return skills.filter(skill => {
       const searchLower = filters.search.toLowerCase();
       const matchesSearch = !filters.search ||
         skill.name.toLowerCase().includes(searchLower) ||
-        skill.description.toLowerCase().includes(searchLower);
+        skill.description.toLowerCase().includes(searchLower) ||
+        (skill.tagline && skill.tagline.toLowerCase().includes(searchLower));
 
       const matchesGroup = filters.groups.length === 0 ||
         filters.groups.includes(skill.group);
 
-      return matchesSearch && matchesGroup;
+      // OR within roles dimension
+      const matchesRole = filters.roles.length === 0 ||
+        (skill.roles && skill.roles.some(r => filters.roles.includes(r)));
+
+      // OR within tasks dimension
+      const matchesTask = filters.tasks.length === 0 ||
+        (skill.tasks && skill.tasks.some(t => filters.tasks.includes(t)));
+
+      // AND between all dimensions
+      return matchesSearch && matchesGroup && matchesRole && matchesTask;
     });
   }, [skills, filters]);
 
@@ -68,17 +79,39 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
     });
   };
 
+  const toggleRole = (role: string) => {
+    setFilters({
+      roles: filters.roles.includes(role)
+        ? filters.roles.filter(r => r !== role)
+        : [...filters.roles, role],
+    });
+  };
+
+  const toggleTask = (task: string) => {
+    setFilters({
+      tasks: filters.tasks.includes(task)
+        ? filters.tasks.filter(t => t !== task)
+        : [...filters.tasks, task],
+    });
+  };
+
   const clearFilters = () => {
     setSearchInput('');
-    setFilters({ groups: [], search: '' });
+    setFilters({ groups: [], roles: [], tasks: [], search: '' });
   };
+
+  const activeFilterCount = filters.groups.length + filters.roles.length + filters.tasks.length;
 
   return (
     <div className="flex gap-8">
       <FilterSidebar
         groups={groups}
-        selected={filters.groups}
-        onToggle={toggleGroup}
+        selectedGroups={filters.groups}
+        selectedRoles={filters.roles}
+        selectedTasks={filters.tasks}
+        onToggleGroup={toggleGroup}
+        onToggleRole={toggleRole}
+        onToggleTask={toggleTask}
         onClear={clearFilters}
       />
 
@@ -94,9 +127,9 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>
             Filters
-            {filters.groups.length > 0 && (
+            {activeFilterCount > 0 && (
               <span className="bg-emerald-500 text-white text-xs px-1.5 rounded-full">
-                {filters.groups.length}
+                {activeFilterCount}
               </span>
             )}
           </button>
@@ -113,13 +146,13 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800/50">
           <p className="text-sm text-zinc-400">
             Showing <span className="text-white font-medium">{filteredSkills.length}</span> of {skills.length} skills
-            {filters.groups.length > 0 && (
+            {activeFilterCount > 0 && (
               <span className="ml-2 text-zinc-500">
-                in {filters.groups.length} group{filters.groups.length !== 1 ? 's' : ''}
+                ({activeFilterCount} filter{activeFilterCount !== 1 ? 's' : ''} active)
               </span>
             )}
           </p>
-          {(filters.search || filters.groups.length > 0) && (
+          {(filters.search || activeFilterCount > 0) && (
             <button
               type="button"
               onClick={clearFilters}
@@ -157,8 +190,12 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         isOpen={isFilterDrawerOpen}
         onClose={() => setIsFilterDrawerOpen(false)}
         groups={groups}
-        selected={filters.groups}
-        onToggle={toggleGroup}
+        selectedGroups={filters.groups}
+        selectedRoles={filters.roles}
+        selectedTasks={filters.tasks}
+        onToggleGroup={toggleGroup}
+        onToggleRole={toggleRole}
+        onToggleTask={toggleTask}
         onClear={clearFilters}
       />
     </div>

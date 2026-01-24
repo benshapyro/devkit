@@ -1,16 +1,29 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { FilterState } from '../types';
 
+const DEFAULT_FILTERS: FilterState = {
+  search: '',
+  groups: [],
+  roles: [],
+  tasks: [],
+};
+
+function parseArrayParam(params: URLSearchParams, key: string): string[] {
+  return params.get(key)?.split(',').filter(Boolean) || [];
+}
+
 export function useUrlFilters() {
   const [filters, setFiltersState] = useState<FilterState>(() => {
     if (typeof window === 'undefined') {
-      return { search: '', groups: [] };
+      return DEFAULT_FILTERS;
     }
 
     const params = new URLSearchParams(window.location.search);
     return {
       search: params.get('q') || '',
-      groups: params.get('groups')?.split(',').filter(Boolean) || [],
+      groups: parseArrayParam(params, 'groups'),
+      roles: parseArrayParam(params, 'roles'),
+      tasks: parseArrayParam(params, 'tasks'),
     };
   });
 
@@ -19,6 +32,8 @@ export function useUrlFilters() {
     const params = new URLSearchParams();
     if (filters.search) params.set('q', filters.search);
     if (filters.groups.length) params.set('groups', filters.groups.join(','));
+    if (filters.roles.length) params.set('roles', filters.roles.join(','));
+    if (filters.tasks.length) params.set('tasks', filters.tasks.join(','));
 
     const url = params.toString()
       ? `${window.location.pathname}?${params}`
@@ -33,7 +48,9 @@ export function useUrlFilters() {
       const params = new URLSearchParams(window.location.search);
       setFiltersState({
         search: params.get('q') || '',
-        groups: params.get('groups')?.split(',').filter(Boolean) || [],
+        groups: parseArrayParam(params, 'groups'),
+        roles: parseArrayParam(params, 'roles'),
+        tasks: parseArrayParam(params, 'tasks'),
       });
     };
     window.addEventListener('popstate', onPopState);

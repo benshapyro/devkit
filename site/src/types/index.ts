@@ -41,4 +41,6 @@ export interface Agent {
 export interface FilterState {
   search: string;
   groups: string[];
+  roles: string[];
+  tasks: string[];
 }
