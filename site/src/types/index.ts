@@ -7,6 +7,15 @@ export interface Skill {
   license?: string;
 }
 
+export interface Hook {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  event: string;
+  matcher?: string;
+}
+
 export interface FilterState {
   search: string;
   groups: string[];
