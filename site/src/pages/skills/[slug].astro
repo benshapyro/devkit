@@ -67,18 +67,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-12">
         <div>
-          <header class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-8">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
+          <header class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800/60 rounded-2xl p-8 mb-10">
+            {/* Subtle dot pattern */}
+            <div
+              class="absolute inset-0 opacity-[0.015]"
+              style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 24px 24px;"
+            />
+
+            {/* Glow effect */}
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
             <div class="relative">
-              <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                {group}
-              </span>
-              <h1 id="article-title" class="text-4xl font-bold mt-4 tracking-tight">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  {group}
+                </span>
+              </div>
+
+              <h1 id="article-title" class="text-4xl md:text-5xl font-bold tracking-tight text-white">
                 {skill.data.name}
               </h1>
-              <p class="text-zinc-400 mt-4 text-lg leading-relaxed">
+
+              <p class="text-zinc-400 mt-4 text-lg leading-relaxed max-w-2xl">
                 {skill.data.description}
               </p>
+
               {hasDownload(slug) && (
                 <div class="mt-6">
                   <DownloadButton slug={slug} baseUrl={baseUrl} variant="full" />
