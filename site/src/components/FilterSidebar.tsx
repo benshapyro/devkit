@@ -15,6 +15,7 @@ export function FilterSidebar({ groups, selected, onToggle, onClear }: Props) {
           </h2>
           {selected.length > 0 && (
             <button
+              type="button"
               onClick={onClear}
               className="text-xs text-zinc-500 hover:text-emerald-400 transition-colors"
             >
@@ -28,6 +29,7 @@ export function FilterSidebar({ groups, selected, onToggle, onClear }: Props) {
             const isChecked = selected.includes(group);
             return (
               <button
+                type="button"
                 key={group}
                 onClick={() => onToggle(group)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all duration-200
