@@ -74,6 +74,27 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
           {filteredSkills.length} skill{filteredSkills.length !== 1 ? 's' : ''} found
         </div>
 
+        {/* Results summary bar */}
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800/50">
+          <p className="text-sm text-zinc-400">
+            Showing <span className="text-white font-medium">{filteredSkills.length}</span> of {skills.length} skills
+            {filters.groups.length > 0 && (
+              <span className="ml-2 text-zinc-500">
+                in {filters.groups.length} group{filters.groups.length !== 1 ? 's' : ''}
+              </span>
+            )}
+          </p>
+          {(filters.search || filters.groups.length > 0) && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="text-sm text-zinc-500 hover:text-emerald-400 transition-colors"
+            >
+              Reset filters
+            </button>
+          )}
+        </div>
+
         {filteredSkills.length === 0 ? (
           <p className="text-zinc-400 text-center py-12">
             No skills match your filters.
