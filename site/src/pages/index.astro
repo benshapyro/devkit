@@ -1,17 +1,44 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { SkillGallery } from '../components/SkillGallery';
+import { parseSkillId, createExcerpt } from '../content.config';
 
+const skills = await getCollection('skills');
+const skillData = skills.map(s => {
+  const { group, slug } = parseSkillId(s.id);
+  return {
+    name: s.data.name,
+    description: s.data.description,
+    group,
+    slug,
+    excerpt: createExcerpt(s.data.description),
+    license: s.data.license,
+  };
+});
+
+// Sort alphabetically by name
+skillData.sort((a, b) => a.name.localeCompare(b.name));
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Devkit | Skills Gallery">
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-900
+           focus:rounded focus:outline-none"
+  >
+    Skip to main content
+  </a>
+
+  <header class="border-b border-zinc-800 px-8 py-6">
+    <h1 class="text-2xl font-bold">Devkit</h1>
+    <p class="text-zinc-400 mt-1">{skillData.length} skills for agentic CLI tools</p>
+  </header>
+
+  <main id="main-content" class="px-8 py-8">
+    <SkillGallery skills={skillData} baseUrl={baseUrl} client:visible />
+  </main>
+</Layout>

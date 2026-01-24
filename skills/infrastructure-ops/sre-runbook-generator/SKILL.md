@@ -1,3 +1,8 @@
+---
+name: sre-runbook-generator
+description: Generate operational runbooks from service metadata, incident patterns, and infrastructure topology. Use when creating runbooks for new services, documenting incident response, defining escalation paths, or standardizing operational documentation.
+---
+
 # SRE Runbook Generator
 
 Generate operational runbooks from service metadata, incident patterns, and infrastructure topology.

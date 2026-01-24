@@ -1,3 +1,8 @@
+---
+name: web-accessibility-auditor
+description: WCAG 2.2 compliance checking, ARIA pattern guidance, and accessibility testing workflows. Use when auditing web pages for accessibility, implementing ARIA patterns, testing keyboard navigation, or setting up automated accessibility testing.
+---
+
 # Web Accessibility Auditor
 
 WCAG 2.2 compliance checking, ARIA pattern guidance, and accessibility testing workflows.

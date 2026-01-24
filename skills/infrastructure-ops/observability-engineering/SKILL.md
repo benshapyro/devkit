@@ -1,3 +1,8 @@
+---
+name: observability-engineering
+description: OpenTelemetry implementation, structured logging, distributed tracing, and alerting patterns. Use when setting up observability, implementing tracing or metrics, designing logging strategies, or debugging distributed systems.
+---
+
 # Observability Engineering
 
 OpenTelemetry implementation, structured logging, distributed tracing, and alerting patterns.
