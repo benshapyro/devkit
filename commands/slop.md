@@ -2,7 +2,7 @@
 tool: claude-code
 description: Remove AI-generated code slop from current branch
 allowed-tools: Bash(git:*), Read, Edit, Grep, Glob
-argument-hint: [--dry-run]
+argument-hint: "[--dry-run]"
 ---
 
 # Slop Command

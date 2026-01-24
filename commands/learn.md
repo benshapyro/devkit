@@ -2,7 +2,7 @@
 tool: claude-code
 description: Learn about Claude Code, the devkit, commands, skills, and workflows
 allowed-tools: Read, Glob, Task
-argument-hint: [question or topic]
+argument-hint: "[question or topic]"
 ---
 
 # Learn Command

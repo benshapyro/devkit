@@ -2,7 +2,7 @@
 tool: claude-code
 description: Save research findings as reusable knowledge documents
 allowed-tools: Write, Read, Glob, Bash
-argument-hint: [topic name]
+argument-hint: "[topic name]"
 ---
 
 # Progress Command

@@ -2,7 +2,7 @@
 tool: claude-code
 description: Analyze code changes to identify blast radius - all files, functions, and tests that might be affected
 allowed-tools: Read, Grep, Glob, Bash(git:*)
-argument-hint: [files...]
+argument-hint: "[files...]"
 ---
 
 # /regression-scan

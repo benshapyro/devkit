@@ -2,7 +2,7 @@
 tool: claude-code
 description: Deep research on a topic with parallel sub-agents
 allowed-tools: Task, Read, Grep, Glob, WebSearch, WebFetch
-argument-hint: [--auto] [topic or question]
+argument-hint: "[--auto] [topic or question]"
 ---
 
 # Research Command

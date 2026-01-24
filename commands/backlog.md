@@ -2,7 +2,7 @@
 tool: claude-code
 description: Document bugs and improvements to project backlog (interactive loop)
 allowed-tools: Read, Grep, Glob, Task, Write, Edit
-argument-hint: [bug|enh|ux] [brief description]
+argument-hint: "[bug|enh|ux] [brief description]"
 ---
 
 # Backlog Mode

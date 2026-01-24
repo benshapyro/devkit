@@ -2,7 +2,7 @@
 tool: claude-code
 description: Start a new feature with proper planning
 allowed-tools: Task, Read, Grep, Glob, Bash(git:*)
-argument-hint: [--tdd] [--quick] [feature description]
+argument-hint: "[--tdd] [--quick] [feature description]"
 ---
 
 # Plan Command

@@ -2,7 +2,7 @@
 tool: claude-code
 description: Commit and ship validated changes
 allowed-tools: Bash(git:*), Read, Glob
-argument-hint: [--force] [optional commit message]
+argument-hint: "[--force] [optional commit message]"
 ---
 
 # Ship Command

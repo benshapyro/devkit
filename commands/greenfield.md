@@ -2,7 +2,7 @@
 tool: claude-code
 description: Discover and specify a new software project from scratch
 allowed-tools: Write, Read, Edit, Task, WebSearch, WebFetch
-argument-hint: [project idea or problem]
+argument-hint: "[project idea or problem]"
 ---
 
 # Greenfield Command

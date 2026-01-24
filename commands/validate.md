@@ -2,7 +2,7 @@
 tool: claude-code
 description: Validate implementation before shipping
 allowed-tools: Bash, Read, Glob
-argument-hint: [--only=types,lint,tests,build]
+argument-hint: "[--only=types,lint,tests,build]"
 ---
 
 # Validate Command

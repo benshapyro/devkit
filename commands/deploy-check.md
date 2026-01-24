@@ -2,7 +2,7 @@
 tool: claude-code
 description: Run pre-deployment safety checks including tests, migrations, environment variables, and monitoring configuration
 allowed-tools: Read, Grep, Glob, Bash
-argument-hint: [environment]
+argument-hint: "[environment]"
 ---
 
 # /deploy-check

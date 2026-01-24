@@ -2,7 +2,7 @@
 tool: claude-code
 description: Prepare a pull request by analyzing changes and generating PR description
 allowed-tools: Read, Grep, Glob, Bash(git:*), Task
-argument-hint: [base-branch]
+argument-hint: "[base-branch]"
 ---
 
 # PR Prep Command
