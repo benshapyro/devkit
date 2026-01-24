@@ -24,6 +24,8 @@ const groupIcons: Record<string, string> = {
 export function SkillCard({ skill, baseUrl }: Props) {
   const skillUrl = `${baseUrl}/skills/${skill.slug}`;
   const icon = groupIcons[skill.group] || '○';
+  const displayRoles = skill.roles?.slice(0, 2) || [];
+  const displayTasks = skill.tasks?.slice(0, 2) || [];
 
   return (
     <div
@@ -54,7 +56,7 @@ export function SkillCard({ skill, baseUrl }: Props) {
 
         <div className="relative">
           {/* Icon and group */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-3">
             <span className="text-2xl text-emerald-500/70 group-hover:text-emerald-400 transition-colors">
               {icon}
             </span>
@@ -68,10 +70,38 @@ export function SkillCard({ skill, baseUrl }: Props) {
             {skill.name}
           </h3>
 
-          {/* Description */}
-          <p className="mt-3 text-sm text-zinc-400 line-clamp-2 leading-relaxed">
-            {skill.excerpt}
-          </p>
+          {/* Tagline (primary) or fallback to excerpt */}
+          {skill.tagline ? (
+            <p className="mt-2 text-sm text-zinc-400 font-medium">
+              {skill.tagline}
+            </p>
+          ) : (
+            <p className="mt-2 text-sm text-zinc-400 line-clamp-2 leading-relaxed">
+              {skill.excerpt}
+            </p>
+          )}
+
+          {/* Role and task badges */}
+          {(displayRoles.length > 0 || displayTasks.length > 0) && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {displayRoles.map(role => (
+                <span
+                  key={role}
+                  className="px-2 py-0.5 text-xs bg-zinc-800/70 text-zinc-400 rounded-full"
+                >
+                  {role}
+                </span>
+              ))}
+              {displayTasks.map(task => (
+                <span
+                  key={task}
+                  className="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-400/80 rounded-full"
+                >
+                  {task}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Bottom arrow indicator */}
           <div className="mt-4 flex items-center text-sm text-zinc-500 group-hover:text-emerald-400 transition-colors">
