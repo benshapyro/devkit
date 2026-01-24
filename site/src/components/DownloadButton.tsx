@@ -68,7 +68,7 @@ export function DownloadButton({ slug, baseUrl, variant, className = "" }: Props
                   border border-emerald-500/30 hover:border-emerald-500/50
                   text-emerald-400 hover:text-emerald-300
                   transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-emerald-500
+                  focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900
                   ${className}`}
       aria-label={`Download skill package (${formatFileSize(info.size)})`}
     >
