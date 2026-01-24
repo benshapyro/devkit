@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { Hero } from '../components/Hero';
 import { SkillGallery } from '../components/SkillGallery';
 import { parseSkillId, createExcerpt } from '../content.config';
 
@@ -33,10 +34,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     Skip to main content
   </a>
 
-  <header class="border-b border-zinc-800 px-8 py-6">
-    <h1 class="text-2xl font-bold">Devkit</h1>
-    <p class="text-zinc-400 mt-1">{skillData.length} skills for agentic CLI tools</p>
-  </header>
+  <Hero skillCount={skillData.length} />
 
   <main id="main-content" class="px-8 py-8">
     <SkillGallery skills={skillData} baseUrl={baseUrl} client:visible />
