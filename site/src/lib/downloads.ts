@@ -28,6 +28,8 @@ const typedManifest = manifest as DownloadManifest;
  * Searches for keys ending with `/{slug}` to handle composite keys.
  */
 function findEntryBySlug(slug: string): [string, DownloadEntry] | undefined {
+  if (!slug) return undefined; // Guard against empty strings
+
   const suffix = `/${slug}`;
   const entry = Object.entries(typedManifest).find(
     ([key]) => key.endsWith(suffix) || key === slug
