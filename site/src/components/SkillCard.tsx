@@ -1,4 +1,6 @@
 import type { Skill } from '../types';
+import { DownloadButton } from './DownloadButton';
+import { hasDownload } from '../lib/downloads';
 
 interface Props {
   skill: Skill;
@@ -21,6 +23,16 @@ export function SkillCard({ skill, baseUrl }: Props) {
     >
       {/* Gradient top accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      {/* Download button overlay */}
+      {hasDownload(skill.slug) && (
+        <div
+          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <DownloadButton slug={skill.slug} baseUrl={baseUrl} variant="icon" />
+        </div>
+      )}
 
       <div className="p-5">
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
