@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "copy-downloads": "node scripts/copy-downloads.js",
+    "dev": "npm run copy-downloads && astro dev",
+    "prebuild": "npm run copy-downloads",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

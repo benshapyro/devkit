@@ -2,6 +2,9 @@
 dist/
 # generated types
 .astro/
+# generated downloads
+public/downloads/
+src/data/download-manifest.json
 
 # dependencies
 node_modules/
