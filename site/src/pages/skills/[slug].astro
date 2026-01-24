@@ -50,63 +50,70 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </a>
 
   <main id="main-content" class="min-h-screen">
-    <div class="max-w-3xl mx-auto px-6 py-12">
-
+    <div class="max-w-6xl mx-auto px-6 py-12">
       <nav class="mb-8">
         <a
           href={baseUrl || '/'}
-          class="inline-flex items-center text-zinc-400 hover:text-white transition-colors"
+          class="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group"
         >
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Back to Gallery
         </a>
       </nav>
 
-      <header class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-8">
-        <span class="text-xs text-emerald-400 uppercase tracking-wide font-medium">
-          {group}
-        </span>
-        <h1 id="article-title" class="text-3xl font-bold mt-2">
-          {skill.data.name}
-        </h1>
-        <p class="text-zinc-400 mt-3 text-lg">
-          {skill.data.description}
-        </p>
-      </header>
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-12">
+        <div>
+          <header class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-8">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
+            <div class="relative">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {group}
+              </span>
+              <h1 id="article-title" class="text-4xl font-bold mt-4 tracking-tight">
+                {skill.data.name}
+              </h1>
+              <p class="text-zinc-400 mt-4 text-lg leading-relaxed">
+                {skill.data.description}
+              </p>
+            </div>
+          </header>
 
-      {tocHeadings.length >= 3 && (
-        <nav aria-label="Table of contents" class="mb-8 p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
-          <h2 class="text-sm font-semibold text-zinc-300 uppercase tracking-wide mb-3">
-            On this page
-          </h2>
-          <ul class="space-y-2">
-            {tocHeadings.map(({ depth, slug, text }) => (
-              <li style={`padding-left: ${(depth - 2) * 1}rem`}>
-                <a
-                  href={`#${slug}`}
-                  class="text-sm text-zinc-400 hover:text-white transition-colors"
-                >
-                  {text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+          <article
+            class="prose prose-zinc prose-invert max-w-none
+                   prose-headings:text-white
+                   prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
+                   prose-code:text-emerald-300 prose-code:bg-zinc-800 prose-code:px-1 prose-code:rounded
+                   prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800"
+            aria-labelledby="article-title"
+          >
+            <Content />
+          </article>
+        </div>
 
-      <article
-        class="prose prose-zinc prose-invert max-w-none
-               prose-headings:text-white
-               prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
-               prose-code:text-emerald-300 prose-code:bg-zinc-800 prose-code:px-1 prose-code:rounded
-               prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800"
-        aria-labelledby="article-title"
-      >
-        <Content />
-      </article>
-
+        {tocHeadings.length >= 3 && (
+          <aside class="hidden lg:block">
+            <nav aria-label="Table of contents" class="sticky top-24 p-4 bg-zinc-900/30 backdrop-blur rounded-xl border border-zinc-800/50">
+              <h2 class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-3">
+                On this page
+              </h2>
+              <ul class="space-y-2">
+                {tocHeadings.map(({ depth, slug, text }) => (
+                  <li style={`padding-left: ${(depth - 2) * 0.75}rem`}>
+                    <a
+                      href={`#${slug}`}
+                      class="text-sm text-zinc-400 hover:text-white transition-colors block py-1"
+                    >
+                      {text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+        )}
+      </div>
     </div>
   </main>
 </Layout>
