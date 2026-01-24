@@ -16,6 +16,10 @@ const skillData = skills.map(s => {
     slug,
     excerpt: createExcerpt(s.data.description),
     license: s.data.license,
+    tagline: s.data.tagline,
+    roles: s.data.roles,
+    tasks: s.data.tasks,
+    favorite: s.data.favorite,
   };
 });
 
