@@ -1,6 +1,13 @@
 ---
 name: product-discovery
 description: Methodology for discovering and specifying new software products. Use when starting greenfield projects, exploring new ideas, or defining MVP scope.
+tagline: "Validate before you build"
+roles:
+  - Product Manager
+  - Full-Stack Developer
+tasks:
+  - Learn & Research
+favorite: true
 ---
 
 # Product Discovery Skill

@@ -1,6 +1,14 @@
 ---
 name: presentation-composer
 description: Expert system for creating scientifically-optimized, strategically-structured presentations that drive decisions and action. Use when user needs to create, improve, or strategize any type of presentation including executive briefings, board decks, sales presentations, training materials, conference talks, monthly business reviews, or strategy consulting deliverables. Applies neuroscience-based frameworks (working memory limits, serial position effects), consulting methodologies (Pyramid Principle, SCR, McKinsey/BCG approaches), and proven story architectures to ensure maximum impact and retention.
+tagline: "Beautiful decks fast"
+roles:
+  - Salesperson
+  - Product Manager
+  - Content Creator
+tasks:
+  - Create Presentations
+favorite: true
 ---
 
 # Presentation Composer

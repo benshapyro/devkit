@@ -1,6 +1,14 @@
 ---
 name: brainstorming
 description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+tagline: "Ideas → actionable plans"
+roles:
+  - Product Manager
+  - Full-Stack Developer
+  - Designer
+tasks:
+  - Learn & Research
+favorite: true
 ---
 
 # Brainstorming Ideas Into Designs

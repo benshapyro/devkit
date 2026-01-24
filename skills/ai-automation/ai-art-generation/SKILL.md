@@ -1,6 +1,14 @@
 ---
 name: ai-art-generation
 description: Guides AI image generation for game assets and creative projects. Use when prompting Midjourney, Nano Banana Pro, DALL-E, Stable Diffusion, or other AI image tools. Covers iterative refinement, style consistency, quality validation, and game engine integration. v1 focuses on pixel art; structure supports future expansion to concept art, 3D, and UI mockups.
+tagline: "Create stunning visuals"
+roles:
+  - Designer
+  - Content Creator
+  - Digital Marketer
+tasks:
+  - Create Images
+favorite: true
 ---
 
 # AI Art Generation

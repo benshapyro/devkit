@@ -1,6 +1,15 @@
 ---
 name: prompt-engineering
 description: Comprehensive prompt engineering guidance for Claude 4.5, GPT-5.1, and Gemini 3.0 Pro. Use when users need to write prompts, optimize prompts for specific models, build AI agents or workflows, audit/improve existing prompts, or generate production system prompt templates. Covers 45+ patterns across content creation, analysis, code generation, problem-solving, and education use cases.
+tagline: "Master AI interactions"
+roles:
+  - AI/ML Engineer
+  - Content Creator
+  - Full-Stack Developer
+tasks:
+  - Write Code
+  - Automate Tasks
+favorite: true
 ---
 
 # Prompt Engineering

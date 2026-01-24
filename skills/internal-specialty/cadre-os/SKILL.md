@@ -1,6 +1,14 @@
 ---
 name: cadre-os
 description: "Cadre AI consulting operating system for strategy engagements. Use when working with Cadre clients for: (1) Discovery - session prep, debriefs, transcripts, (2) Context - client data, stakeholders, (3) Synthesis - patterns, gaps, priorities, (4) Deliverables - decks, summaries, reports, roadmaps, (5) Communications - emails, agendas, MBRs, (6) Tech Stack - surveys, research, integrations, (7) Lite Mode - Excel-based capture, (8) Solutions - AI assistants, prompts, discovery, scoping, specs, client catalog, (9) Brand - on-brand artifacts. Triggers on /prep, /debrief, /deck, /techstack, /lite, /solutions, or Cadre client names."
+tagline: "Your AI operating system"
+roles:
+  - Full-Stack Developer
+  - AI/ML Engineer
+tasks:
+  - Automate Tasks
+  - Write Code
+favorite: true
 ---
 
 # Cadre OS
