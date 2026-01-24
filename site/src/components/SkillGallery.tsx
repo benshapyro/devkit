@@ -4,6 +4,7 @@ import { useUrlFilters } from '../hooks/useUrlFilters';
 import { useDebouncedValue } from '../hooks/useDebouncedValue';
 import { SearchInput } from './SearchInput';
 import { FilterSidebar } from './FilterSidebar';
+import { MobileFilterDrawer } from './MobileFilterDrawer';
 import { SkillCard } from './SkillCard';
 import { ErrorBoundary } from './ErrorBoundary';
 
@@ -15,6 +16,7 @@ interface Props {
 function SkillGalleryInner({ skills, baseUrl }: Props) {
   const { filters, setFilters } = useUrlFilters();
   const [searchInput, setSearchInput] = useState(filters.search);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const debouncedSearch = useDebouncedValue(searchInput, 300);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -81,6 +83,25 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
       />
 
       <div className="flex-1">
+        {/* Mobile filter button - only visible on mobile */}
+        <div className="md:hidden mb-4">
+          <button
+            type="button"
+            onClick={() => setIsFilterDrawerOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 border border-zinc-700/50 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            Filters
+            {filters.groups.length > 0 && (
+              <span className="bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+                {filters.groups.length}
+              </span>
+            )}
+          </button>
+        </div>
+
         <SearchInput ref={searchInputRef} value={searchInput} onChange={setSearchInput} />
 
         {/* Screen reader announcement */}
@@ -131,6 +152,15 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
           </div>
         )}
       </div>
+
+      <MobileFilterDrawer
+        isOpen={isFilterDrawerOpen}
+        onClose={() => setIsFilterDrawerOpen(false)}
+        groups={groups}
+        selected={filters.groups}
+        onToggle={toggleGroup}
+        onClear={clearFilters}
+      />
     </div>
   );
 }
