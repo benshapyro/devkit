@@ -1,0 +1,112 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { parseSkillId } from '../../content.config';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const skills = await getCollection('skills');
+  return skills.map(skill => {
+    const { slug } = parseSkillId(skill.id);
+    return {
+      params: { slug },
+      props: { skill },
+    };
+  });
+}
+
+const { skill } = Astro.props;
+const { Content, headings } = await render(skill);
+const { group } = parseSkillId(skill.id);
+
+const tocHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 3);
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<Layout
+  title={`${skill.data.name} | Devkit`}
+  description={skill.data.description}
+>
+  <head slot="head">
+    <meta property="og:type" content="article" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": skill.data.name,
+      "description": skill.data.description,
+      "url": canonicalURL.href,
+    })} />
+  </head>
+
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-900
+           focus:rounded focus:outline-none"
+  >
+    Skip to main content
+  </a>
+
+  <main id="main-content" class="min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 py-12">
+
+      <nav class="mb-8">
+        <a
+          href={baseUrl || '/'}
+          class="inline-flex items-center text-zinc-400 hover:text-white transition-colors"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Gallery
+        </a>
+      </nav>
+
+      <header class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-8">
+        <span class="text-xs text-emerald-400 uppercase tracking-wide font-medium">
+          {group}
+        </span>
+        <h1 id="article-title" class="text-3xl font-bold mt-2">
+          {skill.data.name}
+        </h1>
+        <p class="text-zinc-400 mt-3 text-lg">
+          {skill.data.description}
+        </p>
+      </header>
+
+      {tocHeadings.length >= 3 && (
+        <nav aria-label="Table of contents" class="mb-8 p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+          <h2 class="text-sm font-semibold text-zinc-300 uppercase tracking-wide mb-3">
+            On this page
+          </h2>
+          <ul class="space-y-2">
+            {tocHeadings.map(({ depth, slug, text }) => (
+              <li style={`padding-left: ${(depth - 2) * 1}rem`}>
+                <a
+                  href={`#${slug}`}
+                  class="text-sm text-zinc-400 hover:text-white transition-colors"
+                >
+                  {text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <article
+        class="prose prose-zinc prose-invert max-w-none
+               prose-headings:text-white
+               prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
+               prose-code:text-emerald-300 prose-code:bg-zinc-800 prose-code:px-1 prose-code:rounded
+               prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800"
+        aria-labelledby="article-title"
+      >
+        <Content />
+      </article>
+
+    </div>
+  </main>
+</Layout>
