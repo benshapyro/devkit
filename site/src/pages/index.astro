@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import { Hero } from '../components/Hero';
+import { FavoritesSection } from '../components/FavoritesSection';
 import { SkillGallery } from '../components/SkillGallery';
 import { parseSkillId, createExcerpt } from '../content.config';
 
@@ -91,6 +92,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   </header>
 
   <Hero skillCount={skillData.length} />
+
+  <section class="max-w-7xl mx-auto px-8 pt-8">
+    <FavoritesSection skills={skillData} baseUrl={baseUrl} client:visible />
+  </section>
 
   <main id="main-content" class="px-8 py-8">
     <SkillGallery skills={skillData} baseUrl={baseUrl} client:visible />
