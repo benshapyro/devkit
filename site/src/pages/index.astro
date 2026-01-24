@@ -47,6 +47,30 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       </a>
       <div class="flex items-center gap-6">
         <a
+          href={baseUrl || '/'}
+          class="text-sm text-white"
+        >
+          Skills
+        </a>
+        <a
+          href={`${baseUrl}/hooks`}
+          class="text-sm text-zinc-400 hover:text-white transition-colors"
+        >
+          Hooks
+        </a>
+        <a
+          href={`${baseUrl}/commands`}
+          class="text-sm text-zinc-400 hover:text-white transition-colors"
+        >
+          Commands
+        </a>
+        <a
+          href={`${baseUrl}/agents`}
+          class="text-sm text-zinc-400 hover:text-white transition-colors"
+        >
+          Agents
+        </a>
+        <a
           href="https://github.com/CadreAI/devkit"
           target="_blank"
           rel="noopener noreferrer"

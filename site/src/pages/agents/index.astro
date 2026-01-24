@@ -2,30 +2,30 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
-import { CommandCard } from '../../components/CommandCard';
+import { AgentCard } from '../../components/AgentCard';
 import { parseArtifactId, createExcerpt } from '../../content.config';
 
-const commands = await getCollection('commands');
+const agents = await getCollection('agents');
 
-const commandData = commands.map(c => {
-  const { slug } = parseArtifactId(c.id);
+const agentData = agents.map(a => {
+  const { slug } = parseArtifactId(a.id);
   return {
-    id: c.id,
+    id: a.id,
     slug,
-    name: `/${slug}`,
-    description: createExcerpt(c.data.description, 150),
-    argumentHint: c.data['argument-hint'],
-    allowedTools: c.data['allowed-tools'],
+    name: a.data.name,
+    description: createExcerpt(a.data.description, 150),
+    tools: a.data.tools,
+    model: a.data.model,
   };
 });
 
-// Sort alphabetically by slug
-commandData.sort((a, b) => a.slug.localeCompare(b.slug));
+// Sort alphabetically by name
+agentData.sort((a, b) => a.name.localeCompare(b.name));
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<Layout title="Commands | Devkit">
+<Layout title="Agents | Devkit">
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4
@@ -60,13 +60,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </a>
         <a
           href={`${baseUrl}/commands`}
-          class="text-sm text-white"
+          class="text-sm text-zinc-400 hover:text-white transition-colors"
         >
           Commands
         </a>
         <a
           href={`${baseUrl}/agents`}
-          class="text-sm text-zinc-400 hover:text-white transition-colors"
+          class="text-sm text-white"
         >
           Agents
         </a>
@@ -81,20 +81,20 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           </svg>
           GitHub
         </a>
-        <span class="text-sm text-zinc-600">{commandData.length} commands</span>
+        <span class="text-sm text-zinc-600">{agentData.length} agents</span>
       </div>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-20 px-6">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.08),transparent_70%)]" />
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08),transparent_70%)]" />
     <div class="relative max-w-4xl mx-auto text-center">
       <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
-        Slash Commands
+        Sub-Agents
       </h1>
       <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
-        User-invoked workflows for Claude Code. Quick actions for planning, shipping, reviewing, and more.
+        Specialized agents for Claude Code. Delegated sub-agents that run in isolated contexts with configurable tool access.
       </p>
     </div>
   </section>
@@ -102,8 +102,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   <main id="main-content" class="px-8 py-12">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {commandData.map(command => (
-          <CommandCard command={command} baseUrl={baseUrl} />
+        {agentData.map(agent => (
+          <AgentCard agent={agent} baseUrl={baseUrl} />
         ))}
       </div>
     </div>

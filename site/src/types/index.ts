@@ -25,6 +25,15 @@ export interface Command {
   allowedTools?: string;
 }
 
+export interface Agent {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  tools?: string;
+  model?: string;
+}
+
 export interface FilterState {
   search: string;
   groups: string[];
