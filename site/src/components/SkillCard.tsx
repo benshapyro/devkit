@@ -7,44 +7,78 @@ interface Props {
   baseUrl: string;
 }
 
+// Group to icon mapping (using simple geometric shapes)
+const groupIcons: Record<string, string> = {
+  'ai-automation': '◈',
+  'business-strategy': '◆',
+  'communications': '◇',
+  'content-marketing': '▣',
+  'data-documents': '▤',
+  'design-ui': '◐',
+  'development-tools': '⬡',
+  'infrastructure-ops': '⬢',
+  'internal-specialty': '◎',
+  'marketing': '◉',
+};
+
 export function SkillCard({ skill, baseUrl }: Props) {
   const skillUrl = `${baseUrl}/skills/${skill.slug}`;
+  const icon = groupIcons[skill.group] || '○';
 
   return (
     <div
-      className="group relative block rounded-xl overflow-hidden
-                 bg-zinc-900/50 backdrop-blur-sm
-                 border border-zinc-800/50
-                 hover:border-emerald-500/30
+      className="group relative rounded-2xl overflow-hidden
+                 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40
+                 border border-zinc-800/60
+                 hover:border-zinc-700/80
                  transition-all duration-300 ease-out
-                 hover:scale-[1.02] hover:-translate-y-1
-                 hover:shadow-lg hover:shadow-emerald-500/5"
-      role="listitem"
+                 hover:shadow-2xl hover:shadow-emerald-500/5"
     >
-      {/* Download button overlay - outside the main link to avoid nested anchors */}
+      {/* Download button overlay */}
       {hasDownload(skill.slug) && (
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity z-10">
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 z-10">
           <DownloadButton slug={skill.slug} baseUrl={baseUrl} variant="icon" />
         </div>
       )}
 
       <a
         href={skillUrl}
-        className="block focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
+        aria-label={`View details for ${skill.name}`}
+        className="block p-6 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:ring-inset rounded-2xl"
       >
-        {/* Gradient top accent */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* Top accent line */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-700/50 to-transparent" />
 
-        <div className="p-5">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            {skill.group}
-          </span>
-          <h3 className="text-white font-semibold mt-3 text-lg group-hover:text-emerald-50 transition-colors">
+        {/* Hover glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        <div className="relative">
+          {/* Icon and group */}
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-2xl text-emerald-500/70 group-hover:text-emerald-400 transition-colors">
+              {icon}
+            </span>
+            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+              {skill.group}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-white transition-colors leading-snug">
             {skill.name}
           </h3>
-          <p className="text-zinc-400 text-sm mt-2 line-clamp-2 leading-relaxed">
+
+          {/* Description */}
+          <p className="mt-3 text-sm text-zinc-400 line-clamp-2 leading-relaxed">
             {skill.excerpt}
           </p>
+
+          {/* Bottom arrow indicator */}
+          <div className="mt-4 flex items-center text-sm text-zinc-500 group-hover:text-emerald-400 transition-colors">
+            <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
+              View details →
+            </span>
+          </div>
         </div>
       </a>
     </div>
