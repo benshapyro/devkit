@@ -81,7 +81,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               </p>
               {hasDownload(slug) && (
                 <div class="mt-6">
-                  <DownloadButton client:load slug={slug} baseUrl={baseUrl} variant="full" />
+                  <DownloadButton slug={slug} baseUrl={baseUrl} variant="full" />
                 </div>
               )}
             </div>
