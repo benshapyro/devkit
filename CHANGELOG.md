@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - README-SPEC.md capturing documentation requirements
 
 ### Changed
+- Improved global typography with responsive heading sizes and consistent spacing defaults
 - Split content-marketing into marketing/ (27 skills) and communications/ (3 skills)
 - Reorganized skills directory into 9 group subdirectories matching README categories
 - Updated packaging script to handle grouped directory structure
