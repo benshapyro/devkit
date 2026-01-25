@@ -47,4 +47,5 @@ export interface FilterState {
   groups: string[];
   roles: string[];
   tasks: string[];
+  favoritesOnly: boolean;
 }

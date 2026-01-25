@@ -6,6 +6,7 @@ const DEFAULT_FILTERS: FilterState = {
   groups: [],
   roles: [],
   tasks: [],
+  favoritesOnly: false,
 };
 
 function parseArrayParam(params: URLSearchParams, key: string): string[] {
@@ -24,6 +25,7 @@ export function useUrlFilters() {
       groups: parseArrayParam(params, 'groups'),
       roles: parseArrayParam(params, 'roles'),
       tasks: parseArrayParam(params, 'tasks'),
+      favoritesOnly: params.get('favorites') === 'true',
     };
   });
 
@@ -34,6 +36,7 @@ export function useUrlFilters() {
     if (filters.groups.length) params.set('groups', filters.groups.join(','));
     if (filters.roles.length) params.set('roles', filters.roles.join(','));
     if (filters.tasks.length) params.set('tasks', filters.tasks.join(','));
+    if (filters.favoritesOnly) params.set('favorites', 'true');
 
     const url = params.toString()
       ? `${window.location.pathname}?${params}`
@@ -51,6 +54,7 @@ export function useUrlFilters() {
         groups: parseArrayParam(params, 'groups'),
         roles: parseArrayParam(params, 'roles'),
         tasks: parseArrayParam(params, 'tasks'),
+        favoritesOnly: params.get('favorites') === 'true',
       });
     };
     window.addEventListener('popstate', onPopState);
