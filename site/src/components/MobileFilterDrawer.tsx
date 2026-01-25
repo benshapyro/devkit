@@ -46,16 +46,16 @@ export function MobileFilterDrawer({
       />
 
       {/* Drawer - slides up from bottom */}
-      <div className="absolute bottom-0 left-0 right-0 bg-zinc-900 rounded-t-2xl max-h-[80vh] overflow-y-auto">
+      <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl max-h-[80vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-zinc-900 p-4 border-b border-zinc-800 flex items-center justify-between">
-          <h2 className="font-semibold text-white">Filters</h2>
+        <div className="sticky top-0 bg-white p-4 border-b border-[#E5E2D8] flex items-center justify-between">
+          <h2 className="font-semibold text-[#0C0407]">Filters</h2>
           <div className="flex items-center gap-2">
             {totalSelected > 0 && (
               <button
                 type="button"
                 onClick={onClear}
-                className="text-sm text-zinc-500 hover:text-white transition-colors"
+                className="text-sm text-[#6E7191] hover:text-[#0C0407] transition-colors"
               >
                 Clear all
               </button>
@@ -63,7 +63,7 @@ export function MobileFilterDrawer({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 text-zinc-400 hover:text-white transition-colors"
+              className="p-2 text-[#6E7191] hover:text-[#0C0407] transition-colors"
               aria-label="Close filters"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,7 +83,7 @@ export function MobileFilterDrawer({
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm transition-all
                   ${favoritesOnly
                     ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                    : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50'
+                    : 'bg-white text-[#6E7191] border border-[#E5E2D8]'
                   }`}
                 aria-pressed={favoritesOnly}
               >
@@ -100,7 +100,7 @@ export function MobileFilterDrawer({
 
           {/* Roles Section */}
           <section>
-            <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-medium text-[#6E7191] uppercase tracking-wider mb-3">
               I am a...
             </h3>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by role">
@@ -113,8 +113,8 @@ export function MobileFilterDrawer({
                     onClick={() => onToggleRole(role)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all
                       ${isChecked
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 hover:bg-zinc-800'
+                        ? 'bg-[#DB4545]/20 text-[#DB4545] border border-[#DB4545]/30'
+                        : 'bg-white text-[#6E7191] border border-[#E5E2D8] hover:bg-[#F2EFE4]'
                       }`}
                     aria-pressed={isChecked}
                   >
@@ -127,7 +127,7 @@ export function MobileFilterDrawer({
 
           {/* Tasks Section */}
           <section>
-            <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-medium text-[#6E7191] uppercase tracking-wider mb-3">
               I want to...
             </h3>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by task">
@@ -140,8 +140,8 @@ export function MobileFilterDrawer({
                     onClick={() => onToggleTask(task)}
                     className={`px-3 py-1.5 rounded-full text-sm transition-all
                       ${isChecked
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 hover:bg-zinc-800'
+                        ? 'bg-[#DB4545]/20 text-[#DB4545] border border-[#DB4545]/30'
+                        : 'bg-white text-[#6E7191] border border-[#E5E2D8] hover:bg-[#F2EFE4]'
                       }`}
                     aria-pressed={isChecked}
                   >
@@ -154,7 +154,7 @@ export function MobileFilterDrawer({
 
           {/* Categories Section */}
           <section>
-            <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-medium text-[#6E7191] uppercase tracking-wider mb-3">
               Categories
             </h3>
             <div className="space-y-1" role="group" aria-label="Filter by category">
@@ -167,13 +167,13 @@ export function MobileFilterDrawer({
                     onClick={() => onToggleGroup(group)}
                     className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all
                       ${isChecked
-                        ? 'bg-emerald-500/10 text-emerald-400'
-                        : 'text-zinc-400 hover:bg-zinc-800/50'
+                        ? 'bg-[#DB4545]/10 text-[#DB4545]'
+                        : 'text-[#6E7191] hover:bg-[#F2EFE4]'
                       }`}
                     aria-pressed={isChecked}
                   >
                     <span>{group}</span>
-                    <span className={`text-xs tabular-nums ${isChecked ? 'text-emerald-500/70' : 'text-zinc-600'}`}>
+                    <span className={`text-xs tabular-nums ${isChecked ? 'text-[#DB4545]/70' : 'text-[#A1A1A1]'}`}>
                       {count}
                     </span>
                   </button>
@@ -184,15 +184,15 @@ export function MobileFilterDrawer({
         </div>
 
         {/* Footer with show results button */}
-        <div className="sticky bottom-0 bg-zinc-900 p-4 border-t border-zinc-800">
+        <div className="sticky bottom-0 bg-white p-4 border-t border-[#E5E2D8]">
           <button
             type="button"
             onClick={onClose}
-            className="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-medium rounded-xl transition-colors"
+            className="w-full py-3 bg-[#DB4545] hover:bg-[#c43d3d] text-white font-medium rounded-xl transition-colors"
           >
             Show Results
             {totalSelected > 0 && (
-              <span className="ml-2 text-emerald-100">
+              <span className="ml-2 text-white">
                 ({totalSelected} filter{totalSelected !== 1 ? 's' : ''})
               </span>
             )}
