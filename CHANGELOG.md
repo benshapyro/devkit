@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- Skill card enhancements with user-centric discovery features
+  - Output type indicators (📄 Document, 💻 Code, 🎨 Visual, 💬 Guidance) on skill cards
+  - User favorites with localStorage persistence and "My Favorites" filter toggle
+  - Example prompts displayed on cards to demonstrate skill usage
+  - URL state synchronization for all filters including favorites
 - 2 skills imported from vercel-labs/agent-skills
   - react-best-practices: Vercel's 45+ React/Next.js performance rules with priority ratings
   - web-design-guidelines: UI compliance checker against Web Interface Guidelines
