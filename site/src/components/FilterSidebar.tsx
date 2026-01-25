@@ -5,9 +5,12 @@ interface Props {
   selectedGroups: string[];
   selectedRoles: string[];
   selectedTasks: string[];
+  favoritesOnly: boolean;
+  favoritesCount: number;
   onToggleGroup: (group: string) => void;
   onToggleRole: (role: string) => void;
   onToggleTask: (task: string) => void;
+  onToggleFavorites: () => void;
   onClear: () => void;
 }
 
@@ -16,9 +19,12 @@ export function FilterSidebar({
   selectedGroups,
   selectedRoles,
   selectedTasks,
+  favoritesOnly,
+  favoritesCount,
   onToggleGroup,
   onToggleRole,
   onToggleTask,
+  onToggleFavorites,
   onClear,
 }: Props) {
   const hasFilters = selectedGroups.length > 0 || selectedRoles.length > 0 || selectedTasks.length > 0;
@@ -26,6 +32,30 @@ export function FilterSidebar({
   return (
     <aside className="w-64 shrink-0 hidden md:block">
       <div className="sticky top-24 space-y-6">
+        {/* Favorites toggle - only show if user has favorites */}
+        {favoritesCount > 0 && (
+          <section className="mb-8">
+            <button
+              type="button"
+              onClick={onToggleFavorites}
+              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all
+                ${favoritesOnly
+                  ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                  : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 hover:bg-zinc-800'
+                }`}
+              aria-pressed={favoritesOnly}
+            >
+              <span className="flex items-center gap-2">
+                <span>⭐</span>
+                <span>My Favorites</span>
+              </span>
+              <span className={`text-xs tabular-nums ${favoritesOnly ? 'text-amber-500/70' : 'text-zinc-600'}`}>
+                {favoritesCount}
+              </span>
+            </button>
+          </section>
+        )}
+
         {/* Roles section */}
         <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50">
           <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4 pb-3 border-b border-zinc-800/50">
