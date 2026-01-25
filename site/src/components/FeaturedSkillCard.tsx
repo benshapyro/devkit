@@ -13,33 +13,33 @@ export function FeaturedSkillCard({ skill, baseUrl, featured = false }: Props) {
     <a
       href={skillUrl}
       className={`group relative block overflow-hidden rounded-2xl
-                  bg-gradient-to-br from-zinc-900 to-zinc-900/80
-                  border border-zinc-800/60 hover:border-emerald-500/30
+                  bg-white
+                  border border-[#E5E2D8] hover:border-[#DB4545]/30
                   transition-all duration-300
                   ${featured ? 'row-span-2 col-span-2' : ''}`}
     >
       {/* Glow effect for featured */}
       {featured && (
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#DB4545]/10 via-transparent to-transparent opacity-50" />
       )}
 
       <div className={`relative p-6 ${featured ? 'p-8' : 'p-6'} h-full flex flex-col`}>
         {/* Tagline */}
         {skill.tagline && (
-          <span className={`text-emerald-400 font-medium mb-2 ${featured ? 'text-lg' : 'text-sm'}`}>
+          <span className={`text-[#DB4545] font-medium mb-2 ${featured ? 'text-lg' : 'text-sm'}`}>
             {skill.tagline}
           </span>
         )}
 
         {/* Name */}
-        <h3 className={`font-display font-bold text-white group-hover:text-emerald-50 transition-colors
+        <h3 className={`font-display font-bold text-[#0C0407] group-hover:text-[#0C0407] transition-colors
                         ${featured ? 'text-3xl md:text-4xl' : 'text-xl'}`}>
           {skill.name}
         </h3>
 
         {/* Description - only on featured */}
         {featured && (
-          <p className="mt-4 text-zinc-400 text-lg leading-relaxed line-clamp-3">
+          <p className="mt-4 text-[#6E7191] text-lg leading-relaxed line-clamp-3">
             {skill.excerpt}
           </p>
         )}
@@ -50,7 +50,7 @@ export function FeaturedSkillCard({ skill, baseUrl, featured = false }: Props) {
             {skill.roles.slice(0, featured ? 3 : 2).map(role => (
               <span
                 key={role}
-                className="px-2 py-1 text-xs bg-zinc-800/80 text-zinc-400 rounded-full"
+                className="px-2 py-1 text-xs bg-[#F2EFE4] text-[#6E7191] rounded-full"
               >
                 {role}
               </span>
@@ -59,7 +59,7 @@ export function FeaturedSkillCard({ skill, baseUrl, featured = false }: Props) {
         )}
 
         {/* Arrow indicator */}
-        <div className="mt-auto pt-4 flex items-center text-zinc-500 group-hover:text-emerald-400 transition-colors">
+        <div className="mt-auto pt-4 flex items-center text-[#6E7191] group-hover:text-[#DB4545] transition-colors">
           <span className={`${featured ? 'text-base' : 'text-sm'}`}>
             Explore →
           </span>
