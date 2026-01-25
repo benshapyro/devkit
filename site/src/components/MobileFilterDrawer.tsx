@@ -11,6 +11,9 @@ interface Props {
   onToggleRole: (role: string) => void;
   onToggleTask: (task: string) => void;
   onClear: () => void;
+  favoritesOnly: boolean;
+  favoritesCount: number;
+  onToggleFavorites: () => void;
 }
 
 export function MobileFilterDrawer({
@@ -24,11 +27,14 @@ export function MobileFilterDrawer({
   onToggleRole,
   onToggleTask,
   onClear,
+  favoritesOnly,
+  favoritesCount,
+  onToggleFavorites,
 }: Props) {
   // Don't render if closed
   if (!isOpen) return null;
 
-  const totalSelected = selectedGroups.length + selectedRoles.length + selectedTasks.length;
+  const totalSelected = selectedGroups.length + selectedRoles.length + selectedTasks.length + (favoritesOnly ? 1 : 0);
 
   return (
     <div className="fixed inset-0 z-50 md:hidden">
@@ -68,6 +74,30 @@ export function MobileFilterDrawer({
         </div>
 
         <div className="p-4 space-y-6">
+          {/* Favorites toggle */}
+          {favoritesCount > 0 && (
+            <section aria-label="Filter by favorites">
+              <button
+                type="button"
+                onClick={onToggleFavorites}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm transition-all
+                  ${favoritesOnly
+                    ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                    : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50'
+                  }`}
+                aria-pressed={favoritesOnly}
+              >
+                <span className="flex items-center gap-2">
+                  <span role="img" aria-label="Star">⭐</span>
+                  <span>My Favorites</span>
+                </span>
+                <span className="text-xs tabular-nums">
+                  {favoritesCount}
+                </span>
+              </button>
+            </section>
+          )}
+
           {/* Roles Section */}
           <section>
             <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-3">
