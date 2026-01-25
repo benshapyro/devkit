@@ -16,7 +16,7 @@ interface Props {
 
 function SkillGalleryInner({ skills, baseUrl }: Props) {
   const { filters, setFilters } = useUrlFilters();
-  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { favorites, toggleFavorite } = useFavorites();
   const [searchInput, setSearchInput] = useState(filters.search);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const debouncedSearch = useDebouncedValue(searchInput, 300);
@@ -196,7 +196,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
                 <SkillCard
                   skill={skill}
                   baseUrl={baseUrl}
-                  isFavorite={isFavorite(skill.slug)}
+                  isFavorite={favorites.includes(skill.slug)}
                   onToggleFavorite={() => toggleFavorite(skill.slug)}
                 />
               </div>
