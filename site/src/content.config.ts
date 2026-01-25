@@ -21,6 +21,8 @@ const skills = defineCollection({
     roles: z.array(z.string()).optional(),
     tasks: z.array(z.string()).optional(),
     favorite: z.boolean().optional(),
+    outputType: z.enum(['document', 'code', 'visual', 'guidance']).optional(),
+    examplePrompt: z.string().optional(),
   }),
 });
 
