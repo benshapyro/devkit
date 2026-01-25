@@ -45,11 +45,11 @@ export function DownloadButton({ slug, baseUrl, variant, className = "" }: Props
         href={url}
         download
         className={`inline-flex items-center justify-center w-8 h-8 rounded-full
-                    bg-emerald-500/90 hover:bg-emerald-400
+                    bg-[#DB4545]/90 hover:bg-[#DB4545]
                     text-white
                     transition-all duration-200
                     hover:scale-110
-                    focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900
+                    focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-zinc-900
                     ${className}`}
         title={`Download (${formatFileSize(info.size)})`}
         aria-label={`Download skill package (${formatFileSize(info.size)})`}
@@ -64,17 +64,17 @@ export function DownloadButton({ slug, baseUrl, variant, className = "" }: Props
       href={url}
       download
       className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                  bg-emerald-500/10 hover:bg-emerald-500/20
-                  border border-emerald-500/30 hover:border-emerald-500/50
-                  text-emerald-400 hover:text-emerald-300
+                  bg-[#DB4545]/10 hover:bg-[#DB4545]/20
+                  border border-[#DB4545]/30 hover:border-[#DB4545]/50
+                  text-[#DB4545] hover:text-[#DB4545]
                   transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900
+                  focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-zinc-900
                   ${className}`}
       aria-label={`Download skill package (${formatFileSize(info.size)})`}
     >
       {downloadIcon}
       <span className="font-medium">Download</span>
-      <span className="text-emerald-500/70 text-sm">({formatFileSize(info.size)})</span>
+      <span className="text-[#DB4545]/70 text-sm">({formatFileSize(info.size)})</span>
     </a>
   );
 }
