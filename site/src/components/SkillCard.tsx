@@ -33,11 +33,11 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
   return (
     <div
       className="group relative rounded-2xl overflow-hidden
-                 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40
-                 border border-zinc-800/60
-                 hover:border-zinc-700/80
+                 bg-white
+                 border border-[#E5E2D8]
+                 hover:border-[#D1CEC4]
                  transition-all duration-300 ease-out
-                 hover:shadow-2xl hover:shadow-emerald-500/5"
+                 hover:shadow-2xl hover:shadow-[#DB4545]/5"
     >
       {/* Star button for favorites */}
       <button
@@ -81,27 +81,27 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
       <a
         href={skillUrl}
         aria-label={`View details for ${skill.name}`}
-        className="block p-6 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:ring-inset rounded-2xl"
+        className="block p-6 focus:outline-none focus:ring-2 focus:ring-[#DB4545]/50 focus:ring-inset rounded-2xl"
       >
         {/* Top accent line */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-700/50 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E5E2D8] to-transparent" />
 
         {/* Hover glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#DB4545]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div className="relative">
           {/* Icon and group */}
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-2xl text-emerald-500/70 group-hover:text-emerald-400 transition-colors" aria-hidden="true">
+            <span className="text-2xl text-[#DB4545]/70 group-hover:text-[#DB4545] transition-colors" aria-hidden="true">
               {icon}
             </span>
-            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+            <span className="text-xs font-medium text-[#6E7191] uppercase tracking-wider">
               {skill.group}
             </span>
             {/* Output type indicator */}
             {skill.outputType && OUTPUT_TYPES[skill.outputType] && (
               <span
-                className="text-sm text-zinc-500"
+                className="text-sm text-[#6E7191]"
                 title={OUTPUT_TYPES[skill.outputType].label}
                 aria-label={`Produces: ${OUTPUT_TYPES[skill.outputType].label}`}
               >
@@ -111,17 +111,17 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-white transition-colors leading-snug">
+          <h3 className="text-lg font-semibold text-[#0C0407] group-hover:text-[#0C0407] transition-colors leading-snug">
             {skill.name}
           </h3>
 
           {/* Tagline (primary) or fallback to excerpt */}
           {skill.tagline ? (
-            <p className="mt-2 text-sm text-zinc-400 font-medium">
+            <p className="mt-2 text-sm text-[#6E7191] font-medium">
               {skill.tagline}
             </p>
           ) : (
-            <p className="mt-2 text-sm text-zinc-400 line-clamp-2 leading-relaxed">
+            <p className="mt-2 text-sm text-[#6E7191] line-clamp-2 leading-relaxed">
               {skill.excerpt}
             </p>
           )}
@@ -132,7 +132,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
               {displayRoles.map(role => (
                 <span
                   key={role}
-                  className="px-2 py-0.5 text-xs bg-zinc-800/70 text-zinc-400 rounded-full"
+                  className="px-2 py-0.5 text-xs bg-[#F2EFE4] text-[#6E7191] rounded-full"
                 >
                   {role}
                 </span>
@@ -140,7 +140,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
               {displayTasks.map(task => (
                 <span
                   key={task}
-                  className="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-400/80 rounded-full"
+                  className="px-2 py-0.5 text-xs bg-[#DB4545]/10 text-[#DB4545] rounded-full"
                 >
                   {task}
                 </span>
@@ -150,13 +150,13 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
 
           {/* Example prompt */}
           {skill.examplePrompt && (
-            <p className="mt-3 text-xs text-zinc-500 italic truncate" title={skill.examplePrompt}>
+            <p className="mt-3 text-xs text-[#A1A1A1] italic truncate" title={skill.examplePrompt}>
               Try: "{skill.examplePrompt}"
             </p>
           )}
 
           {/* Bottom arrow indicator */}
-          <div className="mt-4 flex items-center text-sm text-zinc-500 group-hover:text-emerald-400 transition-colors">
+          <div className="mt-4 flex items-center text-sm text-[#6E7191] group-hover:text-[#DB4545] transition-colors">
             <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
               View details →
             </span>
