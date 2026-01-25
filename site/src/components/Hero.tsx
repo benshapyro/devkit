@@ -36,12 +36,23 @@ export function Hero({ skillCount }: Props) {
           {skillCount} skills available
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-          <span className="text-[#0C0407]">
-            Ben's Seriously Savage Stash
+        <h1>
+          {/* Byline */}
+          <span className="block text-sm font-medium tracking-[0.2em] text-[#DB4545]/60 uppercase mb-4">
+            Ben's
           </span>
-          <br />
-          <span className="text-[#6E7191]">of Super Saucy Skills to Slay With</span>
+          {/* Hero line */}
+          <span className="block text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#0C0407]">
+            Seriously Savage Stash
+          </span>
+          {/* Tagline with mixed weights */}
+          <span className="block text-xl md:text-2xl text-[#6E7191] mt-4">
+            <span className="font-light">of </span>
+            <span className="font-medium">Super </span>
+            <span className="font-medium italic">Saucy </span>
+            <span className="font-medium">Skills </span>
+            <span className="font-light">to Slay With</span>
+          </span>
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-[#6E7191] max-w-2xl mx-auto leading-relaxed">
