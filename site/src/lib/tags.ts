@@ -44,3 +44,13 @@ export const FAVORITE_SKILLS = [
   'presentation-composer',
   'product-discovery',
 ] as const;
+
+// Output type indicators for skill cards
+export const OUTPUT_TYPES = {
+  document: { emoji: '📄', label: 'Document' },
+  code: { emoji: '💻', label: 'Code' },
+  visual: { emoji: '🎨', label: 'Visual' },
+  guidance: { emoji: '💬', label: 'Guidance' },
+} as const;
+
+export type OutputType = keyof typeof OUTPUT_TYPES;
