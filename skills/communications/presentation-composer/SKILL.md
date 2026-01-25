@@ -9,6 +9,8 @@ roles:
 tasks:
   - Create Presentations
 favorite: true
+outputType: document
+examplePrompt: Create a board presentation for Q4 results
 ---
 
 # Presentation Composer

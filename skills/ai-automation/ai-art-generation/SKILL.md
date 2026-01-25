@@ -9,6 +9,8 @@ roles:
 tasks:
   - Create Images
 favorite: true
+outputType: visual
+examplePrompt: Create pixel art sprites for a 2D platformer
 ---
 
 # AI Art Generation

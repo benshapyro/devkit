@@ -10,6 +10,8 @@ tasks:
   - Write Code
   - Automate Tasks
 favorite: true
+outputType: code
+examplePrompt: Write a system prompt for a customer support bot
 ---
 
 # Prompt Engineering

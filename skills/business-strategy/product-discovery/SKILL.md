@@ -8,6 +8,8 @@ roles:
 tasks:
   - Learn & Research
 favorite: true
+outputType: document
+examplePrompt: Help me discover requirements for a task management app
 ---
 
 # Product Discovery Skill

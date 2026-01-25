@@ -9,6 +9,8 @@ tasks:
   - Automate Tasks
   - Write Code
 favorite: true
+outputType: guidance
+examplePrompt: Prep me for a discovery session with Acme Corp
 ---
 
 # Cadre OS

@@ -9,6 +9,8 @@ roles:
 tasks:
   - Learn & Research
 favorite: true
+outputType: document
+examplePrompt: Help me brainstorm features for a habit tracker
 ---
 
 # Brainstorming Ideas Into Designs
