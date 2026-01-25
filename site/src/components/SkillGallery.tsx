@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import type { Skill } from '../types';
 import { useUrlFilters } from '../hooks/useUrlFilters';
 import { useDebouncedValue } from '../hooks/useDebouncedValue';
+import { useFavorites } from '../hooks/useFavorites';
 import { SearchInput } from './SearchInput';
 import { FilterSidebar } from './FilterSidebar';
 import { MobileFilterDrawer } from './MobileFilterDrawer';
@@ -15,6 +16,7 @@ interface Props {
 
 function SkillGalleryInner({ skills, baseUrl }: Props) {
   const { filters, setFilters } = useUrlFilters();
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const [searchInput, setSearchInput] = useState(filters.search);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const debouncedSearch = useDebouncedValue(searchInput, 300);
@@ -49,6 +51,11 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
   // Logic: OR within each dimension, AND between dimensions
   const filteredSkills = useMemo(() => {
     return skills.filter(skill => {
+      // Favorites filter (if enabled, only show favorites)
+      if (filters.favoritesOnly && !favorites.includes(skill.slug)) {
+        return false;
+      }
+
       const searchLower = filters.search.toLowerCase();
       const matchesSearch = !filters.search ||
         skill.name.toLowerCase().includes(searchLower) ||
@@ -69,7 +76,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
       // AND between all dimensions
       return matchesSearch && matchesGroup && matchesRole && matchesTask;
     });
-  }, [skills, filters]);
+  }, [skills, filters, favorites]);
 
   const toggleGroup = (group: string) => {
     setFilters({
@@ -95,12 +102,16 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
     });
   };
 
-  const clearFilters = () => {
-    setSearchInput('');
-    setFilters({ groups: [], roles: [], tasks: [], search: '' });
+  const toggleFavoritesFilter = () => {
+    setFilters({ favoritesOnly: !filters.favoritesOnly });
   };
 
-  const activeFilterCount = filters.groups.length + filters.roles.length + filters.tasks.length;
+  const clearFilters = () => {
+    setSearchInput('');
+    setFilters({ groups: [], roles: [], tasks: [], search: '', favoritesOnly: false });
+  };
+
+  const activeFilterCount = filters.groups.length + filters.roles.length + filters.tasks.length + (filters.favoritesOnly ? 1 : 0);
 
   return (
     <div className="flex gap-8">
@@ -113,6 +124,9 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         onToggleRole={toggleRole}
         onToggleTask={toggleTask}
         onClear={clearFilters}
+        favoritesOnly={filters.favoritesOnly}
+        favoritesCount={favorites.length}
+        onToggleFavorites={toggleFavoritesFilter}
       />
 
       <div className="flex-1">
@@ -179,7 +193,12 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
                 className="animate-fade-in-up opacity-0"
                 style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
               >
-                <SkillCard skill={skill} baseUrl={baseUrl} />
+                <SkillCard
+                  skill={skill}
+                  baseUrl={baseUrl}
+                  isFavorite={isFavorite(skill.slug)}
+                  onToggleFavorite={() => toggleFavorite(skill.slug)}
+                />
               </div>
             ))}
           </div>
@@ -197,6 +216,9 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         onToggleRole={toggleRole}
         onToggleTask={toggleTask}
         onClear={clearFilters}
+        favoritesOnly={filters.favoritesOnly}
+        favoritesCount={favorites.length}
+        onToggleFavorites={toggleFavoritesFilter}
       />
     </div>
   );
