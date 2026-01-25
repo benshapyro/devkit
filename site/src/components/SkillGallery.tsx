@@ -135,14 +135,14 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
           <button
             type="button"
             onClick={() => setIsFilterDrawerOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 border border-zinc-700/50 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E5E2D8] rounded-lg text-sm text-[#6E7191] hover:bg-zinc-50 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>
             Filters
             {activeFilterCount > 0 && (
-              <span className="bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+              <span className="bg-[#DB4545] text-white text-xs px-1.5 rounded-full">
                 {activeFilterCount}
               </span>
             )}
@@ -157,9 +157,9 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         </div>
 
         {/* Results summary bar */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800/50">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E5E2D8]">
           <p className="text-sm text-zinc-400">
-            Showing <span className="text-white font-medium">{filteredSkills.length}</span> of {skills.length} skills
+            Showing <span className="text-[#0C0407] font-medium">{filteredSkills.length}</span> of {skills.length} skills
             {activeFilterCount > 0 && (
               <span className="ml-2 text-zinc-500">
                 ({activeFilterCount} filter{activeFilterCount !== 1 ? 's' : ''} active)
@@ -170,7 +170,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-sm text-zinc-500 hover:text-emerald-400 transition-colors"
+              className="text-sm text-zinc-500 hover:text-[#DB4545] transition-colors"
             >
               Reset filters
             </button>
