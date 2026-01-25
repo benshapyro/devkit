@@ -52,7 +52,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
           ${isFavorite
             ? 'text-amber-400 bg-amber-500/20'
             : 'text-zinc-500 hover:text-amber-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
-          }`}
+          } focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-amber-500/50`}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         aria-pressed={isFavorite}
       >
@@ -92,7 +92,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
         <div className="relative">
           {/* Icon and group */}
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-2xl text-emerald-500/70 group-hover:text-emerald-400 transition-colors">
+            <span className="text-2xl text-emerald-500/70 group-hover:text-emerald-400 transition-colors" aria-hidden="true">
               {icon}
             </span>
             <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
@@ -105,7 +105,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
                 title={OUTPUT_TYPES[skill.outputType].label}
                 aria-label={`Produces: ${OUTPUT_TYPES[skill.outputType].label}`}
               >
-                {OUTPUT_TYPES[skill.outputType].emoji}
+                <span aria-hidden="true">{OUTPUT_TYPES[skill.outputType].emoji}</span>
               </span>
             )}
           </div>
@@ -150,7 +150,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
 
           {/* Example prompt */}
           {skill.examplePrompt && (
-            <p className="mt-3 text-xs text-zinc-500 italic truncate">
+            <p className="mt-3 text-xs text-zinc-500 italic truncate" title={skill.examplePrompt}>
               Try: "{skill.examplePrompt}"
             </p>
           )}
