@@ -11,7 +11,7 @@ export function CompareView({ skills, baseUrl }: Props) {
 
   return (
     <div className="animate-fade-in">
-      <h2 className="text-lg font-semibold text-zinc-300 mb-4">
+      <h2 className="text-lg font-semibold text-[#6E7191] mb-4">
         Comparing {skills.length} skills
       </h2>
 
@@ -19,7 +19,7 @@ export function CompareView({ skills, baseUrl }: Props) {
         {skills.map(skill => (
           <article
             key={skill.slug}
-            className="bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-6 flex flex-col h-full hover:border-zinc-700/60 transition-colors"
+            className="bg-white border border-[#E5E2D8] rounded-xl p-6 flex flex-col h-full hover:border-[#D1CEC4] transition-colors"
             role="listitem"
           >
             {/* Header */}
@@ -27,7 +27,7 @@ export function CompareView({ skills, baseUrl }: Props) {
               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-800 text-zinc-400 mb-3">
                 {skill.group}
               </span>
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-xl font-semibold text-[#0C0407]">
                 {skill.name}
               </h3>
             </div>
@@ -38,15 +38,15 @@ export function CompareView({ skills, baseUrl }: Props) {
             </p>
 
             {/* Footer with license and link */}
-            <div className="mt-6 pt-4 border-t border-zinc-800/50 flex items-center justify-between">
+            <div className="mt-6 pt-4 border-t border-[#E5E2D8]/50 flex items-center justify-between">
               {skill.license && (
-                <span className="text-xs text-zinc-500">
+                <span className="text-xs text-[#A1A1A1]">
                   License: {skill.license}
                 </span>
               )}
               <a
                 href={`${baseUrl}/skills/${skill.slug}`}
-                className="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 transition-colors ml-auto"
+                className="inline-flex items-center gap-1.5 text-sm text-[#DB4545] hover:text-[#DB4545] transition-colors ml-auto"
               >
                 View details
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,41 +62,41 @@ export function CompareView({ skills, baseUrl }: Props) {
       <div className="mt-8 overflow-x-auto">
         <table className="w-full text-sm" role="table">
           <thead>
-            <tr className="border-b border-zinc-800">
-              <th scope="col" className="text-left py-3 px-4 text-zinc-500 font-medium">Attribute</th>
+            <tr className="border-b border-[#E5E2D8]">
+              <th scope="col" className="text-left py-3 px-4 text-[#A1A1A1] font-medium">Attribute</th>
               {skills.map(skill => (
-                <th key={skill.slug} scope="col" className="text-left py-3 px-4 text-zinc-300 font-medium">
+                <th key={skill.slug} scope="col" className="text-left py-3 px-4 text-[#6E7191] font-medium">
                   {skill.name}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-zinc-800/50">
-              <td className="py-3 px-4 text-zinc-500">Group</td>
+            <tr className="border-b border-[#E5E2D8]/50">
+              <td className="py-3 px-4 text-[#A1A1A1]">Group</td>
               {skills.map(skill => (
-                <td key={skill.slug} className="py-3 px-4 text-zinc-300">
+                <td key={skill.slug} className="py-3 px-4 text-[#6E7191]">
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-zinc-800 text-zinc-400">
                     {skill.group}
                   </span>
                 </td>
               ))}
             </tr>
-            <tr className="border-b border-zinc-800/50">
-              <td className="py-3 px-4 text-zinc-500">License</td>
+            <tr className="border-b border-[#E5E2D8]/50">
+              <td className="py-3 px-4 text-[#A1A1A1]">License</td>
               {skills.map(skill => (
-                <td key={skill.slug} className="py-3 px-4 text-zinc-300">
+                <td key={skill.slug} className="py-3 px-4 text-[#6E7191]">
                   {skill.license || <span className="text-zinc-600">Not specified</span>}
                 </td>
               ))}
             </tr>
             <tr>
-              <td className="py-3 px-4 text-zinc-500">Details</td>
+              <td className="py-3 px-4 text-[#A1A1A1]">Details</td>
               {skills.map(skill => (
                 <td key={skill.slug} className="py-3 px-4">
                   <a
                     href={`${baseUrl}/skills/${skill.slug}`}
-                    className="text-emerald-400 hover:text-emerald-300 transition-colors"
+                    className="text-[#DB4545] hover:text-[#DB4545] transition-colors"
                   >
                     View full documentation
                   </a>

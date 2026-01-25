@@ -127,9 +127,9 @@ export function CompareSelector({ skills, baseUrl }: Props) {
               onFocus={handleSearchFocus}
               placeholder="Search skills to compare..."
               className="w-full md:w-96 pl-12 pr-4 py-3
-                         bg-zinc-900/50 border border-zinc-800/60
-                         rounded-xl text-zinc-100 placeholder-zinc-500
-                         focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500/30
+                         bg-white border border-[#E5E2D8]
+                         rounded-xl text-[#0C0407] placeholder-[#A1A1A1]
+                         focus:outline-none focus:ring-2 focus:ring-[#DB4545]/30 focus:border-[#DB4545]/30
                          transition-all duration-200"
               aria-label="Search skills to compare"
               aria-expanded={isDropdownOpen}
@@ -141,7 +141,7 @@ export function CompareSelector({ skills, baseUrl }: Props) {
           {isDropdownOpen && (
             <div
               id="skill-dropdown"
-              className="absolute z-10 mt-2 w-full md:w-96 bg-zinc-900 border border-zinc-800 rounded-xl max-h-64 overflow-y-auto shadow-xl"
+              className="absolute z-10 mt-2 w-full md:w-96 bg-white border border-[#E5E2D8] rounded-xl max-h-64 overflow-y-auto shadow-xl"
               role="listbox"
               aria-label="Available skills"
             >
@@ -158,7 +158,7 @@ export function CompareSelector({ skills, baseUrl }: Props) {
                       type="button"
                       onClick={() => !isDisabled && handleSelectSkill(skill.slug)}
                       className={`w-full p-3 text-left transition-colors flex items-center justify-between
-                        ${isSelected ? 'bg-emerald-500/10' : 'hover:bg-zinc-800'}
+                        ${isSelected ? 'bg-[#DB4545]/10' : 'hover:bg-[#F2EFE4]'}
                         ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                       `}
                       disabled={isDisabled}
@@ -166,11 +166,11 @@ export function CompareSelector({ skills, baseUrl }: Props) {
                       aria-selected={isSelected}
                     >
                       <div>
-                        <span className="text-zinc-100">{skill.name}</span>
-                        <span className="text-xs text-zinc-500 ml-2">{skill.group}</span>
+                        <span className="text-[#0C0407]">{skill.name}</span>
+                        <span className="text-xs text-[#A1A1A1] ml-2">{skill.group}</span>
                       </div>
                       {isSelected && (
-                        <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#DB4545]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       )}
@@ -187,14 +187,14 @@ export function CompareSelector({ skills, baseUrl }: Props) {
           {selectedSkills.map(skill => (
             <span
               key={skill.slug}
-              className="px-3 py-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-sm flex items-center gap-2"
+              className="px-3 py-1.5 bg-[#DB4545]/10 text-[#DB4545] border border-[#DB4545]/20 rounded-full text-sm flex items-center gap-2"
               role="listitem"
             >
               {skill.name}
               <button
                 type="button"
                 onClick={() => removeSkill(skill.slug)}
-                className="hover:text-emerald-300 transition-colors"
+                className="hover:text-[#DB4545] transition-colors"
                 aria-label={`Remove ${skill.name} from comparison`}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
