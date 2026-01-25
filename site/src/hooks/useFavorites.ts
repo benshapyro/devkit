@@ -13,8 +13,8 @@ export function useFavorites() {
       if (stored) {
         setFavorites(JSON.parse(stored));
       }
-    } catch {
-      // Ignore localStorage errors (SSR, privacy mode, etc.)
+    } catch (error) {
+      console.warn('Failed to access localStorage:', error);
     }
     setIsLoaded(true);
   }, []);
@@ -24,8 +24,8 @@ export function useFavorites() {
     if (!isLoaded) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-    } catch {
-      // Ignore localStorage errors
+    } catch (error) {
+      console.warn('Failed to access localStorage:', error);
     }
   }, [favorites, isLoaded]);
 
@@ -37,7 +37,7 @@ export function useFavorites() {
     );
   }, []);
 
-  const isFavorite = useCallback((slug: string) => favorites.includes(slug), [favorites]);
+  const isFavorite = (slug: string) => favorites.includes(slug);
 
   return { favorites, toggleFavorite, isFavorite, isLoaded };
 }
