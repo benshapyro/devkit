@@ -47,7 +47,7 @@ export function CopyInstallButton({ skillPath }: Props) {
 
   const checkIcon = (
     <svg
-      className="w-5 h-5 text-emerald-400"
+      className="w-5 h-5 text-[#DB4545]"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -67,9 +67,9 @@ export function CopyInstallButton({ skillPath }: Props) {
       type="button"
       onClick={handleCopy}
       className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                 bg-zinc-800/50 hover:bg-zinc-800
-                 border border-zinc-700/50 hover:border-zinc-600
-                 text-zinc-300 hover:text-white
+                 bg-white hover:bg-[#F2EFE4]
+                 border border-[#E5E2D8] hover:border-[#D1CEC4]
+                 text-[#6E7191] hover:text-[#0C0407]
                  transition-all duration-200
                  focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
       aria-label={copied ? 'Copied!' : 'Copy install command'}
