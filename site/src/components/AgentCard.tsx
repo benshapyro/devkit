@@ -34,7 +34,7 @@ export function AgentCard({ agent, baseUrl }: Props) {
             <span className="text-2xl text-[#08749B]/70 group-hover:text-[#08749B] transition-colors">
               ◉
             </span>
-            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+            <span className="text-xs font-medium text-[#A1A1A1] uppercase tracking-wider">
               Agent
             </span>
           </div>
@@ -52,7 +52,7 @@ export function AgentCard({ agent, baseUrl }: Props) {
           {/* Model badge if present */}
           {agent.model && (
             <div className="mt-4">
-              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-mono bg-zinc-800/50 text-zinc-400 border border-zinc-700/50">
+              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-mono bg-[#F2EFE4] text-[#6E7191] border border-[#E5E2D8]">
                 {agent.model}
               </span>
             </div>

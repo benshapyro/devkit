@@ -72,7 +72,7 @@ export function FilterSidebar({
                   className={`w-full flex items-center px-3 py-2 rounded-lg text-sm transition-all duration-150
                     ${isChecked
                       ? 'bg-[#DB4545]/10 text-[#DB4545]'
-                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-zinc-800'
+                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-[#0C0407]'
                     }`}
                   aria-pressed={isChecked}
                 >
@@ -99,7 +99,7 @@ export function FilterSidebar({
                   className={`w-full flex items-center px-3 py-2 rounded-lg text-sm transition-all duration-150
                     ${isChecked
                       ? 'bg-[#DB4545]/10 text-[#DB4545]'
-                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-zinc-800'
+                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-[#0C0407]'
                     }`}
                   aria-pressed={isChecked}
                 >
@@ -126,7 +126,7 @@ export function FilterSidebar({
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all duration-150
                     ${isChecked
                       ? 'bg-[#DB4545]/10 text-[#DB4545]'
-                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-zinc-800'
+                      : 'text-[#6E7191] hover:bg-[#F2EFE4] hover:text-[#0C0407]'
                     }`}
                   aria-pressed={isChecked}
                 >
@@ -145,7 +145,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={onClear}
-            className="w-full px-4 py-2 text-sm text-[#6E7191] hover:text-zinc-800 transition-colors"
+            className="w-full px-4 py-2 text-sm text-[#6E7191] hover:text-[#0C0407] transition-colors"
           >
             Clear all filters
           </button>

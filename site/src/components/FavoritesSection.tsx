@@ -21,10 +21,10 @@ export function FavoritesSection({ skills, baseUrl }: Props) {
     <section className="mb-16">
       {/* Section header with editorial styling */}
       <div className="flex items-center gap-4 mb-8">
-        <h2 className="font-display text-2xl md:text-3xl font-bold text-white">
+        <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0C0407]">
           Staff Picks
         </h2>
-        <div className="flex-1 h-px bg-zinc-800" />
+        <div className="flex-1 h-px bg-[#E5E2D8]" />
       </div>
 
       {/* Asymmetric grid */}

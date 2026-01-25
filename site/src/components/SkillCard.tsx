@@ -51,7 +51,7 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
           ${hasDownload(skill.slug) ? 'right-14' : 'right-4'}
           ${isFavorite
             ? 'text-amber-400 bg-amber-500/20'
-            : 'text-zinc-500 hover:text-amber-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
+            : 'text-[#A1A1A1] hover:text-amber-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
           } focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-amber-500/50`}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         aria-pressed={isFavorite}

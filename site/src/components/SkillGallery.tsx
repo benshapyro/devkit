@@ -135,7 +135,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
           <button
             type="button"
             onClick={() => setIsFilterDrawerOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E5E2D8] rounded-lg text-sm text-[#6E7191] hover:bg-zinc-50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E5E2D8] rounded-lg text-sm text-[#6E7191] hover:bg-[#F2EFE4] transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -158,10 +158,10 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
 
         {/* Results summary bar */}
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E5E2D8]">
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-[#6E7191]">
             Showing <span className="text-[#0C0407] font-medium">{filteredSkills.length}</span> of {skills.length} skills
             {activeFilterCount > 0 && (
-              <span className="ml-2 text-zinc-500">
+              <span className="ml-2 text-[#A1A1A1]">
                 ({activeFilterCount} filter{activeFilterCount !== 1 ? 's' : ''} active)
               </span>
             )}
@@ -170,7 +170,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-sm text-zinc-500 hover:text-[#DB4545] transition-colors"
+              className="text-sm text-[#A1A1A1] hover:text-[#DB4545] transition-colors"
             >
               Reset filters
             </button>
@@ -178,7 +178,7 @@ function SkillGalleryInner({ skills, baseUrl }: Props) {
         </div>
 
         {filteredSkills.length === 0 ? (
-          <p className="text-zinc-400 text-center py-12">
+          <p className="text-[#6E7191] text-center py-12">
             No skills match your filters.
           </p>
         ) : (

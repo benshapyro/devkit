@@ -24,7 +24,7 @@ export function CompareView({ skills, baseUrl }: Props) {
           >
             {/* Header */}
             <div className="mb-4">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-800 text-zinc-400 mb-3">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F2EFE4] text-[#6E7191] mb-3">
                 {skill.group}
               </span>
               <h3 className="text-xl font-semibold text-[#0C0407]">
@@ -33,7 +33,7 @@ export function CompareView({ skills, baseUrl }: Props) {
             </div>
 
             {/* Description */}
-            <p className="text-zinc-400 text-sm leading-relaxed flex-grow">
+            <p className="text-[#6E7191] text-sm leading-relaxed flex-grow">
               {skill.description}
             </p>
 
@@ -76,7 +76,7 @@ export function CompareView({ skills, baseUrl }: Props) {
               <td className="py-3 px-4 text-[#A1A1A1]">Group</td>
               {skills.map(skill => (
                 <td key={skill.slug} className="py-3 px-4 text-[#6E7191]">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-zinc-800 text-zinc-400">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#F2EFE4] text-[#6E7191]">
                     {skill.group}
                   </span>
                 </td>
@@ -86,7 +86,7 @@ export function CompareView({ skills, baseUrl }: Props) {
               <td className="py-3 px-4 text-[#A1A1A1]">License</td>
               {skills.map(skill => (
                 <td key={skill.slug} className="py-3 px-4 text-[#6E7191]">
-                  {skill.license || <span className="text-zinc-600">Not specified</span>}
+                  {skill.license || <span className="text-[#A1A1A1]">Not specified</span>}
                 </td>
               ))}
             </tr>

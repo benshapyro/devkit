@@ -49,7 +49,7 @@ export function HookCard({ hook, baseUrl }: Props) {
             <span className="text-2xl text-[#DB4545]/70 group-hover:text-[#DB4545] transition-colors">
               {icon}
             </span>
-            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+            <span className="text-xs font-medium text-[#A1A1A1] uppercase tracking-wider">
               {hook.event}
             </span>
           </div>
@@ -67,7 +67,7 @@ export function HookCard({ hook, baseUrl }: Props) {
           {/* Matcher badge if present */}
           {hook.matcher && (
             <div className="mt-4">
-              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-mono bg-zinc-800/50 text-zinc-400 border border-zinc-700/50">
+              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-mono bg-[#F2EFE4] text-[#6E7191] border border-[#E5E2D8]">
                 {hook.matcher}
               </span>
             </div>

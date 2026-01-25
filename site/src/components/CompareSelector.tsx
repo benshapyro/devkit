@@ -106,7 +106,7 @@ export function CompareSelector({ skills, baseUrl }: Props) {
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
               <svg
-                className="w-5 h-5 text-zinc-500"
+                className="w-5 h-5 text-[#A1A1A1]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -146,7 +146,7 @@ export function CompareSelector({ skills, baseUrl }: Props) {
               aria-label="Available skills"
             >
               {filteredSkills.length === 0 ? (
-                <p className="p-4 text-sm text-zinc-500">No skills match your search.</p>
+                <p className="p-4 text-sm text-[#A1A1A1]">No skills match your search.</p>
               ) : (
                 filteredSkills.slice(0, 15).map(skill => {
                   const isSelected = selected.includes(skill.slug);
@@ -204,7 +204,7 @@ export function CompareSelector({ skills, baseUrl }: Props) {
             </span>
           ))}
           {selected.length < 3 && (
-            <span className="text-sm text-zinc-500">
+            <span className="text-sm text-[#A1A1A1]">
               {selected.length === 0
                 ? 'Select up to 3 skills'
                 : `Select ${3 - selected.length} more${selected.length < 2 ? ' (minimum 2)' : ''}`}
@@ -222,12 +222,12 @@ export function CompareSelector({ skills, baseUrl }: Props) {
       {selectedSkills.length >= 2 ? (
         <CompareView skills={selectedSkills} baseUrl={baseUrl} />
       ) : (
-        <div className="text-center py-16 bg-zinc-900/30 border border-zinc-800/50 rounded-xl">
-          <svg className="w-16 h-16 mx-auto text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="text-center py-16 bg-[#F2EFE4] border border-[#E5E2D8] rounded-xl">
+          <svg className="w-16 h-16 mx-auto text-[#A1A1A1] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
-          <p className="text-zinc-400 text-lg">Select at least 2 skills to compare</p>
-          <p className="text-zinc-500 text-sm mt-2">Use the search above to find and add skills</p>
+          <p className="text-[#6E7191] text-lg">Select at least 2 skills to compare</p>
+          <p className="text-[#A1A1A1] text-sm mt-2">Use the search above to find and add skills</p>
         </div>
       )}
     </div>

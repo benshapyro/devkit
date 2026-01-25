@@ -71,7 +71,7 @@ export function CopyInstallButton({ skillPath }: Props) {
                  border border-[#E5E2D8] hover:border-[#D1CEC4]
                  text-[#6E7191] hover:text-[#0C0407]
                  transition-all duration-200
-                 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
+                 focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-white"
       aria-label={copied ? 'Copied!' : 'Copy install command'}
     >
       {copied ? checkIcon : copyIcon}

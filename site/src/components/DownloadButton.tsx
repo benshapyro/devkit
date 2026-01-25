@@ -49,7 +49,7 @@ export function DownloadButton({ slug, baseUrl, variant, className = "" }: Props
                     text-white
                     transition-all duration-200
                     hover:scale-110
-                    focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-zinc-900
+                    focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-white
                     ${className}`}
         title={`Download (${formatFileSize(info.size)})`}
         aria-label={`Download skill package (${formatFileSize(info.size)})`}
@@ -68,7 +68,7 @@ export function DownloadButton({ slug, baseUrl, variant, className = "" }: Props
                   border border-[#DB4545]/30 hover:border-[#DB4545]/50
                   text-[#DB4545] hover:text-[#DB4545]
                   transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-zinc-900
+                  focus:outline-none focus:ring-2 focus:ring-[#DB4545] focus:ring-offset-2 focus:ring-offset-white
                   ${className}`}
       aria-label={`Download skill package (${formatFileSize(info.size)})`}
     >
