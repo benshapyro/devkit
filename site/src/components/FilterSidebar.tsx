@@ -34,7 +34,7 @@ export function FilterSidebar({
       <div className="sticky top-24 space-y-6">
         {/* Favorites toggle - only show if user has favorites */}
         {favoritesCount > 0 && (
-          <section className="mb-8">
+          <section className="mb-8" aria-label="Filter by favorites">
             <button
               type="button"
               onClick={onToggleFavorites}
@@ -46,7 +46,7 @@ export function FilterSidebar({
               aria-pressed={favoritesOnly}
             >
               <span className="flex items-center gap-2">
-                <span>⭐</span>
+                <span role="img" aria-label="Star">⭐</span>
                 <span>My Favorites</span>
               </span>
               <span className={`text-xs tabular-nums ${favoritesOnly ? 'text-amber-500/70' : 'text-zinc-600'}`}>
