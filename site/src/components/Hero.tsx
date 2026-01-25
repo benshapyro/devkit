@@ -36,12 +36,12 @@ export function Hero({ skillCount }: Props) {
           {skillCount} skills available
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
           <span className="text-[#0C0407]">
-            Devkit Skills
+            Ben's Seriously Savage Stash
           </span>
           <br />
-          <span className="text-[#6E7191]">Gallery</span>
+          <span className="text-[#6E7191]">of Super Saucy Skills to Slay With</span>
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-[#6E7191] max-w-2xl mx-auto leading-relaxed">
