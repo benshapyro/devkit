@@ -1,3 +1,5 @@
+import type { OutputType } from '../lib/tags';
+
 export interface Skill {
   name: string;
   description: string;
@@ -9,6 +11,8 @@ export interface Skill {
   roles?: string[];
   tasks?: string[];
   favorite?: boolean;
+  outputType?: OutputType;
+  examplePrompt?: string;
 }
 
 export interface Hook {
