@@ -11,7 +11,7 @@ export const SearchInput = forwardRef<HTMLInputElement, Props>(
       <div className="relative mb-6">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <svg
-            className="w-5 h-5 text-zinc-500"
+            className="w-5 h-5 text-[#A1A1A1]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -31,9 +31,9 @@ export const SearchInput = forwardRef<HTMLInputElement, Props>(
           onChange={(e) => onChange(e.target.value)}
           placeholder="Search skills..."
           className="w-full pl-12 pr-4 py-3
-                     bg-zinc-900/50 border border-zinc-800/60
-                     rounded-xl text-zinc-100 placeholder-zinc-500
-                     focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500/30
+                     bg-white border border-[#E5E2D8]
+                     rounded-xl text-[#0C0407] placeholder-[#A1A1A1]
+                     focus:outline-none focus:ring-2 focus:ring-[#DB4545]/30 focus:border-[#DB4545]/30
                      transition-all duration-200"
           aria-label="Search skills"
         />
@@ -41,7 +41,7 @@ export const SearchInput = forwardRef<HTMLInputElement, Props>(
         <button
           type="button"
           onClick={() => onChange('')}
-          className="absolute inset-y-0 right-0 pr-4 flex items-center text-zinc-500 hover:text-zinc-300 transition-colors"
+          className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#A1A1A1] hover:text-[#0C0407] transition-colors"
           aria-label="Clear search"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
