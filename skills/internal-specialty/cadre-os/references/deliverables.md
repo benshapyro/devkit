@@ -768,19 +768,74 @@ Users can stop at any module. Module 1 alone = quick pitch. Modules 0-3 = stakeh
 
 ## Workshop Protocol
 
+### Solution Exploration (Optional First Step)
+
+When user provides a solution name, **consider offering complexity exploration** before starting modules:
+
+**When to offer:**
+- User provides solution name without specific approach
+- Solution could be implemented at different complexity levels
+- User seems uncertain about technical approach
+- Keywords suggest flexibility: "assistant", "automation", "app", "tool", "system"
+
+**Exploration Process:**
+1. Acknowledge the solution concept
+2. Ask: "Would you like me to explore different approaches for this solution at varying complexity levels?"
+3. If yes, generate 2-4 solution variations:
+   - **High complexity:** Full automation, native app, AI-powered, extensive integration
+   - **Medium complexity:** Assisted workflow, PWA, hybrid AI/rules, selective integration
+   - **Low complexity:** Manual enhancement, spreadsheet-based, rule-based, minimal tech
+   - **Alternative approach:** Different architecture, technology choice, or implementation strategy
+
+**Comparison Table Format:**
+```markdown
+## Solution Exploration: [Solution Name]
+
+I can help you explore this solution at different complexity levels:
+
+| Approach | Description | Rough Effort | Key Pros | Key Cons |
+|----------|-------------|--------------|----------|----------|
+| **[High Complexity]** | [Description] | [Hours range] | [2-3 pros] | [2-3 cons] |
+| **[Medium Complexity]** | [Description] | [Hours range] | [2-3 pros] | [2-3 cons] |
+| **[Low Complexity]** | [Description] | [Hours range] | [2-3 pros] | [2-3 cons] |
+| **[Alternative]** | [Description] | [Hours range] | [2-3 pros] | [2-3 cons] |
+
+**Comparison Dimensions:**
+- User Experience: [How each approach affects end users]
+- Data Requirements: [What data is needed for each]
+- Maintenance: [Ongoing effort required]
+- Scalability: [How well it grows]
+
+Which approach interests you? I can develop a brief for any of these, or a hybrid combination.
+```
+
+**After selection:** Proceed with chosen approach through normal module workflow.
+
+**If user declines exploration:** Proceed directly to Session Opening scenarios below.
+
+**Example Explorations:**
+- **Sales Assistant** → Full AI automation vs. Assisted lookup vs. Rule-based database
+- **Mobile App** → Native iOS/Android vs. PWA vs. Responsive web
+- **Automation** → Fully automated vs. Human-in-loop vs. Enhanced manual process
+- **AI vs. Rules** → LLM-based vs. Business rules vs. Hybrid approach
+
+---
+
 ### Session Opening
 
 Adapt opening based on what user provides:
 
 **Scenario A: Solution name only**
 1. Acknowledge the solution
-2. Ask if they want to search project knowledge for context
-3. Present assessment or ask what they'd like to work on
+2. Consider offering solution exploration (see above)
+3. Ask if they want to search project knowledge for context
+4. Present assessment or ask what they'd like to work on
 
 **Scenario B: Solution name + context**
 1. Search for referenced context
 2. Present what you found with citations
-3. Show module status, propose which to work on
+3. Consider offering solution exploration if approach unclear
+4. Show module status, propose which to work on
 
 **Scenario C: Existing document provided**
 1. Analyze provided content
@@ -835,6 +890,101 @@ What's the problem you're trying to solve?
 Who experiences this problem?
 How much time do they spend on it?
 ```
+
+### Prototype Generation (After Module 4)
+
+**When to offer:**
+After completing Module 4 (Technical Approach), if solution type includes interactive elements:
+- PWA (Progressive Web App)
+- Web application
+- Dashboard or portal
+- Interactive tool
+- Client-facing artifact
+
+**Process:**
+1. **Detect solution type** from Module 4 content (keywords: PWA, web app, webapp, portal, dashboard, interface)
+2. **Ask user:** "Would you like me to create a functional prototype based on this technical approach?"
+3. **If yes, determine prototype type:**
+   ```
+   **Prototype Options:**
+   ☐ **Interactive PWA** — Functional prototype with sample data (recommended)
+   ☐ **HTML/CSS Mockup** — Static visual prototype
+   ☐ **Component Library** — Reusable UI components only
+   ☐ **Skip** — Documentation only
+   ```
+
+**Interactive PWA Prototype Creation:**
+1. Use existing artifact templates from `assets/artifact-templates/` if applicable
+2. Implement core user flows from Module 4 (Technical Approach)
+3. Use sample data based on Module 3 (Constraints & Data)
+4. Apply Cadre brand styling from `brand.md`
+5. Include realistic interactions (forms, buttons, navigation)
+6. Add explanatory comments in code
+
+**Deliverable:**
+- Present Claude artifact with embedded prototype
+- Include testing instructions
+- Note: "This is a prototype for demonstration. Production implementation will include [security, authentication, data validation, error handling, etc.]"
+
+**When NOT to offer:**
+- API-only solutions
+- Backend automation
+- Data processing pipelines
+- Infrastructure changes
+- Solutions with no user interface
+
+**Prototype Addition to Brief:**
+Add new section after Module 4:
+```markdown
+### Prototype
+
+**Type:** [Interactive PWA / HTML Mockup / Component Library]
+**Status:** [Demo ready / In progress / Deferred]
+
+**Access:** [Link to artifact or deployment]
+
+**Core Flows Demonstrated:**
+- [Flow 1 from Module 4]
+- [Flow 2 from Module 4]
+
+**Sample Data:** [Description of test data used]
+
+**Known Limitations:** [What's excluded from prototype vs. production]
+```
+
+---
+
+### Output Format (DOCX Required)
+
+**CRITICAL:** Solution briefs must be delivered as DOCX files, not markdown.
+
+**Final Deliverable Process:**
+1. **During workshop:** Draft content in markdown for easy editing
+2. **When brief is complete:**
+   - Ask: "Ready for me to generate the final DOCX file?"
+   - Convert markdown content to DOCX format
+   - Apply Cadre brand styling (see Visual Standards section below)
+   - Use professional document formatting:
+     - 11pt body text, 14-18pt headings (bold)
+     - 1" margins
+     - Tables with Deep Blue headers, alternating row colors
+     - Page breaks between major modules
+3. **Verify formatting:**
+   - All tables render correctly in Word
+   - No markdown artifacts visible (##, **, etc.)
+   - Headers and footers include client name and date
+   - Table of contents auto-generated (if brief >10 pages)
+4. **Save as:** `[Solution Name] - Solution Brief.docx`
+5. **Deliver:** Provide DOCX file for download
+
+**Intermediate Drafts:**
+- User can request markdown during workshop for quick iteration
+- Always confirm: "Would you like to see this as markdown for now, or should I generate the DOCX?"
+- Default to markdown during active editing, DOCX for final delivery
+
+**Exception:**
+User can explicitly request markdown as final format, but confirm:
+> "Just to confirm: You want the final brief as markdown instead of the standard DOCX format?"
 
 ---
 
@@ -943,6 +1093,24 @@ How much time do they spend on it?
 ### Scope Definition
 **In Scope:** [What's included]
 **Out of Scope:** [What's NOT included]
+
+### Future Opportunities (Out of Scope)
+
+Features intentionally excluded from initial build but valuable for future phases:
+
+| Feature | Business Value | Estimated Effort | Priority for Phase 2 |
+|---------|----------------|------------------|---------------------|
+| [Feature 1] | [Value to client] | [Rough hours] | High / Medium / Low |
+| [Feature 2] | [Value to client] | [Rough hours] | High / Medium / Low |
+| [Feature 3] | [Value to client] | [Rough hours] | High / Medium / Low |
+
+**Sales Engineering Opportunities:**
+- [Potential expansion or upsell opportunity 1]
+- [Potential expansion or upsell opportunity 2]
+- [Potential expansion or upsell opportunity 3]
+
+**Rationale for Exclusion:**
+[Brief explanation of why these are deferred — usually: reduce initial complexity, prove value first, budget constraints, or dependency on Phase 1 success]
 ```
 
 ### Module 3: Constraints & Data
@@ -996,25 +1164,55 @@ How much time do they spend on it?
 ```markdown
 ## Module 5: Estimates & ROI
 
-### Effort Estimate
-| Phase | Hours | Duration |
-|-------|-------|----------|
-| Discovery & Requirements | [X] | [X weeks] |
-| Build & Configure | [X] | [X weeks] |
-| Testing & QA | [X] | [X weeks] |
-| **TOTAL** | **[X] hours** | **[X] weeks** |
+### Effort Estimate by Role
 
-### Estimate Range
-| Optimistic | Expected | Pessimistic |
-|------------|----------|-------------|
-| [X] hours | [Y] hours | [Z] hours |
+| Module/Phase | Strategist Hours | Engineer Hours | AI Manager Hours | Total Hours |
+|--------------|------------------|----------------|------------------|-------------|
+| Discovery & Requirements | [X] | [X] | [X] | [X] |
+| Solution Design | [X] | [X] | [X] | [X] |
+| Build & Configure | [X] | [X] | [X] | [X] |
+| Testing & QA | [X] | [X] | [X] | [X] |
+| Deployment & Training | [X] | [X] | [X] | [X] |
+| **TOTALS** | **[X]** | **[X]** | **[X]** | **[X]** |
+
+### Estimate Ranges by Role
+
+| Role | Optimistic | Expected | Pessimistic | Hourly Rate |
+|------|------------|----------|-------------|-------------|
+| Strategist | [X] hours | [X] hours | [X] hours | $[X]/hr |
+| Engineer | [X] hours | [X] hours | [X] hours | $[X]/hr |
+| AI Manager | [X] hours | [X] hours | [X] hours | $[X]/hr |
+| **TOTAL HOURS** | **[X]** | **[X]** | **[X]** | |
+| **TOTAL COST** | **$[X]** | **$[X]** | **$[X]** | |
+
+### Client Meeting Time
+
+| Meeting Type | Quantity | Duration Each | Total Hours | Attendees |
+|--------------|----------|---------------|-------------|-----------|
+| Discovery Sessions | [X] | [X] hours | [X] hours | [Client roles] |
+| Design Review | [X] | [X] hours | [X] hours | [Client roles] |
+| Progress Checkpoints | [X] | [X] hours | [X] hours | [Client roles] |
+| UAT & Training | [X] | [X] hours | [X] hours | [Client roles] |
+| **TOTAL MEETING TIME** | | | **[X] hours** | |
+
+**Note:** Meeting time represents client time commitment, not billable hours (unless specified in SOW).
+
+### Total Project Timeline
+
+| Component | Hours | Calendar Duration | Notes |
+|-----------|-------|-------------------|-------|
+| Total Build Time | [X] | [X weeks] | Strategist + Engineer + AI Manager |
+| Client Meeting Time | [X] | — | Discovery + Reviews + Training |
+| **Total Project Time** | **[X]** | **[X weeks]** | End-to-end timeline |
 
 ### Investment & ROI
-| Metric | Value |
-|--------|-------|
-| **Implementation Cost** | $[X] |
-| **Annual Benefit** | $[X] |
-| **Payback Period** | [X] months |
+
+| Metric | Value | Calculation |
+|--------|-------|-------------|
+| **Implementation Cost** | $[X] | [Total hours × blended rate] |
+| **Annual Benefit** | $[X] | [Time saved × hourly cost + other benefits] |
+| **Payback Period** | [X] months | [Implementation cost ÷ monthly benefit] |
+| **3-Year ROI** | [X]% | [(3yr benefit - cost) ÷ cost × 100] |
 ```
 
 ### Module 6: Risks & Adoption
@@ -1111,6 +1309,15 @@ How much time do they spend on it?
 - [ ] Impact shows real numbers with math
 - [ ] Success criteria are measurable
 - [ ] Technical approach has clear architecture
-- [ ] Estimates have ranges
+- [ ] Estimates include role breakdown (Strategist, Engineer, AI Manager)
+- [ ] Estimates include client meeting time
+- [ ] Estimates have ranges (Optimistic, Expected, Pessimistic)
+- [ ] Module 2 includes Future Opportunities / SE opps (if applicable)
+- [ ] Prototype offered for PWA/web solutions (if applicable)
 - [ ] Risks have owners and mitigations
 - [ ] All sources are cited
+- [ ] **Delivered as DOCX file** (not markdown)
+- [ ] File name format: `[Solution Name] - Solution Brief.docx`
+- [ ] Cadre brand styling applied (colors, typography, tables)
+- [ ] Tables render correctly in Word
+- [ ] No markdown artifacts visible (##, **, etc.)
