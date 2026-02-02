@@ -37,6 +37,13 @@ export function FeaturedSkillCard({ skill, baseUrl, featured = false }: Props) {
           {skill.name}
         </h3>
 
+        {/* Last updated date */}
+        {skill.lastUpdated && (
+          <p className={`mt-2 text-[#A1A1A1] ${featured ? 'text-sm' : 'text-xs'}`}>
+            Updated {skill.lastUpdated}
+          </p>
+        )}
+
         {/* Description - only on featured */}
         {featured && (
           <p className="mt-4 text-[#6E7191] text-lg leading-relaxed line-clamp-3">

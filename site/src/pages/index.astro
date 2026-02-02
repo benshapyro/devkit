@@ -6,10 +6,12 @@ import { Hero } from '../components/Hero';
 import { FavoritesSection } from '../components/FavoritesSection';
 import { SkillGallery } from '../components/SkillGallery';
 import { parseSkillId, createExcerpt } from '../content.config';
+import { getSkillLastModified, formatDate } from '../lib/git-dates';
 
 const skills = await getCollection('skills');
 const skillData = skills.map(s => {
   const { group, slug } = parseSkillId(s.id);
+  const lastUpdatedISO = getSkillLastModified(s.id);
   return {
     name: s.data.name,
     description: s.data.description,
@@ -23,6 +25,7 @@ const skillData = skills.map(s => {
     favorite: s.data.favorite,
     outputType: s.data.outputType,
     examplePrompt: s.data.examplePrompt,
+    lastUpdated: formatDate(lastUpdatedISO),
   };
 });
 
