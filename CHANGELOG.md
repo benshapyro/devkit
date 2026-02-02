@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- cadre-os solution brief enhancements based on user feedback (Kate Ta)
+  - Solution Exploration phase: Offers 2-4 complexity variations (High/Medium/Low/Alternative) before starting modules
+  - Future Opportunities section in Module 2: Identifies out-of-scope features and SE opportunities
+  - Role-based estimates in Module 5: Breaks down hours by Strategist, Engineer, AI Manager
+  - Client meeting time estimates in Module 5: Tracks discovery sessions, reviews, UAT, and training meetings
+  - Prototype generation step: Offers to create interactive PWA/webapp prototypes after Module 4
+  - DOCX format enforcement: Explicit instructions to deliver briefs as Word documents, not markdown
+  - Enhanced quality checklist: Added checks for role breakdowns, meetings, prototypes, and DOCX format
 - Skill card enhancements with user-centric discovery features
   - Output type indicators (📄 Document, 💻 Code, 🎨 Visual, 💬 Guidance) on skill cards
   - User favorites with localStorage persistence and "My Favorites" filter toggle
