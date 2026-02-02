@@ -13,6 +13,7 @@ export interface Skill {
   favorite?: boolean;
   outputType?: OutputType;
   examplePrompt?: string;
+  lastUpdated?: string;
 }
 
 export interface Hook {

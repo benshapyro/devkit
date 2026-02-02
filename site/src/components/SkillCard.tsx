@@ -115,6 +115,13 @@ export function SkillCard({ skill, baseUrl, isFavorite, onToggleFavorite }: Prop
             {skill.name}
           </h3>
 
+          {/* Last updated date */}
+          {skill.lastUpdated && (
+            <p className="mt-1 text-xs text-[#A1A1A1]">
+              Updated {skill.lastUpdated}
+            </p>
+          )}
+
           {/* Tagline (primary) or fallback to excerpt */}
           {skill.tagline ? (
             <p className="mt-2 text-sm text-[#6E7191] font-medium">
